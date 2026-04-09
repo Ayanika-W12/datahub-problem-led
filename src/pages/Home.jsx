@@ -240,7 +240,7 @@ export default function Home() {
             <div className="hero-badge">
               <span className="badge badge-white">
                 <Zap size={10} />
-                Healthcare Data Platform
+                AI Health Data Hub
               </span>
             </div>
             <h1 className="hero-headline">
