@@ -39,7 +39,7 @@ const onDemand = [
   {
     title: 'Building a Patient 360 from Clinical, Claims, and SDOH Data',
     duration: '55 min',
-    category: 'Analytics & NLP',
+    category: 'Analytics & Conversational AI',
   },
   {
     title: 'No-Code Integration: Replacing Mirth Connect Without the Pain',

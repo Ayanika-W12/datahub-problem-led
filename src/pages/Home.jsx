@@ -42,7 +42,7 @@ const capabilities = [
   {
     num: '01',
     icon: <BarChart3 size={28} />,
-    label: 'Analytics & NLP',
+    label: 'Analytics & Conversational AI',
     title: 'Extract Intelligence from Clinical Data',
     desc: 'Transform unstructured clinical notes, discharge summaries, and prior auth letters into structured FHIR R4 data. Auto-map to ICD-10, CPT, SNOMED CT, LOINC, and RxNorm.',
     color: 'primary',
@@ -52,7 +52,7 @@ const capabilities = [
   {
     num: '02',
     icon: <Workflow size={28} />,
-    label: 'Reporting & NLP',
+    label: 'Reporting & Conversational AI',
     title: 'Natural Language Queries. Instant Reports.',
     desc: 'Ask your data questions in plain English. Get HEDIS, eCQM, QRDA, claims adjudication, and executive dashboard reports — automatically, without SQL.',
     color: 'cyan',

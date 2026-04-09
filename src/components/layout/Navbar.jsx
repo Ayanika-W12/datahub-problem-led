@@ -10,8 +10,8 @@ const navLinks = [
       {
         heading: 'Capabilities',
         items: [
-          { label: 'Analytics & NLP', to: '/platform/analytics-nlp', desc: 'Extract intelligence from clinical data' },
-          { label: 'Reporting & NLP', to: '/platform/reporting-nlp', desc: 'Natural language query for healthcare data' },
+          { label: 'Analytics & Conversational AI', to: '/platform/analytics-nlp', desc: 'Extract intelligence from clinical data' },
+          { label: 'Reporting & Conversational AI', to: '/platform/reporting-nlp', desc: 'Natural language query for healthcare data' },
           { label: 'Governance & Compliance', to: '/platform/governance-compliance', desc: 'Automated HIPAA, Cures Act, FHIR' },
           { label: 'Governance & Version Control', to: '/platform/governance-versioning', desc: 'Data lineage & pipeline versioning' },
           { label: 'Interfacing', to: '/platform/interfacing', desc: 'HL7, FHIR, EDI — every standard' },
@@ -20,11 +20,12 @@ const navLinks = [
         ],
       },
       {
-        heading: 'Platform Overview',
+        heading: 'By Industry',
         items: [
-          { label: 'Healthcare AI Platform', to: '/healthcare-ai-platform', desc: 'Full platform overview' },
-          { label: 'BridgeGate EiPaaS', to: '/solutions', desc: 'Enterprise integration layer' },
-          { label: 'VIIA Integration™', to: '/solutions', desc: 'AI-powered data unification' },
+          { label: 'Healthcare', to: '/solutions', desc: 'Health systems, HIEs, payers & providers' },
+          { label: 'eCommerce & Retail', to: '/solutions', desc: 'Unified product & order data integration' },
+          { label: 'Insurance', to: '/solutions', desc: 'Claims, eligibility & policy data flows' },
+          { label: 'AI Health Data Hub', to: '/healthcare-ai-platform', desc: 'Full platform overview' },
         ],
       },
     ],

@@ -58,7 +58,7 @@ export default function Contact() {
                   <p>
                     A member of our team will reach out within one business day.
                     For urgent requests, email us directly at{' '}
-                    <a href="mailto:stewari@vorro.net">stewari@vorro.net</a>.
+                    <a href="mailto:sales@vorro.net">sales@vorro.net</a>.
                   </p>
                 </div>
               ) : (
@@ -166,7 +166,7 @@ export default function Contact() {
                 <h3>Direct Contact</h3>
                 <div className="contact-info-item">
                   <Mail size={18} />
-                  <a href="mailto:stewari@vorro.net">stewari@vorro.net</a>
+                  <a href="mailto:sales@vorro.net">sales@vorro.net</a>
                 </div>
                 <div className="contact-info-item">
                   <MapPin size={18} />
@@ -197,7 +197,7 @@ export default function Contact() {
                 <p>
                   Reach out to your dedicated integration engineer or project manager directly,
                   or contact our support team at{' '}
-                  <a href="mailto:stewari@vorro.net">stewari@vorro.net</a>.
+                  <a href="mailto:sales@vorro.net">sales@vorro.net</a>.
                 </p>
               </div>
             </div>

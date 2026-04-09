@@ -114,11 +114,16 @@
   animation: dropdownIn 0.15s ease forwards;
 }
 
-/* Last two nav items: anchor dropdown to right so it doesn't overflow */
-.nav-dropdown-pos-2,
+/* Company (last item): anchor dropdown to right so it doesn't overflow */
 .nav-dropdown-pos-3 {
   left: auto;
   right: 0;
+}
+
+/* Use Cases (idx 2): center under the trigger */
+.nav-dropdown-pos-2 {
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 @keyframes dropdownIn {

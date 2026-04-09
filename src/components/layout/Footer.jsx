@@ -4,8 +4,8 @@ import VorroLogo from '../ui/VorroLogo';
 
 const footerLinks = {
   Platform: [
-    { label: 'Analytics & NLP', to: '/platform/analytics-nlp' },
-    { label: 'Reporting & NLP', to: '/platform/reporting-nlp' },
+    { label: 'Analytics & Conversational AI', to: '/platform/analytics-nlp' },
+    { label: 'Reporting & Conversational AI', to: '/platform/reporting-nlp' },
     { label: 'Governance & Compliance', to: '/platform/governance-compliance' },
     { label: 'Governance & Versioning', to: '/platform/governance-versioning' },
     { label: 'Interfacing', to: '/platform/interfacing' },
@@ -26,9 +26,9 @@ const footerLinks = {
     { label: 'Blog', to: '/blog' },
     { label: 'Webinars', to: '/webinar' },
     { label: 'Build vs. Buy', to: '/build-vs-buy' },
-    { label: 'Compare Vorro vs. Redox', to: '/vorro-vs-redox' },
-    { label: 'Compare Vorro vs. Mulesoft', to: '/vorro-vs-mulesoft' },
-    { label: 'Compare Vorro vs. Rhapsody', to: '/vorro-vs-rhapsody' },
+    { label: 'Vorro vs. Redox', to: '/vorro-vs-redox' },
+    { label: 'Vorro vs. Mulesoft', to: '/vorro-vs-mulesoft' },
+    { label: 'Vorro vs. Rhapsody', to: '/vorro-vs-rhapsody' },
   ],
   Company: [
     { label: 'About Vorro', to: '/company' },
@@ -61,9 +61,9 @@ export default function Footer() {
                 Infinite Interoperability.
               </p>
               <div className="footer-contact">
-                <a href="mailto:stewari@vorro.net" className="footer-contact-link">
+                <a href="mailto:sales@vorro.net" className="footer-contact-link">
                   <Mail size={14} />
-                  stewari@vorro.net
+                  sales@vorro.net
                 </a>
               </div>
               <div className="footer-socials">

@@ -6,14 +6,14 @@ import '../styles/vertical.css';
 export const verticals = {
   'analytics-nlp': {
     num: '01',
-    title: 'Analytics & NLP',
+    title: 'Analytics & Conversational AI',
     headline: 'Extract Structured Intelligence from Unstructured Clinical Data',
     sub: 'Transform clinical notes, discharge summaries, radiology reports, and prior auth letters into governed, FHIR-native structured data — at scale.',
     color: 'primary',
-    tags: ['Clinical NLP', 'FHIR R4', 'HIPAA', 'ICD-10', 'SNOMED CT'],
+    tags: ['Clinical AI', 'FHIR R4', 'HIPAA', 'ICD-10', 'SNOMED CT'],
     sections: [
       {
-        heading: 'The NLP Pipeline',
+        heading: 'The AI Pipeline',
         type: 'steps',
         steps: [
           {
@@ -56,12 +56,12 @@ export const verticals = {
         ],
       },
     ],
-    footer_cta: 'See Clinical NLP in Action',
+    footer_cta: 'See Conversational AI in Action',
   },
 
   'reporting-nlp': {
     num: '02',
-    title: 'Reporting & NLP',
+    title: 'Reporting & Conversational AI',
     headline: 'Natural Language Queries. Automated Healthcare Reports. No SQL Required.',
     sub: 'Ask your data questions in plain English. Get clinical, compliance, operational, and executive reports — instantly, without a data team or SQL expertise.',
     color: 'cyan',
