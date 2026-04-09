@@ -5,7 +5,7 @@ const solutions = {
   'emr-integrations': {
     title: 'EMR / EHR Integrations',
     headline: 'Connect Every EHR.\nNo Rip-and-Replace.',
-    sub: 'Vorro connects Epic, Cerner, Athena, Meditech, and 40+ other EHR systems bidirectionally — using native FHIR R4, HL7 v2, and API-based integrations that go live in weeks, not quarters.',
+    sub: 'Vorro connects your EMRs (Epic, Cerner, Athena, and beyond) to the rest of your ecosystem cleanly, securely, and without expensive custom work — using prebuilt, standards-compliant connectors that go live in days, not months.',
     color: 'primary',
     stats: [
       { val: '40+', label: 'EHR systems supported' },
@@ -34,7 +34,7 @@ const solutions = {
   'hie-integrations': {
     title: 'HIE Integrations',
     headline: 'Network-Wide\nInteroperability.',
-    sub: 'Vorro powers statewide Health Information Exchanges — Contexture, WISHIN, and others — connecting hospitals, clinics, payers, and public health agencies with real-time data exchange.',
+    sub: "Vorro's HIE integration solution ensures your connections to Health Information Exchanges work as intended: clean data in, clean data out — with real-time validation, auto-healing logic, and flexible format support for CCDs, FHIR, EDI, and custom HIE formats.",
     color: 'cyan',
     stats: [
       { val: '2+', label: 'Statewide HIEs powered' },
@@ -92,7 +92,7 @@ const solutions = {
   'pharmacy-integrations': {
     title: 'Pharmacy Integrations',
     headline: 'ePrescribing, 340B,\nand PBM — Unified.',
-    sub: "Vorro connects pharmacy data across ePrescribing networks, PBMs, specialty pharmacy, and 340B platforms — giving health systems and payers a complete view of medication management.",
+    sub: "Vorro's pharmacy integrations make sure your prescription, dispense, and billing data flows cleanly and securely between pharmacies, payers, and providers — powering safety, accuracy, and efficiency with support for RxNorm, NDC, and custom formats.",
     color: 'green',
     stats: [
       { val: '340B', label: 'Compliance automated' },
@@ -121,7 +121,7 @@ const solutions = {
   'data-quality': {
     title: 'Data Quality',
     headline: 'Clean Data.\nBetter Outcomes.',
-    sub: "Dirty data costs health systems an average of $1,950 per duplicate patient record per year — and the clinical risks are far higher. Vorro's data quality engine continuously monitors, cleanses, and deduplicates.",
+    sub: "Bad data leads to bad outcomes — and healthcare can't afford that. Vorro's Data Quality solution uses AI and intelligent automation to detect, flag, and fix data issues before they impact care, compliance, or operations. Auto-remediation fixes common errors in real time, and embedded compliance builds audit logs automatically.",
     color: 'orange',
     stats: [
       { val: '$1,950', label: 'Cost per duplicate record (avg)' },
@@ -150,7 +150,7 @@ const solutions = {
   'data-lake': {
     title: 'Healthcare Data Lake',
     headline: 'Bronze. Silver. Gold.\nML-Ready.',
-    sub: "Vorro's managed healthcare data lake ingests from every source, applies clinical-grade normalization, and delivers ML-ready feature stores to the tools your data and AI teams already use.",
+    sub: "Healthcare generates vast volumes of structured and unstructured data — managing it shouldn't slow you down. Vorro creates a single, secure data lake to store, protect, and activate your data at scale with flexible ingestion of HL7, FHIR, EDI, JSON, XML, PDFs and more, with end-to-end encryption and AI-ready tagging built in.",
     color: 'primary',
     stats: [
       { val: '45TB', label: 'Processed in 44 hrs (case study)' },
@@ -179,7 +179,7 @@ const solutions = {
   'pipeline-auto-healing': {
     title: 'Pipeline Auto-Healing',
     headline: 'Pipelines That Fix\nThemselves.',
-    sub: "Healthcare data pipelines break constantly. Vorro's auto-healing engine detects failures, diagnoses root causes, and resolves the majority automatically — before anyone notices.",
+    sub: "Every healthcare organization has faced data flow failures. Vorro's auto-healing pipelines detect, diagnose, and resolve data flow issues in real time — before they affect your operations. End-to-end monitoring, smart error handling, and proactive alerts keep your teams focused on value, not firefighting.",
     color: 'cyan',
     stats: [
       { val: '40%', label: 'Of IT time spent fixing pipelines (industry avg)' },
@@ -208,7 +208,7 @@ const solutions = {
   'data-management': {
     title: 'Data Management',
     headline: 'Governed. Secure.\nTrustworthy.',
-    sub: "Vorro's data management layer provides the governance, security, and lifecycle infrastructure that enterprise health organizations need to operate at scale — and pass any audit.",
+    sub: "Fragmented healthcare data slows innovation and care. Vorro's Data Management solution replaces patchwork workflows with a governed, AI-ready foundation — handling HL7, FHIR, EDI, X12, APIs, and custom formats in one governed structure. No-code tools let you apply rules, transformations, and governance policies without developer involvement.",
     color: 'navy',
     stats: [
       { val: '100%', label: 'HIPAA-compliant by design' },
