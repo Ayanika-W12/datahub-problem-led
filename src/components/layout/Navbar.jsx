@@ -67,8 +67,8 @@ const navLinks = [
       {
         heading: 'By Challenge',
         items: [
-          { label: '340B Compliance', to: '/solutions/use-case/340b-compliance-without-the-roadblocks', desc: 'Automate 340B workflows' },
-          { label: 'Behavioral Health', to: '/solutions/use-case/behavioral-health-integration-without-the-barriers', desc: '42 CFR Part 2 compliance' },
+          { label: '340B Compliance', to: '/solutions/pharmacy-integrations', desc: 'Automate 340B workflows' },
+          { label: 'Behavioral Health', to: '/solutions/hie-integrations', desc: '42 CFR Part 2 compliance' },
           { label: 'Build vs Buy', to: '/build-vs-buy', desc: 'Make the right integration decision' },
           { label: 'AI Readiness', to: '/platform/ai-readiness', desc: 'Prepare data for ML/AI' },
         ],

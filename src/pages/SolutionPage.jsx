@@ -16,7 +16,7 @@ const solutions = {
     features: [
       { icon: '⬡', title: 'Epic & Cerner Native', desc: 'SMART on FHIR, MyChart APIs, ContinuousConnect, and bulk data export — certified and tested.' },
       { icon: '↔', title: 'Bidirectional Flows', desc: 'Read and write back to any EHR. ADT, ORM, ORU, DFT — all message types, all directions.' },
-      { icon: '⚡', title: 'Real-Time & Batch', desc: 'Stream live ADT events or run nightly batch extracts. Both modes, same platform.' },
+      { icon: '◆', title: 'Real-Time & Batch', desc: 'Stream live ADT events or run nightly batch extracts. Both modes, same platform.' },
       { icon: '◈', title: 'HL7 v2 → FHIR R4', desc: 'Automated transformation templates for every common HL7 v2 message type to FHIR R4 resources.' },
       { icon: '◉', title: 'Proprietary APIs', desc: 'Athenahealth REST, Meditech Magic, eClinicalWorks — we\'ve built the connectors so you don\'t have to.' },
       { icon: '✦', title: 'Error Routing', desc: 'Every failed message is caught, logged, alerted, and routed to a resolution queue — never silently dropped.' },
@@ -46,7 +46,7 @@ const solutions = {
       { icon: '↔', title: 'Direct Trust Messaging', desc: 'Secure clinical messaging via Direct Trust for referrals, transitions of care, and results delivery.' },
       { icon: '◉', title: 'Consent Management', desc: 'Per-patient opt-in/opt-out enforcement across all participant organizations.' },
       { icon: '✦', title: 'Public Health Reporting', desc: 'ELR, immunization registry, and syndromic surveillance submissions — automated.' },
-      { icon: '⚡', title: 'Participant Governance', desc: 'Data sharing policies, RBAC, and audit logs for every query, push, and pull event.' },
+      { icon: '◆', title: 'Participant Governance', desc: 'Data sharing policies, RBAC, and audit logs for every query, push, and pull event.' },
     ],
     howItWorks: [
       { num: '01', title: 'Onboard Participants', desc: 'Streamlined participant onboarding with pre-built connection templates.' },
@@ -68,7 +68,7 @@ const solutions = {
       { val: '4', label: 'CMS FHIR APIs delivered' },
     ],
     features: [
-      { icon: '⚡', title: 'Prior Auth FHIR IG', desc: 'Full implementation of the HL7 PAS FHIR IG — machine-to-machine PA submission and decision.' },
+      { icon: '◆', title: 'Prior Auth FHIR IG', desc: 'Full implementation of the HL7 PAS FHIR IG — machine-to-machine PA submission and decision.' },
       { icon: '◈', title: 'Patient Access API', desc: 'CMS-0057-F compliant Patient Access API with USCDI v3 data model.' },
       { icon: '↔', title: 'Provider Access API', desc: 'Real-time payer-to-provider data feed for in-network providers.' },
       { icon: '⬡', title: 'Payer-to-Payer API', desc: 'Member data portability across coverage transitions — CMS mandate compliant.' },
@@ -95,7 +95,7 @@ const solutions = {
       { val: '60+', label: 'PBM connections' },
     ],
     features: [
-      { icon: '⚡', title: 'Surescripts ePrescribing', desc: 'Certified Surescripts network participant — RxChange, RxFill, and medication history.' },
+      { icon: '◆', title: 'Surescripts ePrescribing', desc: 'Certified Surescripts network participant — RxChange, RxFill, and medication history.' },
       { icon: '◈', title: 'NCPDP SCRIPT', desc: 'Versions 10.6 and 2017071 supported — new prescriptions, renewals, cancellations, and fills.' },
       { icon: '↔', title: '340B Compliance', desc: 'Automated split billing, contract pharmacy reconciliation, and HRSA audit trail.' },
       { icon: '⬡', title: 'PBM Integration', desc: 'Claims data from 60+ PBMs normalized and enriched with formulary and clinical data.' },
@@ -125,7 +125,7 @@ const solutions = {
       { icon: '◉', title: 'Master Patient Index', desc: 'Probabilistic + deterministic matching with configurable confidence thresholds and survivorship rules.' },
       { icon: '⬡', title: 'FHIR Profile Validation', desc: 'Continuous validation against US Core, Da Vinci, and custom FHIR profiles with detailed error reporting.' },
       { icon: '↔', title: 'Anomaly Detection', desc: 'Statistical process control on value distributions — catch data quality issues before they reach downstream systems.' },
-      { icon: '⚡', title: 'Completeness Monitoring', desc: 'USCDI element completeness scoring per source system — with trending dashboards for data stewards.' },
+      { icon: '◆', title: 'Completeness Monitoring', desc: 'USCDI element completeness scoring per source system — with trending dashboards for data stewards.' },
       { icon: '◈', title: 'Auto-Quarantine', desc: 'Invalid records are automatically quarantined, routed to review queues, and tracked through resolution.' },
       { icon: '✦', title: 'Quality Scorecards', desc: 'Per-source, per-entity quality scores with SLA alerting and executive reporting exports.' },
     ],
@@ -152,7 +152,7 @@ const solutions = {
       { icon: '⬡', title: 'Bronze Layer', desc: 'Raw ingest preserving original HL7, FHIR, EDI, and CSV data exactly as received — schema evolution tracked.' },
       { icon: '↔', title: 'Silver Layer', desc: 'FHIR R4 normalization, deduplication, validation, and terminology enrichment — trusted, unified data.' },
       { icon: '◉', title: 'Gold Layer', desc: 'OMOP CDM, USCDI v3, and custom analytics schemas — ready for dashboards and ML feature stores.' },
-      { icon: '⚡', title: 'Cloud Native', desc: 'Azure Databricks, AWS SageMaker, Snowflake, Google Vertex AI, and dbt — direct connectors out of the box.' },
+      { icon: '◆', title: 'Cloud Native', desc: 'Azure Databricks, AWS SageMaker, Snowflake, Google Vertex AI, and dbt — direct connectors out of the box.' },
       { icon: '◈', title: 'Feature Store', desc: 'Point-in-time correct feature sets for ML model training — with lineage and drift monitoring.' },
       { icon: '✦', title: 'Synthetic Data', desc: 'HIPAA-compliant synthetic patient data generation for model training and QA environments.' },
     ],
@@ -206,7 +206,7 @@ const solutions = {
       { icon: '◉', title: 'Data Catalog', desc: 'Automated FHIR resource tagging and business glossary — every asset catalogued, searchable, and owned.' },
       { icon: '⬡', title: 'Full Lineage', desc: 'Track every data element from source system through every transformation to its final consumption point.' },
       { icon: '↔', title: 'PHI Classification', desc: 'Automated PHI detection and classification across all data assets — with policy-based handling rules.' },
-      { icon: '⚡', title: 'Consent Management', desc: 'Patient opt-in/opt-out enforcement with real-time propagation across all downstream systems.' },
+      { icon: '◆', title: 'Consent Management', desc: 'Patient opt-in/opt-out enforcement with real-time propagation across all downstream systems.' },
       { icon: '◈', title: 'RBAC & ABAC', desc: 'Role-based and attribute-based access control — fine-grained permissions down to the field level.' },
       { icon: '✦', title: 'Retention Policies', desc: 'Configurable data retention and deletion schedules with automated enforcement and audit trail.' },
     ],
@@ -250,28 +250,56 @@ export default function SolutionPage({ slug }) {
       {/* HERO */}
       <section className="vertical-hero">
         <div className="container" style={{ paddingTop: '7rem', paddingBottom: '4rem' }}>
-          <div className="badge badge-white" style={{ marginBottom: '1.25rem' }}>{data.title}</div>
-          <h1 style={{
-            fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
-            fontWeight: 'var(--font-bold)',
-            color: '#fff',
-            lineHeight: 1.1,
-            whiteSpace: 'pre-line',
-            marginBottom: '1.5rem',
-            maxWidth: '760px',
-          }}>
-            {data.headline}
-          </h1>
-          <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 'var(--text-xl)', maxWidth: '640px', lineHeight: 1.6, marginBottom: '2rem' }}>
-            {data.sub}
-          </p>
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <Link to="/contact-us" className="btn btn-cyan btn-lg">
-              Get a Demo <ArrowRight size={16} />
-            </Link>
-            <Link to="/case-studies" className="btn btn-ghost-white btn-lg">
-              View Case Studies
-            </Link>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+            {/* Left: text */}
+            <div>
+              <div className="badge badge-white" style={{ marginBottom: '1.25rem' }}>{data.title}</div>
+              <h1 style={{
+                fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+                fontWeight: 'var(--font-bold)',
+                color: '#fff',
+                lineHeight: 1.1,
+                whiteSpace: 'pre-line',
+                marginBottom: '1.25rem',
+              }}>
+                {data.headline}
+              </h1>
+              <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 'var(--text-lg)', lineHeight: 1.65, marginBottom: '2rem' }}>
+                {data.sub}
+              </p>
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                <Link to="/contact-us" className="btn btn-cyan btn-lg">
+                  Get a Demo <ArrowRight size={16} />
+                </Link>
+                <Link to="/case-studies" className="btn btn-ghost-white btn-lg">
+                  View Case Studies
+                </Link>
+              </div>
+            </div>
+            {/* Right: stats card */}
+            <div style={{
+              background: 'rgba(255,255,255,0.07)',
+              border: '1px solid rgba(255,255,255,0.12)',
+              borderRadius: 'var(--radius-2xl)',
+              padding: '2rem',
+              backdropFilter: 'blur(10px)',
+            }}>
+              <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1.5rem' }}>
+                By the Numbers
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                {data.stats.map((s, i) => (
+                  <div key={i} style={{ borderLeft: `2px solid ${colors.accent}`, paddingLeft: '0.875rem' }}>
+                    <div style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2rem)', fontWeight: 'var(--font-bold)', color: '#fff', lineHeight: 1.1, marginBottom: '0.25rem' }}>
+                      {s.val}
+                    </div>
+                    <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.55)', lineHeight: 1.4 }}>
+                      {s.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

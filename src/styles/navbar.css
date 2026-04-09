@@ -114,10 +114,9 @@
   animation: dropdownIn 0.15s ease forwards;
 }
 
-/* Company (last item): anchor dropdown to right so it doesn't overflow */
+/* Company: open left-aligned like other items */
 .nav-dropdown-pos-3 {
-  left: auto;
-  right: 0;
+  left: 0;
 }
 
 /* Use Cases (idx 2): center under the trigger */

@@ -269,7 +269,7 @@ export default function IndustryPage({ industry }) {
 
             {/* Right column: remaining segments stacked */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              {data.segments.slice(1, hasFourSegments ? 3 : 3).map((seg) => (
+              {data.segments.slice(1, hasFourSegments ? 2 : 3).map((seg) => (
                 <div key={seg.tag} style={{
                   background: '#fff',
                   border: '1px solid var(--color-gray-100)',
