@@ -9,10 +9,10 @@ import '../styles/home.css';
 
 /* ---- Data ---- */
 const stats = [
-  { value: '25M+', label: 'Managed Lives Powered' },
-  { value: '22+', label: 'Enterprise Deployments' },
-  { value: '100%', label: 'HIPAA-Compliant by Design' },
-  { value: '300%', label: 'Avg. Client ROI' },
+  { value: '15M+', label: 'Daily Transactions' },
+  { value: '10,000+', label: 'Trading Partners' },
+  { value: '70%', label: 'Less Cost vs. In-House Build' },
+  { value: '100+', label: 'Customers' },
 ];
 
 const problems = [
@@ -112,29 +112,29 @@ const capabilities = [
 ];
 
 const clients = [
-  'Geisinger Health', 'Contexture (HIE)', 'WISHIN (HIE)', 'Therap',
-  'SunRx / 340B Holdings', 'CareOne', 'MedGenerations', 'Avesis / Guardian Life',
-  'DMEScripts', 'Ognomy', 'SendCare', 'Secure Exchange Solutions',
+  'HSN', 'QVC', 'American Lung Association', 'Avesis',
+  'CareOne', 'Contexture', 'WISHIN', 'Therap',
+  'SunRx', 'DMEScripts', 'KeyHIE', 'Secure Exchange Solutions',
 ];
 
 const testimonials = [
   {
-    quote: "Vorro eliminated months of custom integration work. We were live with real-time HL7 data flows in weeks, not quarters.",
-    author: "Chief Technology Officer",
-    org: "Regional Health Information Exchange",
-    initials: "CTO",
+    quote: "We signed an enterprise-wide integration deal with BridgeGate because of the results we achieved with their product. We realised immediate gains in productivity along with vastly improved data & process management. In our business, data must flow across many platforms seamlessly, quickly and dependably.",
+    author: "Vice President of IT",
+    org: "Senior Healthcare Company",
+    initials: "VP",
   },
   {
-    quote: "The governance and compliance automation alone paid for the platform. Our HIPAA audit prep went from 3 weeks to 2 days.",
-    author: "VP of Compliance",
-    org: "Multi-Facility Health System",
-    initials: "VPC",
+    quote: "We have peace of mind with BridgeGate's robust, scalable and easy to use integration platform. We deployed it within hours, rather than days or weeks, and following the migration of my financial processes my financials close time was reduced by 75%.",
+    author: "Chief Information Officer",
+    org: "Senior Healthcare Company",
+    initials: "CIO",
   },
   {
-    quote: "We evaluated Redox, Mulesoft, and three others. Vorro was the only one that truly understood healthcare data from the ground up.",
-    author: "Director of Data Engineering",
-    org: "National Pharmacy Benefit Manager",
-    initials: "DE",
+    quote: "BridgeGate has facilitated HL7 Data ingestion and integration into a routine task. Through the reuse of established templates, onboarding new clients can be accomplished within an hour — basically at Zero Cost.",
+    author: "IT Finance Manager",
+    org: "Pharmacy Benefit Manager Company",
+    initials: "IT",
   },
 ];
 
