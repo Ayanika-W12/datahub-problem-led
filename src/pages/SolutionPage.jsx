@@ -28,6 +28,8 @@ const solutions = {
       { num: '04', title: 'Go Live', desc: 'Deploy to production with real-time monitoring, alerting, and SLA tracking from day one.' },
     ],
     vendors: ['Epic', 'Oracle Cerner', 'Athenahealth', 'Meditech Expanse', 'eClinicalWorks', 'NextGen', 'Allscripts', 'CPSI', 'Greenway', 'DrChrono'],
+    flowSources: ['Epic', 'Oracle Cerner', 'Athenahealth', 'Meditech'],
+    flowTargets: ['Data Lake', 'Analytics', 'Care Management', 'Revenue Cycle'],
   },
   'hie-integrations': {
     title: 'HIE Integrations',
@@ -55,6 +57,8 @@ const solutions = {
       { num: '04', title: 'Monitor & Report', desc: 'Real-time network health dashboards and regulatory reporting exports.' },
     ],
     vendors: ['Carequality', 'CommonWell', 'TEFCA', 'Direct Trust', 'IHE XDS', 'QHIN', 'Mirth Connect', 'Rhapsody'],
+    flowSources: ['Hospitals', 'Clinics', 'Payers', 'Public Health'],
+    flowTargets: ['Carequality', 'CommonWell', 'TEFCA / QHIN', 'Direct Trust'],
   },
   'payer-integrations': {
     title: 'Payer Integrations',
@@ -82,6 +86,8 @@ const solutions = {
       { num: '04', title: 'Reconcile', desc: 'Automated ERA/EFT posting and denial management with root cause tracking.' },
     ],
     vendors: ['Availity', 'Change Healthcare', 'Waystar', 'Trizetto', 'Emdeon', 'NaviMedix', 'Cotiviti'],
+    flowSources: ['Health Plans', 'Clearinghouses', 'CMS APIs', 'FHIR Endpoints'],
+    flowTargets: ['Prior Auth', 'Eligibility', 'Claims 837', 'Denial Mgmt'],
   },
   'pharmacy-integrations': {
     title: 'Pharmacy Integrations',
@@ -109,6 +115,8 @@ const solutions = {
       { num: '04', title: 'Audit & Report', desc: 'HRSA-ready audit trail and 340B savings reporting — always audit-ready.' },
     ],
     vendors: ['Surescripts', 'CoverMyMeds', 'RxHub', 'ESI', 'CVS Caremark', 'OptumRx', 'Magellan Rx'],
+    flowSources: ['Surescripts', 'NCPDP Network', 'PBM Feeds', '340B Platform'],
+    flowTargets: ['ePrescribing', 'Claims', '340B Compliance', 'Reporting'],
   },
   'data-quality': {
     title: 'Data Quality',
@@ -136,6 +144,8 @@ const solutions = {
       { num: '04', title: 'Improve', desc: 'Steward review workflows, root cause analysis, and feedback loops to upstream systems.' },
     ],
     vendors: ['Epic', 'Cerner', 'IBM InfoSphere', 'Informatica MDM', 'Verato', 'Reltio'],
+    flowSources: ['EHR Data', 'Lab Results', 'Claims', 'ADT Events'],
+    flowTargets: ['MPI Match', 'FHIR Validate', 'Deduplicate', 'Analytics'],
   },
   'data-lake': {
     title: 'Healthcare Data Lake',
@@ -163,6 +173,8 @@ const solutions = {
       { num: '04', title: 'Serve', desc: 'Publish to your analytics and ML platforms — with governed access and data contracts.' },
     ],
     vendors: ['Azure Databricks', 'AWS SageMaker', 'Snowflake', 'Google Vertex AI', 'dbt', 'Apache Spark'],
+    flowSources: ['HL7 v2 Feed', 'FHIR R4', 'EDI Claims', 'Lab APIs'],
+    flowTargets: ['Bronze Layer', 'Silver Layer', 'Gold Layer', 'ML Features'],
   },
   'pipeline-auto-healing': {
     title: 'Pipeline Auto-Healing',
@@ -190,6 +202,8 @@ const solutions = {
       { num: '04', title: 'Learn', desc: 'Failure patterns feed back into the detection model — getting smarter over time.' },
     ],
     vendors: ['PagerDuty', 'Slack', 'Datadog', 'New Relic', 'Grafana', 'OpsGenie'],
+    flowSources: ['EHR Pipeline', 'Payer Feed', 'Lab Stream', 'Claims Batch'],
+    flowTargets: ['Detect', 'Diagnose', 'Auto-Heal', 'Alert Team'],
   },
   'data-management': {
     title: 'Data Management',
@@ -217,6 +231,8 @@ const solutions = {
       { num: '04', title: 'Audit', desc: 'One-click audit export packages for HIPAA, SOC 2, and HITRUST assessments.' },
     ],
     vendors: ['Microsoft Purview', 'Collibra', 'Alation', 'Apache Atlas', 'OneTrust'],
+    flowSources: ['Clinical Data', 'Claims Data', 'Lab Data', 'Device Data'],
+    flowTargets: ['Classified', 'Governed', 'Full Lineage', 'Audit-Ready'],
   },
 };
 
@@ -276,28 +292,71 @@ export default function SolutionPage({ slug }) {
                 </Link>
               </div>
             </div>
-            {/* Right: stats card */}
+            {/* Right: integration flow diagram */}
             <div style={{
-              background: 'rgba(255,255,255,0.07)',
-              border: '1px solid rgba(255,255,255,0.12)',
+              background: 'rgba(255,255,255,0.06)',
+              border: '1px solid rgba(255,255,255,0.1)',
               borderRadius: 'var(--radius-2xl)',
-              padding: '2rem',
-              backdropFilter: 'blur(10px)',
+              padding: '1.75rem',
             }}>
-              <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1.5rem' }}>
-                By the Numbers
+              <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{ width: '6px', height: '6px', background: '#22c55e', borderRadius: '50%', boxShadow: '0 0 8px #22c55e' }} />
+                Live Integration Flow
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-                {data.stats.map((s, i) => (
-                  <div key={i} style={{ borderLeft: `2px solid ${colors.accent}`, paddingLeft: '0.875rem' }}>
-                    <div style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2rem)', fontWeight: 'var(--font-bold)', color: '#fff', lineHeight: 1.1, marginBottom: '0.25rem' }}>
-                      {s.val}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: '0.75rem', alignItems: 'center' }}>
+                {/* Sources */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  {data.flowSources.map((s, i) => (
+                    <div key={i} style={{
+                      background: 'rgba(255,255,255,0.07)',
+                      border: '1px solid rgba(255,255,255,0.1)',
+                      borderRadius: 'var(--radius-md)',
+                      padding: '0.45rem 0.75rem',
+                      fontSize: '0.72rem',
+                      color: 'rgba(255,255,255,0.75)',
+                      display: 'flex', alignItems: 'center', gap: '0.4rem',
+                    }}>
+                      <span style={{ width: '5px', height: '5px', background: colors.accent, borderRadius: '50%', flexShrink: 0 }} />
+                      {s}
                     </div>
-                    <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.55)', lineHeight: 1.4 }}>
-                      {s.label}
-                    </div>
+                  ))}
+                </div>
+                {/* Center hub */}
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <div style={{ width: '1px', height: '52px', background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.25))' }} />
+                  <div style={{
+                    background: colors.accent,
+                    borderRadius: 'var(--radius-lg)',
+                    padding: '0.5rem 0.875rem',
+                    fontSize: '0.68rem',
+                    fontWeight: 'var(--font-bold)',
+                    color: '#fff',
+                    whiteSpace: 'nowrap',
+                    boxShadow: `0 0 18px ${colors.accent}50`,
+                    letterSpacing: '0.06em',
+                    textTransform: 'uppercase',
+                  }}>
+                    Vorro
                   </div>
-                ))}
+                  <div style={{ width: '1px', height: '52px', background: 'linear-gradient(to top, transparent, rgba(255,255,255,0.25))' }} />
+                </div>
+                {/* Targets */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  {data.flowTargets.map((t, i) => (
+                    <div key={i} style={{
+                      background: 'rgba(255,255,255,0.07)',
+                      border: '1px solid rgba(255,255,255,0.1)',
+                      borderRadius: 'var(--radius-md)',
+                      padding: '0.45rem 0.75rem',
+                      fontSize: '0.72rem',
+                      color: 'rgba(255,255,255,0.75)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '0.4rem',
+                    }}>
+                      {t}
+                      <span style={{ width: '5px', height: '5px', background: '#22c55e', borderRadius: '50%', flexShrink: 0 }} />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
