@@ -1,282 +1,245 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Zap, Shield, BarChart3, Network, Database, GitBranch, Workflow } from 'lucide-react';
 
 const solutions = {
   'emr-integrations': {
-    title: 'EMR Integrations',
-    headline: 'Connect Every EHR. No Rip-and-Replace.',
-    sub: 'Vorro bridges Epic, Cerner, Athena, Meditech, and 40+ other EHR systems with your data ecosystem — using native FHIR R4, HL7 v2, and API-based integrations that go live in weeks.',
-    eyebrow: 'Solutions',
+    title: 'EMR / EHR Integrations',
+    headline: 'Connect Every EHR.\nNo Rip-and-Replace.',
+    sub: 'Vorro connects Epic, Cerner, Athena, Meditech, and 40+ other EHR systems bidirectionally — using native FHIR R4, HL7 v2, and API-based integrations that go live in weeks, not quarters.',
     color: 'primary',
-    tags: ['Epic MyChart', 'Oracle Cerner', 'Athenahealth', 'Meditech Expanse', 'eClinicalWorks', 'HL7 v2 / FHIR R4'],
-    sections: [
-      {
-        heading: 'Every Major EHR. One Integration Layer.',
-        body: "Healthcare organizations use an average of 4+ different EHR systems across departments and facilities. Vorro's pre-built EHR connectors eliminate the months of custom development that typically follow each acquisition or partnership.",
-        bullets: [
-          'Epic FHIR R4 API + HL7 ADT, ORM, ORU feeds',
-          'Oracle Cerner ContinuousConnect + bulk FHIR export',
-          'Athenahealth REST APIs + HL7 v2.x interfaces',
-          'Meditech Expanse FHIR + Magic HL7 adapters',
-          'eClinicalWorks FHIR + HL7 bridge',
-          '40+ additional EHR connectors out of the box',
-        ],
-      },
-      {
-        heading: 'Go-Live in Weeks, Not Quarters',
-        body: "Traditional EHR integration projects take 6–18 months. Vorro's no-code interface engine and pre-mapped transformation templates reduce that to 2–6 weeks for most deployments.",
-        bullets: [
-          'Pre-built HL7 v2 to FHIR R4 transformation templates',
-          'Visual mapping interface — no code required',
-          'Automated message validation and error routing',
-          'Real-time and batch mode support',
-          'Bi-directional data flow across all EHR types',
-        ],
-      },
-      {
-        heading: 'Built for Enterprise Compliance',
-        body: 'Every EHR integration runs through Vorro\'s HIPAA-compliant data layer with full audit logging, PHI de-identification options, and role-based access controls.',
-        bullets: [
-          'End-to-end encryption in transit and at rest',
-          'HIPAA BAA included with every deployment',
-          'Full HL7 audit trail and message replay',
-          'ONC 21st Century Cures Act-compliant FHIR APIs',
-          'RBAC with clinician, admin, and analytics roles',
-        ],
-      },
+    stats: [
+      { val: '40+', label: 'EHR systems supported' },
+      { val: '2–6 wks', label: 'Avg. time to go live' },
+      { val: '100%', label: 'Bidirectional data flow' },
+      { val: '0', label: 'Rip-and-replace required' },
     ],
-    cta: { label: 'See EMR Integration in Action', to: '/contact-us' },
+    features: [
+      { icon: '⬡', title: 'Epic & Cerner Native', desc: 'SMART on FHIR, MyChart APIs, ContinuousConnect, and bulk data export — certified and tested.' },
+      { icon: '↔', title: 'Bidirectional Flows', desc: 'Read and write back to any EHR. ADT, ORM, ORU, DFT — all message types, all directions.' },
+      { icon: '⚡', title: 'Real-Time & Batch', desc: 'Stream live ADT events or run nightly batch extracts. Both modes, same platform.' },
+      { icon: '◈', title: 'HL7 v2 → FHIR R4', desc: 'Automated transformation templates for every common HL7 v2 message type to FHIR R4 resources.' },
+      { icon: '◉', title: 'Proprietary APIs', desc: 'Athenahealth REST, Meditech Magic, eClinicalWorks — we\'ve built the connectors so you don\'t have to.' },
+      { icon: '✦', title: 'Error Routing', desc: 'Every failed message is caught, logged, alerted, and routed to a resolution queue — never silently dropped.' },
+    ],
+    howItWorks: [
+      { num: '01', title: 'Discover', desc: 'Map your current EHR environment, message volumes, and integration requirements.' },
+      { num: '02', title: 'Configure', desc: 'Select pre-built connectors and configure transformations using our visual mapping interface — no code.' },
+      { num: '03', title: 'Test', desc: 'Run against real message samples in a sandboxed environment with full validation reporting.' },
+      { num: '04', title: 'Go Live', desc: 'Deploy to production with real-time monitoring, alerting, and SLA tracking from day one.' },
+    ],
+    vendors: ['Epic', 'Oracle Cerner', 'Athenahealth', 'Meditech Expanse', 'eClinicalWorks', 'NextGen', 'Allscripts', 'CPSI', 'Greenway', 'DrChrono'],
   },
   'hie-integrations': {
     title: 'HIE Integrations',
-    headline: 'Network-Wide Interoperability. Real-Time.',
-    sub: 'Vorro powers the data infrastructure of regional and statewide Health Information Exchanges — connecting hospitals, clinics, payers, and public health agencies with real-time HL7, FHIR, and Direct Trust messaging.',
-    eyebrow: 'Solutions',
+    headline: 'Network-Wide\nInteroperability.',
+    sub: 'Vorro powers statewide Health Information Exchanges — Contexture, WISHIN, and others — connecting hospitals, clinics, payers, and public health agencies with real-time data exchange.',
     color: 'cyan',
-    tags: ['Carequality', 'CommonWell', 'TEFCA / QHIN', 'Direct Trust', 'HL7 v2', 'FHIR R4'],
-    sections: [
-      {
-        heading: 'Trusted by HIEs Across the Country',
-        body: "Vorro powers Contexture, WISHIN, and other leading Health Information Exchanges. Our platform is purpose-built for the high-volume, multi-participant data flows that define HIE operations.",
-        bullets: [
-          'Multi-directional HL7 ADT, CCD, CDA message routing',
-          'FHIR R4 subscription and bulk data export',
-          'Carequality and CommonWell gateway support',
-          'TEFCA-ready QHIN onboarding infrastructure',
-          'Direct Trust secure messaging integration',
-          'Public health reporting (ELR, immunization, syndromic surveillance)',
-        ],
-      },
-      {
-        heading: 'Governance Built for Multi-Stakeholder Networks',
-        body: "HIEs manage data access for dozens to hundreds of participants with different consent models, data sharing agreements, and regulatory requirements. Vorro's governance layer makes this manageable.",
-        bullets: [
-          'Per-participant data sharing policy enforcement',
-          'Patient consent management and opt-out tracking',
-          'Attribute-based access control (ABAC)',
-          'Audit logs for every query, push, and pull event',
-          'Regulatory reporting dashboards for state agencies',
-        ],
-      },
+    stats: [
+      { val: '2+', label: 'Statewide HIEs powered' },
+      { val: '1,000+', label: 'Connected providers' },
+      { val: 'Real-time', label: 'Data exchange speed' },
+      { val: 'TEFCA', label: 'Ready' },
     ],
-    cta: { label: 'Talk to an HIE Integration Expert', to: '/contact-us' },
+    features: [
+      { icon: '◈', title: 'Carequality & CommonWell', desc: 'Certified gateway participation for both major national networks — in both directions.' },
+      { icon: '⬡', title: 'TEFCA / QHIN Ready', desc: 'Infrastructure built for the Trusted Exchange Framework — ready for QHIN onboarding.' },
+      { icon: '↔', title: 'Direct Trust Messaging', desc: 'Secure clinical messaging via Direct Trust for referrals, transitions of care, and results delivery.' },
+      { icon: '◉', title: 'Consent Management', desc: 'Per-patient opt-in/opt-out enforcement across all participant organizations.' },
+      { icon: '✦', title: 'Public Health Reporting', desc: 'ELR, immunization registry, and syndromic surveillance submissions — automated.' },
+      { icon: '⚡', title: 'Participant Governance', desc: 'Data sharing policies, RBAC, and audit logs for every query, push, and pull event.' },
+    ],
+    howItWorks: [
+      { num: '01', title: 'Onboard Participants', desc: 'Streamlined participant onboarding with pre-built connection templates.' },
+      { num: '02', title: 'Route Messages', desc: 'Smart message routing based on participant, message type, and consent status.' },
+      { num: '03', title: 'Normalize Data', desc: 'FHIR R4 normalization and terminology mapping across all incoming data streams.' },
+      { num: '04', title: 'Monitor & Report', desc: 'Real-time network health dashboards and regulatory reporting exports.' },
+    ],
+    vendors: ['Carequality', 'CommonWell', 'TEFCA', 'Direct Trust', 'IHE XDS', 'QHIN', 'Mirth Connect', 'Rhapsody'],
   },
   'payer-integrations': {
     title: 'Payer Integrations',
-    headline: 'Prior Auth. Eligibility. Claims. Automated.',
-    sub: "Vorro's FHIR-native payer integration platform automates prior authorization, eligibility verification, claims processing, and payer-provider data exchange — reducing administrative burden by up to 70%.",
-    eyebrow: 'Solutions',
+    headline: 'Prior Auth. Eligibility.\nClaims. Automated.',
+    sub: "Vorro's FHIR-native payer integration platform automates prior authorization, eligibility verification, claims, and payer-provider data exchange — reducing admin burden by up to 70%.",
     color: 'navy',
-    tags: ['Prior Authorization', 'Eligibility Verification', 'Claims / EDI X12', 'CMS-0057-F', 'FHIR R4 APIs', 'PA FHIR IG'],
-    sections: [
-      {
-        heading: 'The Full CMS Prior Auth Rule Stack',
-        body: 'CMS-0057-F mandates FHIR R4 APIs for prior authorization, patient access, provider access, and payer-to-payer exchange. Vorro delivers all four — tested, certified, and deployable in weeks.',
-        bullets: [
-          'Patient Access API with USCDI v3 data model',
-          'Provider Access API for real-time payer-provider exchange',
-          'Payer-to-Payer API for member transition continuity',
-          'Prior Authorization FHIR IG (PAS) implementation',
-          'Decision timeline enforcement (72-hour urgent / 7-day standard)',
-          'Automated denial reason codes with SNOMED CT mapping',
-        ],
-      },
-      {
-        heading: 'EDI X12 and Legacy Payer System Support',
-        body: 'Not every payer is ready for FHIR. Vorro bridges EDI 270/271 eligibility, 278 prior auth, 837/835 claims — with automated translation to FHIR R4 for downstream analytics.',
-        bullets: [
-          'EDI X12 837P/I/D, 835, 270/271, 278 processing',
-          'Real-time eligibility verification with 250+ payers',
-          'Automated claims scrubbing and validation',
-          'ERA/EFT posting automation',
-          'Denial management with root cause classification',
-        ],
-      },
+    stats: [
+      { val: '70%', label: 'Reduction in admin burden' },
+      { val: '250+', label: 'Payer connections' },
+      { val: '72 hrs', label: 'Urgent PA decision timeline enforced' },
+      { val: '4', label: 'CMS FHIR APIs delivered' },
     ],
-    cta: { label: 'Automate Your Payer Workflows', to: '/contact-us' },
+    features: [
+      { icon: '⚡', title: 'Prior Auth FHIR IG', desc: 'Full implementation of the HL7 PAS FHIR IG — machine-to-machine PA submission and decision.' },
+      { icon: '◈', title: 'Patient Access API', desc: 'CMS-0057-F compliant Patient Access API with USCDI v3 data model.' },
+      { icon: '↔', title: 'Provider Access API', desc: 'Real-time payer-to-provider data feed for in-network providers.' },
+      { icon: '⬡', title: 'Payer-to-Payer API', desc: 'Member data portability across coverage transitions — CMS mandate compliant.' },
+      { icon: '◉', title: 'EDI X12 Full Stack', desc: '837, 835, 270/271, 278 — all transaction sets, automated, with ERA/EFT posting.' },
+      { icon: '✦', title: 'Denial Intelligence', desc: 'AI-powered denial root cause classification with SNOMED CT and proprietary denial reason codes.' },
+    ],
+    howItWorks: [
+      { num: '01', title: 'Connect', desc: 'API-based connection to payer portals, clearinghouses, and FHIR endpoints.' },
+      { num: '02', title: 'Automate', desc: 'Configure PA rules, eligibility triggers, and claims routing with no-code workflows.' },
+      { num: '03', title: 'Adjudicate', desc: 'Real-time decision support with timeline enforcement and escalation routing.' },
+      { num: '04', title: 'Reconcile', desc: 'Automated ERA/EFT posting and denial management with root cause tracking.' },
+    ],
+    vendors: ['Availity', 'Change Healthcare', 'Waystar', 'Trizetto', 'Emdeon', 'NaviMedix', 'Cotiviti'],
   },
   'pharmacy-integrations': {
     title: 'Pharmacy Integrations',
-    headline: 'ePrescribing, 340B, and PBM — Unified.',
-    sub: "Vorro connects pharmacy data across ePrescribing networks, PBMs, specialty pharmacy, and 340B platforms — giving health systems and payers a complete, real-time view of medication management.",
-    eyebrow: 'Solutions',
+    headline: 'ePrescribing, 340B,\nand PBM — Unified.',
+    sub: "Vorro connects pharmacy data across ePrescribing networks, PBMs, specialty pharmacy, and 340B platforms — giving health systems and payers a complete view of medication management.",
     color: 'green',
-    tags: ['Surescripts', 'NCPDP SCRIPT', '340B', 'PBM Integration', 'Specialty Pharmacy', 'Medication Reconciliation'],
-    sections: [
-      {
-        heading: 'End-to-End Pharmacy Data Integration',
-        body: "Pharmacy data is fragmented across ePrescribing networks, PBMs, specialty pharmacy systems, and EHRs. Vorro unifies these streams into a single, actionable medication record.",
-        bullets: [
-          'Surescripts ePrescribing and RxChange integration',
-          'NCPDP SCRIPT 10.6 and 2017071 support',
-          'PBM claims data normalization and enrichment',
-          'Specialty pharmacy prior auth automation',
-          'Medication reconciliation across care settings',
-          'Real-time drug interaction and formulary checking',
-        ],
-      },
-      {
-        heading: '340B Program Compliance Automation',
-        body: "340B compliance requires tracking every covered entity purchase and split billing record. Vorro's 340B integration layer automates the data capture and audit trail that compliance demands.",
-        bullets: [
-          'Covered entity eligibility verification',
-          'Contract pharmacy data reconciliation',
-          'Split billing audit trail and documentation',
-          'HRSA reporting and audit support',
-          'Real-time 340B savings tracking dashboards',
-        ],
-      },
+    stats: [
+      { val: '340B', label: 'Compliance automated' },
+      { val: 'NCPDP', label: 'SCRIPT certified' },
+      { val: 'Real-time', label: 'Drug interaction checking' },
+      { val: '60+', label: 'PBM connections' },
     ],
-    cta: { label: 'Connect Your Pharmacy Data', to: '/contact-us' },
+    features: [
+      { icon: '⚡', title: 'Surescripts ePrescribing', desc: 'Certified Surescripts network participant — RxChange, RxFill, and medication history.' },
+      { icon: '◈', title: 'NCPDP SCRIPT', desc: 'Versions 10.6 and 2017071 supported — new prescriptions, renewals, cancellations, and fills.' },
+      { icon: '↔', title: '340B Compliance', desc: 'Automated split billing, contract pharmacy reconciliation, and HRSA audit trail.' },
+      { icon: '⬡', title: 'PBM Integration', desc: 'Claims data from 60+ PBMs normalized and enriched with formulary and clinical data.' },
+      { icon: '◉', title: 'Specialty Pharmacy', desc: 'Prior auth automation for specialty medications with clinical criteria extraction.' },
+      { icon: '✦', title: 'Medication Reconciliation', desc: 'Cross-setting medication list reconciliation using FHIR MedicationRequest resources.' },
+    ],
+    howItWorks: [
+      { num: '01', title: 'Connect Networks', desc: 'Connect to Surescripts, NCPDP, and PBM clearinghouses via certified APIs.' },
+      { num: '02', title: 'Normalize Data', desc: 'Standardize drug codes (NDC, RxNorm) and dosage data across all sources.' },
+      { num: '03', title: 'Enforce Rules', desc: 'Apply formulary, 340B eligibility, and clinical decision rules in real time.' },
+      { num: '04', title: 'Audit & Report', desc: 'HRSA-ready audit trail and 340B savings reporting — always audit-ready.' },
+    ],
+    vendors: ['Surescripts', 'CoverMyMeds', 'RxHub', 'ESI', 'CVS Caremark', 'OptumRx', 'Magellan Rx'],
   },
   'data-quality': {
     title: 'Data Quality',
-    headline: 'Clean Data. Better Care. Lower Risk.',
-    sub: "Dirty data costs health systems an average of $1,950 per duplicate patient record per year — and the clinical risks are even higher. Vorro's data quality engine continuously monitors, cleanses, and deduplicates your healthcare data.",
-    eyebrow: 'Solutions',
+    headline: 'Clean Data.\nBetter Outcomes.',
+    sub: "Dirty data costs health systems an average of $1,950 per duplicate patient record per year — and the clinical risks are far higher. Vorro's data quality engine continuously monitors, cleanses, and deduplicates.",
     color: 'orange',
-    tags: ['Master Patient Index', 'Deduplication', 'Data Validation', 'FHIR Profiling', 'Anomaly Detection', 'Data Lineage'],
-    sections: [
-      {
-        heading: 'Master Patient Index & Record Deduplication',
-        body: "Duplicate patient records are the most dangerous form of healthcare data quality failure. Vorro's probabilistic and deterministic MPI engine identifies, links, and merges duplicates with configurable confidence thresholds.",
-        bullets: [
-          'Probabilistic and deterministic patient matching',
-          'Configurable match confidence thresholds',
-          'Automated merge with human review queue for edge cases',
-          'EMPI integration with Epic, Cerner, and standalone systems',
-          'Post-merge survivorship rule engine',
-          'Real-time MPI updates on new ADT events',
-        ],
-      },
-      {
-        heading: 'Continuous Data Validation & Monitoring',
-        body: "Data quality isn't a one-time project. Vorro continuously monitors your data pipelines for completeness, conformance, consistency, and timeliness — alerting before quality issues reach downstream systems.",
-        bullets: [
-          'FHIR R4 profile validation against US Core, Da Vinci IGs',
-          'Completeness checks for required USCDI elements',
-          'Statistical anomaly detection on value distributions',
-          'Real-time quality score dashboards by source system',
-          'Automated quarantine and routing of invalid records',
-          'Data steward review workflows with one-click resolution',
-        ],
-      },
+    stats: [
+      { val: '$1,950', label: 'Cost per duplicate record (avg)' },
+      { val: '99.2%', label: 'Patient match accuracy' },
+      { val: 'Real-time', label: 'Quality monitoring' },
+      { val: 'US Core', label: 'FHIR profile validation' },
     ],
-    cta: { label: 'Assess Your Data Quality', to: '/contact-us' },
+    features: [
+      { icon: '◉', title: 'Master Patient Index', desc: 'Probabilistic + deterministic matching with configurable confidence thresholds and survivorship rules.' },
+      { icon: '⬡', title: 'FHIR Profile Validation', desc: 'Continuous validation against US Core, Da Vinci, and custom FHIR profiles with detailed error reporting.' },
+      { icon: '↔', title: 'Anomaly Detection', desc: 'Statistical process control on value distributions — catch data quality issues before they reach downstream systems.' },
+      { icon: '⚡', title: 'Completeness Monitoring', desc: 'USCDI element completeness scoring per source system — with trending dashboards for data stewards.' },
+      { icon: '◈', title: 'Auto-Quarantine', desc: 'Invalid records are automatically quarantined, routed to review queues, and tracked through resolution.' },
+      { icon: '✦', title: 'Quality Scorecards', desc: 'Per-source, per-entity quality scores with SLA alerting and executive reporting exports.' },
+    ],
+    howItWorks: [
+      { num: '01', title: 'Profile', desc: 'Baseline your current data quality across completeness, conformance, consistency, and timeliness.' },
+      { num: '02', title: 'Deduplicate', desc: 'Run MPI to identify, link, and merge duplicates across all source systems.' },
+      { num: '03', title: 'Monitor', desc: 'Continuous quality monitoring with real-time alerts when thresholds are breached.' },
+      { num: '04', title: 'Improve', desc: 'Steward review workflows, root cause analysis, and feedback loops to upstream systems.' },
+    ],
+    vendors: ['Epic', 'Cerner', 'IBM InfoSphere', 'Informatica MDM', 'Verato', 'Reltio'],
   },
   'data-lake': {
     title: 'Healthcare Data Lake',
-    headline: 'Bronze. Silver. Gold. ML-Ready.',
-    sub: "Vorro's managed healthcare data lake ingests from every source system, applies clinical-grade normalization, and delivers ML-ready feature stores to Azure Databricks, AWS SageMaker, Snowflake, and dbt.",
-    eyebrow: 'Solutions',
+    headline: 'Bronze. Silver. Gold.\nML-Ready.',
+    sub: "Vorro's managed healthcare data lake ingests from every source, applies clinical-grade normalization, and delivers ML-ready feature stores to the tools your data and AI teams already use.",
     color: 'primary',
-    tags: ['Bronze / Silver / Gold', 'Azure Databricks', 'AWS SageMaker', 'Snowflake', 'dbt', 'OMOP CDM'],
-    sections: [
-      {
-        heading: 'Three-Tier Data Lake Architecture',
-        body: "Vorro implements the Medallion architecture purpose-built for healthcare: Bronze ingests raw data exactly as received; Silver applies FHIR normalization and validation; Gold delivers analytics-ready, deduplicated datasets.",
-        bullets: [
-          'Bronze layer: raw HL7, FHIR, EDI, CSV ingest with schema preservation',
-          'Silver layer: FHIR R4 normalization, validation, and deduplication',
-          'Gold layer: OMOP CDM, USCDI v3, and custom analytics schemas',
-          'Delta Lake format for ACID transactions and time-travel queries',
-          'Automated schema evolution and version tracking',
-          'Real-time streaming and batch ingest support',
-        ],
-      },
-      {
-        heading: 'ML/AI Integration Out of the Box',
-        body: "Every data pipeline Vorro builds is designed to serve downstream AI and ML workflows — with feature stores, model lineage tracking, and drift monitoring built in.",
-        bullets: [
-          'Managed feature store with point-in-time correctness',
-          'Direct connectors to Azure ML, SageMaker, Vertex AI',
-          'Snowflake and Databricks data sharing',
-          'dbt transformation layer for analytics engineering',
-          'Model performance and data drift monitoring',
-          'HIPAA-compliant synthetic data generation for model training',
-        ],
-      },
+    stats: [
+      { val: '45TB', label: 'Processed in 44 hrs (case study)' },
+      { val: 'OMOP', label: 'CDM + USCDI v3 schemas' },
+      { val: 'ACID', label: 'Delta Lake transactions' },
+      { val: '5+', label: 'Cloud targets supported' },
     ],
-    cta: { label: 'Design Your Data Lake', to: '/contact-us' },
+    features: [
+      { icon: '⬡', title: 'Bronze Layer', desc: 'Raw ingest preserving original HL7, FHIR, EDI, and CSV data exactly as received — schema evolution tracked.' },
+      { icon: '↔', title: 'Silver Layer', desc: 'FHIR R4 normalization, deduplication, validation, and terminology enrichment — trusted, unified data.' },
+      { icon: '◉', title: 'Gold Layer', desc: 'OMOP CDM, USCDI v3, and custom analytics schemas — ready for dashboards and ML feature stores.' },
+      { icon: '⚡', title: 'Cloud Native', desc: 'Azure Databricks, AWS SageMaker, Snowflake, Google Vertex AI, and dbt — direct connectors out of the box.' },
+      { icon: '◈', title: 'Feature Store', desc: 'Point-in-time correct feature sets for ML model training — with lineage and drift monitoring.' },
+      { icon: '✦', title: 'Synthetic Data', desc: 'HIPAA-compliant synthetic patient data generation for model training and QA environments.' },
+    ],
+    howItWorks: [
+      { num: '01', title: 'Ingest', desc: 'Stream or batch ingest from EHRs, devices, claims, labs, and any external source.' },
+      { num: '02', title: 'Normalize', desc: 'Apply FHIR R4 normalization, terminology mapping, and deduplication in the Silver layer.' },
+      { num: '03', title: 'Curate', desc: 'Build Gold layer schemas for analytics, HEDIS reporting, population health, and ML.' },
+      { num: '04', title: 'Serve', desc: 'Publish to your analytics and ML platforms — with governed access and data contracts.' },
+    ],
+    vendors: ['Azure Databricks', 'AWS SageMaker', 'Snowflake', 'Google Vertex AI', 'dbt', 'Apache Spark'],
   },
   'pipeline-auto-healing': {
     title: 'Pipeline Auto-Healing',
-    headline: 'Self-Healing Data Pipelines. Zero Manual Fixes.',
-    sub: "Healthcare data pipelines break constantly — message format changes, system downtime, unexpected payloads. Vorro's auto-healing engine detects failures, diagnoses root causes, and resolves them automatically.",
-    eyebrow: 'Solutions',
+    headline: 'Pipelines That Fix\nThemselves.',
+    sub: "Healthcare data pipelines break constantly. Vorro's auto-healing engine detects failures, diagnoses root causes, and resolves the majority automatically — before anyone notices.",
     color: 'cyan',
-    tags: ['Automated Recovery', 'Dead Letter Queues', 'Schema Drift Detection', 'Alert Routing', 'SLA Monitoring'],
-    sections: [
-      {
-        heading: 'Detect, Diagnose, Recover — Automatically',
-        body: "Most integration teams spend 40%+ of their time manually fixing broken data pipelines. Vorro's auto-healing engine handles the majority of common failure modes without human intervention.",
-        bullets: [
-          'Real-time pipeline health monitoring with SLA tracking',
-          'Automated retry with exponential backoff',
-          'Dead letter queue management with root cause classification',
-          'Schema drift detection and automatic adapter updates',
-          'Downstream impact analysis before auto-recovery',
-          'Human escalation queue for complex failures',
-        ],
-      },
+    stats: [
+      { val: '40%', label: 'Of IT time spent fixing pipelines (industry avg)' },
+      { val: '<2 min', label: 'Mean time to auto-detect' },
+      { val: '80%', label: 'Of failures auto-resolved' },
+      { val: '99.9%', label: 'Pipeline uptime SLA' },
     ],
-    cta: { label: 'See Auto-Healing in Action', to: '/contact-us' },
+    features: [
+      { icon: '↺', title: 'Auto-Retry Logic', desc: 'Exponential backoff retry with configurable thresholds — handles transient failures invisibly.' },
+      { icon: '⬡', title: 'Root Cause Classification', desc: 'AI-powered failure classification across 50+ failure patterns — schema drift, auth expiry, payload errors, and more.' },
+      { icon: '◈', title: 'Dead Letter Queue', desc: 'Failed messages are captured, logged, and routed to resolution queues — never silently dropped.' },
+      { icon: '↔', title: 'Schema Drift Detection', desc: 'Detect when upstream systems change their data structure and auto-update transformation adapters.' },
+      { icon: '◉', title: 'SLA Monitoring', desc: 'Real-time SLA dashboards with breach alerting via email, Slack, PagerDuty, and webhook.' },
+      { icon: '✦', title: 'Impact Analysis', desc: 'Before auto-recovery, assess downstream impact to prevent cascading failures.' },
+    ],
+    howItWorks: [
+      { num: '01', title: 'Detect', desc: 'Real-time anomaly detection across message rates, latency, and error rates.' },
+      { num: '02', title: 'Diagnose', desc: 'AI-powered root cause classification from 50+ known failure patterns.' },
+      { num: '03', title: 'Recover', desc: 'Automated recovery for 80%+ of failure types — with human escalation for the rest.' },
+      { num: '04', title: 'Learn', desc: 'Failure patterns feed back into the detection model — getting smarter over time.' },
+    ],
+    vendors: ['PagerDuty', 'Slack', 'Datadog', 'New Relic', 'Grafana', 'OpsGenie'],
   },
   'data-management': {
     title: 'Data Management',
-    headline: 'Governed. Secure. Unified.',
-    sub: "Vorro's healthcare data management layer provides the governance, security, and lifecycle management infrastructure that enterprise health systems need to operate at scale.",
-    eyebrow: 'Solutions',
+    headline: 'Governed. Secure.\nTrustworthy.',
+    sub: "Vorro's data management layer provides the governance, security, and lifecycle infrastructure that enterprise health organizations need to operate at scale — and pass any audit.",
     color: 'navy',
-    tags: ['Data Catalog', 'RBAC', 'Data Lineage', 'Retention Policies', 'Consent Management', 'PHI Controls'],
-    sections: [
-      {
-        heading: 'Enterprise Data Governance for Healthcare',
-        body: "Managing healthcare data at scale requires more than storage — it requires governance frameworks that enforce policy, track lineage, and ensure every data asset is trusted.",
-        bullets: [
-          'Automated data catalog with FHIR resource tagging',
-          'Data lineage tracking from source to consumption',
-          'Role-based and attribute-based access control',
-          'PHI classification and automated handling policies',
-          'Consent management with opt-in/opt-out enforcement',
-          'Configurable data retention and deletion schedules',
-        ],
-      },
+    stats: [
+      { val: '100%', label: 'HIPAA-compliant by design' },
+      { val: 'Full', label: 'Data lineage tracking' },
+      { val: 'ABAC', label: 'Attribute-based access control' },
+      { val: '1-click', label: 'Audit export' },
     ],
-    cta: { label: 'Govern Your Healthcare Data', to: '/contact-us' },
+    features: [
+      { icon: '◉', title: 'Data Catalog', desc: 'Automated FHIR resource tagging and business glossary — every asset catalogued, searchable, and owned.' },
+      { icon: '⬡', title: 'Full Lineage', desc: 'Track every data element from source system through every transformation to its final consumption point.' },
+      { icon: '↔', title: 'PHI Classification', desc: 'Automated PHI detection and classification across all data assets — with policy-based handling rules.' },
+      { icon: '⚡', title: 'Consent Management', desc: 'Patient opt-in/opt-out enforcement with real-time propagation across all downstream systems.' },
+      { icon: '◈', title: 'RBAC & ABAC', desc: 'Role-based and attribute-based access control — fine-grained permissions down to the field level.' },
+      { icon: '✦', title: 'Retention Policies', desc: 'Configurable data retention and deletion schedules with automated enforcement and audit trail.' },
+    ],
+    howItWorks: [
+      { num: '01', title: 'Classify', desc: 'Auto-classify all data assets by type, sensitivity, and regulatory applicability.' },
+      { num: '02', title: 'Govern', desc: 'Apply access policies, consent rules, and retention schedules at the data layer.' },
+      { num: '03', title: 'Track', desc: 'Full lineage from ingestion through transformation to consumption — always current.' },
+      { num: '04', title: 'Audit', desc: 'One-click audit export packages for HIPAA, SOC 2, and HITRUST assessments.' },
+    ],
+    vendors: ['Microsoft Purview', 'Collibra', 'Alation', 'Apache Atlas', 'OneTrust'],
   },
+};
+
+const colorMap = {
+  primary: { accent: 'var(--color-primary)', light: 'rgba(172,65,151,0.08)', mid: 'rgba(172,65,151,0.15)' },
+  cyan: { accent: 'var(--color-cyan)', light: 'rgba(32,211,239,0.08)', mid: 'rgba(32,211,239,0.15)' },
+  navy: { accent: 'var(--color-navy)', light: 'rgba(32,34,79,0.06)', mid: 'rgba(32,34,79,0.12)' },
+  green: { accent: 'var(--color-green)', light: 'rgba(2,177,100,0.08)', mid: 'rgba(2,177,100,0.15)' },
+  orange: { accent: 'var(--color-orange)', light: 'rgba(241,122,66,0.08)', mid: 'rgba(241,122,66,0.15)' },
 };
 
 export default function SolutionPage({ slug }) {
   const data = solutions[slug];
+  const colors = colorMap[data?.color] || colorMap.primary;
 
   if (!data) {
     return (
       <main>
         <section className="section" style={{ textAlign: 'center', paddingTop: '8rem' }}>
           <h1>Page Coming Soon</h1>
-          <p style={{ marginTop: '1rem', color: 'var(--color-gray-500)' }}>This solution page is being prepared.</p>
-          <Link to="/solutions" className="btn btn-primary btn-lg" style={{ marginTop: '2rem' }}>Explore All Solutions</Link>
+          <Link to="/solutions" className="btn btn-primary btn-lg" style={{ marginTop: '2rem' }}>
+            Explore All Solutions
+          </Link>
         </section>
       </main>
     );
@@ -284,94 +247,206 @@ export default function SolutionPage({ slug }) {
 
   return (
     <main>
+      {/* HERO */}
       <section className="vertical-hero">
-        <div className="container vertical-hero-inner">
-          <div className="badge badge-white" style={{ marginBottom: '1.25rem' }}>{data.eyebrow}</div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.25rem' }}>
-            {data.tags.map(t => (
-              <span key={t} className="tag tag-white-outline">{t}</span>
-            ))}
-          </div>
-          <h1 className="vertical-hero-headline">{data.headline}</h1>
-          <p className="vertical-hero-sub">{data.sub}</p>
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '2rem' }}>
-            <Link to={data.cta.to} className="btn btn-cyan btn-lg">
-              {data.cta.label} <ArrowRight size={16} />
+        <div className="container" style={{ paddingTop: '7rem', paddingBottom: '4rem' }}>
+          <div className="badge badge-white" style={{ marginBottom: '1.25rem' }}>{data.title}</div>
+          <h1 style={{
+            fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+            fontWeight: 'var(--font-bold)',
+            color: '#fff',
+            lineHeight: 1.1,
+            whiteSpace: 'pre-line',
+            marginBottom: '1.5rem',
+            maxWidth: '760px',
+          }}>
+            {data.headline}
+          </h1>
+          <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 'var(--text-xl)', maxWidth: '640px', lineHeight: 1.6, marginBottom: '2rem' }}>
+            {data.sub}
+          </p>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <Link to="/contact-us" className="btn btn-cyan btn-lg">
+              Get a Demo <ArrowRight size={16} />
             </Link>
-            <Link to="/platform/interfacing" className="btn btn-ghost-white btn-lg">
-              View Platform Overview
+            <Link to="/case-studies" className="btn btn-ghost-white btn-lg">
+              View Case Studies
             </Link>
           </div>
         </div>
       </section>
 
-      {data.sections.map((sec, i) => (
-        <section key={i} className={`section ${i % 2 === 1 ? 'bg-light' : ''}`}>
-          <div className="container">
-            <div className="grid-2" style={{ gap: '4rem', alignItems: 'center' }}>
-              <div>
-                <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', fontWeight: 'var(--font-bold)', color: 'var(--color-navy)', marginBottom: '1rem', lineHeight: 1.3 }}>
-                  {sec.heading}
-                </h2>
-                <p style={{ color: 'var(--color-gray-600)', lineHeight: 1.8, marginBottom: '1.5rem' }}>{sec.body}</p>
-                <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-                  {sec.bullets.map(b => (
-                    <li key={b} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: 'var(--text-sm)', color: 'var(--color-gray-700)' }}>
-                      <CheckCircle2 size={16} style={{ color: 'var(--color-primary)', flexShrink: 0, marginTop: '2px' }} />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div style={{
-                background: 'linear-gradient(135deg, var(--color-navy) 0%, #1a1c45 100%)',
-                borderRadius: 'var(--radius-2xl)',
-                padding: '2.5rem',
-                color: '#fff',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '1rem',
+      {/* STATS BAND */}
+      <section style={{ background: '#fff', borderBottom: '1px solid var(--color-gray-100)' }}>
+        <div className="container" style={{ padding: '2.5rem var(--space-6)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0', borderRadius: 'var(--radius-2xl)', overflow: 'hidden', border: '1px solid var(--color-gray-100)' }}>
+            {data.stats.map((s, i) => (
+              <div key={i} style={{
+                padding: '1.75rem',
+                textAlign: 'center',
+                borderRight: i < 3 ? '1px solid var(--color-gray-100)' : 'none',
+                background: i % 2 === 0 ? '#fff' : 'var(--color-gray-50)',
               }}>
-                <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                  {data.title} · Vorro Platform
+                <div style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 'var(--font-bold)', color: colors.accent, lineHeight: 1, marginBottom: '0.4rem' }}>
+                  {s.val}
                 </div>
-                <h3 style={{ fontSize: 'var(--text-xl)', fontWeight: 'var(--font-bold)' }}>{sec.heading}</h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  {sec.bullets.slice(0, 4).map((b, j) => (
-                    <div key={j} style={{
-                      background: 'rgba(255,255,255,0.07)',
-                      borderRadius: 'var(--radius-md)',
-                      padding: '0.6rem 0.875rem',
-                      fontSize: 'var(--text-sm)',
-                      color: 'rgba(255,255,255,0.85)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                    }}>
-                      <span style={{ width: '6px', height: '6px', background: 'var(--color-cyan)', borderRadius: '50%', flexShrink: 0 }} />
-                      {b}
-                    </div>
-                  ))}
+                <div style={{ fontSize: 'var(--text-sm)', color: 'var(--color-gray-500)', lineHeight: 1.3 }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURE GRID */}
+      <section className="section">
+        <div className="container">
+          <div className="section-header centered">
+            <div className="eyebrow">Capabilities</div>
+            <h2>Everything You Need. Nothing You Don't.</h2>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', marginTop: '3rem' }}>
+            {data.features.map((f, i) => (
+              <div key={i} style={{
+                background: '#fff',
+                border: '1px solid var(--color-gray-100)',
+                borderRadius: 'var(--radius-xl)',
+                padding: '1.75rem',
+                transition: 'box-shadow 0.2s, border-color 0.2s',
+                cursor: 'default',
+              }}
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = 'var(--shadow-lg)'; e.currentTarget.style.borderColor = colors.accent; }}
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = 'var(--color-gray-100)'; }}
+              >
+                <div style={{
+                  width: '44px', height: '44px',
+                  background: colors.light,
+                  borderRadius: 'var(--radius-lg)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '1.25rem',
+                  marginBottom: '1rem',
+                  color: colors.accent,
+                  border: `1px solid ${colors.mid}`,
+                }}>
+                  {f.icon}
                 </div>
+                <h3 style={{ fontSize: 'var(--text-base)', fontWeight: 'var(--font-bold)', color: 'var(--color-navy)', marginBottom: '0.4rem' }}>
+                  {f.title}
+                </h3>
+                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-gray-500)', lineHeight: 1.65 }}>
+                  {f.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS — horizontal numbered steps */}
+      <section style={{ background: 'var(--color-navy)', padding: '5rem 0' }}>
+        <div className="container">
+          <div className="section-header centered dark">
+            <div className="eyebrow">How It Works</div>
+            <h2 style={{ color: '#fff' }}>From Day Zero to Production</h2>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0', marginTop: '3rem', position: 'relative' }}>
+            {/* Connector line */}
+            <div style={{
+              position: 'absolute',
+              top: '28px',
+              left: 'calc(12.5% + 20px)',
+              right: 'calc(12.5% + 20px)',
+              height: '2px',
+              background: 'rgba(32,211,239,0.2)',
+              zIndex: 0,
+            }} />
+            {data.howItWorks.map((step, i) => (
+              <div key={i} style={{ padding: '0 1.5rem', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+                <div style={{
+                  width: '56px', height: '56px',
+                  background: i === 0 ? 'var(--color-cyan)' : 'rgba(255,255,255,0.08)',
+                  border: `2px solid ${i === 0 ? 'var(--color-cyan)' : 'rgba(255,255,255,0.15)'}`,
+                  borderRadius: '50%',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  margin: '0 auto 1.25rem',
+                  fontSize: 'var(--text-sm)',
+                  fontWeight: 'var(--font-bold)',
+                  color: i === 0 ? 'var(--color-navy)' : 'rgba(255,255,255,0.6)',
+                }}>
+                  {step.num}
+                </div>
+                <div style={{ fontSize: 'var(--text-base)', fontWeight: 'var(--font-bold)', color: '#fff', marginBottom: '0.4rem' }}>
+                  {step.title}
+                </div>
+                <div style={{ fontSize: 'var(--text-sm)', color: 'rgba(255,255,255,0.55)', lineHeight: 1.6 }}>
+                  {step.desc}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SUPPORTED SYSTEMS */}
+      <section className="section bg-light">
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+            <div>
+              <div className="eyebrow">Integrations</div>
+              <h2 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 'var(--font-bold)', color: 'var(--color-navy)', marginBottom: '1rem', lineHeight: 1.2 }}>
+                Works With Your\nExisting Stack
+              </h2>
+              <p style={{ color: 'var(--color-gray-500)', lineHeight: 1.8, marginBottom: '1.75rem' }}>
+                Vorro connects to the systems you already use — with pre-built, production-tested connectors.
+                No rip-and-replace. No months of custom development.
+              </p>
+              <Link to="/contact-us" className="btn btn-primary btn-lg">
+                See All Connectors <ArrowRight size={16} />
+              </Link>
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+              {data.vendors.map((v, i) => (
+                <div key={v} style={{
+                  padding: '0.6rem 1.1rem',
+                  background: '#fff',
+                  border: '1px solid var(--color-gray-200)',
+                  borderRadius: 'var(--radius-full)',
+                  fontSize: 'var(--text-sm)',
+                  fontWeight: 'var(--font-medium)',
+                  color: 'var(--color-navy)',
+                  boxShadow: 'var(--shadow-sm)',
+                }}>
+                  {v}
+                </div>
+              ))}
+              <div style={{
+                padding: '0.6rem 1.1rem',
+                background: colors.light,
+                border: `1px solid ${colors.mid}`,
+                borderRadius: 'var(--radius-full)',
+                fontSize: 'var(--text-sm)',
+                fontWeight: 'var(--font-medium)',
+                color: colors.accent,
+              }}>
+                + many more
               </div>
             </div>
           </div>
-        </section>
-      ))}
+        </div>
+      </section>
 
       {/* CTA */}
       <section className="section cta-outer">
         <div className="container">
           <div className="cta-banner">
             <div className="cta-banner-content">
-              <h2>Ready to Get Started?</h2>
+              <h2>Ready to See It Live?</h2>
               <p>Talk to a Vorro integration expert about {data.title.toLowerCase()} for your organization.</p>
               <div className="cta-banner-actions">
-                <Link to={data.cta.to} className="btn btn-cyan btn-xl">
-                  {data.cta.label} <ArrowRight size={18} />
+                <Link to="/contact-us" className="btn btn-cyan btn-xl">
+                  Schedule a Demo <ArrowRight size={18} />
                 </Link>
-                <Link to="/case-studies" className="btn btn-ghost-white btn-xl">
-                  View Case Studies
+                <Link to="/build-vs-buy" className="btn btn-ghost-white btn-xl">
+                  Build vs. Buy Guide
                 </Link>
               </div>
             </div>
