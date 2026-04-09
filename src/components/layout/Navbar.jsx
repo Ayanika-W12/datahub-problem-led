@@ -22,10 +22,9 @@ const navLinks = [
       {
         heading: 'By Industry',
         items: [
-          { label: 'Healthcare', to: '/solutions', desc: 'Health systems, HIEs, payers & providers' },
-          { label: 'eCommerce & Retail', to: '/solutions', desc: 'Unified product & order data integration' },
-          { label: 'Insurance', to: '/solutions', desc: 'Claims, eligibility & policy data flows' },
-          { label: 'AI Health Data Hub', to: '/healthcare-ai-platform', desc: 'Full platform overview' },
+          { label: 'Healthcare', to: '/solutions/healthcare', desc: 'Health systems, HIEs, payers & providers' },
+          { label: 'eCommerce & Retail', to: '/solutions/ecommerce', desc: 'Unified product & order data integration' },
+          { label: 'Insurance', to: '/solutions/insurance', desc: 'Claims, eligibility & policy data flows' },
         ],
       },
     ],

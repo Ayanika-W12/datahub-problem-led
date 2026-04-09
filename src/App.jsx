@@ -16,6 +16,7 @@ import BuildVsBuy from './pages/BuildVsBuy';
 import Webinar from './pages/Webinar';
 import VorroForStartups from './pages/VorroForStartups';
 import SimplePage from './pages/SimplePage';
+import IndustryPage from './pages/IndustryPage';
 import NotFound from './pages/NotFound';
 
 function ScrollToTop() {
@@ -54,6 +55,11 @@ function AppRoutes() {
         <Route path="/solutions/data-lake" element={<SolutionPage slug="data-lake" />} />
         <Route path="/solutions/pipeline-auto-healing" element={<SolutionPage slug="pipeline-auto-healing" />} />
         <Route path="/solutions/data-management" element={<SolutionPage slug="data-management" />} />
+        {/* Industry pages */}
+        <Route path="/solutions/healthcare" element={<IndustryPage industry="healthcare" />} />
+        <Route path="/solutions/ecommerce" element={<IndustryPage industry="ecommerce" />} />
+        <Route path="/solutions/insurance" element={<IndustryPage industry="insurance" />} />
+
         <Route path="/solutions/*" element={<Solutions />} />
 
         {/* Resources */}

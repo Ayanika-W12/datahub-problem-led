@@ -1,15 +1,66 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Zap } from 'lucide-react';
 
-const solutions = [
-  { title: 'EMR Integrations', sub: 'Epic, Cerner, Athena, and beyond', to: '/solutions/emr-integrations', tags: ['HL7', 'FHIR', 'Epic', 'Cerner'], desc: 'Connect any EMR to your data ecosystem cleanly, securely, and without expensive custom work. Vorro handles every interface format — HL7 v2, FHIR R4, and proprietary APIs.' },
-  { title: 'HIE Integrations', sub: 'Health information exchange connectivity', to: '/solutions/hie-integrations', tags: ['HIE', 'HL7', 'FHIR', 'CommonWell'], desc: 'Vorro connects health systems, ambulatory networks, and post-acute providers to any HIE — with real-time data normalization and governance built in.' },
-  { title: 'Payer Integrations', sub: 'Prior auth, eligibility, claims', to: '/solutions/payer-integrations', tags: ['EDI X12', 'Prior Auth', 'FHIR', '270/271'], desc: 'Automate eligibility verification, prior authorization, and claims status workflows between providers and payers using FHIR APIs and EDI X12 transactions.' },
-  { title: 'Pharmacy Integrations', sub: 'ePrescribing and pharmacy data', to: '/solutions/pharmacy-integrations', tags: ['NCPDP', 'ePrescribing', '340B', 'PBM'], desc: 'Connect to any pharmacy system, PBM, or 340B administrator using NCPDP SCRIPT, D.0, and proprietary formats — with full audit trail.' },
-  { title: 'Data Quality', sub: 'Clean, governed, accurate data', to: '/solutions/data-quality', tags: ['MPI', 'Deduplication', 'Normalization', 'SLAs'], desc: 'Automated data quality management including patient deduplication (MPI), terminology normalization, and data quality SLAs with alerting.' },
-  { title: 'Data Lake', sub: 'Bronze-Silver-Gold architecture', to: '/solutions/data-lake', tags: ['Azure', 'AWS', 'Snowflake', 'dbt'], desc: 'Purpose-built healthcare data lake architecture that takes you from raw HL7/FHIR ingest through cleansing, normalization, and ML-ready gold layer.' },
-  { title: 'Pipeline Auto-Healing', sub: 'Self-healing data pipelines', to: '/solutions/pipeline-auto-healing', tags: ['Monitoring', 'Auto-Retry', 'Alerting', 'SLA'], desc: 'Data pipelines that detect failures, retry automatically, and alert your team before a data issue becomes a patient safety or compliance incident.' },
-  { title: 'Data Management', sub: 'Secure, unified data governance', to: '/solutions/data-management', tags: ['Governance', 'HIPAA', 'PHI', 'Lineage'], desc: 'Comprehensive data governance including lineage, access controls, PHI masking, and audit trails — covering every data element across your estate.' },
+const byIntegrationType = [
+  {
+    title: 'EMR / EHR Integrations',
+    sub: 'Connect any electronic health record — bidirectionally',
+    to: '/solutions/emr-integrations',
+    vendors: ['Epic', 'Oracle Cerner', 'Athenahealth', 'Meditech', 'eClinicalWorks', '40+ more'],
+    desc: 'Production-proven connectors to every major EHR. Real-time and batch. No rip-and-replace required.',
+  },
+  {
+    title: 'HIE Integrations',
+    sub: 'Network-wide interoperability at scale',
+    to: '/solutions/hie-integrations',
+    vendors: ['Carequality', 'CommonWell', 'TEFCA / QHIN', 'Direct Trust', 'Public Health'],
+    desc: 'Power a regional or statewide HIE — or connect your organization to one. Trusted by Contexture and WISHIN.',
+  },
+  {
+    title: 'Payer Integrations',
+    sub: 'Claims, eligibility, and prior auth — automated',
+    to: '/solutions/payer-integrations',
+    vendors: ['Prior Authorization', 'Eligibility 270/271', 'Claims 837/835', 'ERA / EFT', 'CMS-0057-F APIs'],
+    desc: 'Automate the full payer-provider data loop. CMS mandate-compliant, FHIR-native, and live in weeks.',
+  },
+  {
+    title: 'Pharmacy Integrations',
+    sub: 'ePrescribing, 340B, and PBM data unified',
+    to: '/solutions/pharmacy-integrations',
+    vendors: ['Surescripts', 'NCPDP SCRIPT', '340B Platforms', 'PBM Systems', 'Specialty Pharmacy'],
+    desc: 'End-to-end pharmacy data connectivity — from ePrescribing to 340B compliance to PBM claims reconciliation.',
+  },
+];
+
+const byCapability = [
+  {
+    title: 'Data Quality',
+    sub: 'Clean, accurate, trustworthy data',
+    to: '/solutions/data-quality',
+    icon: '⬡',
+    desc: 'Master Patient Index, record deduplication, FHIR profile validation, and continuous anomaly detection — so your data can actually be trusted.',
+  },
+  {
+    title: 'Data Lake',
+    sub: 'Bronze → Silver → Gold, ML-ready',
+    to: '/solutions/data-lake',
+    icon: '◈',
+    desc: 'Healthcare-native Medallion architecture delivering analytics-ready datasets to Databricks, Snowflake, dbt, and SageMaker.',
+  },
+  {
+    title: 'Pipeline Auto-Healing',
+    sub: 'Self-recovering data pipelines',
+    to: '/solutions/pipeline-auto-healing',
+    icon: '↺',
+    desc: 'Pipelines that detect failures, diagnose root causes, and recover automatically — without waking up your on-call engineer at 2am.',
+  },
+  {
+    title: 'Data Management',
+    sub: 'Governed, secured, and auditable',
+    to: '/solutions/data-management',
+    icon: '◉',
+    desc: 'Lineage tracking, PHI controls, consent management, and RBAC — across every data asset in your estate.',
+  },
 ];
 
 export default function Solutions() {
@@ -19,25 +70,35 @@ export default function Solutions() {
         <div className="container vertical-hero-inner">
           <div className="badge badge-white" style={{ marginBottom: '1.25rem' }}>Solutions</div>
           <h1 className="vertical-hero-headline">
-            Healthcare Data Integration Solutions<br />Built for the Real World
+            Every Integration Challenge.<br />One Platform.
           </h1>
           <p className="vertical-hero-sub">
-            From EMR connectivity to AI-ready data lakes — Vorro covers the full spectrum of
-            healthcare data integration challenges with production-proven solutions.
+            From connecting a single EMR to building a governed AI-ready data lake —
+            Vorro delivers production-proven solutions across the full healthcare data stack.
           </p>
           <div className="vertical-hero-actions">
             <Link to="/contact-us" className="btn btn-cyan btn-lg">
               Get a Demo <ArrowRight size={16} />
             </Link>
+            <Link to="/build-vs-buy" className="btn btn-ghost-white btn-lg">
+              Build vs. Buy Guide
+            </Link>
           </div>
         </div>
       </section>
 
+      {/* By Integration Type */}
       <section className="section">
         <div className="container">
-          <div className="grid-2" style={{ gap: '1.5rem' }}>
-            {solutions.map((sol) => (
-              <Link key={sol.title} to={sol.to} style={{ textDecoration: 'none' }} className="card-feature">
+          <div className="section-header">
+            <div className="eyebrow">By Integration Type</div>
+            <h2>Connect Any System. In Any Direction.</h2>
+            <p>Pre-built connectors and protocol support for every major healthcare data standard and vendor ecosystem.</p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '2.5rem' }}>
+            {byIntegrationType.map((sol) => (
+              <Link key={sol.title} to={sol.to} style={{ textDecoration: 'none', display: 'block' }} className="card-feature">
                 <h3 style={{ fontSize: 'var(--text-xl)', fontWeight: 'var(--font-bold)', color: 'var(--color-navy)', marginBottom: '0.25rem' }}>
                   {sol.title}
                 </h3>
@@ -47,11 +108,83 @@ export default function Solutions() {
                 <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-gray-500)', lineHeight: 1.65, marginBottom: '1.25rem' }}>
                   {sol.desc}
                 </p>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
-                  {sol.tags.map((t) => (
-                    <span key={t} className="tag tag-primary">{t}</span>
-                  ))}
+                <div style={{ borderTop: '1px solid var(--color-gray-100)', paddingTop: '1rem' }}>
+                  <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-gray-400)', fontWeight: 'var(--font-semibold)', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: '0.5rem' }}>
+                    Supported systems
+                  </div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+                    {sol.vendors.map((v) => (
+                      <span key={v} style={{ fontSize: 'var(--text-xs)', color: 'var(--color-gray-600)', background: 'var(--color-gray-100)', padding: '0.2rem 0.6rem', borderRadius: '999px' }}>
+                        {v}
+                      </span>
+                    ))}
+                  </div>
                 </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* By Capability */}
+      <section className="section bg-light">
+        <div className="container">
+          <div className="section-header">
+            <div className="eyebrow">By Capability</div>
+            <h2>The Infrastructure Behind Every Integration</h2>
+            <p>Platform capabilities that make your integrations clean, governed, self-healing, and AI-ready.</p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '2.5rem' }}>
+            {byCapability.map((cap) => (
+              <Link key={cap.title} to={cap.to} style={{ textDecoration: 'none', display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }} className="card-feature">
+                <div style={{
+                  width: '48px', height: '48px', flexShrink: 0,
+                  background: 'linear-gradient(135deg, var(--color-primary), var(--color-navy))',
+                  borderRadius: 'var(--radius-lg)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '1.4rem', color: '#fff',
+                }}>
+                  {cap.icon}
+                </div>
+                <div>
+                  <h3 style={{ fontSize: 'var(--text-lg)', fontWeight: 'var(--font-bold)', color: 'var(--color-navy)', marginBottom: '0.2rem' }}>
+                    {cap.title}
+                  </h3>
+                  <div style={{ fontSize: 'var(--text-sm)', color: 'var(--color-primary)', fontWeight: 'var(--font-semibold)', marginBottom: '0.5rem' }}>
+                    {cap.sub}
+                  </div>
+                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-gray-500)', lineHeight: 1.65 }}>
+                    {cap.desc}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* By Industry strip */}
+      <section className="section">
+        <div className="container">
+          <div className="section-header centered">
+            <div className="eyebrow">By Industry</div>
+            <h2>Solutions Shaped for Your Market</h2>
+            <p>The same platform, configured for the specific workflows, compliance requirements, and data standards of your industry.</p>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', marginTop: '2.5rem' }}>
+            {[
+              { label: 'Healthcare', desc: 'Health systems, HIEs, payers, providers, and specialty networks', to: '/solutions/healthcare', color: 'var(--color-primary)' },
+              { label: 'eCommerce & Retail', desc: 'Unified product, order, and customer data across platforms', to: '/solutions/ecommerce', color: 'var(--color-cyan)' },
+              { label: 'Insurance', desc: 'Claims, eligibility, policy, and member data automation', to: '/solutions/insurance', color: 'var(--color-navy)' },
+            ].map((ind) => (
+              <Link key={ind.label} to={ind.to} style={{ textDecoration: 'none' }} className="card-feature">
+                <div style={{ width: '36px', height: '4px', background: ind.color, borderRadius: '2px', marginBottom: '1rem' }} />
+                <h3 style={{ fontSize: 'var(--text-xl)', fontWeight: 'var(--font-bold)', color: 'var(--color-navy)', marginBottom: '0.5rem' }}>{ind.label}</h3>
+                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-gray-500)', lineHeight: 1.65, marginBottom: '1rem' }}>{ind.desc}</p>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', fontSize: 'var(--text-sm)', fontWeight: 'var(--font-semibold)', color: ind.color }}>
+                  Explore <ArrowRight size={14} />
+                </span>
               </Link>
             ))}
           </div>
@@ -62,11 +195,17 @@ export default function Solutions() {
         <div className="container">
           <div className="cta-banner">
             <div className="cta-banner-content">
-              <h2>Not Sure Where to Start?</h2>
-              <p>Our integration engineers will map your current environment and recommend the fastest path to value.</p>
+              <div className="badge badge-white" style={{ marginBottom: '1.25rem' }}>
+                <Zap size={10} /> Not sure where to start?
+              </div>
+              <h2>Let's Map Your Integration Environment</h2>
+              <p>Our engineers will assess your current systems and recommend the fastest path to value — no generic demos.</p>
               <div className="cta-banner-actions">
                 <Link to="/contact-us" className="btn btn-cyan btn-xl">
                   Talk to an Expert <ArrowRight size={18} />
+                </Link>
+                <Link to="/case-studies" className="btn btn-ghost-white btn-xl">
+                  See Case Studies
                 </Link>
               </div>
             </div>
