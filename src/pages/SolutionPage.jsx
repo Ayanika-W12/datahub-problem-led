@@ -393,7 +393,7 @@ export default function SolutionPage({ slug }) {
             <div>
               <div className="eyebrow">Integrations</div>
               <h2 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 'var(--font-bold)', color: 'var(--color-navy)', marginBottom: '1rem', lineHeight: 1.2 }}>
-                Works With Your\nExisting Stack
+                Works With Your Existing Stack
               </h2>
               <p style={{ color: 'var(--color-gray-500)', lineHeight: 1.8, marginBottom: '1.75rem' }}>
                 Vorro connects to the systems you already use — with pre-built, production-tested connectors.

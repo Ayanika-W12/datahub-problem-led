@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Zap } from 'lucide-react';
 
 const industries = {
   healthcare: {
@@ -7,26 +7,33 @@ const industries = {
     headline: 'The Data Infrastructure Behind Modern Healthcare',
     sub: 'Vorro powers health systems, HIEs, payers, providers, and specialty networks — connecting clinical, financial, and operational data across every system in your environment.',
     color: 'var(--color-primary)',
+    colorHex: '#7c3aed',
+    colorLight: '#f5f3ff',
+    colorMid: '#ddd6fe',
     segments: [
       {
+        tag: '01',
         title: 'Health Systems & Hospitals',
         desc: 'Unify data across facilities, departments, and care settings. Connect Epic, Cerner, and every downstream system into a single governed data layer — with full audit trail and real-time alerting.',
         bullets: ['Multi-facility HL7 and FHIR routing', 'Bed management and ADT event streaming', 'Revenue cycle and CDI integration', 'Population health data pipelines'],
         link: '/solutions/emr-integrations',
       },
       {
+        tag: '02',
         title: 'Health Information Exchanges',
         desc: 'Vorro powers statewide HIEs including Contexture and WISHIN. Our platform handles the high-volume, multi-participant data flows that define HIE operations at scale.',
         bullets: ['Carequality and CommonWell gateway support', 'TEFCA-ready QHIN infrastructure', 'Per-participant consent enforcement', 'Public health reporting (ELR, syndromic)'],
         link: '/solutions/hie-integrations',
       },
       {
+        tag: '03',
         title: 'Payers & Health Plans',
         desc: 'Automate prior auth, eligibility, claims, and payer-to-payer data exchange — fully compliant with CMS-0057-F and the 2026 Prior Auth Final Rule deadlines.',
         bullets: ['FHIR R4 Patient, Provider & Payer-to-Payer APIs', 'EDI X12 claims, 270/271 eligibility', 'Denial management with root cause AI', 'Stars and HEDIS reporting pipelines'],
         link: '/solutions/payer-integrations',
       },
       {
+        tag: '04',
         title: 'Specialty & Pharmacy Networks',
         desc: 'Connect pharmacy, DME, and specialty care workflows with ePrescribing networks, PBMs, and 340B platforms — using NCPDP SCRIPT and proprietary connectors.',
         bullets: ['Surescripts ePrescribing integration', '340B split billing and compliance', 'PBM claims reconciliation', 'Specialty prior auth automation'],
@@ -39,26 +46,38 @@ const industries = {
       { val: '100%', label: 'HIPAA-Compliant by Design' },
       { val: '6 wks', label: 'Avg. Time to First Integration' },
     ],
+    platform: [
+      { label: 'HL7 & FHIR', to: '/platform/interfacing' },
+      { label: 'Governance & Compliance', to: '/platform/governance-compliance' },
+      { label: 'AI Readiness', to: '/platform/ai-readiness' },
+      { label: 'Analytics & Conversational AI', to: '/platform/analytics-nlp' },
+    ],
   },
   ecommerce: {
     badge: 'eCommerce & Retail',
     headline: 'Unified Data Across Every Channel, Platform, and Warehouse',
     sub: "Vorro's enterprise integration platform connects your eCommerce platforms, ERP systems, order management, inventory, and customer data — eliminating silos and enabling real-time operational intelligence.",
     color: 'var(--color-cyan)',
+    colorHex: '#06b6d4',
+    colorLight: '#ecfeff',
+    colorMid: '#a5f3fc',
     segments: [
       {
+        tag: '01',
         title: 'Platform & Storefront Unification',
         desc: 'Merging two retail businesses or expanding to new sales channels? Vorro unifies product catalogs, order flows, and customer records across Shopify, Salesforce Commerce, Magento, WooCommerce, and proprietary platforms.',
         bullets: ['Product catalog normalization and sync', 'Order management system integration', 'Multi-storefront inventory unification', 'Customer identity matching and deduplication'],
         link: '/solutions/data-quality',
       },
       {
+        tag: '02',
         title: 'ERP & Fulfillment Integration',
         desc: 'Connect your eCommerce front-end to SAP, NetSuite, Oracle, or Microsoft Dynamics — with real-time inventory, order, and fulfillment data flowing bidirectionally without manual reconciliation.',
         bullets: ['ERP bidirectional data sync', 'Warehouse management system (WMS) connectors', 'Return and refund workflow automation', '3PL and fulfillment network integration'],
         link: '/solutions/pipeline-auto-healing',
       },
       {
+        tag: '03',
         title: 'Customer Data Unification',
         desc: 'Build a single customer view from purchase history, support tickets, loyalty data, and behavioral signals — across every channel and platform in your stack.',
         bullets: ['Customer identity resolution', 'Cross-channel purchase history unification', 'Loyalty and subscription data pipelines', 'CDP and data warehouse connectors'],
@@ -71,32 +90,45 @@ const industries = {
       { val: '2–4 wks', label: 'Time to first integration' },
       { val: '300%', label: 'Avg. client ROI' },
     ],
+    platform: [
+      { label: 'Pipeline Auto-Healing', to: '/solutions/pipeline-auto-healing' },
+      { label: 'Data Quality', to: '/solutions/data-quality' },
+      { label: 'Data Lake', to: '/solutions/data-lake' },
+      { label: 'Workflow Orchestration', to: '/platform/workflow-orchestration' },
+    ],
   },
   insurance: {
     badge: 'Insurance',
     headline: 'Claims, Eligibility, Policy, and Member Data — Automated',
     sub: "Vorro's integration platform handles the complex, high-volume data flows that define insurance operations — from real-time eligibility verification to policy lifecycle management to claims processing.",
     color: 'var(--color-navy)',
+    colorHex: '#0f1035',
+    colorLight: '#f0f1ff',
+    colorMid: '#c7d2fe',
     segments: [
       {
+        tag: '01',
         title: 'Claims Processing & Automation',
         desc: 'Automate claims intake, adjudication, and payment workflows using EDI X12 837/835 and modern API-based integration — reducing manual processing time and error rates.',
         bullets: ['EDI X12 837P/I/D claims processing', 'ERA/EFT 835 payment automation', 'Claims scrubbing and validation rules', 'Denial root cause classification and routing'],
         link: '/solutions/payer-integrations',
       },
       {
+        tag: '02',
         title: 'Eligibility & Benefits Verification',
         desc: 'Real-time eligibility checks against 250+ payers and health plans — using EDI 270/271 and FHIR R4 APIs — reducing manual verification calls by up to 80%.',
         bullets: ['Real-time 270/271 eligibility transactions', 'FHIR Patient Access API integration', 'Benefits and coverage detail extraction', 'Member portal data synchronization'],
         link: '/solutions/payer-integrations',
       },
       {
+        tag: '03',
         title: 'Policy & Member Lifecycle Management',
         desc: 'Connect your policy administration systems, CRM, and member portals into a unified data layer — with event-driven automation for enrollments, renewals, and changes.',
         bullets: ['Policy administration system connectors', 'Member enrollment and disenrollment events', 'Life event trigger automation', 'Agent and broker portal data sync'],
         link: '/solutions/data-management',
       },
       {
+        tag: '04',
         title: 'Regulatory Reporting & Compliance',
         desc: 'Automate state and federal reporting requirements — from CMS encounter data submissions to state DOI filings — with full audit trail and error resolution workflows.',
         bullets: ['CMS encounter data submission pipelines', 'EDGE server data integration', 'Risk adjustment data management', 'State regulatory reporting automation'],
@@ -109,6 +141,12 @@ const industries = {
       { val: '99.9%', label: 'Uptime SLA' },
       { val: '4 wks', label: 'Avg. time to go live' },
     ],
+    platform: [
+      { label: 'EDI & FHIR Interfacing', to: '/platform/interfacing' },
+      { label: 'Governance & Compliance', to: '/platform/governance-compliance' },
+      { label: 'Pipeline Auto-Healing', to: '/solutions/pipeline-auto-healing' },
+      { label: 'Data Management', to: '/solutions/data-management' },
+    ],
   },
 };
 
@@ -116,8 +154,11 @@ export default function IndustryPage({ industry }) {
   const data = industries[industry];
   if (!data) return null;
 
+  const hasFourSegments = data.segments.length === 4;
+
   return (
     <main>
+      {/* HERO */}
       <section className="vertical-hero">
         <div className="container vertical-hero-inner">
           <div className="badge badge-white" style={{ marginBottom: '1.25rem' }}>{data.badge}</div>
@@ -134,79 +175,245 @@ export default function IndustryPage({ industry }) {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="section-sm" style={{ background: 'var(--color-gray-50)', borderBottom: '1px solid var(--color-gray-100)' }}>
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem' }}>
-            {data.stats.map(s => (
-              <div key={s.label} style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 'var(--font-bold)', color: 'var(--color-navy)', lineHeight: 1.1, marginBottom: '0.35rem' }}>{s.val}</div>
-                <div style={{ fontSize: 'var(--text-sm)', color: 'var(--color-gray-500)' }}>{s.label}</div>
+      {/* STATS BAND */}
+      <section style={{ borderBottom: '1px solid var(--color-gray-100)' }}>
+        <div className="container" style={{ padding: 0 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: `repeat(${data.stats.length}, 1fr)` }}>
+            {data.stats.map((s, i) => (
+              <div key={s.label} style={{
+                padding: '2.5rem 2rem',
+                textAlign: 'center',
+                borderRight: i < data.stats.length - 1 ? '1px solid var(--color-gray-100)' : 'none',
+                background: i % 2 === 1 ? 'var(--color-gray-50)' : '#fff',
+              }}>
+                <div style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 'var(--font-bold)', color: data.color, lineHeight: 1, marginBottom: '0.4rem' }}>
+                  {s.val}
+                </div>
+                <div style={{ fontSize: 'var(--text-sm)', color: 'var(--color-gray-500)', lineHeight: 1.4 }}>{s.label}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Segments */}
-      {data.segments.map((seg, i) => (
-        <section key={i} className={`section ${i % 2 === 1 ? 'bg-light' : ''}`}>
-          <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
-              <div className={i % 2 === 1 ? 'order-2' : ''}>
-                <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', fontWeight: 'var(--font-bold)', color: 'var(--color-navy)', marginBottom: '1rem', lineHeight: 1.3 }}>
-                  {seg.title}
-                </h2>
-                <p style={{ color: 'var(--color-gray-600)', lineHeight: 1.8, marginBottom: '1.5rem' }}>{seg.desc}</p>
-                <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem', marginBottom: '1.75rem' }}>
-                  {seg.bullets.map(b => (
-                    <li key={b} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: 'var(--text-sm)', color: 'var(--color-gray-700)' }}>
-                      <CheckCircle2 size={16} style={{ color: 'var(--color-primary)', flexShrink: 0, marginTop: '2px' }} />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-                <Link to={seg.link} className="btn btn-primary btn-md">
-                  Learn More <ArrowRight size={15} />
-                </Link>
-              </div>
-              <div className={i % 2 === 1 ? 'order-1' : ''} style={{
-                background: 'linear-gradient(135deg, var(--color-navy) 0%, #1a1c45 100%)',
-                borderRadius: 'var(--radius-2xl)',
-                padding: '2.5rem',
-                minHeight: '300px',
-                display: 'flex',
-                flexDirection: 'column',
+      {/* SEGMENTS */}
+      <section className="section">
+        <div className="container">
+          <div className="section-header">
+            <div className="eyebrow">What We Power</div>
+            <h2>Built for Every Part of Your Organization</h2>
+            <p>One platform. Multiple entry points. Purpose-built for each team's specific integration needs.</p>
+          </div>
+
+          {/* Featured first segment */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: hasFourSegments ? '1.4fr 1fr' : '1fr 1fr',
+            gap: '1.5rem',
+            marginTop: '3rem',
+          }}>
+            {/* Large featured card */}
+            <div style={{
+              background: '#fff',
+              border: '1px solid var(--color-gray-100)',
+              borderRadius: 'var(--radius-2xl)',
+              padding: '2.5rem',
+              boxShadow: 'var(--shadow-md)',
+              borderTop: `3px solid ${data.color}`,
+              display: 'flex',
+              flexDirection: 'column',
+            }}>
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
                 justifyContent: 'center',
-                gap: '1rem',
+                width: '2.5rem',
+                height: '2.5rem',
+                background: data.colorLight,
+                border: `1px solid ${data.colorMid}`,
+                borderRadius: 'var(--radius-lg)',
+                fontSize: 'var(--text-sm)',
+                fontWeight: 'var(--font-bold)',
+                color: data.color,
+                marginBottom: '1.25rem',
+                flexShrink: 0,
               }}>
-                <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                  {data.badge} · Vorro Platform
-                </div>
-                <h3 style={{ fontSize: 'var(--text-xl)', fontWeight: 'var(--font-bold)', color: '#fff', lineHeight: 1.3 }}>{seg.title}</h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '0.5rem' }}>
-                  {seg.bullets.map((b, j) => (
-                    <div key={j} style={{
-                      background: 'rgba(255,255,255,0.07)',
-                      borderRadius: 'var(--radius-md)',
-                      padding: '0.6rem 0.875rem',
-                      fontSize: 'var(--text-sm)',
-                      color: 'rgba(255,255,255,0.8)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                    }}>
-                      <span style={{ width: '6px', height: '6px', background: 'var(--color-cyan)', borderRadius: '50%', flexShrink: 0 }} />
-                      {b}
-                    </div>
-                  ))}
-                </div>
+                {data.segments[0].tag}
               </div>
+              <h3 style={{ fontSize: 'clamp(1.25rem, 2vw, 1.75rem)', fontWeight: 'var(--font-bold)', color: 'var(--color-navy)', marginBottom: '0.875rem', lineHeight: 1.3 }}>
+                {data.segments[0].title}
+              </h3>
+              <p style={{ color: 'var(--color-gray-500)', lineHeight: 1.75, marginBottom: '1.5rem', fontSize: 'var(--text-sm)' }}>
+                {data.segments[0].desc}
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem', marginBottom: '1.75rem', flex: 1 }}>
+                {data.segments[0].bullets.map(b => (
+                  <li key={b} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: 'var(--text-sm)', color: 'var(--color-gray-700)' }}>
+                    <CheckCircle2 size={15} style={{ color: data.color, flexShrink: 0, marginTop: '2px' }} />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+              <Link to={data.segments[0].link} style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                fontSize: 'var(--text-sm)',
+                fontWeight: 'var(--font-semibold)',
+                color: data.color,
+                textDecoration: 'none',
+              }}>
+                Learn More <ArrowRight size={14} />
+              </Link>
+            </div>
+
+            {/* Right column: remaining segments stacked */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              {data.segments.slice(1, hasFourSegments ? 3 : 3).map((seg) => (
+                <div key={seg.tag} style={{
+                  background: '#fff',
+                  border: '1px solid var(--color-gray-100)',
+                  borderRadius: 'var(--radius-2xl)',
+                  padding: '2rem',
+                  boxShadow: 'var(--shadow-sm)',
+                  borderTop: `3px solid ${data.color}`,
+                  flex: 1,
+                }}>
+                  <div style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '2rem',
+                    height: '2rem',
+                    background: data.colorLight,
+                    border: `1px solid ${data.colorMid}`,
+                    borderRadius: 'var(--radius-md)',
+                    fontSize: 'var(--text-xs)',
+                    fontWeight: 'var(--font-bold)',
+                    color: data.color,
+                    marginBottom: '1rem',
+                  }}>
+                    {seg.tag}
+                  </div>
+                  <h3 style={{ fontSize: 'var(--text-lg)', fontWeight: 'var(--font-bold)', color: 'var(--color-navy)', marginBottom: '0.5rem', lineHeight: 1.3 }}>
+                    {seg.title}
+                  </h3>
+                  <p style={{ color: 'var(--color-gray-500)', lineHeight: 1.65, marginBottom: '1rem', fontSize: 'var(--text-sm)' }}>
+                    {seg.desc}
+                  </p>
+                  <Link to={seg.link} style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.35rem',
+                    fontSize: 'var(--text-sm)',
+                    fontWeight: 'var(--font-semibold)',
+                    color: data.color,
+                    textDecoration: 'none',
+                  }}>
+                    Learn More <ArrowRight size={13} />
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
-        </section>
-      ))}
 
+          {/* Bottom row for 4-segment industries */}
+          {hasFourSegments && (
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1.5rem' }}>
+              {data.segments.slice(2).map((seg) => (
+                <div key={seg.tag} style={{
+                  background: '#fff',
+                  border: '1px solid var(--color-gray-100)',
+                  borderRadius: 'var(--radius-2xl)',
+                  padding: '2rem',
+                  boxShadow: 'var(--shadow-sm)',
+                  borderTop: `3px solid ${data.color}`,
+                }}>
+                  <div style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '2rem',
+                    height: '2rem',
+                    background: data.colorLight,
+                    border: `1px solid ${data.colorMid}`,
+                    borderRadius: 'var(--radius-md)',
+                    fontSize: 'var(--text-xs)',
+                    fontWeight: 'var(--font-bold)',
+                    color: data.color,
+                    marginBottom: '1rem',
+                  }}>
+                    {seg.tag}
+                  </div>
+                  <h3 style={{ fontSize: 'var(--text-lg)', fontWeight: 'var(--font-bold)', color: 'var(--color-navy)', marginBottom: '0.5rem', lineHeight: 1.3 }}>
+                    {seg.title}
+                  </h3>
+                  <p style={{ color: 'var(--color-gray-500)', lineHeight: 1.65, marginBottom: '1rem', fontSize: 'var(--text-sm)' }}>
+                    {seg.desc}
+                  </p>
+                  <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.25rem' }}>
+                    {seg.bullets.map(b => (
+                      <li key={b} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: 'var(--text-sm)', color: 'var(--color-gray-700)' }}>
+                        <CheckCircle2 size={14} style={{ color: data.color, flexShrink: 0, marginTop: '2px' }} />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link to={seg.link} style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.35rem',
+                    fontSize: 'var(--text-sm)',
+                    fontWeight: 'var(--font-semibold)',
+                    color: data.color,
+                    textDecoration: 'none',
+                  }}>
+                    Learn More <ArrowRight size={13} />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* PLATFORM STRIP */}
+      <section className="section-sm" style={{ background: 'var(--color-navy)', borderTop: 'none' }}>
+        <div className="container">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1.5rem' }}>
+            <div>
+              <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.4rem' }}>
+                Powered by Vorro
+              </div>
+              <div style={{ fontSize: 'var(--text-xl)', fontWeight: 'var(--font-bold)', color: '#fff' }}>
+                The platform underneath every integration
+              </div>
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+              {data.platform.map(p => (
+                <Link key={p.label} to={p.to} style={{
+                  padding: '0.5rem 1.1rem',
+                  background: 'rgba(255,255,255,0.08)',
+                  border: '1px solid rgba(255,255,255,0.15)',
+                  borderRadius: 'var(--radius-full)',
+                  fontSize: 'var(--text-sm)',
+                  color: 'rgba(255,255,255,0.85)',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  transition: 'background 0.2s',
+                }}>
+                  <Zap size={12} style={{ opacity: 0.6 }} />
+                  {p.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
       <section className="section cta-outer">
         <div className="container">
           <div className="cta-banner">
