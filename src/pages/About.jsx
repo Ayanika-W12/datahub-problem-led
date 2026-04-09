@@ -1,12 +1,45 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Globe, Shield, Award, Zap } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Users, Lightbulb, Star, HeartHandshake } from 'lucide-react';
 import '../styles/about.css';
 
 const values = [
-  { icon: <Globe size={22} />, title: 'Healthcare-Native', desc: 'We built Vorro for healthcare from the ground up — not adapted from a generic iPaaS. HL7, FHIR, and EDI are our native language.' },
-  { icon: <Shield size={22} />, title: 'Compliance-First', desc: 'HIPAA compliance isn\'t a checklist for us — it\'s baked into every pipeline, every data element, and every workflow we build.' },
-  { icon: <Zap size={22} />, title: 'AI-Forward', desc: 'We believe the future of healthcare runs on governed, AI-ready data. We\'re building the foundation for that future today.' },
-  { icon: <Award size={22} />, title: 'Partner, Not Vendor', desc: 'We embed with your team. Our success is measured by your outcomes — not by contract renewal rates.' },
+  { icon: <HeartHandshake size={22} />, title: 'Customer-Centric Approach', desc: 'Our top priority is our customers — their goals, their businesses, and their long-term success.' },
+  { icon: <Users size={22} />, title: 'Unified Teamwork', desc: 'We operate as one team, fostering collaboration and a shared sense of purpose. It\'s always we, never them.' },
+  { icon: <Lightbulb size={22} />, title: 'Innovation-Driven', desc: 'We harness the power of technology to drive progress and stay ahead.' },
+  { icon: <Star size={22} />, title: 'Commitment to Excellence', desc: 'We consistently deliver high-quality results with precision and care.' },
+];
+
+const leadership = [
+  {
+    name: 'Ambarish Gupta',
+    title: 'Chairman',
+    bio: 'A global technology visionary, Ambarish sets Vorro\'s strategic direction, leveraging over two decades of experience in scaling global SaaS companies and deep expertise in strategy and engineering. As the founder of Basis Vectors and Knowlarity, he brings an unparalleled track record in driving disruptive, AI-led growth. MBA from Carnegie Mellon and B.Tech from IIT Kanpur.',
+  },
+  {
+    name: 'Andrew Baker',
+    title: 'Chief Executive Officer',
+    bio: 'Andrew is the driving force behind Vorro\'s mission to lead the AI transformation market in healthcare. With over 30 years of executive leadership in IT and data management across healthcare, insurance, and fintech, he guides operational excellence and market execution. He has served in executive roles at both high-growth startups and Fortune 500 companies and he holds an MBA degree from New Hampshire College.',
+  },
+  {
+    name: 'Scott Sirdevan',
+    title: 'Co-founder & CTO',
+    bio: 'Scott is the Chief Inventor of the BridgeGate Integration engine that powers the VIIA platform. He is responsible for architecting Vorro\'s technology to be enterprise-grade, secure, and future-proof. His deep background includes architecting large-scale integration solutions as a former enterprise integration lead at AT&T Bell Labs and Bank of America, and prior work as a software developer for the CDC. M.S. from Kansas State University.',
+  },
+  {
+    name: 'Terry Sirdevan',
+    title: 'VP - Product Development',
+    bio: 'Terry is the lead product strategist, responsible for transforming complex healthcare challenges into the seamless, no-code features of the VIIA platform. He drives the product roadmap from concept to deployment, ensuring BridgeGate remains the most agile integration solution on the market. Terry was a former analyst at Fidelity Information Services.',
+  },
+  {
+    name: 'Manish Agarwal',
+    title: 'VP - Head of Revenue',
+    bio: 'Manish is responsible for driving Vorro\'s global growth strategy and expanding market penetration for the VIIA platform. He leads the alignment of sales, marketing, and partnership initiatives, focusing on delivering measurable ROI and long-term value to healthcare enterprises seeking to modernize their data infrastructure.',
+  },
+  {
+    name: 'Shashank Tewari',
+    title: 'Chief Operating Officer',
+    bio: 'Shashank focuses on operational excellence, ensuring a scalable and efficient delivery model for all customers. He brings over 14 years of experience in scaling high-growth SaaS and automation platforms, with a strong domain fluency in the needs of modern healthcare organizations. He leads cross-functional execution across product, technology, and operations. He is an electronics engineer and BITS Pilani alumnus.',
+  },
 ];
 
 const clients = [
@@ -64,27 +97,26 @@ export default function About() {
         </div>
       </section>
 
-      {/* Mission */}
+      {/* Mission / Goal + Philosophy */}
       <section className="section bg-light">
         <div className="container">
           <div className="about-mission-grid">
             <div>
               <div className="section-header">
-                <div className="eyebrow">Our Mission</div>
-                <h2>We Started with a Simple Belief</h2>
+                <div className="eyebrow">Our Goal</div>
+                <h2>Streamline Healthcare Data and Workflows With AI</h2>
                 <p>
-                  Healthcare data fragmentation is not an unsolvable problem — it's an
-                  engineering and design problem. We built Vorro to solve it, permanently.
+                  We help organizations unify data, connect systems, and automate
+                  decision-making without custom code or complex rebuilds.
                 </p>
-                <p style={{ marginTop: '1rem' }}>
-                  Our platform, BridgeGate EiPaaS powered by VIIA Integration™, connects
-                  every system in a healthcare organization's data estate — EHRs, payers,
-                  labs, pharmacy, HIEs, and more — and governs, enriches, and automates
-                  the flow of data across all of them.
+                <p style={{ marginTop: '1.5rem', fontWeight: 'var(--font-semibold)', color: 'var(--color-navy)' }}>
+                  Technology Should Work the Way You Do
                 </p>
-                <p style={{ marginTop: '1rem' }}>
-                  The result: healthcare organizations that run on clean, governed, AI-ready
-                  data — and teams that spend their time on care, not on data cleanup.
+                <p style={{ marginTop: '0.5rem' }}>
+                  We believe modern healthcare shouldn't be held back by outdated processes
+                  or integration pain. Vorro's AI-powered platform connects every system in
+                  your data estate — EHRs, payers, labs, pharmacy, HIEs, and more — and
+                  governs, enriches, and automates the flow of data across all of them.
                 </p>
               </div>
             </div>
@@ -103,6 +135,66 @@ export default function About() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership Team */}
+      <section className="section">
+        <div className="container">
+          <div className="section-header centered" style={{ marginBottom: '3rem' }}>
+            <div className="eyebrow">The People Behind Vorro</div>
+            <h2>Leadership Team</h2>
+            <p>Decades of combined expertise across healthcare, technology, and enterprise software — now powered by AI.</p>
+          </div>
+          <div className="grid-3">
+            {leadership.map((member) => {
+              const initials = member.name.split(' ').map((n) => n[0]).filter((_, i, arr) => i === 0 || i === arr.length - 1).join('');
+              return (
+                <div
+                  key={member.name}
+                  style={{
+                    background: '#fff',
+                    border: '1px solid var(--color-gray-200)',
+                    borderRadius: 'var(--radius-lg)',
+                    padding: '2rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.75rem',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: '56px',
+                      height: '56px',
+                      borderRadius: '50%',
+                      background: 'var(--color-primary)',
+                      color: '#fff',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: 'var(--font-bold)',
+                      fontSize: '1.125rem',
+                      letterSpacing: '0.05em',
+                      flexShrink: 0,
+                    }}
+                  >
+                    {initials}
+                  </div>
+                  <div>
+                    <div style={{ fontWeight: 'var(--font-bold)', color: 'var(--color-navy)', fontSize: 'var(--text-base)' }}>
+                      {member.name}
+                    </div>
+                    <div style={{ color: 'var(--color-primary)', fontSize: 'var(--text-sm)', fontWeight: 'var(--font-semibold)', marginTop: '0.2rem' }}>
+                      {member.title}
+                    </div>
+                  </div>
+                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-gray-500)', lineHeight: 1.65, margin: 0 }}>
+                    {member.bio}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -1,85 +1,78 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
-// Real case studies from vorro.net/case-study/
 const caseStudies = [
   {
-    title: '45TB of Patient Data in 44 Hours',
-    type: 'Healthcare Analytics',
-    industry: 'Health System',
-    outcome: '45TB processed in under 44 hours',
-    desc: 'A major healthcare client needed to scale analytics across an enormous patient dataset under a hard deadline. Vorro\'s BridgeGate platform processed 45TB of patient data in 44 hours — without data loss or downtime.',
-    url: 'https://vorro.net/case-study/scaling-healthcare-analytics-how-bridgegate-processed-45tb-of-patient-data-in-44-hours/',
+    title: 'Achieving Seamless Healthcare Data Exchange for a Leading EMR Provider',
+    industry: 'Healthcare',
     tag: 'Healthcare',
+    statValue: '3M+',
+    statLabel: 'monthly transactions, integrated with 100+ pharmacies',
+    summary:
+      'Translated complex HL7 ADT and CCD formats into a single standard across hospitals, clinics, and HIEs — freeing the client to focus on mental health and disability solutions.',
+    pdf: 'Achieving-Seamless-Healthcare-Data-Exchange-for-a-Leading-EMR-Provider',
   },
   {
-    title: 'Leading EMR Provider Achieves Interoperability Goals',
-    type: 'EHR / EMR Integration',
-    industry: 'Health IT Vendor',
-    outcome: 'Full interoperability delivered on schedule',
-    desc: 'A leading EMR solutions provider partnered with Vorro to achieve their interoperability roadmap — connecting disparate systems through BridgeGate\'s enterprise integration layer and meeting all compliance timelines.',
-    url: 'https://vorro.net/case-study/how-a-leading-emr-solutions-provider-achieved-their-interoperability-goals-with-vorros-bridgegate-integration-platform/',
+    title: 'How a Pharmacy Management Provider Found Data Harmony with Vorro\'s BridgeGate',
+    industry: 'Healthcare',
     tag: 'Healthcare',
+    statValue: '3M+',
+    statLabel: 'patient records processed per day, 500+ facilities integrated',
+    summary:
+      'Connected hundreds of hospitals and clinics via mixed HL7 & SFTP to validate 340B eligibility in near-real-time, giving patients immediate access to discounted medications.',
+    pdf: 'How-a-Pharmacy-Management-Provider-Found-Data-Harmony',
   },
   {
-    title: 'Pharmacy Management Provider Finds Data Harmony',
-    type: 'Pharmacy Data Integration',
-    industry: 'Pharmacy Benefit Manager',
-    outcome: 'Unified pharmacy data across all systems',
-    desc: 'A pharmacy management provider was struggling with fragmented data across dispensing, claims, and clinical systems. Vorro\'s BridgeGate platform unified all data flows — eliminating manual reconciliation and reducing errors.',
-    url: 'https://vorro.net/case-study/how-a-pharmacy-management-provider-found-data-harmony-with-vorros-bridgegate-integration-platform/',
-    tag: 'Healthcare',
-  },
-  {
-    title: 'DME Provider Streamlines ePrescribing',
-    type: 'ePrescribing Integration',
-    industry: 'Durable Medical Equipment',
-    outcome: 'Real-time ePrescribing at launch',
-    desc: 'A leading DME provider needed to connect to ePrescribing networks at launch. Vorro deployed NCPDP SCRIPT integration through BridgeGate — enabling real-time, error-free electronic prescriptions from day one.',
-    url: 'https://vorro.net/case-study/how-a-leading-durable-medical-equipment-provider-streamlined-e-prescriptions-with-vorros-bridgegate-integration-platform/',
-    tag: 'Healthcare',
-  },
-  {
-    title: 'American Lung Association Streamlines Data Integration',
-    type: 'Non-Profit Health Data',
-    industry: 'Non-Profit / Public Health',
-    outcome: 'Cost-efficient, scalable data connections',
-    desc: 'The American Lung Association needed cost-efficient data integration to connect research, clinical, and advocacy data. Vorro\'s BridgeGate solution delivered scalable integrations that reduced IT overhead and improved data accuracy.',
-    url: 'https://vorro.net/case-study/implementing-data-integration-cost-efficient-connections-for-the-american-lung-association-with-vorros-bridgegate-solution/',
-    tag: 'Non-Profit',
-  },
-  {
-    title: 'Leading eCommerce Company Unifies Two Retail Giants',
-    type: 'Retail Data Integration',
+    title: 'How a Tier-1 Retail Conglomerate Standardized Technology for Two Global Shopping Brands',
     industry: 'eCommerce',
-    outcome: 'Two retail giants unified on one data platform',
-    desc: 'A major eCommerce company needed to merge data infrastructure after acquiring a second retail giant. Vorro\'s integration platform unified product, order, and customer data across both organizations — accelerating the merger timeline.',
-    url: 'https://vorro.net/case-study/how-a-leading-ecommerce-company-unified-two-retail-giants/',
     tag: 'eCommerce',
+    statValue: '65%',
+    statLabel: 'faster time-to-market for new vendor integrations',
+    summary:
+      'Migrated QVC and HSN from 10 disparate legacy servers to consistent BridgeGate instances, achieving 100% platform standardization and a 40% reduction in operational overhead.',
+    pdf: 'How-a-Tier-1-Retail-Conglomerate-Standardized-Technology',
   },
   {
-    title: 'Seamless Healthcare Data Exchange for EMR Provider',
-    type: 'Healthcare Data Exchange',
-    industry: 'Health IT Vendor',
-    outcome: 'Seamless multi-system data exchange',
-    desc: 'A leading EMR provider needed to enable seamless data exchange across a complex multi-system environment. Vorro\'s BridgeGate platform delivered real-time, standards-based data exchange — supporting growth and new client onboarding.',
-    url: 'https://vorro.net/case-study/achieving-seamless-healthcare-data-exchange-for-a-leading-emr-provider-google-ads/',
-    tag: 'Healthcare',
+    title: 'How the American Lung Association Streamlined Data Integration with BridgeGate',
+    industry: 'Non-Profit',
+    tag: 'Non-Profit',
+    statValue: '99.9%',
+    statLabel: 'uptime, 100+ clinics served for Illinois Quitline referrals',
+    summary:
+      'Replaced manual fax-and-paper tobacco cessation referrals with automated digital exchange between hospitals, clinics, and EMRs — fully managed by Vorro.',
+    pdf: 'How-the-American-Lung-Association-Streamlined-Data-Integration',
   },
   {
-    title: 'High-Volume EDI and Real-Time Eligibility Checks',
-    type: 'EDI & Eligibility',
-    industry: 'Payer / Health Plan',
-    outcome: 'High-volume EDI processed in real time',
-    desc: 'A payer organization handling massive EDI volumes needed real-time eligibility verification at scale. Vorro streamlined high-volume EDI X12 transactions and real-time 270/271 eligibility checks — cutting processing time dramatically.',
-    url: 'https://vorro.net/case-study/streamlining-highvolume-edi-and-real-time-eligibility-checks/',
+    title: 'Scaling Healthcare Analytics: How BridgeGate Processed 45TB of Patient Data in 44 Hours',
+    industry: 'Analytics',
+    tag: 'Analytics',
+    statValue: '45TB',
+    statLabel: 'processed in 44 hours — 1M complex CCDs per hour',
+    summary:
+      'Delivered a high-performance integration layer that ingested 44M+ patient files from 20+ health plans and 100+ hospitals where competing EiPaaS platforms couldn\'t scale.',
+    pdf: 'Scaling-Healthcare-Analytics-45TB',
+  },
+  {
+    title: 'Streamlining E-Prescriptions for a Leading DME Provider with Vorro\'s BridgeGate',
+    industry: 'Healthcare',
     tag: 'Healthcare',
+    statValue: '5M+',
+    statLabel: 'monthly transactions, 70% cost savings vs in-house development',
+    summary:
+      'Ingested and translated HL7, FHIR bundles, PDFs, and JSONs from multiple EMRs into a proprietary format — fully managed so the client could focus entirely on their core business.',
+    pdf: 'Streamlining-E-Prescriptions-DME-Provider',
   },
 ];
 
-const tags = ['All', 'Healthcare', 'eCommerce', 'Non-Profit'];
+const tags = ['All', 'Healthcare', 'eCommerce', 'Non-Profit', 'Analytics'];
 
-import { useState } from 'react';
+const industryColors = {
+  Healthcare: { bg: 'rgba(14,165,233,0.1)', color: '#0ea5e9' },
+  eCommerce:  { bg: 'rgba(245,158,11,0.1)',  color: '#d97706' },
+  'Non-Profit': { bg: 'rgba(34,197,94,0.1)', color: '#16a34a' },
+  Analytics:  { bg: 'rgba(172,65,151,0.12)', color: 'var(--color-primary)' },
+};
 
 export default function CaseStudies() {
   const [activeTag, setActiveTag] = useState('All');
@@ -100,7 +93,7 @@ export default function CaseStudies() {
 
       <section className="section bg-light">
         <div className="container">
-          {/* Filter */}
+          {/* Filter tabs */}
           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '2.5rem' }}>
             {tags.map(t => (
               <button
@@ -114,31 +107,87 @@ export default function CaseStudies() {
           </div>
 
           <div className="grid-3" style={{ gap: '1.5rem' }}>
-            {filtered.map((cs) => (
-              <div key={cs.title} className="card-feature" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span className="tag tag-primary">{cs.industry}</span>
-                  <span style={{ fontSize: 'var(--text-xs)', color: 'var(--color-gray-400)' }}>{cs.type}</span>
-                </div>
-                <h3 style={{ fontSize: 'var(--text-xl)', fontWeight: 'var(--font-bold)', color: 'var(--color-navy)', lineHeight: 1.3 }}>
-                  {cs.title}
-                </h3>
-                <div style={{ padding: '0.75rem 1rem', background: 'rgba(172,65,151,0.07)', borderRadius: 'var(--radius-lg)', fontSize: 'var(--text-sm)', fontWeight: 'var(--font-semibold)', color: 'var(--color-primary)' }}>
-                  {cs.outcome}
-                </div>
-                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-gray-500)', lineHeight: 1.65, flex: 1 }}>
-                  {cs.desc}
-                </p>
-                <a
-                  href={cs.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', fontSize: 'var(--text-sm)', fontWeight: 'var(--font-semibold)', color: 'var(--color-primary)', textDecoration: 'none' }}
+            {filtered.map((cs) => {
+              const palette = industryColors[cs.industry] || industryColors['Analytics'];
+              return (
+                <div
+                  key={cs.title}
+                  className="card-feature"
+                  style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
                 >
-                  Read full case study <ExternalLink size={13} />
-                </a>
-              </div>
-            ))}
+                  {/* Industry pill */}
+                  <span
+                    style={{
+                      display: 'inline-block',
+                      alignSelf: 'flex-start',
+                      padding: '0.25rem 0.75rem',
+                      borderRadius: '999px',
+                      fontSize: 'var(--text-xs)',
+                      fontWeight: 'var(--font-semibold)',
+                      background: palette.bg,
+                      color: palette.color,
+                      letterSpacing: '0.03em',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    {cs.industry}
+                  </span>
+
+                  {/* Key stat */}
+                  <div style={{ lineHeight: 1 }}>
+                    <div
+                      style={{
+                        fontSize: 'clamp(2rem, 4vw, 2.75rem)',
+                        fontWeight: 'var(--font-bold)',
+                        color: 'var(--color-primary)',
+                        lineHeight: 1,
+                      }}
+                    >
+                      {cs.statValue}
+                    </div>
+                    <div
+                      style={{
+                        fontSize: 'var(--text-xs)',
+                        color: 'var(--color-gray-400)',
+                        marginTop: '0.3rem',
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      {cs.statLabel}
+                    </div>
+                  </div>
+
+                  {/* Title */}
+                  <h3
+                    style={{
+                      fontSize: 'var(--text-base)',
+                      fontWeight: 'var(--font-bold)',
+                      color: 'var(--color-navy)',
+                      lineHeight: 1.35,
+                    }}
+                  >
+                    {cs.title}
+                  </h3>
+
+                  {/* Summary */}
+                  <p
+                    style={{
+                      fontSize: 'var(--text-sm)',
+                      color: 'var(--color-gray-500)',
+                      lineHeight: 1.65,
+                      flex: 1,
+                    }}
+                  >
+                    {cs.summary}
+                  </p>
+
+                  {/* CTA */}
+                  <button className="btn btn-primary btn-sm" style={{ alignSelf: 'flex-start' }}>
+                    Read Case Study
+                  </button>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

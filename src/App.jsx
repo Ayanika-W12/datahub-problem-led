@@ -17,6 +17,7 @@ import Webinar from './pages/Webinar';
 import VorroForStartups from './pages/VorroForStartups';
 import SimplePage from './pages/SimplePage';
 import IndustryPage from './pages/IndustryPage';
+import UseCasePage from './pages/UseCasePage';
 import NotFound from './pages/NotFound';
 
 function ScrollToTop() {
@@ -59,6 +60,10 @@ function AppRoutes() {
         <Route path="/solutions/healthcare" element={<IndustryPage industry="healthcare" />} />
         <Route path="/solutions/ecommerce" element={<IndustryPage industry="ecommerce" />} />
         <Route path="/solutions/insurance" element={<IndustryPage industry="insurance" />} />
+
+        {/* Use Case pages */}
+        <Route path="/solutions/use-case/340b-compliance-without-the-roadblocks" element={<UseCasePage slug="340b" />} />
+        <Route path="/solutions/use-case/behavioral-health-integration-without-the-barriers" element={<UseCasePage slug="behavioral-health" />} />
 
         <Route path="/solutions/*" element={<Solutions />} />
 
