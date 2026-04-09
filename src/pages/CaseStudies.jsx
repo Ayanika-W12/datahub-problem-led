@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
 const caseStudies = [
@@ -20,7 +21,7 @@ const caseStudies = [
     statLabel: 'patient records processed per day, 500+ facilities integrated',
     summary:
       'Connected hundreds of hospitals and clinics via mixed HL7 & SFTP to validate 340B eligibility in near-real-time, giving patients immediate access to discounted medications.',
-    pdf: 'How-a-Pharmacy-Management-Provider-Found-Data-Harmony-with-Vorros-BridgeGate\u2122-Integration-Platform.pdf',
+    pdf: 'How-a-Pharmacy-Management-Provider-Found-Data-Harmony.pdf',
   },
   {
     title: 'How a Tier-1 Retail Conglomerate Standardized Technology for Two Global Shopping Brands',
@@ -50,7 +51,7 @@ const caseStudies = [
     statLabel: 'processed in 44 hours — 1M complex CCDs per hour',
     summary:
       'Delivered a high-performance integration layer that ingested 44M+ patient files from 20+ health plans and 100+ hospitals where competing EiPaaS platforms couldn\'t scale.',
-    pdf: 'Scaling-Healthcare-Analytics-How-BridgeGate\u2122-Processed-45TB-of-Patient-Data-in-44-Hours.pdf',
+    pdf: 'Scaling-Healthcare-Analytics-45TB-in-44-Hours.pdf',
   },
   {
     title: 'Streamlining E-Prescriptions for a Leading DME Provider with Vorro\'s BridgeGate',

@@ -27,6 +27,12 @@ const upcoming = [
 
 const onDemand = [
   {
+    title: "American Lung Association's Digital Transformation with Vorro",
+    duration: 'On demand',
+    category: 'Non-Profit',
+    featured: true,
+  },
+  {
     title: 'Healthcare Integration 101: HL7, FHIR, and EDI Explained',
     duration: '42 min',
     category: 'Interfacing',
@@ -39,7 +45,7 @@ const onDemand = [
   {
     title: 'Building a Patient 360 from Clinical, Claims, and SDOH Data',
     duration: '55 min',
-    category: 'Analytics & Conversational AI',
+    category: 'Analytics',
   },
   {
     title: 'No-Code Integration: Replacing Mirth Connect Without the Pain',

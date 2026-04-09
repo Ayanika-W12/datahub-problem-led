@@ -18,13 +18,13 @@ const buyCosts = [
 ];
 
 const comparison = [
-  { factor: 'Time to first integration', build: '3–6 months', buy: '2–4 weeks' },
-  { factor: 'FHIR R4 compliance', build: 'Build from scratch', buy: 'Pre-certified' },
-  { factor: 'HL7 v2 support', build: 'Custom parsers needed', buy: 'Native, 100+ message types' },
-  { factor: 'HIPAA compliance', build: 'Your responsibility', buy: 'Platform-managed' },
-  { factor: 'Vendor EHR connectors', build: 'Build each one', buy: '40+ pre-built' },
-  { factor: 'Ongoing maintenance', build: '2–4 FTE engineers', buy: 'Managed by Vorro' },
-  { factor: 'Audit trail & lineage', build: 'Custom logging', buy: 'Automated, exportable' },
+  { factor: 'Time to Deploy', build: '4–6 months', buy: 'Live in weeks' },
+  { factor: 'Resource Burden', build: '5–10 FTEs (engineering, data, security)', buy: 'Fully managed — zero new hires' },
+  { factor: 'Integration Maintenance', build: 'Constant — HL7 changes, FHIR updates, outages', buy: 'Fully managed by integration experts' },
+  { factor: 'AI Data Readiness', build: 'Requires additional tooling to clean & standardize', buy: 'Built-in LLM-ready data orchestration' },
+  { factor: 'Security & Compliance', build: 'Must build HIPAA controls, RBAC from scratch', buy: 'Enterprise-grade security baked in' },
+  { factor: 'Operational Risk', build: 'High — teams spend years stabilizing pipelines', buy: 'Low — proven, modular, healthcare-native' },
+  { factor: 'Total Cost of Ownership', build: 'High and rising', buy: 'Predictable pricing, fastest path to ROI' },
 ];
 
 export default function BuildVsBuy() {
@@ -33,13 +33,42 @@ export default function BuildVsBuy() {
       <section className="vertical-hero">
         <div className="container vertical-hero-inner">
           <div className="badge badge-white" style={{ marginBottom: '1.25rem' }}>Decision Guide</div>
-          <h1 className="vertical-hero-headline">Build vs. Buy Healthcare Integration</h1>
+          <h1 className="vertical-hero-headline">Build and Slow Down. Or Buy and Scale Up.</h1>
           <p className="vertical-hero-sub">
-            The honest, numbers-based guide to deciding whether to build your own healthcare integration infrastructure
-            or buy a platform — and what the real costs of each path look like.
+            Wondering whether to build integration in-house or partner with a proven platform? Internal builds often lead
+            to delays, hidden costs, and teams focused on infrastructure instead of outcomes. Vorro delivers Healthcare AI
+            Integration that's ready to deploy, with built-in automation, real-time insights, and zero overhead.
           </p>
+          <div className="vertical-hero-actions">
+            <Link to="/contact-us" className="btn btn-cyan btn-lg">
+              Talk to an Expert <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
       </section>
+
+      {/* Story strip */}
+      <div style={{ background: 'var(--color-navy)', padding: '3rem 0' }}>
+        <div className="container" style={{ maxWidth: '860px' }}>
+          <p style={{ fontSize: 'var(--text-lg)', color: 'rgba(255,255,255,0.85)', lineHeight: 1.8, marginBottom: '1.5rem' }}>
+            A leading healthcare analytics company set out to build their own integration layer — only to face two years
+            of delays, instability, and mounting complexity. When they switched to Vorro, they deployed clean, normalized
+            data flows in a week.
+          </p>
+          <div style={{ display: 'flex', gap: '3rem', flexWrap: 'wrap' }}>
+            {[
+              { v: '45TB', l: 'processed in 44 hours' },
+              { v: '44M+', l: 'patient files ingested' },
+              { v: '1 week', l: 'time to first live feed' },
+            ].map(s => (
+              <div key={s.v}>
+                <div style={{ fontSize: 'clamp(1.75rem, 3vw, 2.25rem)', fontWeight: 'var(--font-bold)', color: 'var(--color-cyan)' }}>{s.v}</div>
+                <div style={{ fontSize: 'var(--text-sm)', color: 'rgba(255,255,255,0.6)', marginTop: '0.25rem' }}>{s.l}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* The Hidden Cost of Building */}
       <section className="section">

@@ -82,6 +82,7 @@ function AppRoutes() {
         <Route path="/vorro-vs-mulesoft" element={<ComparisonPage competitor="mulesoft" />} />
         <Route path="/vorro-vs-rhapsody" element={<ComparisonPage competitor="rhapsody" />} />
         <Route path="/vorro-vs-datavant" element={<ComparisonPage competitor="datavant" />} />
+        <Route path="/vorro-vs-mirth" element={<ComparisonPage competitor="mirth" />} />
 
         {/* Company */}
         <Route path="/company/careers" element={<SimplePage page="careers" />} />

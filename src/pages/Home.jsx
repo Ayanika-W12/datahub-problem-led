@@ -17,24 +17,24 @@ const stats = [
 
 const problems = [
   {
-    icon: <Network size={24} />,
-    title: 'Fragmented Systems',
-    desc: 'Siloed EHRs, payers, and labs cannot communicate effectively — costing time, money, and patient outcomes.',
+    icon: <TrendingUp size={24} />,
+    title: 'Accelerate Time-to-Market',
+    desc: 'Launch new applications and products into major cloud marketplaces 4X faster with streamlined, no-code onboarding.',
   },
   {
     icon: <Shield size={24} />,
-    title: 'Manual Compliance',
-    desc: 'HIPAA and audit processes are manual, slow, and error-prone — creating risk and burning out your team.',
+    title: 'Improve Financial Outcomes',
+    desc: 'Reduce critical operational costs by eliminating up to 70% of manual data scripting, and speed up revenue cycles through cleaner data.',
+  },
+  {
+    icon: <Globe size={24} />,
+    title: 'Scale with Confidence',
+    desc: 'Manage millions of records and transactions smoothly, guaranteeing performance and uptime as your organization expands globally.',
   },
   {
     icon: <Brain size={24} />,
-    title: 'AI Projects Stall',
-    desc: 'Machine learning initiatives fail on dirty, ungoverned data — your AI is only as good as your data foundation.',
-  },
-  {
-    icon: <GitBranch size={24} />,
-    title: 'Zero Visibility',
-    desc: 'No audit trail for what changed in your data, when, or why — compliance and trust suffer.',
+    title: 'Support Innovation',
+    desc: 'Enable advanced initiatives like real-world evidence research, predictive analytics, and faster R&D through unified, high-quality data.',
   },
 ];
 
@@ -244,14 +244,13 @@ export default function Home() {
               </span>
             </div>
             <h1 className="hero-headline">
-              Seven Capabilities.<br />
-              <span className="hero-headline-accent">One Platform.</span><br />
-              Infinite Interoperability.
+              AI-Powered Data Transformation.<br />
+              <span className="hero-headline-accent">No-Code Integration.</span><br />
+              Zero Compromise.
             </h1>
             <p className="hero-sub">
-              Vorro unifies healthcare data integration, AI readiness, governance, and workflow
-              automation into a single platform — eliminating the data chaos that stalls care,
-              compliance, and AI initiatives.
+              Stop chasing data. Transform your ever-increasing data assets into real business value,
+              enabling your teams to focus on strategy and growth.
             </p>
             <div className="hero-actions">
               <Link to="/contact-us" className="btn btn-cyan btn-xl">

@@ -5,68 +5,96 @@ const competitorData = {
   redox: {
     name: 'Redox',
     title: 'Vorro vs. Redox',
-    headline: 'More Than an API Layer. A Complete Healthcare Data Platform.',
-    sub: 'Redox provides API connectivity. Vorro provides API connectivity plus NLP analytics, compliance automation, version control, AI readiness, and workflow orchestration — all in one platform.',
+    headline: 'A Flexible Alternative Without the Lock-In',
+    sub: "While Redox offers healthcare connectivity through APIs, it often relies on fixed data models, proprietary frameworks, and developer-heavy setup. Vorro's BridgeGate Platform gives you full control, zero-code onboarding, and the freedom to adapt your data workflows without writing custom integrations.",
+    stat: { value: '45TB', label: 'processed in 44 hours — 1M complex CCDs/hr' },
     features: [
-      { feature: 'HL7 / FHIR Connectivity', vorro: true, them: true },
-      { feature: 'EDI X12 (Claims, Eligibility, Prior Auth)', vorro: true, them: false },
-      { feature: 'Clinical Conversational AI & Concept Extraction', vorro: true, them: false },
-      { feature: 'Natural Language Reporting', vorro: true, them: false },
-      { feature: 'HIPAA Compliance Automation', vorro: true, them: 'Partial' },
-      { feature: 'Data Lineage & Version Control', vorro: true, them: false },
-      { feature: 'AI-Ready Data Lake (Bronze/Silver/Gold)', vorro: true, them: false },
-      { feature: 'Workflow Orchestration (n8n + AI)', vorro: true, them: false },
-      { feature: 'Dedicated Integration Engineers', vorro: true, them: false },
-      { feature: 'Healthcare-Native (not adapted from generic iPaaS)', vorro: true, them: 'Partial' },
+      { feature: 'Healthcare-Specific Platform', vorro: true, them: 'Via Redox Models' },
+      { feature: 'Interface / Builder', vorro: 'No-code visual builder', them: 'Cloud dashboard + APIs' },
+      { feature: 'HL7 v2 Support', vorro: true, them: true },
+      { feature: 'FHIR Support', vorro: 'Native, no-code', them: 'Not native' },
+      { feature: 'X12 / EDI Support', vorro: true, them: 'Converts to JSON only' },
+      { feature: 'Message Transformation', vorro: 'Flexible, visual, no-code', them: 'Monitoring + retry' },
+      { feature: 'HIPAA Compliance', vorro: 'Built-in', them: 'Partial' },
+      { feature: 'Deployment Options', vorro: 'On-prem, hybrid, cloud', them: 'Cloud-based SaaS only' },
+      { feature: 'Fully Managed Option', vorro: true, them: false },
+      { feature: 'Pricing', vorro: 'Affordable, transparent', them: 'Usage-based, can escalate' },
     ],
   },
   mulesoft: {
     name: 'Mulesoft',
     title: 'Vorro vs. Mulesoft',
-    headline: 'Healthcare-Native. No Bloat. No Six-Figure Implementation.',
-    sub: 'Mulesoft is a powerful general-purpose integration platform — but it wasn\'t built for healthcare. Vorro was.',
+    headline: 'A Simpler, Smarter Alternative for Healthcare Integration',
+    sub: "MuleSoft demands heavy infrastructure, steep learning curves, and developer-heavy tools like DataWeave. That complexity slows you down and drives up costs. Vorro is built for healthcare teams that need fast, secure integration — without the need for custom code or dedicated devs.",
+    stat: { value: '5M+', label: 'monthly transactions, 70% cost savings vs in-house' },
     features: [
-      { feature: 'HL7 / FHIR Native Support', vorro: true, them: 'Connectors needed' },
-      { feature: 'EDI X12 Healthcare Transactions', vorro: true, them: 'Add-on/custom' },
-      { feature: 'HIPAA Compliance Automation', vorro: true, them: false },
-      { feature: 'Clinical Conversational AI', vorro: true, them: false },
-      { feature: 'Healthcare-Specific Data Lake', vorro: true, them: false },
-      { feature: 'Time to First Integration', vorro: 'Days', them: 'Months' },
-      { feature: 'Implementation Cost', vorro: 'Managed service included', them: '$200K+ typical SI cost' },
-      { feature: 'Workflow Orchestration (AI-native)', vorro: true, them: false },
-      { feature: 'Data Lineage & Versioning', vorro: true, them: 'Partial' },
+      { feature: 'Healthcare-Specific Platform', vorro: true, them: 'Generic, requires modeling' },
+      { feature: 'Interface / Builder', vorro: 'Fully visual, no-code', them: 'Visual + code (DataWeave)' },
+      { feature: 'HL7 v2 Support', vorro: 'Fully native', them: 'Requires connectors' },
+      { feature: 'FHIR Support', vorro: 'Native, no-code', them: 'Requires custom implementation' },
+      { feature: 'X12 / EDI Support', vorro: true, them: 'Native with Healthcare Toolkit' },
+      { feature: 'HIPAA Compliance', vorro: 'Built-in, fully managed', them: 'Requires architecture setup' },
+      { feature: 'Scalability', vorro: 'Highly scalable, cloud-native', them: 'Multi-cloud, high infra cost' },
+      { feature: 'Deployment Options', vorro: 'On-prem, hybrid, cloud', them: 'Cloud, hybrid, on-prem' },
+      { feature: 'Fully Managed Option', vorro: true, them: false },
+      { feature: 'Pricing', vorro: 'Affordable, transparent', them: 'High cost — per core/API' },
     ],
   },
   rhapsody: {
     name: 'Rhapsody',
     title: 'Vorro vs. Rhapsody',
-    headline: 'Modern, AI-Ready Integration vs. Legacy Middleware.',
-    sub: 'Rhapsody is a legacy HL7 engine. Vorro is a modern, cloud-native platform that supports FHIR R4, AI workflows, and governance — without the complexity of legacy middleware.',
+    headline: 'A Modern Integration Alternative Without the Overhead',
+    sub: 'Rhapsody requires developer-driven scripting, long deployment cycles, and costly maintenance. Vorro offers a fully managed, no-code integration platform built for healthcare — simplifying complex mapping, reducing implementation time, and eliminating ongoing upkeep.',
+    stat: { value: '99.9%', label: 'uptime, 100+ clinics connected — fully managed by Vorro' },
     features: [
-      { feature: 'Cloud-Native Architecture', vorro: true, them: false },
-      { feature: 'FHIR R4 Native Support', vorro: true, them: 'Limited' },
-      { feature: 'AI-Powered Workflow Orchestration', vorro: true, them: false },
-      { feature: 'No-Code / Low-Code Configuration', vorro: true, them: false },
-      { feature: 'Clinical Conversational AI', vorro: true, them: false },
-      { feature: 'Managed Service Option', vorro: true, them: false },
-      { feature: 'Self-Healing Pipelines', vorro: true, them: false },
-      { feature: 'HIPAA Compliance Automation', vorro: true, them: 'Manual' },
+      { feature: 'Healthcare-Specific Platform', vorro: true, them: true },
+      { feature: 'Interface / Builder', vorro: 'No-code / low-code visual', them: 'GUI + scripting' },
+      { feature: 'Primary Audience', vorro: 'Hospitals & HIEs, no dev teams', them: 'Enterprise IT / developers' },
+      { feature: 'FHIR Support', vorro: 'Native, no-code', them: 'Script-based, limited' },
+      { feature: 'X12 / EDI Support', vorro: true, them: 'Partial, plug-in based' },
+      { feature: 'Message Transformation', vorro: 'Visual mapping, no-code', them: 'Scripting + filters' },
+      { feature: 'Monitoring & Alerts', vorro: 'Real-time BAM dashboards', them: 'Logs, alerts, email triggers' },
+      { feature: 'HIPAA Compliance', vorro: 'Built-in, fully managed', them: 'HIPAA-ready, manual config' },
+      { feature: 'Fully Managed Option', vorro: true, them: false },
+      { feature: 'Pricing', vorro: 'Affordable, competitive', them: 'Not competitive' },
     ],
   },
   datavant: {
     name: 'Datavant',
     title: 'Vorro vs. Datavant',
-    headline: 'Full Data Platform vs. Identity Matching Focus.',
-    sub: 'Datavant specializes in patient identity matching and data linkage. Vorro covers the full data stack — integration, NLP, compliance, AI readiness, and workflow automation.',
+    headline: 'A Fully Managed Integration Alternative',
+    sub: "Datavant focuses on data connectivity — tokenization, record retrieval, and standardized EHR extraction. Vorro is an integration platform designed for the day-to-day operational movement of healthcare data across HL7 v2, FHIR, X12/EDI, and APIs — without requiring code or a developer-heavy middleware stack.",
+    stat: { value: '5M+', label: 'monthly transactions, 70% cost savings vs in-house' },
     features: [
-      { feature: 'Patient Identity Matching (MPI)', vorro: true, them: true },
-      { feature: 'HL7 / FHIR Integration Layer', vorro: true, them: 'Partial' },
-      { feature: 'Clinical Conversational AI & Structuring', vorro: true, them: false },
-      { feature: 'Regulatory Compliance Automation', vorro: true, them: false },
-      { feature: 'Workflow Orchestration', vorro: true, them: false },
-      { feature: 'AI-Ready Data Lake', vorro: true, them: false },
-      { feature: 'EDI X12 / Claims Processing', vorro: true, them: false },
-      { feature: 'Data Lineage & Version Control', vorro: true, them: false },
+      { feature: 'Primary Use Case', vorro: 'Full EiPaaS platform', them: 'Data connectivity & tokenization' },
+      { feature: 'Healthcare-Specific', vorro: true, them: true },
+      { feature: 'HL7 v2 Support', vorro: 'Native, no-code', them: 'Limited' },
+      { feature: 'FHIR Support', vorro: 'Native, bi-directional', them: 'EHR extraction focused' },
+      { feature: 'X12 / EDI Support', vorro: true, them: false },
+      { feature: 'Message Transformation', vorro: 'Fully visual, no-code', them: false },
+      { feature: 'Monitoring & Alerts', vorro: 'Real-time dashboards & alerts', them: 'Basic' },
+      { feature: 'Deployment Options', vorro: 'Cloud, hybrid, on-prem', them: 'Cloud-based' },
+      { feature: 'Fully Managed Option', vorro: true, them: false },
+      { feature: 'Pricing', vorro: 'Predictable, transparent', them: 'Opaque, usage-based' },
+    ],
+  },
+  mirth: {
+    name: 'Mirth Connect',
+    title: 'Vorro vs. Mirth',
+    headline: 'A Modern Alternative to Open-Source Complexity',
+    sub: "While Mirth Connect is a widely-used open-source HL7 engine, it requires significant technical effort to implement, secure, and maintain. Vorro offers a modern, fully managed platform designed for speed, flexibility, and scalability — with zero-code onboarding and no Java required.",
+    stat: { value: '3M+', label: 'daily transactions — 500+ hospitals & clinics, zero added devs' },
+    features: [
+      { feature: 'Healthcare-Specific Platform', vorro: true, them: true },
+      { feature: 'Interface / Builder', vorro: 'Fully visual, no-code', them: 'GUI + JavaScript/XSLT scripting' },
+      { feature: 'Primary Audience', vorro: 'Hospitals & HIEs, no dev teams', them: 'Startups / small IT teams' },
+      { feature: 'HL7 v2 Support', vorro: 'Fully supported', them: 'Strong (manual config)' },
+      { feature: 'FHIR Support', vorro: 'Native, no-code', them: 'Script-based' },
+      { feature: 'X12 / EDI Support', vorro: 'Native, no-code', them: 'Manual setup / custom code' },
+      { feature: 'HIPAA Compliance', vorro: 'Built-in, fully managed', them: 'User-configured, HIPAA-capable' },
+      { feature: 'Scalability', vorro: 'Highly scalable, cloud-native', them: 'Medium — on-prem by default' },
+      { feature: 'Fully Managed Option', vorro: true, them: 'Paid support only' },
+      { feature: 'Open Source', vorro: false, them: 'Core only (paid for enterprise)' },
     ],
   },
 };
@@ -87,9 +115,29 @@ export default function ComparisonPage({ competitor }) {
             <Link to="/contact-us" className="btn btn-cyan btn-lg">
               See Vorro in Action <ArrowRight size={16} />
             </Link>
+            <Link to="/case-studies" className="btn btn-ghost-white btn-lg">
+              View Case Studies
+            </Link>
           </div>
         </div>
       </section>
+
+      {/* Proof stat */}
+      {data.stat && (
+        <div style={{ background: 'var(--color-navy)', padding: '1.5rem 0' }}>
+          <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
+            <span style={{ fontSize: 'clamp(1.75rem, 3vw, 2.25rem)', fontWeight: 'var(--font-bold)', color: 'var(--color-cyan)' }}>
+              {data.stat.value}
+            </span>
+            <span style={{ fontSize: 'var(--text-sm)', color: 'rgba(255,255,255,0.7)', maxWidth: '320px' }}>
+              {data.stat.label}
+            </span>
+            <Link to="/case-studies" style={{ fontSize: 'var(--text-sm)', color: 'var(--color-cyan)', fontWeight: 'var(--font-semibold)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+              Read case study <ArrowRight size={13} />
+            </Link>
+          </div>
+        </div>
+      )}
 
       <section className="section">
         <div className="container" style={{ maxWidth: '860px' }}>
