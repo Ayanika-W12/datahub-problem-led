@@ -277,16 +277,29 @@ export default function Home() {
           </FadeIn>
 
           {/* Right — Platform Capabilities Orbital Visual */}
-          <div className="platform-capabilities-visual">
-            {/* Orbital background elements */}
-            <div className="orbital-bg">
-              <div className="orbital-ring orbital-ring-1" />
-              <div className="orbital-ring orbital-ring-2" />
-              <div className="orbital-particles" />
+          <div className="platform-visual-wrapper">
+            {/* Value badges - moved outside orbital area */}
+            <div className="orbital-badges">
+              <span className="orbital-badge orbital-badge-managed">
+                <span className="orbital-badge-label">Delivery Model</span>
+                <span className="orbital-badge-value">Fully Managed</span>
+              </span>
+              <span className="orbital-badge orbital-badge-cost">
+                <span className="orbital-badge-label">Commercial Value</span>
+                <span className="orbital-badge-value">Low Cost</span>
+              </span>
             </div>
 
-            {/* Animated connection lines */}
-            <svg className="connections-svg" viewBox="0 0 600 500" preserveAspectRatio="xMidYMid meet">
+            <div className="platform-capabilities-visual">
+              {/* Orbital background elements */}
+              <div className="orbital-bg">
+                <div className="orbital-ring orbital-ring-1" />
+                <div className="orbital-ring orbital-ring-2" />
+                <div className="orbital-particles" />
+              </div>
+
+              {/* Animated connection lines */}
+              <svg className="connections-svg" viewBox="0 0 600 500" preserveAspectRatio="xMidYMid meet">
               <defs>
                 <linearGradient id="conn-grad-1" x1="50%" y1="50%" x2="50%" y2="0%">
                   <stop offset="0%" stopColor="#20D3EF" stopOpacity="0" />
@@ -361,19 +374,8 @@ export default function Home() {
                 </Link>
               ))}
             </div>
-
-            {/* Value badges */}
-            <div className="orbital-badges">
-              <span className="orbital-badge orbital-badge-managed">
-                <span className="orbital-badge-label">Delivery Model</span>
-                <span className="orbital-badge-value">Fully Managed</span>
-              </span>
-              <span className="orbital-badge orbital-badge-cost">
-                <span className="orbital-badge-label">Commercial Value</span>
-                <span className="orbital-badge-value">Low Cost</span>
-              </span>
-            </div>
           </div>
+        </div>
         </div>
       </section>
 
