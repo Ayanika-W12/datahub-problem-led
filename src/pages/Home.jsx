@@ -361,7 +361,6 @@ export default function Home() {
                   <div className="core-inner">
                     <div className="core-kicker">Unified Architecture</div>
                     <div className="core-title">AI Healthcare Data Hub</div>
-                    <p className="core-sub">Seven capabilities working together in one coherent operating layer.</p>
                   </div>
                 </div>
 

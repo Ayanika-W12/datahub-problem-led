@@ -5,11 +5,12 @@
 /* ---- Hero ---- */
 .hero {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 5rem;
+  padding-top: 4rem;
   overflow: hidden;
 }
 
@@ -79,12 +80,12 @@
 }
 
 .hero-headline {
-  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
   font-weight: var(--font-black);
   color: white;
-  line-height: 1.1;
+  line-height: 1.08;
   letter-spacing: -0.04em;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .hero-headline-accent {
@@ -95,11 +96,11 @@
 }
 
 .hero-sub {
-  font-size: clamp(1.0625rem, 2vw, 1.25rem);
+  font-size: clamp(0.9375rem, 1.8vw, 1.125rem);
   color: rgba(255,255,255,0.7);
-  max-width: 600px;
-  line-height: 1.7;
-  margin-bottom: 2.5rem;
+  max-width: 520px;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
 }
 
 .hero-actions {
@@ -107,7 +108,7 @@
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .hero-proof {
@@ -863,10 +864,10 @@
 .hero-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 2rem;
   align-items: center;
-  padding-bottom: 6rem;
-}
+  padding-bottom: 2rem;
+  }
 
 .hero-split-text {
   max-width: 540px;
@@ -1207,10 +1208,10 @@
 .capabilities-frame {
   position: relative;
   width: 100%;
-  min-width: 580px;
-  aspect-ratio: 1.1;
+  max-width: 500px;
+  aspect-ratio: 1;
   border-radius: 24px;
-  overflow: visible;
+  overflow: hidden;
   background:
     linear-gradient(160deg, rgba(237, 237, 237, 0.08), rgba(237, 237, 237, 0.03)),
     linear-gradient(135deg, rgba(172, 65, 151, 0.10), rgba(32, 211, 239, 0.08));
@@ -1410,8 +1411,8 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 160px;
-  height: 160px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -1454,19 +1455,19 @@
 }
 
 .core-kicker {
-  font-size: 9px;
-  letter-spacing: 0.18em;
+  font-size: 7px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(237, 237, 237, 0.62);
-  margin-bottom: 8px;
-}
+  margin-bottom: 4px;
+  }
 
 .core-title {
-  font-size: 20px;
-  line-height: 1.02;
+  font-size: 14px;
+  line-height: 1.1;
   letter-spacing: -0.04em;
   font-weight: 760;
-  margin: 0 0 8px;
+  margin: 0;
   background: linear-gradient(135deg, var(--color-light, #EDEDED) 0%, var(--color-cyan) 38%, var(--color-primary) 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -1490,10 +1491,10 @@
 /* Individual Pillar Cards - exact design from provided HTML */
 .frame-pillar {
   position: absolute;
-  width: 140px;
-  min-height: 65px;
-  padding: 10px 12px;
-  border-radius: 14px;
+  width: 115px;
+  min-height: 58px;
+  padding: 8px 10px;
+  border-radius: 12px;
   background:
     linear-gradient(160deg, rgba(237, 237, 237, 0.12), rgba(237, 237, 237, 0.05));
   border: 1px solid rgba(237, 237, 237, 0.14);
@@ -1540,9 +1541,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
   background: rgba(237, 237, 237, 0.10);
   border: 1px solid rgba(237, 237, 237, 0.12);
   font-size: 11px;
@@ -1552,20 +1553,15 @@
 }
 
 .frame-pillar .pillar-label {
-  font-size: 14px;
-  line-height: 1.24;
+  font-size: 11px;
+  line-height: 1.2;
   letter-spacing: -0.02em;
   font-weight: 650;
   color: var(--color-light, #EDEDED);
-}
+  }
 
 .frame-pillar .pillar-micro {
-  margin-top: 6px;
-  font-size: 10px;
-  line-height: 1.4;
-  color: rgba(237, 237, 237, 0.58);
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
+  display: none; /* Hide to save space */
 }
 
 /* Hover state - grow on hover */
@@ -1583,13 +1579,13 @@
 }
 
 /* Pillar positioning - spread out to prevent overlaps */
-.p1 { top: 5%; left: 50%; --accent: #20D3EF; }
-.p2 { top: 22%; left: 95%; --accent: #AC4197; }
-.p3 { top: 58%; left: 100%; --accent: #02B164; }
-.p4 { top: 92%; left: 75%; --accent: #F17A42; }
-.p5 { top: 92%; left: 25%; --accent: #20D3EF; }
-.p6 { top: 58%; left: 0%; --accent: #AC4197; }
-.p7 { top: 22%; left: 5%; --accent: #02B164; }
+.p1 { top: 8%; left: 50%; --accent: #20D3EF; }
+.p2 { top: 25%; left: 85%; --accent: #AC4197; }
+.p3 { top: 55%; left: 88%; --accent: #02B164; }
+.p4 { top: 85%; left: 70%; --accent: #F17A42; }
+.p5 { top: 85%; left: 30%; --accent: #20D3EF; }
+.p6 { top: 55%; left: 12%; --accent: #AC4197; }
+.p7 { top: 25%; left: 15%; --accent: #02B164; }
 
 /* Animations - exact from provided HTML */
 @keyframes floatCenter {
