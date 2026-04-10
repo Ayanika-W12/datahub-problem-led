@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Download, X, CheckCircle2, Building2, MapPin, ArrowRight, Quote, TrendingUp, Zap, Shield, Users } from 'lucide-react';
-import FadeIn from '../components/ui/FadeIn';
+import { ArrowLeft, Download, X, CheckCircle2, Building2, MapPin, ArrowRight, Quote, TrendingUp, Zap, Shield, Users, Sparkles, Target, ArrowUpRight, Clock, FileText } from 'lucide-react';
 import '../styles/home.css';
 
 const caseStudies = {
@@ -222,11 +221,72 @@ BridgeGate interoperates with any LTC EHR system including PointClickCare, BlueS
 };
 
 const colorMap = {
-  primary: { bg: '#AC4197', gradient: 'linear-gradient(135deg, #AC4197 0%, #d376b8 100%)' },
-  cyan: { bg: '#20D3EF', gradient: 'linear-gradient(135deg, #20D3EF 0%, #0ea5c7 100%)' },
-  green: { bg: '#02B164', gradient: 'linear-gradient(135deg, #02B164 0%, #04d67a 100%)' },
-  orange: { bg: '#F17A42', gradient: 'linear-gradient(135deg, #F17A42 0%, #ff9a6c 100%)' },
+  primary: { 
+    bg: '#AC4197', 
+    light: 'rgba(172, 65, 151, 0.08)',
+    gradient: 'linear-gradient(135deg, #AC4197 0%, #d376b8 100%)',
+    glow: 'rgba(172, 65, 151, 0.25)'
+  },
+  cyan: { 
+    bg: '#20D3EF', 
+    light: 'rgba(32, 211, 239, 0.08)',
+    gradient: 'linear-gradient(135deg, #0ea5c7 0%, #20D3EF 100%)',
+    glow: 'rgba(32, 211, 239, 0.25)'
+  },
+  green: { 
+    bg: '#02B164', 
+    light: 'rgba(2, 177, 100, 0.08)',
+    gradient: 'linear-gradient(135deg, #02B164 0%, #04d67a 100%)',
+    glow: 'rgba(2, 177, 100, 0.25)'
+  },
+  orange: { 
+    bg: '#F17A42', 
+    light: 'rgba(241, 122, 66, 0.08)',
+    gradient: 'linear-gradient(135deg, #F17A42 0%, #ff9a6c 100%)',
+    glow: 'rgba(241, 122, 66, 0.25)'
+  },
 };
+
+// Animated counter component
+function AnimatedNumber({ value, delay = 0 }) {
+  const [display, setDisplay] = useState('0');
+  
+  useEffect(() => {
+    const numMatch = value.match(/[\d.]+/);
+    if (!numMatch) {
+      setDisplay(value);
+      return;
+    }
+    
+    const target = parseFloat(numMatch[0]);
+    const suffix = value.replace(numMatch[0], '');
+    const duration = 1500;
+    const startTime = Date.now() + delay;
+    
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      if (elapsed < 0) {
+        requestAnimationFrame(animate);
+        return;
+      }
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = target * eased;
+      
+      if (target >= 100) {
+        setDisplay(Math.round(current) + suffix);
+      } else {
+        setDisplay(current.toFixed(target % 1 === 0 ? 0 : 1) + suffix);
+      }
+      
+      if (progress < 1) requestAnimationFrame(animate);
+    };
+    
+    requestAnimationFrame(animate);
+  }, [value, delay]);
+  
+  return display;
+}
 
 export default function CaseStudyDetail() {
   const { slug } = useParams();
@@ -235,6 +295,11 @@ export default function CaseStudyDetail() {
   const [formData, setFormData] = useState({ fullName: '', jobTitle: '', company: '', email: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    setVisible(true);
+  }, []);
 
   if (!study) {
     return (
@@ -297,53 +362,83 @@ export default function CaseStudyDetail() {
   };
 
   return (
-    <main>
-      {/* Hero Section */}
-      <section className="cs-hero">
-        <div className="cs-hero-bg" />
+    <main className="cs-page">
+      {/* Immersive Hero */}
+      <section className="cs-hero-v2">
+        <div className="cs-hero-bg-v2">
+          <div className="cs-hero-gradient" style={{ '--accent': colors.bg, '--glow': colors.glow }} />
+          <div className="cs-hero-grid-pattern" />
+          <div className="cs-hero-glow" style={{ background: colors.glow }} />
+        </div>
+        
         <div className="container">
-          <FadeIn>
-            <Link to="/case-studies" className="cs-back-link">
-              <ArrowLeft size={16} /> Back to Case Studies
+          <div className={`cs-hero-inner ${visible ? 'visible' : ''}`}>
+            <Link to="/case-studies" className="cs-breadcrumb">
+              <ArrowLeft size={14} />
+              <span>All Case Studies</span>
             </Link>
-            <div className="cs-hero-content">
-              <div className="cs-hero-left">
-                <span className="cs-industry-badge">{study.industry}</span>
-                <h1 className="cs-hero-title">{study.title}</h1>
-                <div className="cs-hero-meta">
-                  <span><Building2 size={16} /> {study.client}</span>
-                  <span><MapPin size={16} /> {study.location}</span>
+            
+            <div className="cs-hero-grid">
+              <div className="cs-hero-text">
+                <div className="cs-tag-row">
+                  <span className="cs-tag" style={{ '--tag-color': colors.bg }}>
+                    <Sparkles size={12} />
+                    {study.industry}
+                  </span>
+                  <span className="cs-meta-pill">
+                    <MapPin size={12} /> {study.location}
+                  </span>
+                </div>
+                
+                <h1 className="cs-title">{study.title}</h1>
+                
+                <p className="cs-subtitle">{study.about}</p>
+                
+                <div className="cs-hero-actions">
+                  <button onClick={handleDownload} className="cs-download-trigger">
+                    <Download size={18} />
+                    Download PDF
+                  </button>
+                  <Link to="/contact-us" className="cs-talk-link">
+                    Talk to an Expert
+                    <ArrowUpRight size={16} />
+                  </Link>
                 </div>
               </div>
-              <div className="cs-hero-right">
-                <div className="cs-hero-stats">
-                  {study.stats.slice(0, 2).map((stat, i) => {
-                    const Icon = stat.icon;
-                    return (
-                      <div key={i} className="cs-hero-stat">
-                        <div className="cs-hero-stat-icon" style={{ background: colors.gradient }}>
-                          <Icon size={20} />
-                        </div>
-                        <div className="cs-hero-stat-value">{stat.value}</div>
-                        <div className="cs-hero-stat-label">{stat.label}</div>
+              
+              <div className="cs-stats-showcase">
+                {study.stats.map((stat, i) => {
+                  const Icon = stat.icon;
+                  return (
+                    <div 
+                      key={i} 
+                      className="cs-stat-card"
+                      style={{ '--delay': `${i * 0.1}s`, '--accent': colors.bg, '--light': colors.light }}
+                    >
+                      <div className="cs-stat-icon" style={{ background: colors.gradient }}>
+                        <Icon size={20} />
                       </div>
-                    );
-                  })}
-                </div>
+                      <div className="cs-stat-value">
+                        <AnimatedNumber value={stat.value} delay={i * 200} />
+                      </div>
+                      <div className="cs-stat-label">{stat.label}</div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
-      {/* Highlights Bar */}
-      <section className="cs-highlights-bar" style={{ background: colors.bg }}>
+      {/* Highlights Strip */}
+      <section className="cs-highlights-strip" style={{ '--accent': colors.bg }}>
         <div className="container">
-          <div className="cs-highlights-grid">
-            {study.highlights.map((highlight, i) => (
-              <div key={i} className="cs-highlight-item">
-                <CheckCircle2 size={18} />
-                <span>{highlight}</span>
+          <div className="cs-highlights-scroll">
+            {study.highlights.map((item, i) => (
+              <div key={i} className="cs-highlight-chip">
+                <CheckCircle2 size={16} />
+                {item}
               </div>
             ))}
           </div>
@@ -351,115 +446,120 @@ export default function CaseStudyDetail() {
       </section>
 
       {/* Main Content */}
-      <section className="cs-content-section">
+      <section className="cs-content-v2">
         <div className="container">
-          <div className="cs-layout">
-            {/* Main Content */}
-            <div className="cs-main">
-              <FadeIn>
-                {/* About */}
-                <div className="cs-card">
-                  <div className="cs-card-header">
-                    <Building2 size={20} style={{ color: colors.bg }} />
-                    <h2>About {study.client}</h2>
+          <div className="cs-content-grid">
+            {/* Main Column */}
+            <div className="cs-main-col">
+              {/* Challenge Section */}
+              <article className="cs-article cs-article-challenge">
+                <div className="cs-article-header">
+                  <div className="cs-article-icon cs-icon-warning">
+                    <Target size={20} />
                   </div>
-                  <p className="cs-card-text">{study.about}</p>
-                </div>
-
-                {/* Challenge */}
-                <div className="cs-card">
-                  <div className="cs-card-header">
-                    <div className="cs-card-icon-circle" style={{ background: 'rgba(220, 38, 38, 0.1)', color: '#dc2626' }}>!</div>
-                    <h2>The Challenge</h2>
-                  </div>
-                  <div className="cs-card-text cs-prose">
-                    {study.challenge.split('\n\n').map((para, i) => (
-                      <p key={i}>{para}</p>
-                    ))}
+                  <div>
+                    <span className="cs-article-eyebrow">The Problem</span>
+                    <h2 className="cs-article-title">The Challenge</h2>
                   </div>
                 </div>
+                <div className="cs-article-body">
+                  {study.challenge.split('\n\n').map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                </div>
+              </article>
 
-                {/* Solution */}
-                <div className="cs-card cs-card-featured" style={{ borderColor: colors.bg }}>
-                  <div className="cs-card-header">
-                    <div className="cs-card-icon-circle" style={{ background: colors.gradient, color: 'white' }}>
-                      <Zap size={16} />
+              {/* Solution Section */}
+              <article className="cs-article cs-article-solution" style={{ '--accent': colors.bg, '--light': colors.light }}>
+                <div className="cs-article-accent" style={{ background: colors.gradient }} />
+                <div className="cs-article-header">
+                  <div className="cs-article-icon cs-icon-success" style={{ background: colors.gradient }}>
+                    <Zap size={20} />
+                  </div>
+                  <div>
+                    <span className="cs-article-eyebrow" style={{ color: colors.bg }}>The Outcome</span>
+                    <h2 className="cs-article-title">The Solution</h2>
+                  </div>
+                </div>
+                <div className="cs-article-body">
+                  {study.solution.split('\n\n').map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                </div>
+              </article>
+
+              {/* Quote */}
+              {study.quote && (
+                <blockquote className="cs-quote-block" style={{ '--accent': colors.bg }}>
+                  <div className="cs-quote-decoration" style={{ background: colors.gradient }}>
+                    <Quote size={24} />
+                  </div>
+                  <p className="cs-quote-text">{study.quote.text}</p>
+                  <footer className="cs-quote-footer">
+                    <div className="cs-quote-avatar" style={{ background: colors.gradient }}>
+                      {study.quote.author.split(' ').map(n => n[0]).join('').slice(0, 2)}
                     </div>
-                    <h2>The Solution</h2>
-                  </div>
-                  <div className="cs-card-text cs-prose">
-                    {study.solution.split('\n\n').map((para, i) => (
-                      <p key={i}>{para}</p>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Quote */}
-                {study.quote && (
-                  <div className="cs-quote-card">
-                    <Quote size={32} className="cs-quote-icon" style={{ color: colors.bg }} />
-                    <blockquote className="cs-quote-text">{study.quote.text}</blockquote>
-                    <div className="cs-quote-author">
-                      <div className="cs-quote-avatar" style={{ background: colors.gradient }}>
-                        {study.quote.author.split(' ').map(n => n[0]).join('').slice(0, 2)}
-                      </div>
-                      <div>
-                        <div className="cs-quote-name">{study.quote.author}</div>
-                        <div className="cs-quote-company">{study.quote.company}</div>
-                      </div>
+                    <div>
+                      <cite className="cs-quote-author">{study.quote.author}</cite>
+                      <span className="cs-quote-company">{study.quote.company}</span>
                     </div>
-                  </div>
-                )}
-              </FadeIn>
+                  </footer>
+                </blockquote>
+              )}
             </div>
 
-            {/* Sidebar */}
-            <aside className="cs-sidebar">
-              <FadeIn delay={100}>
-                {/* Download Card */}
-                <div className="cs-download-card">
-                  <div className="cs-download-header" style={{ background: colors.gradient }}>
-                    <Download size={24} />
-                    <span>Download PDF</span>
+            {/* Sticky Sidebar */}
+            <aside className="cs-sidebar-col">
+              <div className="cs-sidebar-sticky">
+                {/* Download CTA */}
+                <div className="cs-sidebar-card cs-download-box" style={{ '--accent': colors.bg }}>
+                  <div className="cs-download-visual" style={{ background: colors.gradient }}>
+                    <FileText size={32} />
+                    <div className="cs-download-shine" />
                   </div>
-                  <div className="cs-download-body">
-                    <p>Get the complete case study for offline reading and sharing with your team.</p>
-                    <button onClick={handleDownload} className="btn btn-primary cs-download-btn">
-                      Download Case Study <ArrowRight size={16} />
-                    </button>
-                  </div>
+                  <h3>Get the Full Case Study</h3>
+                  <p>Download the complete PDF with detailed insights, metrics, and implementation details.</p>
+                  <button onClick={handleDownload} className="cs-sidebar-btn" style={{ background: colors.gradient }}>
+                    <Download size={18} />
+                    Download PDF
+                  </button>
                 </div>
 
-                {/* Results Card */}
-                <div className="cs-results-card">
-                  <h3>Key Results</h3>
-                  <div className="cs-results-list">
+                {/* Results Summary */}
+                <div className="cs-sidebar-card cs-results-box">
+                  <h3>
+                    <TrendingUp size={18} style={{ color: colors.bg }} />
+                    Key Results
+                  </h3>
+                  <ul className="cs-results-list-v2">
                     {study.stats.map((stat, i) => {
                       const Icon = stat.icon;
                       return (
-                        <div key={i} className="cs-result-item">
-                          <div className="cs-result-icon" style={{ background: colors.gradient }}>
-                            <Icon size={16} />
+                        <li key={i}>
+                          <div className="cs-result-bullet" style={{ background: colors.light, color: colors.bg }}>
+                            <Icon size={14} />
                           </div>
-                          <div className="cs-result-content">
-                            <div className="cs-result-value" style={{ color: colors.bg }}>{stat.value}</div>
-                            <div className="cs-result-label">{stat.label}</div>
+                          <div>
+                            <strong style={{ color: colors.bg }}>{stat.value}</strong>
+                            <span>{stat.label}</span>
                           </div>
-                        </div>
+                        </li>
                       );
                     })}
-                  </div>
+                  </ul>
                 </div>
 
-                {/* CTA Card */}
-                <div className="cs-cta-card">
-                  <h4>Ready to transform your integration?</h4>
-                  <p>See how Vorro can help your organization achieve similar results.</p>
-                  <Link to="/contact-us" className="btn btn-ghost cs-cta-btn">
-                    Talk to an Expert <ArrowRight size={16} />
+                {/* CTA */}
+                <div className="cs-sidebar-card cs-cta-box">
+                  <Sparkles size={20} style={{ color: colors.bg }} />
+                  <h4>Ready for similar results?</h4>
+                  <p>See how Vorro can transform your integration challenges.</p>
+                  <Link to="/contact-us" className="cs-cta-link" style={{ color: colors.bg }}>
+                    Schedule a Demo
+                    <ArrowRight size={16} />
                   </Link>
                 </div>
-              </FadeIn>
+              </div>
             </aside>
           </div>
         </div>
@@ -467,72 +567,86 @@ export default function CaseStudyDetail() {
 
       {/* Resource Gate Modal */}
       {showGate && (
-        <>
-          <div className="cs-gate-backdrop" onClick={() => setShowGate(false)} />
-          <div className="cs-gate-modal">
-            <button className="cs-gate-close" onClick={() => setShowGate(false)}>
+        <div className="cs-modal-overlay" onClick={() => setShowGate(false)}>
+          <div className="cs-modal" onClick={(e) => e.stopPropagation()} style={{ '--accent': colors.bg }}>
+            <button className="cs-modal-close" onClick={() => setShowGate(false)}>
               <X size={20} />
             </button>
             
-            <div className="cs-gate-header" style={{ background: colors.gradient }}>
-              <Download size={28} />
+            <div className="cs-modal-header" style={{ background: colors.gradient }}>
+              <div className="cs-modal-icon-ring">
+                <Download size={28} />
+              </div>
               <h3>Download Case Study</h3>
-              <p>Fill in your details to get the PDF</p>
+              <p>Enter your details to receive the PDF</p>
             </div>
-
-            <form className="cs-gate-form" onSubmit={handleSubmit}>
-              <div className="cs-gate-row">
-                <div className="cs-gate-field">
+            
+            <form className="cs-modal-form" onSubmit={handleSubmit}>
+              <div className="cs-form-row">
+                <div className="cs-form-group">
                   <label>Full Name</label>
                   <input 
                     type="text" 
-                    placeholder="John Smith" 
-                    value={formData.fullName} 
-                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} 
+                    placeholder="Jane Smith"
+                    value={formData.fullName}
+                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                   />
                 </div>
-                <div className="cs-gate-field">
+                <div className="cs-form-group">
                   <label>Job Title</label>
                   <input 
                     type="text" 
-                    placeholder="CIO" 
-                    value={formData.jobTitle} 
-                    onChange={(e) => setFormData({ ...formData, jobTitle: e.target.value })} 
+                    placeholder="VP of Engineering"
+                    value={formData.jobTitle}
+                    onChange={(e) => setFormData({ ...formData, jobTitle: e.target.value })}
                   />
                 </div>
               </div>
-              <div className="cs-gate-field">
+              
+              <div className="cs-form-group">
                 <label>Company</label>
                 <input 
                   type="text" 
-                  placeholder="Your organization" 
-                  value={formData.company} 
-                  onChange={(e) => setFormData({ ...formData, company: e.target.value })} 
+                  placeholder="Your organization"
+                  value={formData.company}
+                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                 />
               </div>
-              <div className="cs-gate-field">
+              
+              <div className="cs-form-group">
                 <label>Work Email</label>
                 <input 
                   type="email" 
-                  placeholder="john@company.com" 
-                  value={formData.email} 
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })} 
+                  placeholder="jane@company.com"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
               </div>
               
-              {error && <p className="cs-gate-error">{error}</p>}
+              {error && <p className="cs-form-error">{error}</p>}
               
-              <button type="submit" className="btn btn-primary cs-gate-submit" disabled={loading}>
-                {loading ? 'Processing...' : 'Get the PDF'}
-                {!loading && <ArrowRight size={16} />}
+              <button 
+                type="submit" 
+                className="cs-form-submit"
+                style={{ background: colors.gradient }}
+                disabled={loading}
+              >
+                {loading ? (
+                  <>Processing...</>
+                ) : (
+                  <>
+                    Get the PDF
+                    <ArrowRight size={18} />
+                  </>
+                )}
               </button>
               
-              <p className="cs-gate-privacy">
+              <p className="cs-form-note">
                 By submitting, you agree to our privacy policy. We respect your data.
               </p>
             </form>
           </div>
-        </>
+        </div>
       )}
     </main>
   );
