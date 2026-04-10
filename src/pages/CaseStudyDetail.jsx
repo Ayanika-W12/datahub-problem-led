@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Download, X, CheckCircle2, TrendingUp, Building2, MapPin } from 'lucide-react';
+import { ArrowLeft, Download, X, CheckCircle2, Building2, MapPin, ArrowRight, Quote, TrendingUp, Zap, Shield, Users } from 'lucide-react';
 import FadeIn from '../components/ui/FadeIn';
 import '../styles/home.css';
 
@@ -10,12 +10,14 @@ const caseStudies = {
     client: 'Avesis',
     industry: 'Insurance / Benefits Administration',
     location: 'USA',
+    color: 'primary',
     pdfUrl: 'https://blobs.vusercontent.net/blob/Vorro-Avesis-Case-Study-JhC5Zh3b3hcIjPldYNSroL5tQxR3Rx.pdf',
     stats: [
-      { label: 'Reduction in integration maintenance cost', value: '75%' },
-      { label: 'Reduction in manual processing time', value: '90%' },
+      { label: 'Reduction in integration maintenance cost', value: '75%', icon: TrendingUp },
+      { label: 'Reduction in manual processing time', value: '90%', icon: Zap },
     ],
-    about: 'Avēsis is a leading administrator of vision, dental, and hearing insurance benefits for commercial and government-sponsored plans.',
+    highlights: ['Universal EDI Translation', 'Real-Time Eligibility API', 'End-to-End Visibility'],
+    about: 'Avesis is a leading administrator of vision, dental, and hearing insurance benefits for commercial and government-sponsored plans.',
     challenge: `As a leading administrator of specialized health benefits, Avesis manages millions of member enrollment and claims transactions flowing through a complex ecosystem of health plan partners and providers. This data exchange relies heavily on X12 EDI (Electronic Data Interchange) files.
 
 Avesis faced two critical, high-volume operational pain points:
@@ -26,14 +28,14 @@ Avesis faced two critical, high-volume operational pain points:
     solution: `Avesis leveraged the Vorro VIIA Platform to introduce an automated, resilient, and scalable data pipeline for their most critical operations:
 
 Automated EDI Processing Pipeline:
-• Universal EDI Translation: VIIA's pre-built EDI capabilities standardized data formats automatically, eliminating the need for custom coding for each partner's variance.
-• Intelligent Routing and Validation: Data received via partner SFTPs or APIs was automatically ingested, validated for compliance and routed directly to the appropriate backend systems.
-• Continuous Monitoring: Vorro's system provided end-to-end visibility and an auditable log for every EDI transaction, drastically simplifying troubleshooting and compliance reporting.
+- Universal EDI Translation: VIIA's pre-built EDI capabilities standardized data formats automatically, eliminating the need for custom coding for each partner's variance.
+- Intelligent Routing and Validation: Data received via partner SFTPs or APIs was automatically ingested, validated for compliance and routed directly to the appropriate backend systems.
+- Continuous Monitoring: Vorro's system provided end-to-end visibility and an auditable log for every EDI transaction, drastically simplifying troubleshooting and compliance reporting.
 
 Real-Time Eligibility & Service Verification:
-• API Orchestration: Vorro built a lightweight, high-performance API that acts as a single point of entry for eligibility requests.
-• Instant System Query: This API instantly orchestrates queries across the necessary internal policy and membership databases.
-• Millisecond Response: The result is a millisecond-level response confirming whether the requested procedure or service is covered.`,
+- API Orchestration: Vorro built a lightweight, high-performance API that acts as a single point of entry for eligibility requests.
+- Instant System Query: This API instantly orchestrates queries across the necessary internal policy and membership databases.
+- Millisecond Response: The result is a millisecond-level response confirming whether the requested procedure or service is covered.`,
     quote: {
       text: 'The ability of the Vorro VIIA Platform to manage our high-volume EDI transactions and provide instant eligibility verification has fundamentally changed how we interact with our partners. It\'s not just about integration; it\'s about providing superior, reliable service at scale.',
       author: 'VP, Operations',
@@ -45,11 +47,13 @@ Real-Time Eligibility & Service Verification:
     client: 'Leading DME Provider',
     industry: 'Durable Medical Equipment',
     location: 'USA',
+    color: 'cyan',
     pdfUrl: 'https://blobs.vusercontent.net/blob/Streamlining-E-Prescriptions-for-a-Leading-DME-Provider-with-Vorros-BridgeGate_compressed-J6bx3HFiOc5RGfaD8806kANgZFjn98.pdf',
     stats: [
-      { label: 'Monthly transactions', value: '5M+' },
-      { label: 'Savings vs. in-house development', value: '70%' },
+      { label: 'Monthly transactions', value: '5M+', icon: TrendingUp },
+      { label: 'Savings vs. in-house development', value: '70%', icon: Zap },
     ],
+    highlights: ['Multi-EMR Integration', 'Format Translation', 'Fully Managed Service'],
     about: 'A leading Durable Medical Equipment (DME) provider across the United States whose products are aimed at streamlining the process of electronically prescribing home and DME solutions.',
     challenge: `The customer gets data from multiple EMRs in different formats. They faced the challenge of navigating multiple data types and connectivity protocols that interface with multiple EMRs.
 
@@ -66,11 +70,13 @@ The customer leverages Vorro's Fully Managed EiPaaS Services, which allows the t
     client: 'Pharmacy Management Provider',
     industry: 'Pharmacy Management Software',
     location: 'USA',
+    color: 'green',
     pdfUrl: 'https://blobs.vusercontent.net/blob/How-a-Pharmacy-Management-Provider-Found-Data-Harmony-with-Vorros-BridgeGate%E2%84%A2-Integration-Platform-sRY1Usiekj0huN8MNhUckHmUuG57G0.pdf',
     stats: [
-      { label: 'Patient records processed per day', value: '3M+' },
-      { label: 'Facilities integrated', value: '500+' },
+      { label: 'Patient records processed per day', value: '3M+', icon: Users },
+      { label: 'Facilities integrated', value: '500+', icon: Building2 },
     ],
+    highlights: ['Real-Time Eligibility', 'Multi-Format Data Handling', '3-Tier Architecture'],
     about: 'A pharmacy management software provider who assists healthcare facilities with program administration, including key tasks like split billing and contract pharmacy network administration.',
     challenge: `For the pharmacy management software to help its partners implement healthcare programs in an optimized manner, data exchange between their partners needed to be robust and efficient. The challenge was to connect and acquire information about near-real-time visits from hundreds of hospitals, clinics, and healthcare organizations across the US.
 
@@ -89,11 +95,13 @@ BridgeGate ensured a coherent and timely transaction, validation, and storage of
     client: 'American Lung Association',
     industry: 'Non-Profit Healthcare',
     location: 'USA',
+    color: 'primary',
     pdfUrl: 'https://blobs.vusercontent.net/blob/How-the-American-Lung-Association-Streamlined-Data-Integration-with-BridgeGate-QFxaY5u7OqySP9DRD6V2MDORGlvKWU.pdf',
     stats: [
-      { label: 'Clinics for Quitline Referrals', value: '100+' },
-      { label: 'Uptime ensured', value: '99.9%' },
+      { label: 'Clinics for Quitline Referrals', value: '100+', icon: Building2 },
+      { label: 'Uptime ensured', value: '99.9%', icon: Shield },
     ],
+    highlights: ['Digital Referral System', 'EMR Integration', 'Multi-Format Support'],
     about: 'The American Lung Association is a non-profit organization that works to promote lung health and prevent lung disease through advocacy, research, and education. The organization has been in operation for over 115 years.',
     challenge: `The American Lung Association of the Upper Midwest is dedicated to improving lung health and preventing lung disease. One of their key initiatives is the Illinois Tobacco Quitline, which is a free resource for tobacco users who want to quit.
 
@@ -108,11 +116,13 @@ We digitized the entirety of the incoming data process from various stakeholders
     client: 'Leading EMR Provider',
     industry: 'EMR Software',
     location: 'USA',
+    color: 'cyan',
     pdfUrl: 'https://blobs.vusercontent.net/blob/Achieving-Seamless-Healthcare-Data-Exchange-for-a-Leading-EMR-Provider_compressed-1-uNn2bSixYP6Lu4jmdS4R0b0fNA1hPR.pdf',
     stats: [
-      { label: 'Monthly transactions', value: '3M+' },
-      { label: 'Pharmacies integrated', value: '100+' },
+      { label: 'Monthly transactions', value: '3M+', icon: TrendingUp },
+      { label: 'Pharmacies integrated', value: '100+', icon: Building2 },
     ],
+    highlights: ['HL7/CCD Translation', 'HIE Integration', 'All 50 States Coverage'],
     about: 'A software development company that builds software for private service providers as well as government agencies, with a presence in all 50 states in the US. They specialize in comprehensive documentation and information management systems.',
     challenge: `Working with healthcare providers meant the client had to support the receipt, translation, and delivery of data across multiple protocols and formats.
 
@@ -127,11 +137,13 @@ The company has managed to transform its information flow with seamless sharing 
     client: 'Healthcare Analytics Provider',
     industry: 'Healthcare Analytics',
     location: 'USA',
+    color: 'orange',
     pdfUrl: 'https://blobs.vusercontent.net/blob/Scaling-Healthcare-Analytics-How-BridgeGate%E2%84%A2-Processed-45TB-of-Patient-Data-in-44-Hours-GLEG9XwstjUNRYALudOcPPgSBvqbdV.pdf',
     stats: [
-      { label: 'Hospitals and millions of patients', value: '100+' },
-      { label: 'Complex CCDs per hour', value: '1M' },
+      { label: 'Hospitals and millions of patients', value: '100+', icon: Building2 },
+      { label: 'Complex CCDs per hour', value: '1M', icon: Zap },
     ],
+    highlights: ['45TB in 44 Hours', 'Auto-Scaling Cloud', 'Cost-Effective Processing'],
     about: 'An Enterprise healthcare data platform which unifies data across multiple health plans for the providers to get insights for streamlining operations and improving clinical trial revenue.',
     challenge: `The customer receives different file types like HL7 v3 (CCDs), FHIR bundles, JSONs etc through multiple protocols, depending on the connectivity methods of the health plan organizations.
 
@@ -146,24 +158,26 @@ BridgeGate processed over 44 million patient files, approximately 45TB of data i
     client: 'Global Retail Conglomerate',
     industry: 'Retail / E-commerce',
     location: 'Global',
+    color: 'green',
     pdfUrl: 'https://blobs.vusercontent.net/blob/How-a-Tier-1-Retail-Conglomerate-Standardized-Technology-for-Two-Global-Shopping-Brands-for-World-Class-Scale-ZTeuSrN1mVExtDMaSMDeHy5Pvmu4Ty.pdf',
     stats: [
-      { label: 'Faster time-to-market', value: '65%' },
-      { label: 'Reduction in operational overhead', value: '40%' },
-      { label: 'Platform standardization', value: '100%' },
+      { label: 'Faster time-to-market', value: '65%', icon: Zap },
+      { label: 'Reduction in operational overhead', value: '40%', icon: TrendingUp },
+      { label: 'Platform standardization', value: '100%', icon: Shield },
     ],
+    highlights: ['Dual Brand Migration', 'Global Expansion', '24/7 Managed Services'],
     about: 'A Global Retail and E-commerce Conglomerate, a worldwide leader operating some of the planet\'s largest shopping brands including QVC and HSN.',
     challenge: `The Global Retail and E-commerce Conglomerate needed to standardize its integration technology across its two distinct retail powerhouses without merging their separate business operations.
 
-• Disparate Deployment Support: The First Iconic Brand relied on a legacy third-party system across 10 servers, while the Second Iconic Brand used an on-premise version of the BridgeGate platform.
-• Operational Friction: Using separate technologies led to inconsistent development pipelines and varied operational processes between the two brands.
-• Hindered Global Scale: The massive effort required to update, maintain, and resource two complex, on-premise solutions became a critical, costly bottleneck.`,
+- Disparate Deployment Support: The First Iconic Brand relied on a legacy third-party system across 10 servers, while the Second Iconic Brand used an on-premise version of the BridgeGate platform.
+- Operational Friction: Using separate technologies led to inconsistent development pipelines and varied operational processes between the two brands.
+- Hindered Global Scale: The massive effort required to update, maintain, and resource two complex, on-premise solutions became a critical, costly bottleneck.`,
     solution: `Vorro executed a strategic transformation, migrating both retail brands' disparate integration needs onto a standardized BridgeGate framework:
 
-• Dual Deployment Model: Vorro successfully migrated all critical integration workloads from the legacy systems to separate, dedicated BridgeGate environments.
-• Platform Standard: BridgeGate was established as the single, standardized "EDI iPaaS of choice" for all vendor and internal system integrations.
-• Managed Services: Vorro provided comprehensive Managed Services with round-the-clock monitoring.
-• Global Framework: A common architectural blueprint was created, enabling rapid market entry in Italy, Germany, and the UK.`,
+- Dual Deployment Model: Vorro successfully migrated all critical integration workloads from the legacy systems to separate, dedicated BridgeGate environments.
+- Platform Standard: BridgeGate was established as the single, standardized "EDI iPaaS of choice" for all vendor and internal system integrations.
+- Managed Services: Vorro provided comprehensive Managed Services with round-the-clock monitoring.
+- Global Framework: A common architectural blueprint was created, enabling rapid market entry in Italy, Germany, and the UK.`,
     quote: {
       text: 'The support we received was invaluable. The round-the-clock monitoring and hands-on help with key blockers ensured our complex migration was executed flawlessly and on time.',
       author: 'Team Lead',
@@ -175,26 +189,28 @@ BridgeGate processed over 44 million patient files, approximately 45TB of data i
     client: 'Health Systems & IDNs',
     industry: 'Healthcare',
     location: 'USA',
+    color: 'primary',
     pdfUrl: 'https://blobs.vusercontent.net/blob/Vorros-BridgeGate-Enterprise-Integration-Platform-as-a-Service-EiPaaS-l2olIfElGgfctsRN2jJREa65gseTCm.pdf',
     stats: [
-      { label: 'Health systems connected', value: '250+' },
-      { label: 'Facilities integrated', value: '1,000+' },
-      { label: 'Readmission reduction potential', value: '30%' },
+      { label: 'Health systems connected', value: '250+', icon: Building2 },
+      { label: 'Facilities integrated', value: '1,000+', icon: Users },
+      { label: 'Readmission reduction potential', value: '30%', icon: TrendingUp },
     ],
+    highlights: ['LTPAC Integration', 'Real-Time Messaging', 'Multi-EHR Support'],
     about: 'Health Systems and Integrated Delivery Networks (IDNs) across the United States seeking to coordinate care across acute, long-term, and post-acute care settings.',
     challenge: `In today's collaborative environment, more Health Systems and Integrated Delivery Networks (IDNs) are required to move and share large volumes of clinical and financial data. They are seeking solutions that:
 
-• Coordinate care and data integration with Long Term Care and Post-Acute Care (LTPAC) systems
-• Enable "Big Data" and advanced analytics
-• Provide for elevated systems integration
-• Manage evolving healthcare standards like HL7 and FHIR
+- Coordinate care and data integration with Long Term Care and Post-Acute Care (LTPAC) systems
+- Enable "Big Data" and advanced analytics
+- Provide for elevated systems integration
+- Manage evolving healthcare standards like HL7 and FHIR
 
 Currently, patient information is locked in different silos of data, and a trusted, patient-centric view cannot be achieved without an information exchange infrastructure.`,
     solution: `Vorro's BridgeGate Enterprise Integration Platform As A Service (EiPaaS) solution enables IDNs and Health Information Exchanges (HIE) to:
 
-• Share patient clinical data from Nursing Homes and Home Health agencies
-• Reduce 30-day re-hospitalization through baseline, profile and clinical data reporting
-• Enable medication reconciliation with real-time patient medication information from LTPAC providers
+- Share patient clinical data from Nursing Homes and Home Health agencies
+- Reduce 30-day re-hospitalization through baseline, profile and clinical data reporting
+- Enable medication reconciliation with real-time patient medication information from LTPAC providers
 
 BridgeGate interoperates with any LTC EHR system including PointClickCare, BlueStep, AOD Software, MDI Achieve, NTT DATA, and Optimus. The platform orchestrates millions of real-time data messages daily for 250 health systems, encompassing over 1,000 facilities.`,
     quote: {
@@ -203,6 +219,13 @@ BridgeGate interoperates with any LTC EHR system including PointClickCare, BlueS
       company: 'Senior Marketing Operations Manager, Weave',
     },
   },
+};
+
+const colorMap = {
+  primary: { bg: '#AC4197', gradient: 'linear-gradient(135deg, #AC4197 0%, #d376b8 100%)' },
+  cyan: { bg: '#20D3EF', gradient: 'linear-gradient(135deg, #20D3EF 0%, #0ea5c7 100%)' },
+  green: { bg: '#02B164', gradient: 'linear-gradient(135deg, #02B164 0%, #04d67a 100%)' },
+  orange: { bg: '#F17A42', gradient: 'linear-gradient(135deg, #F17A42 0%, #ff9a6c 100%)' },
 };
 
 export default function CaseStudyDetail() {
@@ -225,6 +248,8 @@ export default function CaseStudyDetail() {
       </main>
     );
   }
+
+  const colors = colorMap[study.color] || colorMap.primary;
 
   const handleDownload = () => {
     setShowGate(true);
@@ -273,129 +298,239 @@ export default function CaseStudyDetail() {
 
   return (
     <main>
-      {/* Hero */}
-      <section className="vertical-hero" style={{ minHeight: 'auto', padding: '5rem 0 2.5rem' }}>
+      {/* Hero Section */}
+      <section className="cs-hero">
+        <div className="cs-hero-bg" />
         <div className="container">
           <FadeIn>
-            <Link to="/case-studies" className="case-back-link">
-              <ArrowLeft size={16} /> All Case Studies
+            <Link to="/case-studies" className="cs-back-link">
+              <ArrowLeft size={16} /> Back to Case Studies
             </Link>
-            <span className="hero-eyebrow">{study.industry}</span>
-            <h1 className="hero-title" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', maxWidth: '800px' }}>
-              {study.title}
-            </h1>
+            <div className="cs-hero-content">
+              <div className="cs-hero-left">
+                <span className="cs-industry-badge">{study.industry}</span>
+                <h1 className="cs-hero-title">{study.title}</h1>
+                <div className="cs-hero-meta">
+                  <span><Building2 size={16} /> {study.client}</span>
+                  <span><MapPin size={16} /> {study.location}</span>
+                </div>
+              </div>
+              <div className="cs-hero-right">
+                <div className="cs-hero-stats">
+                  {study.stats.slice(0, 2).map((stat, i) => {
+                    const Icon = stat.icon;
+                    return (
+                      <div key={i} className="cs-hero-stat">
+                        <div className="cs-hero-stat-icon" style={{ background: colors.gradient }}>
+                          <Icon size={20} />
+                        </div>
+                        <div className="cs-hero-stat-value">{stat.value}</div>
+                        <div className="cs-hero-stat-label">{stat.label}</div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
           </FadeIn>
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section className="case-stats-bar">
+      {/* Highlights Bar */}
+      <section className="cs-highlights-bar" style={{ background: colors.bg }}>
         <div className="container">
-          <div className="case-stats-grid">
-            {study.stats.map((stat, i) => (
-              <div key={i} className="case-stat">
-                <div className="case-stat-value">{stat.value}</div>
-                <div className="case-stat-label">{stat.label}</div>
+          <div className="cs-highlights-grid">
+            {study.highlights.map((highlight, i) => (
+              <div key={i} className="cs-highlight-item">
+                <CheckCircle2 size={18} />
+                <span>{highlight}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Content */}
-      <section className="section">
+      {/* Main Content */}
+      <section className="cs-content-section">
         <div className="container">
-          <div className="case-layout">
-            <div className="case-main">
+          <div className="cs-layout">
+            {/* Main Content */}
+            <div className="cs-main">
               <FadeIn>
-                <div className="case-section">
-                  <h2>About the Client</h2>
-                  <p>{study.about}</p>
-                  <div className="case-meta-row">
-                    <span><Building2 size={16} /> {study.client}</span>
-                    <span><MapPin size={16} /> {study.location}</span>
+                {/* About */}
+                <div className="cs-card">
+                  <div className="cs-card-header">
+                    <Building2 size={20} style={{ color: colors.bg }} />
+                    <h2>About {study.client}</h2>
+                  </div>
+                  <p className="cs-card-text">{study.about}</p>
+                </div>
+
+                {/* Challenge */}
+                <div className="cs-card">
+                  <div className="cs-card-header">
+                    <div className="cs-card-icon-circle" style={{ background: 'rgba(220, 38, 38, 0.1)', color: '#dc2626' }}>!</div>
+                    <h2>The Challenge</h2>
+                  </div>
+                  <div className="cs-card-text cs-prose">
+                    {study.challenge.split('\n\n').map((para, i) => (
+                      <p key={i}>{para}</p>
+                    ))}
                   </div>
                 </div>
 
-                <div className="case-section">
-                  <h2>The Challenge</h2>
-                  <p style={{ whiteSpace: 'pre-line' }}>{study.challenge}</p>
+                {/* Solution */}
+                <div className="cs-card cs-card-featured" style={{ borderColor: colors.bg }}>
+                  <div className="cs-card-header">
+                    <div className="cs-card-icon-circle" style={{ background: colors.gradient, color: 'white' }}>
+                      <Zap size={16} />
+                    </div>
+                    <h2>The Solution</h2>
+                  </div>
+                  <div className="cs-card-text cs-prose">
+                    {study.solution.split('\n\n').map((para, i) => (
+                      <p key={i}>{para}</p>
+                    ))}
+                  </div>
                 </div>
 
-                <div className="case-section">
-                  <h2>The Solution</h2>
-                  <p style={{ whiteSpace: 'pre-line' }}>{study.solution}</p>
-                </div>
-
+                {/* Quote */}
                 {study.quote && (
-                  <div className="case-quote">
-                    <blockquote>"{study.quote.text}"</blockquote>
-                    <cite>— {study.quote.author}, {study.quote.company}</cite>
+                  <div className="cs-quote-card">
+                    <Quote size={32} className="cs-quote-icon" style={{ color: colors.bg }} />
+                    <blockquote className="cs-quote-text">{study.quote.text}</blockquote>
+                    <div className="cs-quote-author">
+                      <div className="cs-quote-avatar" style={{ background: colors.gradient }}>
+                        {study.quote.author.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                      </div>
+                      <div>
+                        <div className="cs-quote-name">{study.quote.author}</div>
+                        <div className="cs-quote-company">{study.quote.company}</div>
+                      </div>
+                    </div>
                   </div>
                 )}
               </FadeIn>
             </div>
 
-            <div className="case-sidebar">
+            {/* Sidebar */}
+            <aside className="cs-sidebar">
               <FadeIn delay={100}>
-                <div className="case-download-card">
-                  <h4>Download Case Study</h4>
-                  <p>Get the complete case study as a PDF for offline reading and sharing.</p>
-                  <button onClick={handleDownload} className="btn btn-primary btn-lg case-download-btn">
-                    <Download size={18} /> Download PDF
-                  </button>
+                {/* Download Card */}
+                <div className="cs-download-card">
+                  <div className="cs-download-header" style={{ background: colors.gradient }}>
+                    <Download size={24} />
+                    <span>Download PDF</span>
+                  </div>
+                  <div className="cs-download-body">
+                    <p>Get the complete case study for offline reading and sharing with your team.</p>
+                    <button onClick={handleDownload} className="btn btn-primary cs-download-btn">
+                      Download Case Study <ArrowRight size={16} />
+                    </button>
+                  </div>
                 </div>
 
-                <div className="case-results-card">
-                  <h4>Key Results</h4>
-                  <ul>
-                    {study.stats.map((stat, i) => (
-                      <li key={i}>
-                        <CheckCircle2 size={16} />
-                        <span><strong>{stat.value}</strong> {stat.label}</span>
-                      </li>
-                    ))}
-                  </ul>
+                {/* Results Card */}
+                <div className="cs-results-card">
+                  <h3>Key Results</h3>
+                  <div className="cs-results-list">
+                    {study.stats.map((stat, i) => {
+                      const Icon = stat.icon;
+                      return (
+                        <div key={i} className="cs-result-item">
+                          <div className="cs-result-icon" style={{ background: colors.gradient }}>
+                            <Icon size={16} />
+                          </div>
+                          <div className="cs-result-content">
+                            <div className="cs-result-value" style={{ color: colors.bg }}>{stat.value}</div>
+                            <div className="cs-result-label">{stat.label}</div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* CTA Card */}
+                <div className="cs-cta-card">
+                  <h4>Ready to transform your integration?</h4>
+                  <p>See how Vorro can help your organization achieve similar results.</p>
+                  <Link to="/contact-us" className="btn btn-ghost cs-cta-btn">
+                    Talk to an Expert <ArrowRight size={16} />
+                  </Link>
                 </div>
               </FadeIn>
-            </div>
+            </aside>
           </div>
         </div>
       </section>
 
-      {/* Resource Gate for Download */}
+      {/* Resource Gate Modal */}
       {showGate && (
         <>
-          <div className="gate-backdrop" onClick={() => setShowGate(false)} />
-          <div className="gate-modal">
-            <button className="gate-close" onClick={() => setShowGate(false)}><X size={18} /></button>
-            <div className="gate-body">
-              <div className="gate-icon"><Download size={24} /></div>
-              <h3 className="gate-title">Download Case Study</h3>
-              <p className="gate-desc">Fill in your details to download the PDF.</p>
-              <form className="gate-form" onSubmit={handleSubmit}>
-                <div className="gate-field">
-                  <label>Full Name *</label>
-                  <input type="text" placeholder="John Doe" value={formData.fullName} onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} />
-                </div>
-                <div className="gate-field">
-                  <label>Job Title *</label>
-                  <input type="text" placeholder="CIO, VP of IT, etc." value={formData.jobTitle} onChange={(e) => setFormData({ ...formData, jobTitle: e.target.value })} />
-                </div>
-                <div className="gate-field">
-                  <label>Company *</label>
-                  <input type="text" placeholder="Your organization" value={formData.company} onChange={(e) => setFormData({ ...formData, company: e.target.value })} />
-                </div>
-                <div className="gate-field">
-                  <label>Email *</label>
-                  <input type="email" placeholder="you@company.com" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
-                </div>
-                {error && <p className="gate-error">{error}</p>}
-                <button type="submit" className="btn btn-primary gate-submit" disabled={loading}>
-                  {loading ? 'Processing...' : <><Download size={16} /> Download PDF</>}
-                </button>
-              </form>
+          <div className="cs-gate-backdrop" onClick={() => setShowGate(false)} />
+          <div className="cs-gate-modal">
+            <button className="cs-gate-close" onClick={() => setShowGate(false)}>
+              <X size={20} />
+            </button>
+            
+            <div className="cs-gate-header" style={{ background: colors.gradient }}>
+              <Download size={28} />
+              <h3>Download Case Study</h3>
+              <p>Fill in your details to get the PDF</p>
             </div>
+
+            <form className="cs-gate-form" onSubmit={handleSubmit}>
+              <div className="cs-gate-row">
+                <div className="cs-gate-field">
+                  <label>Full Name</label>
+                  <input 
+                    type="text" 
+                    placeholder="John Smith" 
+                    value={formData.fullName} 
+                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} 
+                  />
+                </div>
+                <div className="cs-gate-field">
+                  <label>Job Title</label>
+                  <input 
+                    type="text" 
+                    placeholder="CIO" 
+                    value={formData.jobTitle} 
+                    onChange={(e) => setFormData({ ...formData, jobTitle: e.target.value })} 
+                  />
+                </div>
+              </div>
+              <div className="cs-gate-field">
+                <label>Company</label>
+                <input 
+                  type="text" 
+                  placeholder="Your organization" 
+                  value={formData.company} 
+                  onChange={(e) => setFormData({ ...formData, company: e.target.value })} 
+                />
+              </div>
+              <div className="cs-gate-field">
+                <label>Work Email</label>
+                <input 
+                  type="email" 
+                  placeholder="john@company.com" 
+                  value={formData.email} 
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })} 
+                />
+              </div>
+              
+              {error && <p className="cs-gate-error">{error}</p>}
+              
+              <button type="submit" className="btn btn-primary cs-gate-submit" disabled={loading}>
+                {loading ? 'Processing...' : 'Get the PDF'}
+                {!loading && <ArrowRight size={16} />}
+              </button>
+              
+              <p className="cs-gate-privacy">
+                By submitting, you agree to our privacy policy. We respect your data.
+              </p>
+            </form>
           </div>
         </>
       )}
