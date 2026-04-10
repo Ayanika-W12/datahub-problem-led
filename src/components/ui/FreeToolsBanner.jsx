@@ -4,19 +4,15 @@ import { ArrowRight, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 const tools = [
   {
     title: 'FHIR Validation Tool',
-    badge: 'Free Tool',
-    description: 'Check FHIR resources for structure, compliance, and data quality before they reach production.',
+    description: 'Check FHIR resources for structure, compliance, and data quality before production.',
     link: 'https://vorro.net/FHIR-Validation/',
-    cta: 'Validate Now',
-    icon: '🔍',
+    cta: 'Try Free',
   },
   {
     title: 'BridgeGate N8N Node',
-    badge: 'Free Tool',
-    description: 'Connect your n8n workflows to BridgeGate for seamless healthcare data automation.',
+    description: 'Connect n8n workflows to BridgeGate for seamless healthcare data automation.',
     link: 'https://vorro.net/BridgeGate-N8N-Node/',
     cta: 'Get Started',
-    icon: '⚡',
   },
 ];
 
@@ -71,7 +67,6 @@ export function FreeToolsBanner() {
               key={i}
               className={`ftb-slide ${i === activeIndex ? 'active' : ''}`}
             >
-              <span className="ftb-slide-icon">{tool.icon}</span>
               <div className="ftb-slide-content">
                 <h3 className="ftb-slide-title">{tool.title}</h3>
                 <p className="ftb-slide-desc">{tool.description}</p>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Download, X, CheckCircle2, Building2, MapPin, ArrowRight, Quote, TrendingUp, Zap, Shield, Users, Sparkles, Target, ArrowUpRight, Clock, FileText } from 'lucide-react';
+import { BookDemoModal } from '../components/ui/BookDemoModal';
 import '../styles/home.css';
 
 const caseStudies = {
@@ -292,6 +293,7 @@ export default function CaseStudyDetail() {
   const { slug } = useParams();
   const study = caseStudies[slug];
   const [showGate, setShowGate] = useState(false);
+  const [showDemo, setShowDemo] = useState(false);
   const [formData, setFormData] = useState({ fullName: '', jobTitle: '', company: '', email: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -399,10 +401,10 @@ export default function CaseStudyDetail() {
                     <Download size={18} />
                     Download PDF
                   </button>
-                  <Link to="/contact-us" className="cs-talk-link">
+                  <button onClick={() => setShowDemo(true)} className="cs-talk-link">
                     Talk to an Expert
                     <ArrowUpRight size={16} />
-                  </Link>
+                  </button>
                 </div>
               </div>
               
@@ -554,10 +556,10 @@ export default function CaseStudyDetail() {
                   <Sparkles size={20} style={{ color: colors.bg }} />
                   <h4>Ready for similar results?</h4>
                   <p>See how Vorro can transform your integration challenges.</p>
-                  <Link to="/contact-us" className="cs-cta-link" style={{ color: colors.bg }}>
+                  <button onClick={() => setShowDemo(true)} className="cs-cta-link" style={{ color: colors.bg }}>
                     Schedule a Demo
                     <ArrowRight size={16} />
-                  </Link>
+                  </button>
                 </div>
               </div>
             </aside>
@@ -648,6 +650,9 @@ export default function CaseStudyDetail() {
           </div>
         </div>
       )}
+
+      {/* Book Demo Modal */}
+      <BookDemoModal open={showDemo} onOpenChange={setShowDemo} />
     </main>
   );
 }
