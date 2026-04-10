@@ -277,27 +277,26 @@ export default function Home() {
           </FadeIn>
 
           {/* Right — Platform Capabilities Frame (exact design from provided HTML) */}
-          <div className="capabilities-frame">
-            <div className="frame-grid-overlay" />
-            <div className="frame-particles" />
-            <div className="frame-orbital-ring" />
-
-            <div className="frame-content">
-              {/* Top bar with badges */}
-              <div className="frame-topbar">
-                <div className="frame-badges">
-                  <div className="frame-badge managed">
-                    <div className="frame-badge-label">Delivery Model</div>
-                    <div className="frame-badge-value">Fully Managed</div>
-                  </div>
-                  <div className="frame-badge cost">
-                    <div className="frame-badge-label">Commercial Value</div>
-                    <div className="frame-badge-value">Low Cost</div>
-                  </div>
-                </div>
+          <div className="capabilities-wrapper">
+            {/* Badges positioned outside the frame */}
+            <div className="frame-badges">
+              <div className="frame-badge managed">
+                <div className="frame-badge-label">Delivery Model</div>
+                <div className="frame-badge-value">Fully Managed</div>
               </div>
+              <div className="frame-badge cost">
+                <div className="frame-badge-label">Commercial Value</div>
+                <div className="frame-badge-value">Low Cost</div>
+              </div>
+            </div>
 
-              {/* Hub area with center core and pillars */}
+            <div className="capabilities-frame">
+              <div className="frame-grid-overlay" />
+              <div className="frame-particles" />
+              <div className="frame-orbital-ring" />
+
+              <div className="frame-content">
+                {/* Hub area with center core and pillars */}
               <div className="frame-hub-area">
                 {/* Connection lines SVG */}
                 <div className="frame-connections">
@@ -383,6 +382,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </section>
