@@ -389,8 +389,13 @@
 .cap-tab-active {
   background: var(--color-primary);
   border-color: var(--color-primary);
-  color: white;
+  color: white !important;
   box-shadow: 0 4px 14px rgba(172,65,151,0.35);
+}
+
+/* Ensure text color changes immediately on click */
+.cap-tab:active {
+  color: white;
 }
 
 .cap-tab-num {
@@ -1924,5 +1929,302 @@
   
   .frame-pillar .pillar-label {
     font-size: 9px;
+  }
+}
+
+/* ============================================
+   BOOK DEMO MODAL
+   ============================================ */
+.book-demo-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 9998;
+  animation: fadeIn 0.2s ease;
+}
+
+.book-demo-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background: white;
+  border-radius: var(--radius-2xl);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  animation: modalIn 0.25s ease;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.book-demo-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--color-gray-200);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--color-gray-600);
+}
+
+.book-demo-close:hover {
+  background: white;
+  color: var(--color-navy);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.book-demo-content {
+  position: relative;
+}
+
+.book-demo-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: white;
+  z-index: 5;
+  min-width: 1100px;
+  min-height: 580px;
+}
+
+.book-demo-loading p {
+  font-size: var(--text-sm);
+  color: var(--color-gray-500);
+}
+
+.book-demo-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--color-gray-200);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.book-demo-iframe {
+  width: 1100px;
+  height: 580px;
+  border: none;
+  display: block;
+}
+
+@media (max-width: 1150px) {
+  .book-demo-iframe,
+  .book-demo-loading {
+    width: 95vw;
+    min-width: auto;
+  }
+}
+
+/* ============================================
+   FREE TOOLS BANNER
+   ============================================ */
+.tools-banner {
+  position: relative;
+  padding: 2.5rem 1.5rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+}
+
+.tools-banner-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(135deg, 
+      var(--color-navy) 0%, 
+      #352750 50%,
+      var(--color-primary) 100%
+    );
+  z-index: 0;
+}
+
+.tools-banner-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 20% 50%, rgba(32, 211, 239, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(172, 65, 151, 0.2) 0%, transparent 50%);
+}
+
+.tools-banner-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  max-width: 900px;
+  animation: fadeSlideIn 0.4s ease;
+}
+
+.tools-banner-left {
+  flex-shrink: 0;
+}
+
+.tools-banner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+  padding: 0.35rem 0.85rem;
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.tools-banner-badge svg {
+  color: var(--color-cyan);
+}
+
+.tools-banner-title {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: var(--font-bold);
+  color: white;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.tools-banner-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tools-banner-desc {
+  font-size: var(--text-base);
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+.tools-banner-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: white;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  width: fit-content;
+}
+
+.tools-banner-cta:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.tools-banner-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tools-banner-nav:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.tools-banner-nav-prev {
+  left: 1.5rem;
+}
+
+.tools-banner-nav-next {
+  right: 1.5rem;
+}
+
+.tools-banner-dots {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.tools-banner-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tools-banner-dot:hover {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.tools-banner-dot.active {
+  background: var(--color-cyan);
+  box-shadow: 0 0 8px var(--color-cyan);
+}
+
+@media (max-width: 768px) {
+  .tools-banner-content {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  
+  .tools-banner-right {
+    align-items: center;
+  }
+  
+  .tools-banner-nav {
+    display: none;
   }
 }

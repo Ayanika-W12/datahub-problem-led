@@ -6,6 +6,8 @@ import {
   TrendingUp, Award, Users, Globe
 } from 'lucide-react';
 import '../styles/home.css';
+import { BookDemoModal } from '../components/ui/BookDemoModal';
+import { FreeToolsBanner } from '../components/ui/FreeToolsBanner';
 
 /* ---- Data ---- */
 const stats = [
@@ -224,6 +226,7 @@ function FadeIn({ children, delay = 0, className = '' }) {
 export default function Home() {
   const [activeCapIdx, setActiveCapIdx] = useState(0);
   const activeCap = capabilities[activeCapIdx];
+  const [demoModalOpen, setDemoModalOpen] = useState(false);
 
   return (
     <main>
@@ -255,9 +258,9 @@ export default function Home() {
               workflows — fully managed, low cost, ready in weeks.
             </p>
             <div className="hero-actions hero-actions-inline">
-              <Link to="/contact-us" className="btn btn-cyan btn-md">
+              <button onClick={() => setDemoModalOpen(true)} className="btn btn-cyan btn-md">
                 Talk to an Expert <ArrowRight size={16} />
-              </Link>
+              </button>
               <Link to="/case-studies" className="btn btn-ghost-white btn-md">
                 View Case Studies
               </Link>
@@ -543,6 +546,7 @@ export default function Home() {
                 { label: 'Mulesoft', to: '/vorro-vs-mulesoft' },
                 { label: 'Rhapsody', to: '/vorro-vs-rhapsody' },
                 { label: 'Datavant', to: '/vorro-vs-datavant' },
+                { label: 'Mirth', to: '/vorro-vs-mirth' },
               ].map((l) => (
                 <Link key={l.label} to={l.to} className="why-compare-link">
                   {l.label} <ChevronRight size={12} />
@@ -589,6 +593,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FREE TOOLS BANNER */}
+      <FreeToolsBanner />
+
       {/* CTA SECTION */}
       <section className="section cta-outer">
         <div className="container">
@@ -604,9 +611,9 @@ export default function Home() {
                   automates compliance, and accelerates AI adoption.
                 </p>
                 <div className="cta-banner-actions">
-                  <Link to="/contact-us" className="btn btn-cyan btn-xl">
+                  <button onClick={() => setDemoModalOpen(true)} className="btn btn-cyan btn-xl">
                     Talk to an Expert <ArrowRight size={18} />
-                  </Link>
+                  </button>
                   <Link to="/solutions" className="btn btn-ghost-white btn-xl">
                     Explore Solutions
                   </Link>
@@ -623,6 +630,9 @@ export default function Home() {
           </FadeIn>
         </div>
       </section>
+
+      {/* Book Demo Modal */}
+      <BookDemoModal open={demoModalOpen} onOpenChange={setDemoModalOpen} />
     </main>
   );
 }

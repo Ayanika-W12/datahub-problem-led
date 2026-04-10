@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 import VorroLogo from '../ui/VorroLogo';
+import BookDemoModal from '../ui/BookDemoModal';
 
 const navLinks = [
   {
@@ -105,6 +106,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [mobileExpanded, setMobileExpanded] = useState(null);
+  const [demoModalOpen, setDemoModalOpen] = useState(false);
   const location = useLocation();
   const navRef = useRef(null);
   const timeoutRef = useRef(null);
@@ -193,10 +195,10 @@ export default function Navbar() {
           <Link to="/contact-us" className="btn btn-ghost-nav">
             Contact
           </Link>
-          <Link to="/contact-us" className="btn btn-primary btn-sm">
+          <button onClick={() => setDemoModalOpen(true)} className="btn btn-primary btn-sm">
             Talk to an Expert
             <ArrowRight size={14} />
-          </Link>
+          </button>
         </div>
 
         {/* Mobile Toggle */}
@@ -240,13 +242,16 @@ export default function Navbar() {
               </div>
             ))}
             <div className="mobile-nav-cta">
-              <Link to="/contact-us" className="btn btn-primary btn-lg" style={{ width: '100%', justifyContent: 'center' }}>
+              <button onClick={() => { setMobileOpen(false); setDemoModalOpen(true); }} className="btn btn-primary btn-lg" style={{ width: '100%', justifyContent: 'center' }}>
                 Talk to an Expert
-              </Link>
+              </button>
             </div>
           </div>
         </div>
       )}
+
+      {/* Book Demo Modal */}
+      <BookDemoModal open={demoModalOpen} onOpenChange={setDemoModalOpen} />
     </header>
   );
 }
