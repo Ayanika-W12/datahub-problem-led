@@ -165,10 +165,10 @@ export default function IndustryPage({ industry }) {
           <h1 className="vertical-hero-headline">{data.headline}</h1>
           <p className="vertical-hero-sub">{data.sub}</p>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '2rem' }}>
-            <Link to="/contact-us" className="btn btn-cyan btn-lg">
+            <Link to="/contact-us" className="btn btn-cyan btn-md">
               Talk to an Expert <ArrowRight size={16} />
             </Link>
-            <Link to="/case-studies" className="btn btn-ghost-white btn-lg">
+            <Link to="/case-studies" className="btn btn-ghost-white btn-md">
               View Case Studies
             </Link>
           </div>

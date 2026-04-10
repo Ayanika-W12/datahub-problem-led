@@ -6,7 +6,7 @@ const tiers = [
     name: 'Starter',
     desc: 'For early-stage healthtech companies with 1–2 integration needs.',
     features: ['Up to 3 active integrations', 'HL7 v2 and FHIR R4 support', 'Shared integration infrastructure', 'Standard SLA', 'Community support'],
-    cta: 'Start for Free',
+    cta: 'Talk to an Expert',
   },
   {
     name: 'Growth',
@@ -19,7 +19,7 @@ const tiers = [
     name: 'Scale',
     desc: 'For companies approaching enterprise contracts and audits.',
     features: ['Unlimited integrations', 'Full Vorro platform access', 'White-label option available', 'Governance & compliance suite', 'Dedicated customer success manager', '99.99% uptime SLA'],
-    cta: 'Talk to Sales',
+    cta: 'Talk to an Expert',
   },
 ];
 
@@ -41,8 +41,7 @@ export default function VorroForStartups() {
             enterprise-grade HL7, FHIR, and EDI connectivity — in days, not quarters.
           </p>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '2rem' }}>
-            <Link to="/contact-us" className="btn btn-cyan btn-lg">Apply for Startup Access <ArrowRight size={16} /></Link>
-            <Link to="/case-studies" className="btn btn-ghost-white btn-lg">See Startup Stories</Link>
+            <Link to="/contact-us" className="btn btn-cyan btn-md">Apply for Startup Access <ArrowRight size={16} /></Link>
           </div>
         </div>
       </section>

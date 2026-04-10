@@ -77,10 +77,10 @@ export default function Solutions() {
             Vorro delivers production-proven solutions across the full healthcare data stack.
           </p>
           <div className="vertical-hero-actions">
-            <Link to="/contact-us" className="btn btn-cyan btn-lg">
+            <Link to="/contact-us" className="btn btn-cyan btn-md">
               Talk to an Expert <ArrowRight size={16} />
             </Link>
-            <Link to="/build-vs-buy" className="btn btn-ghost-white btn-lg">
+            <Link to="/build-vs-buy" className="btn btn-ghost-white btn-md">
               Build vs. Buy Guide
             </Link>
           </div>

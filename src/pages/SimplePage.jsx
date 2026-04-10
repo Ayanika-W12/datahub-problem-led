@@ -21,10 +21,10 @@ function CareersPage() {
             We do not currently have any open positions, but please check back later or contact us.
           </p>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '2rem' }}>
-            <a href="mailto:careers@vorrohealth.com" className="btn btn-cyan btn-lg">
+            <a href="mailto:careers@vorrohealth.com" className="btn btn-cyan btn-md">
               <Mail size={16} /> careers@vorrohealth.com
             </a>
-            <Link to="/contact-us" className="btn btn-ghost-white btn-lg">
+            <Link to="/contact-us" className="btn btn-ghost-white btn-md">
               Contact Form <ArrowRight size={16} />
             </Link>
           </div>
@@ -105,7 +105,7 @@ function PartnersPage() {
             Partner with Vorro to deliver proven AI Healthcare Solutions, designed to fit your clients' systems and elevate every part of their data operations.
           </p>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '2rem' }}>
-            <Link to="/contact-us" className="btn btn-cyan btn-lg">
+            <Link to="/contact-us" className="btn btn-cyan btn-md">
               Become a Partner <ArrowRight size={16} />
             </Link>
           </div>
@@ -394,8 +394,8 @@ function AIPlatformPage() {
             Vorro's AI-powered platform connects your systems, monitors your data, and automates your workflows — so your teams can focus on what matters, not chasing data.
           </p>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '2rem' }}>
-            <Link to="/contact-us" className="btn btn-cyan btn-lg">Talk to an Expert <ArrowRight size={16} /></Link>
-            <Link to="/platform/analytics-nlp" className="btn btn-ghost-white btn-lg">Explore Capabilities</Link>
+            <Link to="/contact-us" className="btn btn-cyan btn-md">Talk to an Expert <ArrowRight size={16} /></Link>
+            <Link to="/platform/analytics-nlp" className="btn btn-ghost-white btn-md">Explore Capabilities</Link>
           </div>
         </div>
       </section>

@@ -181,7 +181,7 @@ export default function CaseStudies() {
               Ready to Become Our Next Success Story?
             </h2>
             <p style={{ fontSize: 'var(--text-base)', color: 'rgba(255,255,255,0.7)', marginBottom: '1.5rem', maxWidth: '500px', margin: '0 auto 1.5rem' }}>
-              Schedule a demo and see how Vorro can transform your data operations.
+              Talk to an expert and see how Vorro can transform your data operations.
             </p>
             <button 
               onClick={() => setDemoModalOpen(true)} 

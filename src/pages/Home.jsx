@@ -608,7 +608,7 @@ export default function Home() {
                 </div>
                 <h2>Let's Build the Future of<br />Healthcare Data Together</h2>
                 <p>
-                  Schedule a platform demo and see how Vorro unifies your data estate,
+                  Talk to an expert and see how Vorro unifies your data estate,
                   automates compliance, and accelerates AI adoption.
                 </p>
                 <div className="cta-banner-actions">

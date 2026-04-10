@@ -287,10 +287,10 @@ export default function SolutionPage({ slug }) {
                 {data.sub}
               </p>
               <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                <button onClick={() => setDemoModalOpen(true)} className="btn btn-cyan btn-lg">
+                <button onClick={() => setDemoModalOpen(true)} className="btn btn-cyan btn-md">
                   Talk to an Expert <ArrowRight size={16} />
                 </button>
-                <Link to="/case-studies" className="btn btn-ghost-white btn-lg">
+                <Link to="/case-studies" className="btn btn-ghost-white btn-md">
                   View Case Studies
                 </Link>
               </div>

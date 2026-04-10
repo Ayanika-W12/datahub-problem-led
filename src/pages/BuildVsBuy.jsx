@@ -40,7 +40,7 @@ export default function BuildVsBuy() {
             Integration that's ready to deploy, with built-in automation, real-time insights, and zero overhead.
           </p>
           <div className="vertical-hero-actions">
-            <Link to="/contact-us" className="btn btn-cyan btn-lg">
+            <Link to="/contact-us" className="btn btn-cyan btn-md">
               Talk to an Expert <ArrowRight size={16} />
             </Link>
           </div>

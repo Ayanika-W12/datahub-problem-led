@@ -524,17 +524,23 @@ export default function CaseStudyDetail() {
             <aside className="cs-sidebar-col">
               <div className="cs-sidebar-sticky">
                 {/* Download CTA */}
-                <div className="cs-sidebar-card cs-download-box" style={{ '--accent': colors.bg }}>
-                  <div className="cs-download-visual" style={{ background: colors.gradient }}>
-                    <FileText size={32} />
-                    <div className="cs-download-shine" />
+                <div className="cs-download-box">
+                  <div className="cs-download-top" style={{ background: colors.gradient }}>
+                    <div className="cs-download-icon-wrap">
+                      <FileText size={28} />
+                    </div>
+                    <div>
+                      <div className="cs-download-label">Case Study PDF</div>
+                      <div className="cs-download-client">{study.client}</div>
+                    </div>
                   </div>
-                  <h3>Get the Full Case Study</h3>
-                  <p>Download the complete PDF with detailed insights, metrics, and implementation details.</p>
-                  <button onClick={handleDownload} className="cs-sidebar-btn" style={{ background: colors.gradient }}>
-                    <Download size={18} />
-                    Download PDF
-                  </button>
+                  <div className="cs-download-body">
+                    <p>Download the complete report with detailed insights, metrics, and implementation details.</p>
+                    <button onClick={handleDownload} className="cs-sidebar-btn" style={{ background: colors.gradient }}>
+                      <Download size={16} />
+                      Download PDF
+                    </button>
+                  </div>
                 </div>
 
                 {/* Results Summary */}
@@ -562,13 +568,15 @@ export default function CaseStudyDetail() {
                 </div>
 
                 {/* CTA */}
-                <div className="cs-sidebar-card cs-cta-box">
-                  <Sparkles size={20} style={{ color: colors.bg }} />
+                <div className="cs-cta-box">
+                  <div className="cs-cta-icon">
+                    <Sparkles size={20} />
+                  </div>
                   <h4>Ready for similar results?</h4>
                   <p>See how Vorro can transform your integration challenges.</p>
-                  <button onClick={() => setShowDemo(true)} className="cs-cta-link" style={{ color: colors.bg }}>
-                    Schedule a Demo
-                    <ArrowRight size={16} />
+                  <button onClick={() => setShowDemo(true)} className="btn btn-primary btn-md cs-cta-btn">
+                    Talk to an Expert
+                    <ArrowRight size={15} />
                   </button>
                 </div>
               </div>

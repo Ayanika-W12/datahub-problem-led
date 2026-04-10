@@ -1948,13 +1948,14 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0.95);
+  opacity: 0;
   z-index: 9999;
   background: white;
   border-radius: var(--radius-2xl);
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  animation: bookModalIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: bookModalIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes bookModalIn {
@@ -4310,49 +4311,59 @@
 
 /* Download Box */
 .cs-download-box {
-  display: flex;
-  flex-direction: column;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--color-gray-100);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
 }
 
-.cs-download-visual {
-  position: relative;
+.cs-download-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  color: white;
+}
+
+.cs-download-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  color: white;
-  overflow: hidden;
-  min-height: 110px;
+  flex-shrink: 0;
 }
 
-.cs-download-visual svg {
-  position: relative;
-  z-index: 1;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+.cs-download-label {
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.8;
+  margin-bottom: 0.2rem;
 }
 
-.cs-download-shine {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-.cs-download-box h3 {
+.cs-download-client {
   font-size: var(--text-base);
   font-weight: var(--font-bold);
-  color: var(--color-navy);
-  margin: 0;
-  padding: 1.25rem 1.25rem 0.5rem;
-  letter-spacing: -0.01em;
+  line-height: 1.25;
 }
 
-.cs-download-box p {
+.cs-download-body {
+  background: white;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cs-download-body p {
   font-size: var(--text-sm);
-  color: var(--color-gray-400);
+  color: var(--color-gray-500);
   line-height: 1.6;
   margin: 0;
-  padding: 0 1.25rem 1.25rem;
 }
 
 .cs-sidebar-btn {
@@ -4360,7 +4371,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  margin: 0 1.25rem 1.25rem;
+  width: 100%;
   padding: 0.85rem 1.25rem;
   border: none;
   border-radius: 10px;
@@ -4435,37 +4446,43 @@
 
 /* CTA Box */
 .cs-cta-box {
-  padding: 1.5rem;
+  padding: 1.75rem 1.5rem;
   text-align: center;
-  background: var(--color-gray-50);
-  border: none;
+  background: linear-gradient(135deg, #2d1b4e 0%, #1a1035 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(172, 65, 151, 0.3);
+  box-shadow: 0 8px 32px rgba(172, 65, 151, 0.15);
+}
+
+.cs-cta-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(172, 65, 151, 0.2);
+  color: #d472c4;
+  margin-bottom: 0.875rem;
 }
 
 .cs-cta-box h4 {
   font-size: var(--text-base);
   font-weight: var(--font-bold);
-  color: var(--color-navy);
-  margin: 0.75rem 0 0.35rem;
+  color: white;
+  margin: 0 0 0.4rem;
 }
 
 .cs-cta-box p {
   font-size: var(--text-sm);
-  color: var(--color-gray-500);
-  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
 }
 
-.cs-cta-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: var(--text-sm);
-  font-weight: var(--font-semibold);
-  text-decoration: none;
-  transition: gap 0.2s;
-}
-
-.cs-cta-link:hover {
-  gap: 0.6rem;
+.cs-cta-btn {
+  width: 100%;
+  justify-content: center;
 }
 
 /* ============================================

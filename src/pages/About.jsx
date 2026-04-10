@@ -79,10 +79,10 @@ export default function About() {
             compliance officers, and data engineers need it to — reliably, securely, and at scale.
           </p>
           <div className="vertical-hero-actions">
-            <Link to="/contact-us" className="btn btn-cyan btn-lg">
+            <Link to="/contact-us" className="btn btn-cyan btn-md">
               Talk to Our Team <ArrowRight size={16} />
             </Link>
-            <Link to="/case-studies" className="btn btn-ghost-white btn-lg">
+            <Link to="/case-studies" className="btn btn-ghost-white btn-md">
               Our Case Studies
             </Link>
           </div>

@@ -328,10 +328,10 @@ export default function PlatformVertical({ slug }) {
             ))}
           </div>
           <div className="vertical-hero-actions">
-            <Link to="/contact-us" className="btn btn-cyan btn-lg">
+            <Link to="/contact-us" className="btn btn-cyan btn-md">
               {data.footer_cta} <ArrowRight size={16} />
             </Link>
-            <Link to="/platform" className="btn btn-ghost-white btn-lg">
+            <Link to="/platform" className="btn btn-ghost-white btn-md">
               All Capabilities <ChevronRight size={16} />
             </Link>
           </div>
@@ -497,7 +497,7 @@ export default function PlatformVertical({ slug }) {
             <div className="cta-banner-content">
               <h2>{data.footer_cta}</h2>
               <p>
-                Schedule a demo and see how Vorro's {data.title} capability transforms
+                Talk to an expert and see how Vorro's {data.title} capability transforms
                 your healthcare data operations.
               </p>
               <div className="cta-banner-actions">
