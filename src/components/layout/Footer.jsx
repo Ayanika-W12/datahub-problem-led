@@ -77,7 +77,7 @@ export default function Footer() {
                 </a>
               </div>
               <Link to="/contact-us" className="btn btn-primary btn-sm footer-cta-btn">
-                Get a Demo <ArrowRight size={14} />
+                Talk to an Expert <ArrowRight size={14} />
               </Link>
             </div>
 

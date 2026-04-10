@@ -6,6 +6,8 @@ import {
   TrendingUp, Award, Users, Globe
 } from 'lucide-react';
 import '../styles/home.css';
+import { BookDemoModal } from '../components/ui/BookDemoModal';
+import { FreeToolsBanner } from '../components/ui/FreeToolsBanner';
 
 /* ---- Data ---- */
 const stats = [
@@ -47,14 +49,14 @@ const capabilities = [
     desc: 'Transform unstructured clinical notes, discharge summaries, and prior auth letters into structured FHIR R4 data. Auto-map to ICD-10, CPT, SNOMED CT, LOINC, and RxNorm.',
     color: 'primary',
     to: '/platform/analytics-nlp',
-    bullets: ['De-identification & PHI redaction', 'NER & concept extraction', 'FHIR R4 structured output'],
+    bullets: ['De-identification & PHI redaction', 'Entity extraction', 'FHIR R4 structured output'],
   },
   {
     num: '02',
     icon: <Workflow size={28} />,
     label: 'Reporting & Conversational AI',
-    title: 'Natural Language Queries. Instant Reports.',
-    desc: 'Ask your data questions in plain English. Get HEDIS, eCQM, QRDA, claims adjudication, and executive dashboard reports — automatically, without SQL.',
+    title: 'Conversational Queries. Instant Reports.',
+    desc: 'Ask your data questions in plain English using Conversational AI. Get HEDIS, eCQM, QRDA, claims adjudication, and executive dashboard reports — automatically, without SQL.',
     color: 'cyan',
     to: '/platform/reporting-nlp',
     bullets: ['No SQL required', 'HEDIS, Stars, CAHPS reports', 'eCQM / QRDA I & III'],
@@ -104,7 +106,7 @@ const capabilities = [
     icon: <Zap size={28} />,
     label: 'Workflow Orchestration',
     title: 'Healthcare Automation. No Code Required.',
-    desc: 'n8n + Claude AI-powered workflows for prior auth, eligibility verification, denial management, care gap outreach, and more — HIPAA-compliant by design.',
+    desc: 'AI-powered workflows for prior auth, eligibility verification, denial management, care gap outreach, and more — HIPAA-compliant by design.',
     color: 'cyan',
     to: '/platform/workflow-orchestration',
     bullets: ['500+ pre-built connectors', 'FHIR R4 event triggers', 'Human-in-the-loop approval gates'],
@@ -157,7 +159,7 @@ const differentiators = [
   {
     icon: <TrendingUp size={22} />,
     title: 'AI-First Architecture',
-    desc: 'Purpose-built for the era of AI — with governed, clean data pipelines and Claude AI-powered orchestration.',
+    desc: 'Purpose-built for the era of AI — with governed, clean data pipelines and intelligent orchestration.',
   },
 ];
 
@@ -222,6 +224,9 @@ function FadeIn({ children, delay = 0, className = '' }) {
    HOME PAGE
    ============================================ */
 export default function Home() {
+  const [activeCapIdx, setActiveCapIdx] = useState(0);
+  const activeCap = capabilities[activeCapIdx];
+  const [demoModalOpen, setDemoModalOpen] = useState(false);
 
   return (
     <main>
@@ -252,11 +257,11 @@ export default function Home() {
               Stop chasing data. Vorro connects, monitors, and automates your healthcare data
               workflows — fully managed, low cost, ready in weeks.
             </p>
-            <div className="hero-actions">
-              <Link to="/contact-us" className="btn btn-cyan btn-xl">
-                Get a Platform Demo <ArrowRight size={18} />
-              </Link>
-              <Link to="/case-studies" className="btn btn-ghost-white btn-xl">
+            <div className="hero-actions hero-actions-inline">
+              <button onClick={() => setDemoModalOpen(true)} className="btn btn-cyan btn-md">
+                Talk to an Expert <ArrowRight size={16} />
+              </button>
+              <Link to="/case-studies" className="btn btn-ghost-white btn-md">
                 View Case Studies
               </Link>
             </div>
@@ -276,46 +281,118 @@ export default function Home() {
             </div>
           </FadeIn>
 
-          {/* Right — animated pillars visual */}
-          <div className="hero-pillars-visual">
-            <div className="hero-pillars-label">7 Platform Capabilities</div>
-            <div className="hero-pillars-grid">
-              {/* Row 1: 4 */}
-              {capabilities.slice(0, 4).map((cap, i) => (
-                <Link
-                  key={cap.num}
-                  to={cap.to}
-                  className={`hero-pillar hero-pillar-${cap.color}`}
-                  style={{ animationDelay: `${i * 80}ms` }}
-                >
-                  <span className="hero-pillar-num">{cap.num}</span>
-                  <span className="hero-pillar-icon">{cap.icon}</span>
-                  <span className="hero-pillar-label">{cap.label}</span>
-                  <ArrowRight size={11} className="hero-pillar-arrow" />
-                </Link>
-              ))}
-              {/* Row 2: 3 */}
-              {capabilities.slice(4).map((cap, i) => (
-                <Link
-                  key={cap.num}
-                  to={cap.to}
-                  className={`hero-pillar hero-pillar-${cap.color}`}
-                  style={{ animationDelay: `${(i + 4) * 80}ms` }}
-                >
-                  <span className="hero-pillar-num">{cap.num}</span>
-                  <span className="hero-pillar-icon">{cap.icon}</span>
-                  <span className="hero-pillar-label">{cap.label}</span>
-                  <ArrowRight size={11} className="hero-pillar-arrow" />
-                </Link>
-              ))}
+          {/* Right — Platform Capabilities Frame (exact design from provided HTML) */}
+          <div className="capabilities-wrapper">
+            {/* Badges positioned outside the frame */}
+            <div className="frame-badges">
+              <div className="frame-badge managed">
+                <div className="frame-badge-label">Delivery Model</div>
+                <div className="frame-badge-value">Fully Managed</div>
+              </div>
+              <div className="frame-badge cost">
+                <div className="frame-badge-label">Commercial Value</div>
+                <div className="frame-badge-value">Low Cost</div>
+              </div>
             </div>
-            <div className="hero-pillars-badges">
-              <span className="hero-pillars-badge-green"><CheckCircle2 size={11} /> Fully Managed</span>
-              <span className="hero-pillars-badge-cyan"><TrendingUp size={11} /> Low Cost</span>
+
+            <div className="capabilities-frame">
+              <div className="frame-grid-overlay" />
+              <div className="frame-particles" />
+              <div className="frame-orbital-ring" />
+
+              <div className="frame-content">
+                {/* Hub area with center core and pillars */}
+              <div className="frame-hub-area">
+                {/* Connection lines SVG */}
+                <div className="frame-connections">
+                  <svg viewBox="0 0 1200 675" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="grad1" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="600" y2="120">
+                        <stop offset="0%" stopColor="#20D3EF" stopOpacity="0" />
+                        <stop offset="50%" stopColor="#20D3EF" stopOpacity="1" />
+                        <stop offset="100%" stopColor="#20D3EF" stopOpacity="0" />
+                      </linearGradient>
+                      <linearGradient id="grad2" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="928" y2="210">
+                        <stop offset="0%" stopColor="#AC4197" stopOpacity="0" />
+                        <stop offset="50%" stopColor="#AC4197" stopOpacity="1" />
+                        <stop offset="100%" stopColor="#AC4197" stopOpacity="0" />
+                      </linearGradient>
+                      <linearGradient id="grad3" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="1009" y2="413">
+                        <stop offset="0%" stopColor="#02B164" stopOpacity="0" />
+                        <stop offset="50%" stopColor="#02B164" stopOpacity="1" />
+                        <stop offset="100%" stopColor="#02B164" stopOpacity="0" />
+                      </linearGradient>
+                      <linearGradient id="grad4" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="782" y2="576">
+                        <stop offset="0%" stopColor="#F17A42" stopOpacity="0" />
+                        <stop offset="50%" stopColor="#F17A42" stopOpacity="1" />
+                        <stop offset="100%" stopColor="#F17A42" stopOpacity="0" />
+                      </linearGradient>
+                      <linearGradient id="grad5" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="418" y2="576">
+                        <stop offset="0%" stopColor="#20D3EF" stopOpacity="0" />
+                        <stop offset="50%" stopColor="#20D3EF" stopOpacity="1" />
+                        <stop offset="100%" stopColor="#20D3EF" stopOpacity="0" />
+                      </linearGradient>
+                      <linearGradient id="grad6" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="191" y2="413">
+                        <stop offset="0%" stopColor="#AC4197" stopOpacity="0" />
+                        <stop offset="50%" stopColor="#AC4197" stopOpacity="1" />
+                        <stop offset="100%" stopColor="#AC4197" stopOpacity="0" />
+                      </linearGradient>
+                      <linearGradient id="grad7" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="272" y2="210">
+                        <stop offset="0%" stopColor="#02B164" stopOpacity="0" />
+                        <stop offset="50%" stopColor="#02B164" stopOpacity="1" />
+                        <stop offset="100%" stopColor="#02B164" stopOpacity="0" />
+                      </linearGradient>
+                    </defs>
+
+                    <path className="conn-base" d="M600 358 L600 120" />
+                    <path className="conn-glow" stroke="url(#grad1)" d="M600 358 L600 120" />
+                    <path className="conn-base" d="M600 358 L928 210" />
+                    <path className="conn-glow" stroke="url(#grad2)" d="M600 358 L928 210" style={{ animationDelay: '-1s' }} />
+                    <path className="conn-base" d="M600 358 L1009 413" />
+                    <path className="conn-glow" stroke="url(#grad3)" d="M600 358 L1009 413" style={{ animationDelay: '-2s' }} />
+                    <path className="conn-base" d="M600 358 L782 576" />
+                    <path className="conn-glow" stroke="url(#grad4)" d="M600 358 L782 576" style={{ animationDelay: '-3s' }} />
+                    <path className="conn-base" d="M600 358 L418 576" />
+                    <path className="conn-glow" stroke="url(#grad5)" d="M600 358 L418 576" style={{ animationDelay: '-4s' }} />
+                    <path className="conn-base" d="M600 358 L191 413" />
+                    <path className="conn-glow" stroke="url(#grad6)" d="M600 358 L191 413" style={{ animationDelay: '-5s' }} />
+                    <path className="conn-base" d="M600 358 L272 210" />
+                    <path className="conn-glow" stroke="url(#grad7)" d="M600 358 L272 210" style={{ animationDelay: '-6s' }} />
+                  </svg>
+                </div>
+
+                {/* Center Core */}
+                <div className="frame-center-core">
+                  <div className="core-inner">
+                    <div className="core-kicker">Unified Architecture</div>
+                    <div className="core-title">AI Healthcare Data Hub</div>
+                  </div>
+                </div>
+
+                {/* 7 Pillars */}
+                <div className="frame-pillars">
+                  {capabilities.map((cap, i) => (
+                    <Link
+                      key={cap.num}
+                      to={cap.to}
+                      className={`frame-pillar p${i + 1}`}
+                      style={{ '--accent': cap.color === 'cyan' ? '#20D3EF' : cap.color === 'primary' ? '#AC4197' : cap.color === 'green' ? '#02B164' : cap.color === 'orange' ? '#F17A42' : '#7b82e0' }}
+                    >
+                      <div className="cap-num">{cap.num}</div>
+                      <div className="pillar-label">{cap.label}</div>
+                      <div className="pillar-micro">{cap.bullets[0]}</div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
+          </div>
           </div>
         </div>
       </section>
+
+      {/* FREE TOOLS BANNER - right after hero */}
+      <FreeToolsBanner />
 
       {/* STATS */}
       <section className="section-sm stats-section">
@@ -387,7 +464,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PLATFORM OVERVIEW */}
+      {/* PLATFORM OVERVIEW — tab pills + detail panel */}
       <section className="section platform-section">
         <div className="container">
           <FadeIn>
@@ -397,15 +474,42 @@ export default function Home() {
               <p>Each capability is powerful standalone. Together, they form the most complete healthcare data platform built for enterprise interoperability.</p>
             </div>
           </FadeIn>
+          {/* Pills */}
           <FadeIn>
-            <div className="cap-grid-mini">
-              {capabilities.map((cap) => (
-                <Link key={cap.num} to={cap.to} className={`cap-mini-card cap-mini-${cap.color}`} style={{ textDecoration: 'none' }}>
-                  <div className={`cap-mini-icon cap-icon-${cap.color}`}>{cap.icon}</div>
-                  <div className="cap-mini-num">{cap.num}</div>
-                  <div className="cap-mini-label">{cap.label}</div>
-                </Link>
+            <div className="cap-tabs">
+              {capabilities.map((cap, i) => (
+                <button
+                  key={cap.num}
+                  className={`cap-tab${i === activeCapIdx ? ' cap-tab-active' : ''}`}
+                  onClick={() => setActiveCapIdx(i)}
+                >
+                  <span className="cap-tab-num">{cap.num}</span>
+                  {cap.label}
+                </button>
               ))}
+            </div>
+          </FadeIn>
+          {/* Detail Panel */}
+          <FadeIn>
+            <div className="cap-panel">
+              <div className="cap-panel-left">
+                <div className={`cap-panel-icon cap-icon-${activeCap.color}`}>{activeCap.icon}</div>
+                <div className="cap-panel-num">{activeCap.num}</div>
+                <div className={`cap-panel-label cap-label-${activeCap.color}`}>{activeCap.label.toUpperCase()}</div>
+                <h3 className="cap-panel-title">{activeCap.title}</h3>
+                <p className="cap-panel-desc">{activeCap.desc}</p>
+                <ul className="cap-panel-bullets">
+                  {activeCap.bullets.map(b => (
+                    <li key={b}><CheckCircle2 size={14} /> {b}</li>
+                  ))}
+                </ul>
+                <Link to={activeCap.to} className="btn btn-primary btn-md" style={{ marginTop: '1.5rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                  Explore {activeCap.label} <ArrowRight size={14} />
+                </Link>
+              </div>
+              <div className="cap-panel-right">
+                <CapabilityVisual num={activeCap.num} color={activeCap.color} icon={activeCap.icon} label={activeCap.label} />
+              </div>
             </div>
           </FadeIn>
         </div>
@@ -445,6 +549,7 @@ export default function Home() {
                 { label: 'Mulesoft', to: '/vorro-vs-mulesoft' },
                 { label: 'Rhapsody', to: '/vorro-vs-rhapsody' },
                 { label: 'Datavant', to: '/vorro-vs-datavant' },
+                { label: 'Mirth', to: '/vorro-vs-mirth' },
               ].map((l) => (
                 <Link key={l.label} to={l.to} className="why-compare-link">
                   {l.label} <ChevronRight size={12} />
@@ -469,6 +574,7 @@ export default function Home() {
             {testimonials.map((t, i) => (
               <FadeIn key={i} delay={i * 100}>
                 <div className="testimonial-card">
+                  <div className="testimonial-quote-icon">"</div>
                   <blockquote className="testimonial-quote">{t.quote}</blockquote>
                   <div className="testimonial-author">
                     <div className="testimonial-avatar">{t.initials}</div>
@@ -506,9 +612,9 @@ export default function Home() {
                   automates compliance, and accelerates AI adoption.
                 </p>
                 <div className="cta-banner-actions">
-                  <Link to="/contact-us" className="btn btn-cyan btn-xl">
-                    Schedule a Demo <ArrowRight size={18} />
-                  </Link>
+                  <button onClick={() => setDemoModalOpen(true)} className="btn btn-cyan btn-xl">
+                    Talk to an Expert <ArrowRight size={18} />
+                  </button>
                   <Link to="/solutions" className="btn btn-ghost-white btn-xl">
                     Explore Solutions
                   </Link>
@@ -525,6 +631,9 @@ export default function Home() {
           </FadeIn>
         </div>
       </section>
+
+      {/* Book Demo Modal */}
+      <BookDemoModal open={demoModalOpen} onOpenChange={setDemoModalOpen} />
     </main>
   );
 }

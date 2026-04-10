@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 import VorroLogo from '../ui/VorroLogo';
+import BookDemoModal from '../ui/BookDemoModal';
 
 const navLinks = [
   {
@@ -11,12 +12,12 @@ const navLinks = [
         heading: 'Capabilities',
         items: [
           { label: 'Analytics & Conversational AI', to: '/platform/analytics-nlp', desc: 'Extract intelligence from clinical data' },
-          { label: 'Reporting & Conversational AI', to: '/platform/reporting-nlp', desc: 'Natural language query for healthcare data' },
+          { label: 'Reporting & Conversational AI', to: '/platform/reporting-nlp', desc: 'Conversational queries for healthcare data' },
           { label: 'Governance & Compliance', to: '/platform/governance-compliance', desc: 'Automated HIPAA, Cures Act, FHIR' },
           { label: 'Governance & Version Control', to: '/platform/governance-versioning', desc: 'Data lineage & pipeline versioning' },
           { label: 'Interfacing', to: '/platform/interfacing', desc: 'HL7, FHIR, EDI — every standard' },
           { label: 'AI Readiness', to: '/platform/ai-readiness', desc: 'Data lake & ML-ready pipelines' },
-          { label: 'Workflow Orchestration', to: '/platform/workflow-orchestration', desc: 'n8n + AI-powered automation' },
+          { label: 'Workflow Orchestration', to: '/platform/workflow-orchestration', desc: 'AI-powered automation' },
         ],
       },
       {
@@ -105,6 +106,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [mobileExpanded, setMobileExpanded] = useState(null);
+  const [demoModalOpen, setDemoModalOpen] = useState(false);
   const location = useLocation();
   const navRef = useRef(null);
   const timeoutRef = useRef(null);
@@ -193,10 +195,10 @@ export default function Navbar() {
           <Link to="/contact-us" className="btn btn-ghost-nav">
             Contact
           </Link>
-          <Link to="/contact-us" className="btn btn-primary btn-sm">
-            Get a Demo
+          <button onClick={() => setDemoModalOpen(true)} className="btn btn-primary btn-sm">
+            Talk to an Expert
             <ArrowRight size={14} />
-          </Link>
+          </button>
         </div>
 
         {/* Mobile Toggle */}
@@ -240,13 +242,16 @@ export default function Navbar() {
               </div>
             ))}
             <div className="mobile-nav-cta">
-              <Link to="/contact-us" className="btn btn-primary btn-lg" style={{ width: '100%', justifyContent: 'center' }}>
-                Get a Demo
-              </Link>
+              <button onClick={() => { setMobileOpen(false); setDemoModalOpen(true); }} className="btn btn-primary btn-lg" style={{ width: '100%', justifyContent: 'center' }}>
+                Talk to an Expert
+              </button>
             </div>
           </div>
         </div>
       )}
+
+      {/* Book Demo Modal */}
+      <BookDemoModal open={demoModalOpen} onOpenChange={setDemoModalOpen} />
     </header>
   );
 }

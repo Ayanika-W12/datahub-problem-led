@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Zap, Shield, BarChart3, Network, Database, GitBranch, Workflow } from 'lucide-react';
+import { BookDemoModal } from '../components/ui/BookDemoModal';
 
 const solutions = {
   'emr-integrations': {
@@ -245,6 +247,7 @@ const colorMap = {
 };
 
 export default function SolutionPage({ slug }) {
+  const [demoModalOpen, setDemoModalOpen] = useState(false);
   const data = solutions[slug];
   const colors = colorMap[data?.color] || colorMap.primary;
 
@@ -264,9 +267,9 @@ export default function SolutionPage({ slug }) {
   return (
     <main>
       {/* HERO */}
-      <section className="vertical-hero">
-        <div className="container" style={{ paddingTop: '7rem', paddingBottom: '4rem' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+      <section className="vertical-hero" style={{ minHeight: 'auto' }}>
+        <div className="container" style={{ paddingTop: '6rem', paddingBottom: '3rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
             {/* Left: text */}
             <div>
               <div className="badge badge-white" style={{ marginBottom: '1.25rem' }}>{data.title}</div>
@@ -284,9 +287,9 @@ export default function SolutionPage({ slug }) {
                 {data.sub}
               </p>
               <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                <Link to="/contact-us" className="btn btn-cyan btn-lg">
-                  Get a Demo <ArrowRight size={16} />
-                </Link>
+                <button onClick={() => setDemoModalOpen(true)} className="btn btn-cyan btn-lg">
+                  Talk to an Expert <ArrowRight size={16} />
+                </button>
                 <Link to="/case-studies" className="btn btn-ghost-white btn-lg">
                   View Case Studies
                 </Link>
@@ -529,9 +532,9 @@ export default function SolutionPage({ slug }) {
               <h2>Ready to See It Live?</h2>
               <p>Talk to a Vorro integration expert about {data.title.toLowerCase()} for your organization.</p>
               <div className="cta-banner-actions">
-                <Link to="/contact-us" className="btn btn-cyan btn-xl">
-                  Schedule a Demo <ArrowRight size={18} />
-                </Link>
+                <button onClick={() => setDemoModalOpen(true)} className="btn btn-cyan btn-xl">
+                  Talk to an Expert <ArrowRight size={18} />
+                </button>
                 <Link to="/build-vs-buy" className="btn btn-ghost-white btn-xl">
                   Build vs. Buy Guide
                 </Link>
@@ -540,6 +543,9 @@ export default function SolutionPage({ slug }) {
           </div>
         </div>
       </section>
+
+      {/* Book Demo Modal */}
+      <BookDemoModal open={demoModalOpen} onOpenChange={setDemoModalOpen} />
     </main>
   );
 }

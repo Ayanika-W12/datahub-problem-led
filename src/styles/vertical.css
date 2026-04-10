@@ -5,7 +5,7 @@
 /* Hero */
 .vertical-hero {
   background: linear-gradient(135deg, var(--color-navy-dark) 0%, var(--color-navy) 55%, #2a1f5a 100%);
-  padding: 9rem 0 6rem;
+  padding: 6rem 0 3.5rem;
   color: white;
   position: relative;
   overflow: hidden;
@@ -384,7 +384,7 @@
 @media (max-width: 768px) {
   .standards-grid { grid-template-columns: 1fr 1fr; }
   .workflow-categories { grid-template-columns: 1fr; }
-  .vertical-hero { padding: 7rem 0 4rem; }
+  .vertical-hero { padding: 5rem 0 3rem; }
 }
 
 @media (max-width: 480px) {

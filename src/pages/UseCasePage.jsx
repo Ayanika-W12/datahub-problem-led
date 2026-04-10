@@ -85,7 +85,7 @@ export default function UseCasePage({ slug }) {
           <p className="vertical-hero-sub">{data.sub}</p>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '2rem' }}>
             <Link to="/contact-us" className="btn btn-cyan btn-lg">
-              Get a Demo <ArrowRight size={16} />
+              Talk to an Expert <ArrowRight size={16} />
             </Link>
             <Link to="/solutions" className="btn btn-ghost-white btn-lg">
               All Solutions
@@ -214,7 +214,7 @@ export default function UseCasePage({ slug }) {
               <p>Talk to a Vorro integration expert about your specific environment and requirements.</p>
               <div className="cta-banner-actions">
                 <Link to="/contact-us" className="btn btn-cyan btn-xl">
-                  Schedule a Demo <ArrowRight size={18} />
+                  Talk to an Expert <ArrowRight size={18} />
                 </Link>
                 <Link to="/solutions" className="btn btn-ghost-white btn-xl">
                   See All Solutions
