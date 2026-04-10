@@ -183,6 +183,16 @@ export default function CaseStudies() {
             <p style={{ fontSize: 'var(--text-base)', color: 'rgba(255,255,255,0.7)', marginBottom: '1.5rem', maxWidth: '500px', margin: '0 auto 1.5rem' }}>
               Talk to an expert and see how Vorro can transform your data operations.
             </p>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', marginBottom: '1.5rem' }}>
+              <div style={{ textAlign: 'center' }}>
+                <span style={{ display: 'block', fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Delivery Model</span>
+                <span style={{ fontSize: 'var(--text-lg)', fontWeight: 'var(--font-semibold)', color: 'var(--color-cyan)' }}>Fully Managed</span>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <span style={{ display: 'block', fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Commercial Value</span>
+                <span style={{ fontSize: 'var(--text-lg)', fontWeight: 'var(--font-semibold)', color: 'var(--color-green)' }}>Low Cost</span>
+              </div>
+            </div>
             <button 
               onClick={() => setDemoModalOpen(true)} 
               className="btn btn-cyan btn-xl"
