@@ -185,7 +185,7 @@ export default function CaseStudies() {
             </p>
             <button 
               onClick={() => setDemoModalOpen(true)} 
-              className="btn btn-white"
+              className="btn btn-cyan"
               style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
             >
               Talk to an Expert
