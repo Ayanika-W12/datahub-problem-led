@@ -198,7 +198,7 @@ export const verticals = {
     sections: [
       {
         heading: 'Bronze → Silver → Gold Architecture',
-        type: 'steps',
+        type: 'tier-cards',
         steps: [
           {
             num: 'Bronze',
@@ -435,6 +435,31 @@ export default function PlatformVertical({ slug }) {
                 ))}
               </div>
             )}
+
+            {section.type === 'tier-cards' && (() => {
+              const tierStyles = {
+                Bronze: { border: '#b06a3a', badgeBg: '#7a3d1e', badgeColor: '#f5a97a', tcBg: 'rgba(160,90,40,0.07)' },
+                Silver: { border: '#7a8898', badgeBg: '#4a5568', badgeColor: '#cbd5e1', tcBg: 'rgba(120,135,155,0.07)' },
+                Gold:   { border: '#c8a820', badgeBg: '#7a6010', badgeColor: '#fcd34d', tcBg: 'rgba(200,168,30,0.07)' },
+                Activation: { border: '#AC4197', badgeBg: '#6d2660', badgeColor: '#d87ec8', tcBg: 'rgba(172,65,151,0.07)' },
+              };
+              return (
+                <div className="tier-cards-grid">
+                  {section.steps.map((step, i) => {
+                    const ts = tierStyles[step.num] || tierStyles.Activation;
+                    return (
+                      <div key={i} className="tier-card" style={{ '--tc-bg': ts.tcBg, '--tc-border': ts.border }}>
+                        <div className="tier-card-badge" style={{ background: ts.badgeBg, color: ts.badgeColor }}>
+                          {step.num}
+                        </div>
+                        <h3 className="tier-card-title">{step.title}</h3>
+                        <p className="tier-card-desc">{step.desc}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })()}
 
             {section.type === 'platform-logos' && (
               <div className="platform-logos-grid">

@@ -29,6 +29,8 @@ const footerLinks = {
     { label: 'Vorro vs. Redox', to: '/vorro-vs-redox' },
     { label: 'Vorro vs. Mulesoft', to: '/vorro-vs-mulesoft' },
     { label: 'Vorro vs. Rhapsody', to: '/vorro-vs-rhapsody' },
+    { label: 'Vorro vs. Datavant', to: '/vorro-vs-datavant' },
+    { label: 'Vorro vs. Mirth', to: '/vorro-vs-mirth' },
   ],
   Company: [
     { label: 'About Vorro', to: '/company' },
@@ -57,8 +59,8 @@ export default function Footer() {
                 <VorroLogo white={true} height={30} />
               </Link>
               <p className="footer-tagline">
-                Seven Capabilities. One Platform.<br />
-                Infinite Interoperability.
+                AI Native Data Orchestration.<br />
+                Built for Healthcare.
               </p>
               <div className="footer-contact">
                 <a href="mailto:sales@vorro.net" className="footer-contact-link">

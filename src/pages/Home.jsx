@@ -222,7 +222,6 @@ function FadeIn({ children, delay = 0, className = '' }) {
    HOME PAGE
    ============================================ */
 export default function Home() {
-  const [activeCapability, setActiveCapability] = useState(0);
 
   return (
     <main>
@@ -244,13 +243,13 @@ export default function Home() {
               </span>
             </div>
             <h1 className="hero-headline">
-              AI-Powered Data Transformation.<br />
-              <span className="hero-headline-accent">No-Code Integration.</span><br />
-              Zero Compromise.
+              The AI Native Data<br />
+              <span className="hero-headline-accent">Orchestration Platform,</span><br />
+              Built for Healthcare.
             </h1>
             <p className="hero-sub">
-              Stop chasing data. Transform your ever-increasing data assets into real business value,
-              enabling your teams to focus on strategy and growth.
+              Stop chasing data. Vorro connects, monitors, and automates your healthcare data workflows —
+              fully managed, low cost, and ready to deploy in weeks.
             </p>
             <div className="hero-actions">
               <Link to="/contact-us" className="btn btn-cyan btn-xl">
@@ -362,70 +361,63 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PLATFORM CAPABILITIES */}
-      <section className="section platform-section">
-        <div className="container">
+      {/* 7 PILLARS — animated interactive grid */}
+      <section className="pillars-section">
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <FadeIn>
-            <div className="section-header centered">
-              <div className="eyebrow">The Platform</div>
-              <h2>Seven Capabilities. One Integrated Platform.</h2>
-              <p>
-                Each capability is powerful on its own. Together, they form the most complete
-                healthcare data platform ever built for enterprise interoperability.
+            <div className="section-header centered dark" style={{ marginBottom: '1.5rem' }}>
+              <div className="eyebrow" style={{ color: 'var(--color-cyan)' }}>The VIIA Platform</div>
+              <h2 style={{ color: 'white' }}>7 Capabilities. One Intelligent Platform.</h2>
+              <p style={{ color: 'rgba(255,255,255,0.6)', maxWidth: '560px', margin: '0 auto' }}>
+                Each capability works standalone or as a fully integrated system —
+                all <strong style={{ color: 'var(--color-cyan)' }}>fully managed by Vorro</strong> at a proven low cost.
               </p>
             </div>
-          </FadeIn>
-
-          {/* Capability Tabs */}
-          <FadeIn>
-            <div className="capability-tabs-row">
-              {capabilities.map((cap, i) => (
-                <button
-                  key={cap.num}
-                  className={`cap-tab ${activeCapability === i ? 'active' : ''}`}
-                  onClick={() => setActiveCapability(i)}
-                >
-                  <span className="cap-tab-num">{cap.num}</span>
-                  <span>{cap.label}</span>
-                </button>
-              ))}
+            <div className="pillars-value-badges">
+              <span className="pillars-badge pillars-badge-green">
+                <CheckCircle2 size={13} /> Fully Managed by Vorro
+              </span>
+              <span className="pillars-badge pillars-badge-cyan">
+                <TrendingUp size={13} /> Proven Low Cost
+              </span>
             </div>
           </FadeIn>
 
-          {/* Active Capability Detail */}
-          <div className="cap-detail-area">
-            {capabilities.map((cap, i) => (
-              <div
+          {/* Row 1 — 4 cards */}
+          <div className="pillars-row">
+            {capabilities.slice(0, 4).map((cap, i) => (
+              <Link
                 key={cap.num}
-                className={`cap-detail ${activeCapability === i ? 'active' : ''}`}
+                to={cap.to}
+                className={`pillar-card pillar-card-${cap.color}`}
+                style={{ '--pi': i }}
               >
-                <div className="cap-detail-content">
-                  <div className={`cap-detail-icon cap-icon-${cap.color}`}>
-                    {cap.icon}
-                  </div>
-                  <div className="cap-detail-num">{cap.num}</div>
-                  <div className="cap-detail-label">{cap.label}</div>
-                  <h3 className="cap-detail-title">{cap.title}</h3>
-                  <p className="cap-detail-desc">{cap.desc}</p>
-                  <ul className="cap-detail-bullets">
-                    {cap.bullets.map((b) => (
-                      <li key={b}>
-                        <CheckCircle2 size={16} />
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link to={cap.to} className="btn btn-primary btn-md">
-                    Explore {cap.label} <ArrowRight size={16} />
-                  </Link>
-                </div>
-                <div className="cap-detail-visual">
-                  <CapabilityVisual num={cap.num} color={cap.color} icon={cap.icon} label={cap.label} />
-                </div>
-              </div>
+                <div className="pillar-card-num">{cap.num}</div>
+                <div className="pillar-card-icon">{cap.icon}</div>
+                <div className="pillar-card-label">{cap.label}</div>
+                <p className="pillar-card-desc">{cap.desc.split('.')[0]}.</p>
+                <div className="pillar-card-arrow"><ArrowRight size={13} /></div>
+              </Link>
             ))}
           </div>
 
+          {/* Row 2 — 3 cards centred */}
+          <div className="pillars-row pillars-row-bottom">
+            {capabilities.slice(4).map((cap, i) => (
+              <Link
+                key={cap.num}
+                to={cap.to}
+                className={`pillar-card pillar-card-${cap.color}`}
+                style={{ '--pi': i + 4 }}
+              >
+                <div className="pillar-card-num">{cap.num}</div>
+                <div className="pillar-card-icon">{cap.icon}</div>
+                <div className="pillar-card-label">{cap.label}</div>
+                <p className="pillar-card-desc">{cap.desc.split('.')[0]}.</p>
+                <div className="pillar-card-arrow"><ArrowRight size={13} /></div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
