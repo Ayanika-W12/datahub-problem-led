@@ -391,6 +391,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FREE TOOLS BANNER - right after hero */}
+      <FreeToolsBanner />
+
       {/* STATS */}
       <section className="section-sm stats-section">
         <div className="container">
@@ -571,6 +574,7 @@ export default function Home() {
             {testimonials.map((t, i) => (
               <FadeIn key={i} delay={i * 100}>
                 <div className="testimonial-card">
+                  <div className="testimonial-quote-icon">"</div>
                   <blockquote className="testimonial-quote">{t.quote}</blockquote>
                   <div className="testimonial-author">
                     <div className="testimonial-avatar">{t.initials}</div>
@@ -592,9 +596,6 @@ export default function Home() {
           </FadeIn>
         </div>
       </section>
-
-      {/* FREE TOOLS BANNER */}
-      <FreeToolsBanner />
 
       {/* CTA SECTION */}
       <section className="section cta-outer">

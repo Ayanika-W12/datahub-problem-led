@@ -93,3 +93,49 @@
   .about-stats-section .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .about-clients-grid { grid-template-columns: 1fr 1fr; }
 }
+
+/* Team Cards with Photos */
+.team-card {
+  background: #fff;
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: all var(--transition-base);
+}
+
+.team-card:hover {
+  border-color: var(--color-gray-300);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.team-card-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--color-gray-100);
+  flex-shrink: 0;
+}
+
+.team-card-name {
+  font-weight: var(--font-bold);
+  color: var(--color-navy);
+  font-size: var(--text-base);
+}
+
+.team-card-title {
+  color: var(--color-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  margin-top: 0.2rem;
+}
+
+.team-card-bio {
+  font-size: var(--text-sm);
+  color: var(--color-gray-500);
+  line-height: 1.65;
+  margin: 0;
+}

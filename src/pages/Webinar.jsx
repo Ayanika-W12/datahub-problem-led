@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, Clock, Video } from 'lucide-react';
+import { ArrowRight, Calendar, Clock, Play } from 'lucide-react';
+import { ResourceGate } from '../components/ui/ResourceGate';
 
 const upcoming = [
   {
@@ -25,46 +27,23 @@ const upcoming = [
   },
 ];
 
-const onDemand = [
-  {
-    title: "American Lung Association's Digital Transformation with Vorro",
-    duration: 'On demand',
-    category: 'Non-Profit',
-    featured: true,
-  },
-  {
-    title: 'Healthcare Integration 101: HL7, FHIR, and EDI Explained',
-    duration: '42 min',
-    category: 'Interfacing',
-  },
-  {
-    title: 'TEFCA and QHINs: What Health Systems Need to Know in 2026',
-    duration: '38 min',
-    category: 'Compliance',
-  },
-  {
-    title: 'Building a Patient 360 from Clinical, Claims, and SDOH Data',
-    duration: '55 min',
-    category: 'Analytics',
-  },
-  {
-    title: 'No-Code Integration: Replacing Mirth Connect Without the Pain',
-    duration: '47 min',
-    category: 'Interfacing',
-  },
-  {
-    title: 'AI Readiness Assessment: Is Your Data Ready for Machine Learning?',
-    duration: '52 min',
-    category: 'AI Readiness',
-  },
-  {
-    title: 'Claim Denial Root Cause Analysis: An Integration-First Approach',
-    duration: '44 min',
-    category: 'Revenue Cycle',
-  },
-];
+const featuredWebinar = {
+  title: "American Lung Association's Digital Transformation with Vorro",
+  thumbnail: 'https://vorro.net/wp-content/uploads/2025/12/Capture.jpg',
+  videoUrl: 'https://vorro.net//wp-content/uploads/2026/01/American-Lung-Associations-digital-transformation-with-Vorro-1.mp4',
+  duration: 'On demand',
+  category: 'Non-Profit',
+  description: 'Learn how the American Lung Association replaced manual fax-and-paper tobacco cessation referrals with automated digital exchange between hospitals, clinics, and EMRs — fully managed by Vorro.',
+};
 
 export default function Webinar() {
+  const [gateOpen, setGateOpen] = useState(false);
+  const [videoPlaying, setVideoPlaying] = useState(false);
+
+  const handlePlayClick = () => {
+    setGateOpen(true);
+  };
+
   return (
     <main>
       <section className="vertical-hero">
@@ -75,6 +54,58 @@ export default function Webinar() {
             Live and on-demand webinars on healthcare data integration, FHIR compliance,
             AI readiness, and workflow automation — from the engineers who build this every day.
           </p>
+        </div>
+      </section>
+
+      {/* Featured On-Demand Webinar */}
+      <section className="section bg-light">
+        <div className="container">
+          <div className="section-header">
+            <div className="eyebrow">Featured</div>
+            <h2>On-Demand Webinar</h2>
+          </div>
+          
+          <div className="webinar-featured">
+            <div className="webinar-featured-video">
+              {videoPlaying ? (
+                <video 
+                  controls 
+                  autoPlay
+                  className="webinar-video-player"
+                >
+                  <source src={featuredWebinar.videoUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <div 
+                  className="webinar-thumbnail"
+                  onClick={handlePlayClick}
+                  style={{ backgroundImage: `url(${featuredWebinar.thumbnail})` }}
+                >
+                  <div className="webinar-play-btn">
+                    <Play size={40} fill="white" />
+                  </div>
+                  <div className="webinar-thumbnail-overlay" />
+                </div>
+              )}
+            </div>
+            
+            <div className="webinar-featured-info">
+              <span className="tag tag-primary">{featuredWebinar.category}</span>
+              <h3 className="webinar-featured-title">{featuredWebinar.title}</h3>
+              <p className="webinar-featured-desc">{featuredWebinar.description}</p>
+              <div className="webinar-featured-meta">
+                <span><Clock size={14} /> {featuredWebinar.duration}</span>
+              </div>
+              <button 
+                onClick={handlePlayClick}
+                className="btn btn-primary btn-lg"
+                style={{ marginTop: '1.5rem' }}
+              >
+                <Play size={16} /> Watch Now
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -111,31 +142,20 @@ export default function Webinar() {
         </div>
       </section>
 
-      {/* On-Demand */}
-      <section className="section bg-light">
-        <div className="container">
-          <div className="section-header">
-            <div className="eyebrow">On-Demand</div>
-            <h2>Watch Anytime</h2>
-          </div>
-          <div className="grid-3" style={{ gap: '1.5rem', marginTop: '2rem' }}>
-            {onDemand.map(w => (
-              <div key={w.title} className="card-feature" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', padding: '1.5rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span className="tag tag-primary">{w.category}</span>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', fontSize: 'var(--text-xs)', color: 'var(--color-gray-400)' }}>
-                    <Clock size={12} /> {w.duration}
-                  </span>
-                </div>
-                <h3 style={{ fontSize: 'var(--text-base)', fontWeight: 'var(--font-bold)', color: 'var(--color-navy)', lineHeight: 1.4 }}>{w.title}</h3>
-                <Link to="/contact-us" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', fontSize: 'var(--text-sm)', color: 'var(--color-primary)', fontWeight: 'var(--font-semibold)', textDecoration: 'none', marginTop: 'auto' }}>
-                  <Video size={13} /> Watch Now
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Resource Gate Modal */}
+      <ResourceGate 
+        open={gateOpen} 
+        onOpenChange={(open) => {
+          setGateOpen(open);
+          if (!open) {
+            // When gate closes after submission, play video
+            setVideoPlaying(true);
+          }
+        }}
+        resourceUrl={featuredWebinar.videoUrl}
+        resourceType="video"
+        resourceTitle={featuredWebinar.title}
+      />
     </main>
   );
 }

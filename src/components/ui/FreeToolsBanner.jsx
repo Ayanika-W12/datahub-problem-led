@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { ArrowRight, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 
 const tools = [
   {
@@ -19,64 +19,67 @@ const tools = [
 ];
 
 export function FreeToolsBanner() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [offset, setOffset] = useState(0);
+  const containerRef = useRef(null);
+  const animationRef = useRef(null);
 
+  // Continuous smooth scroll animation
   useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % tools.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [isPaused]);
-
-  const goTo = (index) => setActiveIndex(index);
-  const prev = () => setActiveIndex((activeIndex - 1 + tools.length) % tools.length);
-  const next = () => setActiveIndex((activeIndex + 1) % tools.length);
-
-  const tool = tools[activeIndex];
+    const speed = 0.5; // pixels per frame
+    
+    const animate = () => {
+      setOffset(prev => {
+        // Reset when scrolled full width of one set
+        const containerWidth = containerRef.current?.scrollWidth / 2 || 800;
+        if (prev >= containerWidth) {
+          return 0;
+        }
+        return prev + speed;
+      });
+      animationRef.current = requestAnimationFrame(animate);
+    };
+    
+    animationRef.current = requestAnimationFrame(animate);
+    
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, []);
 
   return (
-    <section 
-      className="tools-banner"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-    >
-      <div className="tools-banner-bg" />
+    <section className="tools-banner-v2">
+      {/* Grainy noise overlay */}
+      <div className="tools-banner-noise" />
       
-      <button className="tools-banner-nav tools-banner-nav-prev" onClick={prev} aria-label="Previous">
-        <ChevronLeft size={20} />
-      </button>
-
-      <div className="tools-banner-content">
-        <div className="tools-banner-left">
-          <div className="tools-banner-badge">
-            <Sparkles size={12} />
-            {tool.badge}
-          </div>
-          <h3 className="tools-banner-title">{tool.title}</h3>
-        </div>
-        <div className="tools-banner-right">
-          <p className="tools-banner-desc">{tool.description}</p>
-          <a href={tool.link} target="_blank" rel="noopener noreferrer" className="tools-banner-cta">
-            {tool.cta} <ArrowRight size={14} />
+      {/* Glassmorphism background */}
+      <div className="tools-banner-glass" />
+      
+      {/* Scrolling content */}
+      <div 
+        ref={containerRef}
+        className="tools-banner-scroll"
+        style={{ transform: `translateX(-${offset}px)` }}
+      >
+        {/* Duplicate tools for seamless loop */}
+        {[...tools, ...tools, ...tools, ...tools].map((tool, i) => (
+          <a 
+            key={i} 
+            href={tool.link} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="tools-banner-item"
+          >
+            <div className="tools-banner-item-badge">
+              <Sparkles size={10} />
+              {tool.badge}
+            </div>
+            <div className="tools-banner-item-title">{tool.title}</div>
+            <div className="tools-banner-item-cta">
+              {tool.cta} <ArrowRight size={12} />
+            </div>
           </a>
-        </div>
-      </div>
-
-      <button className="tools-banner-nav tools-banner-nav-next" onClick={next} aria-label="Next">
-        <ChevronRight size={20} />
-      </button>
-
-      {/* Dots */}
-      <div className="tools-banner-dots">
-        {tools.map((_, i) => (
-          <button
-            key={i}
-            className={`tools-banner-dot ${i === activeIndex ? 'active' : ''}`}
-            onClick={() => goTo(i)}
-            aria-label={`Go to slide ${i + 1}`}
-          />
         ))}
       </div>
     </section>

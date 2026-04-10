@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Download } from 'lucide-react';
+import { ResourceGate } from '../components/ui/ResourceGate';
+import { BookDemoModal } from '../components/ui/BookDemoModal';
 
 const caseStudies = [
   {
@@ -11,7 +13,7 @@ const caseStudies = [
     statLabel: 'monthly transactions, integrated with 100+ pharmacies',
     summary:
       'Translated complex HL7 ADT and CCD formats into a single standard across hospitals, clinics, and HIEs — freeing the client to focus on mental health and disability solutions.',
-    pdf: 'Achieving-Seamless-Healthcare-Data-Exchange-for-a-Leading-EMR-Provider_compressed-1.pdf',
+    pdf: '/case-studies/Achieving-Seamless-Healthcare-Data-Exchange-for-a-Leading-EMR-Provider_compressed-1.pdf',
   },
   {
     title: 'How a Pharmacy Management Provider Found Data Harmony with Vorro\'s BridgeGate',
@@ -21,7 +23,7 @@ const caseStudies = [
     statLabel: 'patient records processed per day, 500+ facilities integrated',
     summary:
       'Connected hundreds of hospitals and clinics via mixed HL7 & SFTP to validate 340B eligibility in near-real-time, giving patients immediate access to discounted medications.',
-    pdf: 'How-a-Pharmacy-Management-Provider-Found-Data-Harmony.pdf',
+    pdf: '/case-studies/How-a-Pharmacy-Management-Provider-Found-Data-Harmony.pdf',
   },
   {
     title: 'How a Tier-1 Retail Conglomerate Standardized Technology for Two Global Shopping Brands',
@@ -31,7 +33,7 @@ const caseStudies = [
     statLabel: 'faster time-to-market for new vendor integrations',
     summary:
       'Migrated QVC and HSN from 10 disparate legacy servers to consistent BridgeGate instances, achieving 100% platform standardization and a 40% reduction in operational overhead.',
-    pdf: 'How-a-Tier-1-Retail-Conglomerate-Standardized-Technology-for-Two-Global-Shopping-Brands-for-World-Class-Scale.pdf',
+    pdf: '/case-studies/How-a-Tier-1-Retail-Conglomerate-Standardized-Technology-for-Two-Global-Shopping-Brands-for-World-Class-Scale.pdf',
   },
   {
     title: 'How the American Lung Association Streamlined Data Integration with BridgeGate',
@@ -41,7 +43,7 @@ const caseStudies = [
     statLabel: 'uptime, 100+ clinics served for Illinois Quitline referrals',
     summary:
       'Replaced manual fax-and-paper tobacco cessation referrals with automated digital exchange between hospitals, clinics, and EMRs — fully managed by Vorro.',
-    pdf: 'How-the-American-Lung-Association-Streamlined-Data-Integration-with-BridgeGate.pdf',
+    pdf: '/case-studies/How-the-American-Lung-Association-Streamlined-Data-Integration-with-BridgeGate.pdf',
   },
   {
     title: 'Scaling Healthcare Analytics: How BridgeGate Processed 45TB of Patient Data in 44 Hours',
@@ -51,7 +53,7 @@ const caseStudies = [
     statLabel: 'processed in 44 hours — 1M complex CCDs per hour',
     summary:
       'Delivered a high-performance integration layer that ingested 44M+ patient files from 20+ health plans and 100+ hospitals where competing EiPaaS platforms couldn\'t scale.',
-    pdf: 'Scaling-Healthcare-Analytics-45TB-in-44-Hours.pdf',
+    pdf: '/case-studies/Scaling-Healthcare-Analytics-45TB-in-44-Hours.pdf',
   },
   {
     title: 'Streamlining E-Prescriptions for a Leading DME Provider with Vorro\'s BridgeGate',
@@ -61,7 +63,7 @@ const caseStudies = [
     statLabel: 'monthly transactions, 70% cost savings vs in-house development',
     summary:
       'Ingested and translated HL7, FHIR bundles, PDFs, and JSONs from multiple EMRs into a proprietary format — fully managed so the client could focus entirely on their core business.',
-    pdf: 'Streamlining-E-Prescriptions-for-a-Leading-DME-Provider-with-Vorros-BridgeGate_compressed.pdf',
+    pdf: '/case-studies/Streamlining-E-Prescriptions-for-a-Leading-DME-Provider-with-Vorros-BridgeGate_compressed.pdf',
   },
 ];
 
@@ -76,7 +78,16 @@ const industryColors = {
 
 export default function CaseStudies() {
   const [activeTag, setActiveTag] = useState('All');
+  const [gateOpen, setGateOpen] = useState(false);
+  const [selectedResource, setSelectedResource] = useState(null);
+  const [demoModalOpen, setDemoModalOpen] = useState(false);
+  
   const filtered = activeTag === 'All' ? caseStudies : caseStudies.filter(c => c.tag === activeTag);
+
+  const handleDownload = (cs) => {
+    setSelectedResource({ url: cs.pdf, title: cs.title });
+    setGateOpen(true);
+  };
 
   return (
     <main>
@@ -182,15 +193,13 @@ export default function CaseStudies() {
                   </p>
 
                   {/* CTA */}
-                  <a
-                    href={`/case-studies/${cs.pdf}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onClick={() => handleDownload(cs)}
                     className="btn btn-primary btn-sm"
-                    style={{ alignSelf: 'flex-start' }}
+                    style={{ alignSelf: 'flex-start', display: 'flex', alignItems: 'center', gap: '0.4rem' }}
                   >
-                    Read Case Study <ArrowRight size={13} />
-                  </a>
+                    <Download size={13} /> Download Case Study
+                  </button>
                 </div>
               );
             })}
@@ -205,14 +214,28 @@ export default function CaseStudies() {
               <h2>Ready to Become Our Next Success Story?</h2>
               <p>Schedule a demo and see how Vorro can transform your data operations.</p>
               <div className="cta-banner-actions">
-                <Link to="/contact-us" className="btn btn-cyan btn-xl">
+                <button onClick={() => setDemoModalOpen(true)} className="btn btn-cyan btn-xl">
                   Talk to an Expert <ArrowRight size={18} />
-                </Link>
+                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Resource Gate Modal */}
+      {selectedResource && (
+        <ResourceGate 
+          open={gateOpen} 
+          onOpenChange={setGateOpen}
+          resourceUrl={selectedResource.url}
+          resourceType="pdf"
+          resourceTitle={selectedResource.title}
+        />
+      )}
+
+      {/* Book Demo Modal */}
+      <BookDemoModal open={demoModalOpen} onOpenChange={setDemoModalOpen} />
     </main>
   );
 }
