@@ -170,6 +170,39 @@ BridgeGate processed over 44 million patient files, approximately 45TB of data i
       company: 'Global Retail and E-commerce Conglomerate',
     },
   },
+  'health-system-ltpac': {
+    title: 'Enabling Care Coordination Between Health Systems and LTPAC Providers',
+    client: 'Health Systems & IDNs',
+    industry: 'Healthcare',
+    location: 'USA',
+    pdfUrl: 'https://blobs.vusercontent.net/blob/Vorros-BridgeGate-Enterprise-Integration-Platform-as-a-Service-EiPaaS-l2olIfElGgfctsRN2jJREa65gseTCm.pdf',
+    stats: [
+      { label: 'Health systems connected', value: '250+' },
+      { label: 'Facilities integrated', value: '1,000+' },
+      { label: 'Readmission reduction potential', value: '30%' },
+    ],
+    about: 'Health Systems and Integrated Delivery Networks (IDNs) across the United States seeking to coordinate care across acute, long-term, and post-acute care settings.',
+    challenge: `In today's collaborative environment, more Health Systems and Integrated Delivery Networks (IDNs) are required to move and share large volumes of clinical and financial data. They are seeking solutions that:
+
+• Coordinate care and data integration with Long Term Care and Post-Acute Care (LTPAC) systems
+• Enable "Big Data" and advanced analytics
+• Provide for elevated systems integration
+• Manage evolving healthcare standards like HL7 and FHIR
+
+Currently, patient information is locked in different silos of data, and a trusted, patient-centric view cannot be achieved without an information exchange infrastructure.`,
+    solution: `Vorro's BridgeGate Enterprise Integration Platform As A Service (EiPaaS) solution enables IDNs and Health Information Exchanges (HIE) to:
+
+• Share patient clinical data from Nursing Homes and Home Health agencies
+• Reduce 30-day re-hospitalization through baseline, profile and clinical data reporting
+• Enable medication reconciliation with real-time patient medication information from LTPAC providers
+
+BridgeGate interoperates with any LTC EHR system including PointClickCare, BlueStep, AOD Software, MDI Achieve, NTT DATA, and Optimus. The platform orchestrates millions of real-time data messages daily for 250 health systems, encompassing over 1,000 facilities.`,
+    quote: {
+      text: 'Vorro eliminated the need for emails to be created only by people with coding skills. It allowed us to fulfill more email requests easily.',
+      author: 'Kyle Garrett',
+      company: 'Senior Marketing Operations Manager, Weave',
+    },
+  },
 };
 
 export default function CaseStudyDetail() {

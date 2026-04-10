@@ -68,6 +68,15 @@ const caseStudies = [
     statLabel: 'faster time-to-market',
     summary: 'Migrated QVC and HSN from 10 disparate legacy servers to consistent BridgeGate instances, achieving 100% platform standardization.',
   },
+  {
+    slug: 'health-system-ltpac',
+    title: 'Enabling Care Coordination Between Health Systems and LTPAC Providers',
+    industry: 'Healthcare',
+    tag: 'Healthcare',
+    statValue: '250+',
+    statLabel: 'health systems connected',
+    summary: 'Deployed BridgeGate EiPaaS to enable seamless clinical data sharing between acute care, nursing homes, and home health agencies — reducing 30-day readmissions.',
+  },
 ];
 
 const tags = ['All', 'Healthcare', 'eCommerce', 'Non-Profit', 'Analytics'];

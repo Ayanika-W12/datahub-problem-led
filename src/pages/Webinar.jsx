@@ -150,6 +150,26 @@ export default function Webinar() {
         </div>
       </section>
 
+      {/* UPCOMING WEBINARS SECTION - Hidden for now, uncomment when ready */}
+      {false && (
+        <section className="section">
+          <div className="container">
+            <FadeIn>
+              <div className="section-header" style={{ marginBottom: '2rem' }}>
+                <h2 className="section-title">Upcoming Webinars</h2>
+                <p className="section-subtitle">Register for our upcoming live sessions</p>
+              </div>
+              <div className="grid-3">
+                {/* Add upcoming webinar cards here when available */}
+                <div className="card" style={{ padding: '2rem', textAlign: 'center' }}>
+                  <p style={{ color: 'var(--color-gray-400)' }}>No upcoming webinars scheduled at this time. Check back soon!</p>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+      )}
+
       {/* Resource Gate Modal */}
       {showGate && (
         <>
