@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 
 // Landing page identifier - this will be passed to Zoho Booking
@@ -17,6 +18,16 @@ const UTM_PARAMS = [
 export function BookDemoModal({ open, onOpenChange }) {
   const [bookingUrl, setBookingUrl] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [open]);
 
   useEffect(() => {
     if (open) {
@@ -62,18 +73,18 @@ export function BookDemoModal({ open, onOpenChange }) {
 
   if (!open) return null;
 
-  return (
+  return createPortal(
     <>
       {/* Backdrop */}
-      <div 
+      <div
         className="book-demo-backdrop"
         onClick={handleClose}
       />
-      
+
       {/* Modal */}
       <div className="book-demo-modal">
         {/* Close button */}
-        <button 
+        <button
           className="book-demo-close"
           onClick={handleClose}
           aria-label="Close"
@@ -103,7 +114,8 @@ export function BookDemoModal({ open, onOpenChange }) {
           )}
         </div>
       </div>
-    </>
+    </>,
+    document.body
   );
 }
 

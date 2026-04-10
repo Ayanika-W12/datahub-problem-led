@@ -47,7 +47,7 @@ Real-Time Eligibility & Service Verification:
     client: 'Leading DME Provider',
     industry: 'Durable Medical Equipment',
     location: 'USA',
-    color: 'cyan',
+    color: 'primary',
     pdfUrl: 'https://blobs.vusercontent.net/blob/Streamlining-E-Prescriptions-for-a-Leading-DME-Provider-with-Vorros-BridgeGate_compressed-J6bx3HFiOc5RGfaD8806kANgZFjn98.pdf',
     stats: [
       { label: 'Monthly transactions', value: '5M+', icon: TrendingUp },
@@ -70,7 +70,7 @@ The customer leverages Vorro's Fully Managed EiPaaS Services, which allows the t
     client: 'Pharmacy Management Provider',
     industry: 'Pharmacy Management Software',
     location: 'USA',
-    color: 'green',
+    color: 'primary',
     pdfUrl: 'https://blobs.vusercontent.net/blob/How-a-Pharmacy-Management-Provider-Found-Data-Harmony-with-Vorros-BridgeGate%E2%84%A2-Integration-Platform-sRY1Usiekj0huN8MNhUckHmUuG57G0.pdf',
     stats: [
       { label: 'Patient records processed per day', value: '3M+', icon: Users },
@@ -116,7 +116,7 @@ We digitized the entirety of the incoming data process from various stakeholders
     client: 'Leading EMR Provider',
     industry: 'EMR Software',
     location: 'USA',
-    color: 'cyan',
+    color: 'primary',
     pdfUrl: 'https://blobs.vusercontent.net/blob/Achieving-Seamless-Healthcare-Data-Exchange-for-a-Leading-EMR-Provider_compressed-1-uNn2bSixYP6Lu4jmdS4R0b0fNA1hPR.pdf',
     stats: [
       { label: 'Monthly transactions', value: '3M+', icon: TrendingUp },
@@ -137,7 +137,7 @@ The company has managed to transform its information flow with seamless sharing 
     client: 'Healthcare Analytics Provider',
     industry: 'Healthcare Analytics',
     location: 'USA',
-    color: 'orange',
+    color: 'primary',
     pdfUrl: 'https://blobs.vusercontent.net/blob/Scaling-Healthcare-Analytics-How-BridgeGate%E2%84%A2-Processed-45TB-of-Patient-Data-in-44-Hours-GLEG9XwstjUNRYALudOcPPgSBvqbdV.pdf',
     stats: [
       { label: 'Hospitals and millions of patients', value: '100+', icon: Building2 },
@@ -158,7 +158,7 @@ BridgeGate processed over 44 million patient files, approximately 45TB of data i
     client: 'Global Retail Conglomerate',
     industry: 'Retail / E-commerce',
     location: 'Global',
-    color: 'green',
+    color: 'primary',
     pdfUrl: 'https://blobs.vusercontent.net/blob/How-a-Tier-1-Retail-Conglomerate-Standardized-Technology-for-Two-Global-Shopping-Brands-for-World-Class-Scale-ZTeuSrN1mVExtDMaSMDeHy5Pvmu4Ty.pdf',
     stats: [
       { label: 'Faster time-to-market', value: '65%', icon: Zap },
@@ -302,6 +302,16 @@ export default function CaseStudyDetail() {
   useEffect(() => {
     setVisible(true);
   }, []);
+
+  // Lock body scroll when any modal is open
+  useEffect(() => {
+    if (showGate || showDemo) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [showGate, showDemo]);
 
   if (!study) {
     return (
@@ -571,82 +581,86 @@ export default function CaseStudyDetail() {
       {showGate && (
         <div className="cs-modal-overlay" onClick={() => setShowGate(false)}>
           <div className="cs-modal" onClick={(e) => e.stopPropagation()} style={{ '--accent': colors.bg }}>
-            <button className="cs-modal-close" onClick={() => setShowGate(false)}>
-              <X size={20} />
-            </button>
-            
-            <div className="cs-modal-header" style={{ background: colors.gradient }}>
-              <div className="cs-modal-icon-ring">
-                <Download size={28} />
-              </div>
-              <h3>Download Case Study</h3>
-              <p>Enter your details to receive the PDF</p>
-            </div>
-            
-            <form className="cs-modal-form" onSubmit={handleSubmit}>
-              <div className="cs-form-row">
-                <div className="cs-form-group">
-                  <label>Full Name</label>
-                  <input 
-                    type="text" 
-                    placeholder="Jane Smith"
-                    value={formData.fullName}
-                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                  />
-                </div>
-                <div className="cs-form-group">
-                  <label>Job Title</label>
-                  <input 
-                    type="text" 
-                    placeholder="VP of Engineering"
-                    value={formData.jobTitle}
-                    onChange={(e) => setFormData({ ...formData, jobTitle: e.target.value })}
-                  />
-                </div>
-              </div>
-              
-              <div className="cs-form-group">
-                <label>Company</label>
-                <input 
-                  type="text" 
-                  placeholder="Your organization"
-                  value={formData.company}
-                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                />
-              </div>
-              
-              <div className="cs-form-group">
-                <label>Work Email</label>
-                <input 
-                  type="email" 
-                  placeholder="jane@company.com"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                />
-              </div>
-              
-              {error && <p className="cs-form-error">{error}</p>}
-              
-              <button 
-                type="submit" 
-                className="cs-form-submit"
-                style={{ background: colors.gradient }}
-                disabled={loading}
-              >
-                {loading ? (
-                  <>Processing...</>
-                ) : (
-                  <>
-                    Get the PDF
-                    <ArrowRight size={18} />
-                  </>
-                )}
+
+            {/* Accent top bar */}
+            <div className="cs-modal-accent-bar" style={{ background: colors.bg }} />
+
+            <div className="cs-modal-body">
+              <button className="cs-modal-close" onClick={() => setShowGate(false)}>
+                <X size={15} />
               </button>
-              
-              <p className="cs-form-note">
-                By submitting, you agree to our privacy policy. We respect your data.
-              </p>
-            </form>
+
+              {/* Header */}
+              <div className="cs-modal-hd">
+                <div className="cs-modal-icon-box" style={{ background: colors.light, color: colors.bg }}>
+                  <Download size={18} />
+                </div>
+                <div>
+                  <h3 className="cs-modal-title">Download Case Study</h3>
+                  <p className="cs-modal-sub">{study.client} · PDF Report</p>
+                </div>
+              </div>
+
+              <form className="cs-modal-form" onSubmit={handleSubmit}>
+                <div className="cs-form-row">
+                  <div className="cs-form-group">
+                    <label>Full Name</label>
+                    <input
+                      type="text"
+                      placeholder="Jane Smith"
+                      value={formData.fullName}
+                      onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                      required
+                    />
+                  </div>
+                  <div className="cs-form-group">
+                    <label>Job Title</label>
+                    <input
+                      type="text"
+                      placeholder="VP of Engineering"
+                      value={formData.jobTitle}
+                      onChange={(e) => setFormData({ ...formData, jobTitle: e.target.value })}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="cs-form-group">
+                  <label>Company</label>
+                  <input
+                    type="text"
+                    placeholder="Your organization"
+                    value={formData.company}
+                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                    required
+                  />
+                </div>
+
+                <div className="cs-form-group">
+                  <label>Work Email</label>
+                  <input
+                    type="email"
+                    placeholder="jane@company.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    required
+                  />
+                </div>
+
+                {error && <p className="cs-form-error">{error}</p>}
+
+                <button
+                  type="submit"
+                  className="cs-form-submit"
+                  style={{ background: colors.bg }}
+                  disabled={loading}
+                >
+                  {loading ? 'Processing…' : (<>Get the PDF <ArrowRight size={16} /></>)}
+                </button>
+
+                <p className="cs-form-note">No spam. We respect your privacy.</p>
+              </form>
+            </div>
           </div>
         </div>
       )}

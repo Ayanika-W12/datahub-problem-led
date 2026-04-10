@@ -1,111 +1,49 @@
-import { useState, useEffect } from 'react';
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const tools = [
   {
-    title: 'FHIR Validation Tool',
-    description: 'Check FHIR resources for structure, compliance, and data quality before production.',
+    tag: 'Free Tool',
+    title: 'FHIR Validation',
+    description: 'Check FHIR resources for structure, compliance, and data quality before they hit production.',
     link: 'https://vorro.net/FHIR-Validation/',
-    cta: 'Try Free',
+    cta: 'Try it free',
   },
   {
-    title: 'BridgeGate N8N Node',
-    description: 'Connect n8n workflows to BridgeGate for seamless healthcare data automation.',
+    tag: 'Free Tool',
+    title: 'BridgeGate for N8N',
+    description: 'Bring native EMR connectivity to n8n workflows — no custom code, no middleware.',
     link: 'https://vorro.net/BridgeGate-N8N-Node/',
-    cta: 'Get Started',
+    cta: 'Get started',
   },
 ];
 
 export function FreeToolsBanner() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-
-  // Auto-advance slides
-  useEffect(() => {
-    if (isHovered) return;
-    
-    const timer = setInterval(() => {
-      setActiveIndex(prev => (prev + 1) % tools.length);
-    }, 5000);
-    
-    return () => clearInterval(timer);
-  }, [isHovered]);
-
-  const goTo = (index) => setActiveIndex(index);
-  const goPrev = () => setActiveIndex(prev => (prev - 1 + tools.length) % tools.length);
-  const goNext = () => setActiveIndex(prev => (prev + 1) % tools.length);
-
   return (
-    <section 
-      className="ftb-section"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <section className="ftb-section">
       <div className="ftb-container">
-        {/* Left: Badge + Indicator */}
         <div className="ftb-left">
-          <div className="ftb-badge">
-            New Free Tools
-          </div>
-          <div className="ftb-dots">
-            {tools.map((_, i) => (
-              <button 
-                key={i} 
-                className={`ftb-dot ${i === activeIndex ? 'active' : ''}`}
-                onClick={() => goTo(i)}
-                aria-label={`Go to slide ${i + 1}`}
-              />
-            ))}
-          </div>
+          <div className="ftb-badge">New Free Tools</div>
+          <p className="ftb-left-sub">No cost · No commitment</p>
         </div>
 
-        {/* Center: Slide Content */}
-        <div className="ftb-slides">
-          {tools.map((tool, i) => (
-            <div 
-              key={i}
-              className={`ftb-slide ${i === activeIndex ? 'active' : ''}`}
+        <div className="ftb-cards">
+          {tools.map((tool) => (
+            <a
+              key={tool.title}
+              href={tool.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ftb-card"
             >
-              <div className="ftb-slide-content">
-                <h3 className="ftb-slide-title">{tool.title}</h3>
-                <p className="ftb-slide-desc">{tool.description}</p>
-              </div>
-            </div>
+              <span className="ftb-card-tag">{tool.tag}</span>
+              <div className="ftb-card-title">{tool.title}</div>
+              <p className="ftb-card-desc">{tool.description}</p>
+              <span className="ftb-card-cta">
+                {tool.cta} <ArrowRight size={12} />
+              </span>
+            </a>
           ))}
         </div>
-
-        {/* Right: CTA + Nav */}
-        <div className="ftb-right">
-          <a 
-            href={tools[activeIndex].link} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="ftb-cta"
-          >
-            {tools[activeIndex].cta}
-            <ArrowRight size={16} />
-          </a>
-          <div className="ftb-nav">
-            <button className="ftb-nav-btn" onClick={goPrev} aria-label="Previous">
-              <ChevronLeft size={18} />
-            </button>
-            <button className="ftb-nav-btn" onClick={goNext} aria-label="Next">
-              <ChevronRight size={18} />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Progress bar */}
-      <div className="ftb-progress">
-        <div 
-          className="ftb-progress-bar" 
-          style={{ 
-            animationDuration: isHovered ? '0s' : '5s',
-            animationPlayState: isHovered ? 'paused' : 'running'
-          }}
-          key={activeIndex}
-        />
       </div>
     </section>
   );
