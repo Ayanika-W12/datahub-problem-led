@@ -283,18 +283,6 @@ export default function Home() {
 
           {/* Right — Platform Capabilities Frame (exact design from provided HTML) */}
           <div className="capabilities-wrapper">
-            {/* Badges positioned outside the frame */}
-            <div className="frame-badges">
-              <div className="frame-badge managed">
-                <div className="frame-badge-label">Delivery Model</div>
-                <div className="frame-badge-value">Fully Managed</div>
-              </div>
-              <div className="frame-badge cost">
-                <div className="frame-badge-label">Commercial Value</div>
-                <div className="frame-badge-value">Low Cost</div>
-              </div>
-            </div>
-
             <div className="capabilities-frame">
               <div className="frame-grid-overlay" />
               <div className="frame-particles" />

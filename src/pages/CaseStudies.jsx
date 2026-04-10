@@ -185,11 +185,9 @@ export default function CaseStudies() {
             </p>
             <button 
               onClick={() => setDemoModalOpen(true)} 
-              className="btn btn-white"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+              className="btn btn-cyan btn-xl"
             >
-              Talk to an Expert
-              <ArrowRight size={18} />
+              Talk to an Expert <ArrowRight size={18} />
             </button>
           </div>
         </div>

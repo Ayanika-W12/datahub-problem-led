@@ -123,15 +123,16 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .hero-proof-item {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
   font-size: var(--text-sm);
   color: rgba(255,255,255,0.55);
+  white-space: nowrap;
 }
 
 .hero-proof-item svg {
@@ -1626,22 +1627,22 @@
     inset 0 1px 0 rgba(255,255,255,0.10),
     0 12px 30px rgba(0,0,0,0.18);
   overflow: hidden;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
   animation: floatCenter 7.2s ease-in-out infinite;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  }
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
 
 .frame-pillar:hover {
-  transform: translate(-50%, -50%) scale(1.08);
+  transform: translate(-50%, -50%) scale(1.1);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.15),
     0 16px 40px rgba(0,0,0,0.25);
   border-color: var(--accent, rgba(237, 237, 237, 0.25));
   z-index: 10;
-  }
+}
 
 .frame-pillar::before {
   content: "";
@@ -1696,15 +1697,7 @@
   display: none;
   }
 
-/* Hover state - grow on hover */
-.frame-pillar:hover {
-  transform: translate(-50%, -50%) scale(1.08);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.14),
-    0 20px 50px rgba(0,0,0,0.25),
-    0 0 30px rgba(32, 211, 239, 0.15);
-  z-index: 10;
-}
+
 
 .frame-pillar:hover::after {
   box-shadow: 0 0 32px var(--accent);
@@ -1721,8 +1714,8 @@
 
 /* Animations - exact from provided HTML */
 @keyframes floatCenter {
-  0%, 100% { transform: translate(-50%, -50%); }
-  50% { transform: translate(-50%, calc(-50% - 6px)); }
+  0%, 100% { margin-top: 0; }
+  50% { margin-top: -6px; }
 }
 
 @keyframes pulse {
