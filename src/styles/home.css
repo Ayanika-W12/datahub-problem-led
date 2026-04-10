@@ -4314,7 +4314,12 @@
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--color-gray-100);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  transition: all 0.3s;
+}
+
+.cs-download-box:hover {
+  border-color: rgba(172,65,151,0.15);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.08);
 }
 
 .cs-download-top {
