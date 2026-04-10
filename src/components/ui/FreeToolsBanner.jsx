@@ -1,86 +1,117 @@
-import { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ArrowRight, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const tools = [
   {
-    title: 'FHIR Validation',
-    badge: 'New FREE Tool',
-    description: 'Check FHIR resources for structure, compliance, and data quality before they reach production workflows.',
+    title: 'FHIR Validation Tool',
+    badge: 'Free Tool',
+    description: 'Check FHIR resources for structure, compliance, and data quality before they reach production.',
     link: 'https://vorro.net/FHIR-Validation/',
-    cta: 'Validate FHIR',
+    cta: 'Validate Now',
+    icon: '🔍',
   },
   {
     title: 'BridgeGate N8N Node',
-    badge: 'New FREE Tool',
-    description: 'Connect your n8n workflows to BridgeGate for seamless healthcare data automation and integration.',
+    badge: 'Free Tool',
+    description: 'Connect your n8n workflows to BridgeGate for seamless healthcare data automation.',
     link: 'https://vorro.net/BridgeGate-N8N-Node/',
-    cta: 'Try N8N Node',
+    cta: 'Get Started',
+    icon: '⚡',
   },
 ];
 
 export function FreeToolsBanner() {
-  const [offset, setOffset] = useState(0);
-  const containerRef = useRef(null);
-  const animationRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
-  // Continuous smooth scroll animation
+  // Auto-advance slides
   useEffect(() => {
-    const speed = 0.5; // pixels per frame
+    if (isHovered) return;
     
-    const animate = () => {
-      setOffset(prev => {
-        // Reset when scrolled full width of one set
-        const containerWidth = containerRef.current?.scrollWidth / 2 || 800;
-        if (prev >= containerWidth) {
-          return 0;
-        }
-        return prev + speed;
-      });
-      animationRef.current = requestAnimationFrame(animate);
-    };
+    const timer = setInterval(() => {
+      setActiveIndex(prev => (prev + 1) % tools.length);
+    }, 5000);
     
-    animationRef.current = requestAnimationFrame(animate);
-    
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, []);
+    return () => clearInterval(timer);
+  }, [isHovered]);
+
+  const goTo = (index) => setActiveIndex(index);
+  const goPrev = () => setActiveIndex(prev => (prev - 1 + tools.length) % tools.length);
+  const goNext = () => setActiveIndex(prev => (prev + 1) % tools.length);
 
   return (
-    <section className="tools-banner-v2">
-      {/* Grainy noise overlay */}
-      <div className="tools-banner-noise" />
-      
-      {/* Glassmorphism background */}
-      <div className="tools-banner-glass" />
-      
-      {/* Scrolling content */}
-      <div 
-        ref={containerRef}
-        className="tools-banner-scroll"
-        style={{ transform: `translateX(-${offset}px)` }}
-      >
-        {/* Duplicate tools for seamless loop */}
-        {[...tools, ...tools, ...tools, ...tools].map((tool, i) => (
+    <section 
+      className="ftb-section"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="ftb-container">
+        {/* Left: Badge + Indicator */}
+        <div className="ftb-left">
+          <div className="ftb-badge">
+            <Sparkles size={14} />
+            <span>New Free Tools</span>
+          </div>
+          <div className="ftb-dots">
+            {tools.map((_, i) => (
+              <button 
+                key={i} 
+                className={`ftb-dot ${i === activeIndex ? 'active' : ''}`}
+                onClick={() => goTo(i)}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Center: Slide Content */}
+        <div className="ftb-slides">
+          {tools.map((tool, i) => (
+            <div 
+              key={i}
+              className={`ftb-slide ${i === activeIndex ? 'active' : ''}`}
+            >
+              <span className="ftb-slide-icon">{tool.icon}</span>
+              <div className="ftb-slide-content">
+                <h3 className="ftb-slide-title">{tool.title}</h3>
+                <p className="ftb-slide-desc">{tool.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Right: CTA + Nav */}
+        <div className="ftb-right">
           <a 
-            key={i} 
-            href={tool.link} 
+            href={tools[activeIndex].link} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="tools-banner-item"
+            className="ftb-cta"
           >
-            <div className="tools-banner-item-badge">
-              <Sparkles size={10} />
-              {tool.badge}
-            </div>
-            <div className="tools-banner-item-title">{tool.title}</div>
-            <div className="tools-banner-item-cta">
-              {tool.cta} <ArrowRight size={12} />
-            </div>
+            {tools[activeIndex].cta}
+            <ArrowRight size={16} />
           </a>
-        ))}
+          <div className="ftb-nav">
+            <button className="ftb-nav-btn" onClick={goPrev} aria-label="Previous">
+              <ChevronLeft size={18} />
+            </button>
+            <button className="ftb-nav-btn" onClick={goNext} aria-label="Next">
+              <ChevronRight size={18} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Progress bar */}
+      <div className="ftb-progress">
+        <div 
+          className="ftb-progress-bar" 
+          style={{ 
+            animationDuration: isHovered ? '0s' : '5s',
+            animationPlayState: isHovered ? 'paused' : 'running'
+          }}
+          key={activeIndex}
+        />
       </div>
     </section>
   );

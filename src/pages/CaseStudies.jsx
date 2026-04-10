@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Building2, TrendingUp, Filter, Sparkles } from 'lucide-react';
 import { BookDemoModal } from '../components/ui/BookDemoModal';
-import FadeIn from '../components/ui/FadeIn';
 
 const caseStudies = [
   {
@@ -13,6 +12,7 @@ const caseStudies = [
     statValue: '75%',
     statLabel: 'reduction in integration maintenance cost',
     summary: 'Implemented automated EDI pipeline and millisecond-speed eligibility verification through a high-performance API for a leading benefits administrator.',
+    accent: '#0ea5e9',
   },
   {
     slug: 'dme-provider',
@@ -21,7 +21,8 @@ const caseStudies = [
     tag: 'Healthcare',
     statValue: '5M+',
     statLabel: 'monthly transactions processed',
-    summary: 'Ingested and translated HL7, FHIR bundles, PDFs, and JSONs from multiple EMRs into a proprietary format — fully managed so the client could focus on their core business.',
+    summary: 'Ingested and translated HL7, FHIR bundles, PDFs, and JSONs from multiple EMRs into a proprietary format.',
+    accent: '#0ea5e9',
   },
   {
     slug: 'pharmacy-management',
@@ -30,7 +31,8 @@ const caseStudies = [
     tag: 'Healthcare',
     statValue: '3M+',
     statLabel: 'patient records processed per day',
-    summary: 'Connected hundreds of hospitals and clinics via mixed HL7 & SFTP to validate 340B eligibility in near-real-time, giving patients immediate access to discounted medications.',
+    summary: 'Connected hundreds of hospitals and clinics via mixed HL7 & SFTP to validate 340B eligibility in near-real-time.',
+    accent: '#0ea5e9',
   },
   {
     slug: 'american-lung-association',
@@ -39,7 +41,8 @@ const caseStudies = [
     tag: 'Non-Profit',
     statValue: '99.9%',
     statLabel: 'uptime, 100+ clinics served',
-    summary: 'Replaced manual fax-and-paper tobacco cessation referrals with automated digital exchange between hospitals, clinics, and EMRs — fully managed by Vorro.',
+    summary: 'Replaced manual fax-and-paper tobacco cessation referrals with automated digital exchange between hospitals, clinics, and EMRs.',
+    accent: '#16a34a',
   },
   {
     slug: 'emr-provider',
@@ -48,7 +51,8 @@ const caseStudies = [
     tag: 'Healthcare',
     statValue: '3M+',
     statLabel: 'monthly transactions',
-    summary: 'Translated complex HL7 ADT and CCD formats into a single standard across hospitals, clinics, and HIEs — freeing the client to focus on mental health and disability solutions.',
+    summary: 'Translated complex HL7 ADT and CCD formats into a single standard across hospitals, clinics, and HIEs.',
+    accent: '#0ea5e9',
   },
   {
     slug: 'healthcare-analytics',
@@ -57,7 +61,8 @@ const caseStudies = [
     tag: 'Analytics',
     statValue: '45TB',
     statLabel: 'processed in 44 hours',
-    summary: 'Delivered a high-performance integration layer that ingested 44M+ patient files from 20+ health plans and 100+ hospitals where competing EiPaaS platforms couldn\'t scale.',
+    summary: 'Delivered a high-performance integration layer that ingested 44M+ patient files from 20+ health plans and 100+ hospitals.',
+    accent: 'var(--color-primary)',
   },
   {
     slug: 'retail-conglomerate',
@@ -66,7 +71,8 @@ const caseStudies = [
     tag: 'eCommerce',
     statValue: '65%',
     statLabel: 'faster time-to-market',
-    summary: 'Migrated QVC and HSN from 10 disparate legacy servers to consistent BridgeGate instances, achieving 100% platform standardization.',
+    summary: 'Migrated QVC and HSN from 10 disparate legacy servers to consistent BridgeGate instances.',
+    accent: '#d97706',
   },
   {
     slug: 'health-system-ltpac',
@@ -75,96 +81,223 @@ const caseStudies = [
     tag: 'Healthcare',
     statValue: '250+',
     statLabel: 'health systems connected',
-    summary: 'Deployed BridgeGate EiPaaS to enable seamless clinical data sharing between acute care, nursing homes, and home health agencies — reducing 30-day readmissions.',
+    summary: 'Deployed BridgeGate EiPaaS to enable seamless clinical data sharing between acute care, nursing homes, and home health agencies.',
+    accent: '#0ea5e9',
   },
 ];
 
 const tags = ['All', 'Healthcare', 'eCommerce', 'Non-Profit', 'Analytics'];
 
-const industryColors = {
-  Healthcare: { bg: 'rgba(14,165,233,0.1)', color: '#0ea5e9' },
-  eCommerce:  { bg: 'rgba(245,158,11,0.1)',  color: '#d97706' },
-  'Non-Profit': { bg: 'rgba(34,197,94,0.1)', color: '#16a34a' },
-  Analytics:  { bg: 'rgba(172,65,151,0.12)', color: 'var(--color-primary)' },
+const industryConfig = {
+  Healthcare: { bg: 'rgba(14,165,233,0.08)', color: '#0ea5e9', icon: '🏥' },
+  eCommerce:  { bg: 'rgba(245,158,11,0.08)', color: '#d97706', icon: '🛒' },
+  'Non-Profit': { bg: 'rgba(34,197,94,0.08)', color: '#16a34a', icon: '💚' },
+  Analytics:  { bg: 'rgba(172,65,151,0.08)', color: 'var(--color-primary)', icon: '📊' },
 };
+
+function AnimatedStat({ value, delay = 0 }) {
+  const [displayed, setDisplayed] = useState(value);
+  const ref = useRef(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          
+          // Extract number from value
+          const numMatch = value.match(/[\d.]+/);
+          if (!numMatch) {
+            setDisplayed(value);
+            return;
+          }
+          
+          const targetNum = parseFloat(numMatch[0]);
+          const prefix = value.slice(0, value.indexOf(numMatch[0]));
+          const suffix = value.slice(value.indexOf(numMatch[0]) + numMatch[0].length);
+          
+          let start = 0;
+          const duration = 1200;
+          const startTime = performance.now() + delay;
+          
+          const animate = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            if (elapsed < 0) {
+              requestAnimationFrame(animate);
+              return;
+            }
+            
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = targetNum * eased;
+            
+            const formatted = targetNum >= 1 
+              ? (targetNum % 1 === 0 ? Math.round(current) : current.toFixed(1))
+              : current.toFixed(1);
+            
+            setDisplayed(`${prefix}${formatted}${suffix}`);
+            
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            } else {
+              setDisplayed(value);
+            }
+          };
+          
+          requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [value, delay]);
+
+  return <span ref={ref}>{displayed}</span>;
+}
 
 export default function CaseStudies() {
   const [activeTag, setActiveTag] = useState('All');
   const [demoModalOpen, setDemoModalOpen] = useState(false);
+  const [heroVisible, setHeroVisible] = useState(false);
   
   const filtered = activeTag === 'All' ? caseStudies : caseStudies.filter(c => c.tag === activeTag);
 
+  useEffect(() => {
+    setTimeout(() => setHeroVisible(true), 100);
+  }, []);
+
   return (
-    <main>
-      <section className="vertical-hero" style={{ minHeight: 'auto', padding: '5rem 0 2.5rem' }}>
+    <main className="csl-page">
+      {/* Hero Section */}
+      <section className="csl-hero">
+        <div className="csl-hero-bg">
+          <div className="csl-hero-gradient" />
+          <div className="csl-hero-grid" />
+          <div className="csl-hero-glow" />
+        </div>
+        
         <div className="container">
-          <FadeIn>
-            <span className="hero-eyebrow">Case Studies</span>
-            <h1 className="hero-title" style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)' }}>
-              Real Outcomes from Real Clients
-            </h1>
-            <p className="hero-subtitle" style={{ maxWidth: '600px' }}>
+          <div className={`csl-hero-inner ${heroVisible ? 'visible' : ''}`}>
+            <span className="csl-eyebrow">
+              <Sparkles size={14} />
+              Case Studies
+            </span>
+            <h1 className="csl-title">Real Outcomes from Real Clients</h1>
+            <p className="csl-subtitle">
               Healthcare organizations, health plans, and enterprises trust Vorro to power their most critical data infrastructure.
             </p>
-          </FadeIn>
+            
+            {/* Stats row */}
+            <div className="csl-stats-row">
+              <div className="csl-stat-pill">
+                <TrendingUp size={18} />
+                <strong>8</strong>
+                <span>Success Stories</span>
+              </div>
+              <div className="csl-stat-pill">
+                <Building2 size={18} />
+                <strong>100+</strong>
+                <span>Enterprise Clients</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="section bg-light" style={{ paddingTop: '2rem' }}>
+      {/* Main Content */}
+      <section className="csl-content">
         <div className="container">
-          {/* Filter tabs */}
-          <div className="case-filters">
-            {tags.map(t => (
-              <button
-                key={t}
-                className={`case-filter-btn ${activeTag === t ? 'active' : ''}`}
-                onClick={() => setActiveTag(t)}
-              >
-                {t}
-              </button>
-            ))}
+          {/* Filter Bar */}
+          <div className="csl-filter-bar">
+            <div className="csl-filter-label">
+              <Filter size={16} />
+              <span>Filter by industry:</span>
+            </div>
+            <div className="csl-filters">
+              {tags.map(t => (
+                <button
+                  key={t}
+                  className={`csl-filter ${activeTag === t ? 'active' : ''}`}
+                  onClick={() => setActiveTag(t)}
+                >
+                  {t !== 'All' && industryConfig[t] && (
+                    <span className="csl-filter-icon">{industryConfig[t].icon}</span>
+                  )}
+                  {t}
+                </button>
+              ))}
+            </div>
           </div>
 
-          <div className="case-grid">
+          {/* Cards Grid */}
+          <div className="csl-grid">
             {filtered.map((cs, i) => {
-              const palette = industryColors[cs.industry] || industryColors['Analytics'];
+              const config = industryConfig[cs.industry] || industryConfig['Analytics'];
               return (
-                <FadeIn key={cs.slug} delay={i * 50}>
-                  <Link to={`/case-studies/${cs.slug}`} className="case-card">
-                    <span className="case-card-tag" style={{ background: palette.bg, color: palette.color }}>
+                <Link 
+                  to={`/case-studies/${cs.slug}`} 
+                  className="csl-card"
+                  key={cs.slug}
+                  style={{ 
+                    '--card-accent': cs.accent,
+                    animationDelay: `${i * 0.05}s`
+                  }}
+                >
+                  {/* Accent gradient */}
+                  <div className="csl-card-accent" style={{ background: `linear-gradient(135deg, ${cs.accent}15 0%, transparent 60%)` }} />
+                  
+                  {/* Header */}
+                  <div className="csl-card-header">
+                    <span className="csl-card-tag" style={{ background: config.bg, color: config.color }}>
+                      <span>{config.icon}</span>
                       {cs.industry}
                     </span>
-                    
-                    <div className="case-card-stat">
-                      <span className="case-card-stat-value">{cs.statValue}</span>
-                      <span className="case-card-stat-label">{cs.statLabel}</span>
-                    </div>
+                  </div>
 
-                    <h3 className="case-card-title">{cs.title}</h3>
-                    <p className="case-card-summary">{cs.summary}</p>
-
-                    <span className="case-card-link">
-                      Read Case Study <ArrowRight size={14} />
+                  {/* Stat */}
+                  <div className="csl-card-stat">
+                    <span className="csl-card-stat-value" style={{ color: cs.accent }}>
+                      <AnimatedStat value={cs.statValue} delay={i * 100} />
                     </span>
-                  </Link>
-                </FadeIn>
+                    <span className="csl-card-stat-label">{cs.statLabel}</span>
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="csl-card-title">{cs.title}</h3>
+                  <p className="csl-card-summary">{cs.summary}</p>
+
+                  {/* Footer */}
+                  <div className="csl-card-footer">
+                    <span className="csl-card-link" style={{ color: cs.accent }}>
+                      Read Case Study
+                      <ArrowRight size={16} />
+                    </span>
+                  </div>
+                </Link>
               );
             })}
           </div>
         </div>
       </section>
 
-      <section className="section cta-outer">
+      {/* CTA Section */}
+      <section className="csl-cta">
         <div className="container">
-          <div className="cta-banner">
-            <div className="cta-banner-content">
+          <div className="csl-cta-card">
+            <div className="csl-cta-content">
               <h2>Ready to Become Our Next Success Story?</h2>
               <p>Schedule a demo and see how Vorro can transform your data operations.</p>
-              <div className="cta-banner-actions">
-                <button onClick={() => setDemoModalOpen(true)} className="btn btn-cyan btn-xl">
-                  Talk to an Expert <ArrowRight size={18} />
-                </button>
-              </div>
+              <button onClick={() => setDemoModalOpen(true)} className="csl-cta-btn">
+                Talk to an Expert
+                <ArrowRight size={18} />
+              </button>
+            </div>
+            <div className="csl-cta-visual">
+              <div className="csl-cta-orb csl-cta-orb-1" />
+              <div className="csl-cta-orb csl-cta-orb-2" />
             </div>
           </div>
         </div>
