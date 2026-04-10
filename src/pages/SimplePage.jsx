@@ -394,7 +394,7 @@ function AIPlatformPage() {
             Vorro's AI-powered platform connects your systems, monitors your data, and automates your workflows — so your teams can focus on what matters, not chasing data.
           </p>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '2rem' }}>
-            <Link to="/contact-us" className="btn btn-cyan btn-lg">Get a Demo <ArrowRight size={16} /></Link>
+            <Link to="/contact-us" className="btn btn-cyan btn-lg">Talk to an Expert <ArrowRight size={16} /></Link>
             <Link to="/platform/analytics-nlp" className="btn btn-ghost-white btn-lg">Explore Capabilities</Link>
           </div>
         </div>

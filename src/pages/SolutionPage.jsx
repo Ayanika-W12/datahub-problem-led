@@ -285,7 +285,7 @@ export default function SolutionPage({ slug }) {
               </p>
               <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                 <Link to="/contact-us" className="btn btn-cyan btn-lg">
-                  Get a Demo <ArrowRight size={16} />
+                  Talk to an Expert <ArrowRight size={16} />
                 </Link>
                 <Link to="/case-studies" className="btn btn-ghost-white btn-lg">
                   View Case Studies
@@ -530,7 +530,7 @@ export default function SolutionPage({ slug }) {
               <p>Talk to a Vorro integration expert about {data.title.toLowerCase()} for your organization.</p>
               <div className="cta-banner-actions">
                 <Link to="/contact-us" className="btn btn-cyan btn-xl">
-                  Schedule a Demo <ArrowRight size={18} />
+                  Talk to an Expert <ArrowRight size={18} />
                 </Link>
                 <Link to="/build-vs-buy" className="btn btn-ghost-white btn-xl">
                   Build vs. Buy Guide

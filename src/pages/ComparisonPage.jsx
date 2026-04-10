@@ -300,7 +300,7 @@ export default function ComparisonPage({ competitor }) {
               <p>Get a custom demo tailored to your specific integration environment and challenges.</p>
               <div className="cta-banner-actions">
                 <Link to="/contact-us" className="btn btn-cyan btn-xl">
-                  Schedule a Demo <ArrowRight size={18} />
+                  Talk to an Expert <ArrowRight size={18} />
                 </Link>
               </div>
             </div>

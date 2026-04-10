@@ -206,7 +206,7 @@ export default function CaseStudies() {
               <p>Schedule a demo and see how Vorro can transform your data operations.</p>
               <div className="cta-banner-actions">
                 <Link to="/contact-us" className="btn btn-cyan btn-xl">
-                  Get a Demo <ArrowRight size={18} />
+                  Talk to an Expert <ArrowRight size={18} />
                 </Link>
               </div>
             </div>

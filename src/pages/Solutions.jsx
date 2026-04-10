@@ -78,7 +78,7 @@ export default function Solutions() {
           </p>
           <div className="vertical-hero-actions">
             <Link to="/contact-us" className="btn btn-cyan btn-lg">
-              Get a Demo <ArrowRight size={16} />
+              Talk to an Expert <ArrowRight size={16} />
             </Link>
             <Link to="/build-vs-buy" className="btn btn-ghost-white btn-lg">
               Build vs. Buy Guide

@@ -47,14 +47,14 @@ const capabilities = [
     desc: 'Transform unstructured clinical notes, discharge summaries, and prior auth letters into structured FHIR R4 data. Auto-map to ICD-10, CPT, SNOMED CT, LOINC, and RxNorm.',
     color: 'primary',
     to: '/platform/analytics-nlp',
-    bullets: ['De-identification & PHI redaction', 'NER & concept extraction', 'FHIR R4 structured output'],
+    bullets: ['De-identification & PHI redaction', 'Entity extraction', 'FHIR R4 structured output'],
   },
   {
     num: '02',
     icon: <Workflow size={28} />,
     label: 'Reporting & Conversational AI',
-    title: 'Natural Language Queries. Instant Reports.',
-    desc: 'Ask your data questions in plain English. Get HEDIS, eCQM, QRDA, claims adjudication, and executive dashboard reports — automatically, without SQL.',
+    title: 'Conversational Queries. Instant Reports.',
+    desc: 'Ask your data questions in plain English using Conversational AI. Get HEDIS, eCQM, QRDA, claims adjudication, and executive dashboard reports — automatically, without SQL.',
     color: 'cyan',
     to: '/platform/reporting-nlp',
     bullets: ['No SQL required', 'HEDIS, Stars, CAHPS reports', 'eCQM / QRDA I & III'],
@@ -222,6 +222,8 @@ function FadeIn({ children, delay = 0, className = '' }) {
    HOME PAGE
    ============================================ */
 export default function Home() {
+  const [activeCapIdx, setActiveCapIdx] = useState(0);
+  const activeCap = capabilities[activeCapIdx];
 
   return (
     <main>
@@ -252,11 +254,11 @@ export default function Home() {
               Stop chasing data. Vorro connects, monitors, and automates your healthcare data
               workflows — fully managed, low cost, ready in weeks.
             </p>
-            <div className="hero-actions">
-              <Link to="/contact-us" className="btn btn-cyan btn-xl">
-                Get a Platform Demo <ArrowRight size={18} />
+            <div className="hero-actions hero-actions-inline">
+              <Link to="/contact-us" className="btn btn-cyan btn-md">
+                Talk to an Expert <ArrowRight size={16} />
               </Link>
-              <Link to="/case-studies" className="btn btn-ghost-white btn-xl">
+              <Link to="/case-studies" className="btn btn-ghost-white btn-md">
                 View Case Studies
               </Link>
             </div>
@@ -456,7 +458,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PLATFORM OVERVIEW */}
+      {/* PLATFORM OVERVIEW — tab pills + detail panel */}
       <section className="section platform-section">
         <div className="container">
           <FadeIn>
@@ -466,15 +468,42 @@ export default function Home() {
               <p>Each capability is powerful standalone. Together, they form the most complete healthcare data platform built for enterprise interoperability.</p>
             </div>
           </FadeIn>
+          {/* Pills */}
           <FadeIn>
-            <div className="cap-grid-mini">
-              {capabilities.map((cap) => (
-                <Link key={cap.num} to={cap.to} className={`cap-mini-card cap-mini-${cap.color}`} style={{ textDecoration: 'none' }}>
-                  <div className={`cap-mini-icon cap-icon-${cap.color}`}>{cap.icon}</div>
-                  <div className="cap-mini-num">{cap.num}</div>
-                  <div className="cap-mini-label">{cap.label}</div>
-                </Link>
+            <div className="cap-tabs">
+              {capabilities.map((cap, i) => (
+                <button
+                  key={cap.num}
+                  className={`cap-tab${i === activeCapIdx ? ' cap-tab-active' : ''}`}
+                  onClick={() => setActiveCapIdx(i)}
+                >
+                  <span className="cap-tab-num">{cap.num}</span>
+                  {cap.label}
+                </button>
               ))}
+            </div>
+          </FadeIn>
+          {/* Detail Panel */}
+          <FadeIn>
+            <div className="cap-panel">
+              <div className="cap-panel-left">
+                <div className={`cap-panel-icon cap-icon-${activeCap.color}`}>{activeCap.icon}</div>
+                <div className="cap-panel-num">{activeCap.num}</div>
+                <div className={`cap-panel-label cap-label-${activeCap.color}`}>{activeCap.label.toUpperCase()}</div>
+                <h3 className="cap-panel-title">{activeCap.title}</h3>
+                <p className="cap-panel-desc">{activeCap.desc}</p>
+                <ul className="cap-panel-bullets">
+                  {activeCap.bullets.map(b => (
+                    <li key={b}><CheckCircle2 size={14} /> {b}</li>
+                  ))}
+                </ul>
+                <Link to={activeCap.to} className="btn btn-primary btn-md" style={{ marginTop: '1.5rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                  Explore {activeCap.label} <ArrowRight size={14} />
+                </Link>
+              </div>
+              <div className="cap-panel-right">
+                <CapabilityVisual num={activeCap.num} color={activeCap.color} icon={activeCap.icon} label={activeCap.label} />
+              </div>
             </div>
           </FadeIn>
         </div>
@@ -576,7 +605,7 @@ export default function Home() {
                 </p>
                 <div className="cta-banner-actions">
                   <Link to="/contact-us" className="btn btn-cyan btn-xl">
-                    Schedule a Demo <ArrowRight size={18} />
+                    Talk to an Expert <ArrowRight size={18} />
                   </Link>
                   <Link to="/solutions" className="btn btn-ghost-white btn-xl">
                     Explore Solutions

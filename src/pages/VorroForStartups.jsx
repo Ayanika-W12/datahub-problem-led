@@ -12,7 +12,7 @@ const tiers = [
     name: 'Growth',
     desc: 'For Series A/B companies scaling their integration footprint.',
     features: ['Up to 15 active integrations', 'All Vorro protocol standards', 'Dedicated integration environment', 'Analytics & reporting access', '99.9% uptime SLA', 'Slack-based support channel'],
-    cta: 'Get a Demo',
+    cta: 'Talk to an Expert',
     featured: true,
   },
   {

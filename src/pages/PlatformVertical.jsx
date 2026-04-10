@@ -10,7 +10,7 @@ export const verticals = {
     headline: 'Extract Structured Intelligence from Unstructured Clinical Data',
     sub: 'Transform clinical notes, discharge summaries, radiology reports, and prior auth letters into governed, FHIR-native structured data — at scale.',
     color: 'primary',
-    tags: ['Clinical AI', 'FHIR R4', 'HIPAA', 'ICD-10', 'SNOMED CT'],
+    tags: ['Healthcare AI', 'FHIR R4', 'HIPAA', 'ICD-10', 'SNOMED CT'],
     sections: [
       {
         heading: 'The AI Pipeline',
@@ -28,8 +28,8 @@ export const verticals = {
           },
           {
             num: '3',
-            title: 'NER & Concept Extraction',
-            desc: 'Named Entity Recognition extracts diagnoses, medications, procedures, vitals, lab values, and symptoms from free text.',
+            title: 'Entity & Concept Extraction',
+            desc: 'AI-powered extraction identifies diagnoses, medications, procedures, vitals, lab values, and symptoms from free text.',
           },
           {
             num: '4',
@@ -62,13 +62,13 @@ export const verticals = {
   'reporting-nlp': {
     num: '02',
     title: 'Reporting & Conversational AI',
-    headline: 'Natural Language Queries. Automated Healthcare Reports. No SQL Required.',
+    headline: 'Conversational AI Queries. Automated Healthcare Reports. No SQL Required.',
     sub: 'Ask your data questions in plain English. Get clinical, compliance, operational, and executive reports — instantly, without a data team or SQL expertise.',
     color: 'cyan',
-    tags: ['Natural Language Query', 'HEDIS', 'eCQM', 'QRDA', 'No-Code'],
+    tags: ['Conversational AI', 'HEDIS', 'eCQM', 'QRDA', 'No-Code'],
     sections: [
       {
-        heading: 'Natural Language Query Examples',
+        heading: 'Conversational Query Examples',
         type: 'query-examples',
         queries: [
           '"Show me all diabetic patients with HbA1c > 9 in Q3"',
@@ -502,7 +502,7 @@ export default function PlatformVertical({ slug }) {
               </p>
               <div className="cta-banner-actions">
                 <Link to="/contact-us" className="btn btn-cyan btn-xl">
-                  Get a Demo <ArrowRight size={18} />
+                  Talk to an Expert <ArrowRight size={18} />
                 </Link>
                 <Link to="/solutions" className="btn btn-ghost-white btn-xl">
                   View All Solutions

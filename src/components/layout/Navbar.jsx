@@ -11,7 +11,7 @@ const navLinks = [
         heading: 'Capabilities',
         items: [
           { label: 'Analytics & Conversational AI', to: '/platform/analytics-nlp', desc: 'Extract intelligence from clinical data' },
-          { label: 'Reporting & Conversational AI', to: '/platform/reporting-nlp', desc: 'Natural language query for healthcare data' },
+          { label: 'Reporting & Conversational AI', to: '/platform/reporting-nlp', desc: 'Conversational queries for healthcare data' },
           { label: 'Governance & Compliance', to: '/platform/governance-compliance', desc: 'Automated HIPAA, Cures Act, FHIR' },
           { label: 'Governance & Version Control', to: '/platform/governance-versioning', desc: 'Data lineage & pipeline versioning' },
           { label: 'Interfacing', to: '/platform/interfacing', desc: 'HL7, FHIR, EDI — every standard' },
@@ -194,7 +194,7 @@ export default function Navbar() {
             Contact
           </Link>
           <Link to="/contact-us" className="btn btn-primary btn-sm">
-            Get a Demo
+            Talk to an Expert
             <ArrowRight size={14} />
           </Link>
         </div>
@@ -241,7 +241,7 @@ export default function Navbar() {
             ))}
             <div className="mobile-nav-cta">
               <Link to="/contact-us" className="btn btn-primary btn-lg" style={{ width: '100%', justifyContent: 'center' }}>
-                Get a Demo
+                Talk to an Expert
               </Link>
             </div>
           </div>
