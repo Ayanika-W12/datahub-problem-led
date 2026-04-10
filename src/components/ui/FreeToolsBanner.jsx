@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ArrowRight, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const tools = [
   {
@@ -45,8 +45,7 @@ export function FreeToolsBanner() {
         {/* Left: Badge + Indicator */}
         <div className="ftb-left">
           <div className="ftb-badge">
-            <Sparkles size={14} />
-            <span>New Free Tools</span>
+            New Free Tools
           </div>
           <div className="ftb-dots">
             {tools.map((_, i) => (
