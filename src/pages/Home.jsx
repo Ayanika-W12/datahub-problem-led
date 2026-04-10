@@ -276,42 +276,102 @@ export default function Home() {
             </div>
           </FadeIn>
 
-          {/* Right — animated pillars visual */}
-          <div className="hero-pillars-visual">
-            <div className="hero-pillars-label">7 Platform Capabilities</div>
-            <div className="hero-pillars-grid">
-              {/* Row 1: 4 */}
-              {capabilities.slice(0, 4).map((cap, i) => (
+          {/* Right — Platform Capabilities Orbital Visual */}
+          <div className="platform-capabilities-visual">
+            {/* Orbital background elements */}
+            <div className="orbital-bg">
+              <div className="orbital-ring orbital-ring-1" />
+              <div className="orbital-ring orbital-ring-2" />
+              <div className="orbital-particles" />
+            </div>
+
+            {/* Animated connection lines */}
+            <svg className="connections-svg" viewBox="0 0 600 500" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <linearGradient id="conn-grad-1" x1="50%" y1="50%" x2="50%" y2="0%">
+                  <stop offset="0%" stopColor="#20D3EF" stopOpacity="0" />
+                  <stop offset="50%" stopColor="#20D3EF" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="#20D3EF" stopOpacity="0" />
+                </linearGradient>
+                <linearGradient id="conn-grad-2" x1="50%" y1="50%" x2="85%" y2="20%">
+                  <stop offset="0%" stopColor="#AC4197" stopOpacity="0" />
+                  <stop offset="50%" stopColor="#AC4197" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="#AC4197" stopOpacity="0" />
+                </linearGradient>
+                <linearGradient id="conn-grad-3" x1="50%" y1="50%" x2="90%" y2="60%">
+                  <stop offset="0%" stopColor="#02B164" stopOpacity="0" />
+                  <stop offset="50%" stopColor="#02B164" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="#02B164" stopOpacity="0" />
+                </linearGradient>
+                <linearGradient id="conn-grad-4" x1="50%" y1="50%" x2="70%" y2="95%">
+                  <stop offset="0%" stopColor="#F17A42" stopOpacity="0" />
+                  <stop offset="50%" stopColor="#F17A42" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="#F17A42" stopOpacity="0" />
+                </linearGradient>
+                <linearGradient id="conn-grad-5" x1="50%" y1="50%" x2="30%" y2="95%">
+                  <stop offset="0%" stopColor="#20D3EF" stopOpacity="0" />
+                  <stop offset="50%" stopColor="#20D3EF" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="#20D3EF" stopOpacity="0" />
+                </linearGradient>
+                <linearGradient id="conn-grad-6" x1="50%" y1="50%" x2="10%" y2="60%">
+                  <stop offset="0%" stopColor="#AC4197" stopOpacity="0" />
+                  <stop offset="50%" stopColor="#AC4197" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="#AC4197" stopOpacity="0" />
+                </linearGradient>
+                <linearGradient id="conn-grad-7" x1="50%" y1="50%" x2="15%" y2="20%">
+                  <stop offset="0%" stopColor="#02B164" stopOpacity="0" />
+                  <stop offset="50%" stopColor="#02B164" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="#02B164" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+              {/* Connection lines from center to each pillar */}
+              <path className="conn-line" d="M300 250 L300 45" stroke="url(#conn-grad-1)" />
+              <path className="conn-line conn-delay-1" d="M300 250 L510 100" stroke="url(#conn-grad-2)" />
+              <path className="conn-line conn-delay-2" d="M300 250 L550 280" stroke="url(#conn-grad-3)" />
+              <path className="conn-line conn-delay-3" d="M300 250 L450 450" stroke="url(#conn-grad-4)" />
+              <path className="conn-line conn-delay-4" d="M300 250 L150 450" stroke="url(#conn-grad-5)" />
+              <path className="conn-line conn-delay-5" d="M300 250 L50 280" stroke="url(#conn-grad-6)" />
+              <path className="conn-line conn-delay-6" d="M300 250 L90 100" stroke="url(#conn-grad-7)" />
+            </svg>
+
+            {/* Central Hub */}
+            <div className="platform-center-hub">
+              <div className="hub-inner-ring" />
+              <div className="hub-outer-ring" />
+              <div className="hub-content">
+                <span className="hub-kicker">Unified Architecture</span>
+                <span className="hub-title">AI Healthcare<br />Data Hub</span>
+                <span className="hub-sub">Seven capabilities working together in one coherent operating layer.</span>
+              </div>
+            </div>
+
+            {/* 7 Pillar Cards arranged around center */}
+            <div className="orbital-pillars">
+              {capabilities.map((cap, i) => (
                 <Link
                   key={cap.num}
                   to={cap.to}
-                  className={`hero-pillar hero-pillar-${cap.color}`}
-                  style={{ animationDelay: `${i * 80}ms` }}
+                  className={`orbital-pillar orbital-pillar-${i + 1} orbital-pillar-${cap.color}`}
+                  style={{ '--delay': `${i * 100}ms` }}
                 >
-                  <span className="hero-pillar-num">{cap.num}</span>
-                  <span className="hero-pillar-icon">{cap.icon}</span>
-                  <span className="hero-pillar-label">{cap.label}</span>
-                  <ArrowRight size={11} className="hero-pillar-arrow" />
-                </Link>
-              ))}
-              {/* Row 2: 3 */}
-              {capabilities.slice(4).map((cap, i) => (
-                <Link
-                  key={cap.num}
-                  to={cap.to}
-                  className={`hero-pillar hero-pillar-${cap.color}`}
-                  style={{ animationDelay: `${(i + 4) * 80}ms` }}
-                >
-                  <span className="hero-pillar-num">{cap.num}</span>
-                  <span className="hero-pillar-icon">{cap.icon}</span>
-                  <span className="hero-pillar-label">{cap.label}</span>
-                  <ArrowRight size={11} className="hero-pillar-arrow" />
+                  <span className="orbital-pillar-accent" />
+                  <span className="orbital-pillar-num">{cap.num}</span>
+                  <span className="orbital-pillar-label">{cap.label}</span>
+                  <span className="orbital-pillar-micro">{cap.bullets[0]}</span>
                 </Link>
               ))}
             </div>
-            <div className="hero-pillars-badges">
-              <span className="hero-pillars-badge-green"><CheckCircle2 size={11} /> Fully Managed</span>
-              <span className="hero-pillars-badge-cyan"><TrendingUp size={11} /> Low Cost</span>
+
+            {/* Value badges */}
+            <div className="orbital-badges">
+              <span className="orbital-badge orbital-badge-managed">
+                <span className="orbital-badge-label">Delivery Model</span>
+                <span className="orbital-badge-value">Fully Managed</span>
+              </span>
+              <span className="orbital-badge orbital-badge-cost">
+                <span className="orbital-badge-label">Commercial Value</span>
+                <span className="orbital-badge-value">Low Cost</span>
+              </span>
             </div>
           </div>
         </div>

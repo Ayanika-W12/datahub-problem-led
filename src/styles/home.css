@@ -1183,3 +1183,529 @@
   .pillars-row .pillar-card,
   .pillars-row-bottom .pillar-card { flex: 0 0 100%; }
 }
+
+/* ============================================
+   PLATFORM CAPABILITIES ORBITAL VISUAL
+   ============================================ */
+.platform-capabilities-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.2;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Orbital background rings */
+.orbital-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.orbital-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(237, 237, 237, 0.08);
+}
+
+.orbital-ring-1 {
+  width: 65%;
+  height: 65%;
+  animation: orbital-rotate 28s linear infinite;
+}
+
+.orbital-ring-2 {
+  width: 90%;
+  height: 90%;
+  border-style: dashed;
+  border-color: rgba(237, 237, 237, 0.05);
+  animation: orbital-rotate-reverse 36s linear infinite;
+}
+
+.orbital-particles {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle, rgba(32, 211, 239, 0.7) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(172, 65, 151, 0.7) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(2, 177, 100, 0.6) 0 1px, transparent 1.5px);
+  background-size: 120px 120px, 150px 150px, 180px 180px;
+  background-position: 18% 22%, 82% 34%, 52% 74%;
+  opacity: 0.25;
+  animation: orbital-drift 20s linear infinite;
+}
+
+/* Connection lines SVG */
+.connections-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.conn-line {
+  fill: none;
+  stroke-width: 1.5;
+  stroke-dasharray: 5 10;
+  animation: conn-flow 8s linear infinite;
+}
+
+.conn-delay-1 { animation-delay: -1s; }
+.conn-delay-2 { animation-delay: -2s; }
+.conn-delay-3 { animation-delay: -3s; }
+.conn-delay-4 { animation-delay: -4s; }
+.conn-delay-5 { animation-delay: -5s; }
+.conn-delay-6 { animation-delay: -6s; }
+
+/* Central Hub */
+.platform-center-hub {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.12), transparent 26%),
+    linear-gradient(145deg, rgba(237, 237, 237, 0.1), rgba(237, 237, 237, 0.03));
+  border: 1px solid rgba(237, 237, 237, 0.12);
+  backdrop-filter: blur(16px);
+  box-shadow:
+    0 12px 32px rgba(0,0,0,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.1),
+    0 0 30px rgba(32, 211, 239, 0.08);
+  z-index: 10;
+  animation: hub-breathe 6s ease-in-out infinite;
+}
+
+.hub-inner-ring {
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(237, 237, 237, 0.08);
+}
+
+.hub-outer-ring {
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  border: 1px solid rgba(32, 211, 239, 0.12);
+  animation: orbital-rotate 16s linear infinite;
+}
+
+.hub-content {
+  text-align: center;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hub-kicker {
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(237, 237, 237, 0.5);
+}
+
+.hub-title {
+  font-size: 16px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-light, #EDEDED) 0%, var(--color-cyan) 45%, var(--color-primary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hub-sub {
+  font-size: 8px;
+  line-height: 1.4;
+  color: rgba(237, 237, 237, 0.55);
+  margin-top: 4px;
+}
+
+/* Orbital Pillars Container */
+.orbital-pillars {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+}
+
+/* Individual Pillar Cards */
+.orbital-pillar {
+  position: absolute;
+  width: 140px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background:
+    linear-gradient(160deg, rgba(237, 237, 237, 0.09), rgba(237, 237, 237, 0.03));
+  border: 1px solid rgba(237, 237, 237, 0.1);
+  backdrop-filter: blur(14px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 8px 20px rgba(0,0,0,0.12);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  animation: pillar-fade-in 0.5s ease forwards;
+  animation-delay: var(--delay, 0ms);
+  overflow: hidden;
+}
+
+.orbital-pillar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(125deg, rgba(255,255,255,0.06), transparent 35%, transparent 68%, rgba(255,255,255,0.04));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.orbital-pillar:hover::before {
+  opacity: 1;
+}
+
+.orbital-pillar-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--pillar-accent, var(--color-primary));
+  box-shadow: 0 0 16px rgba(255,255,255,0.12);
+}
+
+/* Pillar accent colors */
+.orbital-pillar-primary { --pillar-accent: var(--color-primary); }
+.orbital-pillar-cyan { --pillar-accent: var(--color-cyan); }
+.orbital-pillar-navy { --pillar-accent: #7b82e0; }
+.orbital-pillar-green { --pillar-accent: var(--color-green); }
+.orbital-pillar-orange { --pillar-accent: var(--color-orange); }
+
+.orbital-pillar-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: rgba(237, 237, 237, 0.08);
+  border: 1px solid rgba(237, 237, 237, 0.1);
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(237, 237, 237, 0.8);
+}
+
+.orbital-pillar-label {
+  font-size: 12px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.orbital-pillar-micro {
+  font-size: 9px;
+  line-height: 1.35;
+  color: rgba(237, 237, 237, 0.45);
+  letter-spacing: 0.02em;
+}
+
+/* Hover & Focus states */
+.orbital-pillar:hover,
+.orbital-pillar:focus {
+  transform: scale(1.08) translateY(-4px);
+  background: linear-gradient(160deg, rgba(237, 237, 237, 0.14), rgba(237, 237, 237, 0.06));
+  border-color: rgba(237, 237, 237, 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    0 16px 40px rgba(0,0,0,0.2),
+    0 0 20px rgba(32, 211, 239, 0.12);
+  z-index: 20;
+}
+
+.orbital-pillar:hover .orbital-pillar-accent {
+  box-shadow: 0 0 24px var(--pillar-accent);
+}
+
+/* Pillar positioning - arranged in a circle */
+.orbital-pillar-1 { top: 2%; left: 50%; transform: translateX(-50%); }
+.orbital-pillar-2 { top: 12%; right: 2%; }
+.orbital-pillar-3 { top: 48%; right: -2%; }
+.orbital-pillar-4 { bottom: 8%; right: 12%; }
+.orbital-pillar-5 { bottom: 8%; left: 12%; }
+.orbital-pillar-6 { top: 48%; left: -2%; }
+.orbital-pillar-7 { top: 12%; left: 2%; }
+
+/* Hover transforms need to account for position */
+.orbital-pillar-1:hover { transform: translateX(-50%) scale(1.08) translateY(-4px); }
+.orbital-pillar-2:hover,
+.orbital-pillar-3:hover,
+.orbital-pillar-4:hover,
+.orbital-pillar-5:hover,
+.orbital-pillar-6:hover,
+.orbital-pillar-7:hover { transform: scale(1.08) translateY(-4px); }
+
+/* Value badges */
+.orbital-badges {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 15;
+}
+
+.orbital-badge {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(237, 237, 237, 0.06);
+  border: 1px solid rgba(237, 237, 237, 0.1);
+  backdrop-filter: blur(14px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 6px 18px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: badge-float 5s ease-in-out infinite;
+}
+
+.orbital-badge:nth-child(2) {
+  animation-delay: -2s;
+}
+
+.orbital-badge-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(237, 237, 237, 0.5);
+}
+
+.orbital-badge-value {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.orbital-badge-managed .orbital-badge-value {
+  background: linear-gradient(135deg, var(--color-cyan), rgba(237, 237, 237, 0.9));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.orbital-badge-cost .orbital-badge-value {
+  background: linear-gradient(135deg, var(--color-green), rgba(237, 237, 237, 0.9));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Animations */
+@keyframes orbital-rotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes orbital-rotate-reverse {
+  from { transform: translate(-50%, -50%) rotate(360deg); }
+  to { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+@keyframes orbital-drift {
+  0% { transform: translate3d(0,0,0); }
+  50% { transform: translate3d(-8px, 6px, 0); }
+  100% { transform: translate3d(6px,-6px,0); }
+}
+
+@keyframes conn-flow {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -180; }
+}
+
+@keyframes hub-breathe {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.02); }
+}
+
+@keyframes pillar-fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes badge-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Override fade-in for positioned pillars */
+.orbital-pillar-1 {
+  animation: pillar-fade-in-center 0.5s ease forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+@keyframes pillar-fade-in-center {
+  from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .platform-capabilities-visual {
+    max-width: 520px;
+  }
+  
+  .orbital-pillar {
+    width: 125px;
+    padding: 10px 12px;
+  }
+  
+  .orbital-pillar-label {
+    font-size: 11px;
+  }
+  
+  .platform-center-hub {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .hub-title {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .platform-capabilities-visual {
+    max-width: 100%;
+    aspect-ratio: 1.1;
+  }
+  
+  .orbital-badges {
+    top: -60px;
+    right: 0;
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 768px) {
+  .platform-capabilities-visual {
+    aspect-ratio: 1;
+    max-width: 450px;
+  }
+  
+  .orbital-pillar {
+    width: 110px;
+    padding: 8px 10px;
+    border-radius: 10px;
+  }
+  
+  .orbital-pillar-num {
+    width: 18px;
+    height: 18px;
+    font-size: 9px;
+  }
+  
+  .orbital-pillar-label {
+    font-size: 10px;
+  }
+  
+  .orbital-pillar-micro {
+    display: none;
+  }
+  
+  .platform-center-hub {
+    width: 110px;
+    height: 110px;
+  }
+  
+  .hub-kicker {
+    font-size: 7px;
+  }
+  
+  .hub-title {
+    font-size: 12px;
+  }
+  
+  .hub-sub {
+    display: none;
+  }
+  
+  .orbital-badge {
+    padding: 8px 10px;
+  }
+  
+  .orbital-badge-label {
+    font-size: 8px;
+  }
+  
+  .orbital-badge-value {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .platform-capabilities-visual {
+    aspect-ratio: auto;
+    height: auto;
+    padding-bottom: 2rem;
+  }
+  
+  /* Switch to grid layout on mobile */
+  .orbital-bg,
+  .connections-svg,
+  .platform-center-hub {
+    display: none;
+  }
+  
+  .orbital-pillars {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  
+  .orbital-pillar {
+    position: relative;
+    width: 100%;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+  }
+  
+  .orbital-pillar:hover {
+    transform: translateY(-3px) !important;
+  }
+  
+  .orbital-pillar-micro {
+    display: block;
+  }
+  
+  .orbital-badges {
+    position: relative;
+    top: auto;
+    right: auto;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+}
