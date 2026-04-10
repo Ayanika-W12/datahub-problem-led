@@ -234,10 +234,10 @@ export const verticals = {
   'workflow-orchestration': {
     num: '07',
     title: 'Workflow Orchestration',
-    headline: 'Healthcare-Native Workflow Automation. Powered by n8n + Claude AI.',
+    headline: 'Healthcare-Native Workflow Automation. AI-Powered.',
     sub: 'No-code, FHIR-native, audit-ready workflow automation for revenue cycle, clinical operations, and patient engagement — deployed in days, not months.',
     color: 'cyan',
-    tags: ['n8n', 'Claude AI', 'Prior Auth', 'FHIR Triggers', 'No-Code'],
+    tags: ['Automation', 'AI-Powered', 'Prior Auth', 'FHIR Triggers', 'No-Code'],
     sections: [
       {
         heading: 'Pre-Built Healthcare Workflow Library',
@@ -276,8 +276,8 @@ export const verticals = {
         heading: 'Platform Capabilities',
         type: 'cards',
         cards: [
-          { title: 'n8n Workflow Engine', desc: '500+ pre-built connectors with drag-and-drop visual workflow builder. No engineering required.' },
-          { title: 'Claude AI Decision Nodes', desc: 'Intelligent triage, summarization, classification, and routing powered by Claude AI at key decision points.' },
+          { title: 'Visual Workflow Engine', desc: '500+ pre-built connectors with drag-and-drop visual workflow builder. No engineering required.' },
+          { title: 'AI Decision Nodes', desc: 'Intelligent triage, summarization, classification, and routing powered by AI at key decision points.' },
           { title: 'FHIR Triggers', desc: 'Native FHIR R4 event subscriptions and webhook triggers — workflows start automatically when data changes.' },
           { title: 'Human-in-the-Loop', desc: 'Approval gates for clinical or compliance review steps — keep humans in control of critical decisions.' },
           { title: 'Audit Logging', desc: 'Every workflow execution logged with full step-level trace for HIPAA compliance and operational visibility.' },

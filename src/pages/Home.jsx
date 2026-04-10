@@ -104,7 +104,7 @@ const capabilities = [
     icon: <Zap size={28} />,
     label: 'Workflow Orchestration',
     title: 'Healthcare Automation. No Code Required.',
-    desc: 'n8n + Claude AI-powered workflows for prior auth, eligibility verification, denial management, care gap outreach, and more — HIPAA-compliant by design.',
+    desc: 'AI-powered workflows for prior auth, eligibility verification, denial management, care gap outreach, and more — HIPAA-compliant by design.',
     color: 'cyan',
     to: '/platform/workflow-orchestration',
     bullets: ['500+ pre-built connectors', 'FHIR R4 event triggers', 'Human-in-the-loop approval gates'],
@@ -157,7 +157,7 @@ const differentiators = [
   {
     icon: <TrendingUp size={22} />,
     title: 'AI-First Architecture',
-    desc: 'Purpose-built for the era of AI — with governed, clean data pipelines and Claude AI-powered orchestration.',
+    desc: 'Purpose-built for the era of AI — with governed, clean data pipelines and intelligent orchestration.',
   },
 ];
 

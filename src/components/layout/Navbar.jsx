@@ -16,7 +16,7 @@ const navLinks = [
           { label: 'Governance & Version Control', to: '/platform/governance-versioning', desc: 'Data lineage & pipeline versioning' },
           { label: 'Interfacing', to: '/platform/interfacing', desc: 'HL7, FHIR, EDI — every standard' },
           { label: 'AI Readiness', to: '/platform/ai-readiness', desc: 'Data lake & ML-ready pipelines' },
-          { label: 'Workflow Orchestration', to: '/platform/workflow-orchestration', desc: 'n8n + AI-powered automation' },
+          { label: 'Workflow Orchestration', to: '/platform/workflow-orchestration', desc: 'AI-powered automation' },
         ],
       },
       {
