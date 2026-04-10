@@ -142,7 +142,7 @@ export default function BlogPost() {
                   Talk to a Vorro integration expert about your specific healthcare data challenges.
                 </p>
                 <Link to="/contact-us" className="btn btn-cyan btn-md" style={{ width: '100%', justifyContent: 'center' }}>
-                  Get a Free Consultation <ArrowRight size={14} />
+                  Talk to an Expert <ArrowRight size={14} />
                 </Link>
               </div>
 
