@@ -234,8 +234,9 @@ export default function Home() {
           <div className="hero-orb hero-orb-2" />
           <div className="hero-orb hero-orb-3" />
         </div>
-        <div className="container hero-inner">
-          <FadeIn>
+        <div className="container hero-split">
+          {/* Left — text */}
+          <FadeIn className="hero-split-text">
             <div className="hero-badge">
               <span className="badge badge-white">
                 <Zap size={10} />
@@ -248,8 +249,8 @@ export default function Home() {
               Built for Healthcare.
             </h1>
             <p className="hero-sub">
-              Stop chasing data. Vorro connects, monitors, and automates your healthcare data workflows —
-              fully managed, low cost, and ready to deploy in weeks.
+              Stop chasing data. Vorro connects, monitors, and automates your healthcare data
+              workflows — fully managed, low cost, ready in weeks.
             </p>
             <div className="hero-actions">
               <Link to="/contact-us" className="btn btn-cyan btn-xl">
@@ -262,30 +263,55 @@ export default function Home() {
             <div className="hero-proof">
               <div className="hero-proof-item">
                 <CheckCircle2 size={14} />
-                <span>22+ enterprise deployments</span>
+                <span>Fully Managed by Vorro</span>
+              </div>
+              <div className="hero-proof-item">
+                <CheckCircle2 size={14} />
+                <span>Proven Low Cost</span>
               </div>
               <div className="hero-proof-item">
                 <CheckCircle2 size={14} />
                 <span>HIPAA-compliant by design</span>
               </div>
-              <div className="hero-proof-item">
-                <CheckCircle2 size={14} />
-                <span>No rip-and-replace required</span>
-              </div>
             </div>
           </FadeIn>
-        </div>
 
-        {/* Floating Capability Pills */}
-        <div className="hero-capability-strip">
-          <div className="container">
-            <div className="capability-pills">
-              {capabilities.map((cap, i) => (
-                <div key={cap.num} className="capability-pill">
-                  <span className="capability-pill-num">{cap.num}</span>
-                  <span className="capability-pill-label">{cap.label}</span>
-                </div>
+          {/* Right — animated pillars visual */}
+          <div className="hero-pillars-visual">
+            <div className="hero-pillars-label">7 Platform Capabilities</div>
+            <div className="hero-pillars-grid">
+              {/* Row 1: 4 */}
+              {capabilities.slice(0, 4).map((cap, i) => (
+                <Link
+                  key={cap.num}
+                  to={cap.to}
+                  className={`hero-pillar hero-pillar-${cap.color}`}
+                  style={{ animationDelay: `${i * 80}ms` }}
+                >
+                  <span className="hero-pillar-num">{cap.num}</span>
+                  <span className="hero-pillar-icon">{cap.icon}</span>
+                  <span className="hero-pillar-label">{cap.label}</span>
+                  <ArrowRight size={11} className="hero-pillar-arrow" />
+                </Link>
               ))}
+              {/* Row 2: 3 */}
+              {capabilities.slice(4).map((cap, i) => (
+                <Link
+                  key={cap.num}
+                  to={cap.to}
+                  className={`hero-pillar hero-pillar-${cap.color}`}
+                  style={{ animationDelay: `${(i + 4) * 80}ms` }}
+                >
+                  <span className="hero-pillar-num">{cap.num}</span>
+                  <span className="hero-pillar-icon">{cap.icon}</span>
+                  <span className="hero-pillar-label">{cap.label}</span>
+                  <ArrowRight size={11} className="hero-pillar-arrow" />
+                </Link>
+              ))}
+            </div>
+            <div className="hero-pillars-badges">
+              <span className="hero-pillars-badge-green"><CheckCircle2 size={11} /> Fully Managed</span>
+              <span className="hero-pillars-badge-cyan"><TrendingUp size={11} /> Low Cost</span>
             </div>
           </div>
         </div>
@@ -361,63 +387,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7 PILLARS — animated interactive grid */}
-      <section className="pillars-section">
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+      {/* PLATFORM OVERVIEW */}
+      <section className="section platform-section">
+        <div className="container">
           <FadeIn>
-            <div className="section-header centered dark" style={{ marginBottom: '1.5rem' }}>
-              <div className="eyebrow" style={{ color: 'var(--color-cyan)' }}>The VIIA Platform</div>
-              <h2 style={{ color: 'white' }}>7 Capabilities. One Intelligent Platform.</h2>
-              <p style={{ color: 'rgba(255,255,255,0.6)', maxWidth: '560px', margin: '0 auto' }}>
-                Each capability works standalone or as a fully integrated system —
-                all <strong style={{ color: 'var(--color-cyan)' }}>fully managed by Vorro</strong> at a proven low cost.
-              </p>
-            </div>
-            <div className="pillars-value-badges">
-              <span className="pillars-badge pillars-badge-green">
-                <CheckCircle2 size={13} /> Fully Managed by Vorro
-              </span>
-              <span className="pillars-badge pillars-badge-cyan">
-                <TrendingUp size={13} /> Proven Low Cost
-              </span>
+            <div className="section-header centered">
+              <div className="eyebrow">The Platform</div>
+              <h2>Seven Capabilities. One Integrated Platform.</h2>
+              <p>Each capability is powerful standalone. Together, they form the most complete healthcare data platform built for enterprise interoperability.</p>
             </div>
           </FadeIn>
-
-          {/* Row 1 — 4 cards */}
-          <div className="pillars-row">
-            {capabilities.slice(0, 4).map((cap, i) => (
-              <Link
-                key={cap.num}
-                to={cap.to}
-                className={`pillar-card pillar-card-${cap.color}`}
-                style={{ '--pi': i }}
-              >
-                <div className="pillar-card-num">{cap.num}</div>
-                <div className="pillar-card-icon">{cap.icon}</div>
-                <div className="pillar-card-label">{cap.label}</div>
-                <p className="pillar-card-desc">{cap.desc.split('.')[0]}.</p>
-                <div className="pillar-card-arrow"><ArrowRight size={13} /></div>
-              </Link>
-            ))}
-          </div>
-
-          {/* Row 2 — 3 cards centred */}
-          <div className="pillars-row pillars-row-bottom">
-            {capabilities.slice(4).map((cap, i) => (
-              <Link
-                key={cap.num}
-                to={cap.to}
-                className={`pillar-card pillar-card-${cap.color}`}
-                style={{ '--pi': i + 4 }}
-              >
-                <div className="pillar-card-num">{cap.num}</div>
-                <div className="pillar-card-icon">{cap.icon}</div>
-                <div className="pillar-card-label">{cap.label}</div>
-                <p className="pillar-card-desc">{cap.desc.split('.')[0]}.</p>
-                <div className="pillar-card-arrow"><ArrowRight size={13} /></div>
-              </Link>
-            ))}
-          </div>
+          <FadeIn>
+            <div className="cap-grid-mini">
+              {capabilities.map((cap) => (
+                <Link key={cap.num} to={cap.to} className={`cap-mini-card cap-mini-${cap.color}`} style={{ textDecoration: 'none' }}>
+                  <div className={`cap-mini-icon cap-icon-${cap.color}`}>{cap.icon}</div>
+                  <div className="cap-mini-num">{cap.num}</div>
+                  <div className="cap-mini-label">{cap.label}</div>
+                </Link>
+              ))}
+            </div>
+          </FadeIn>
         </div>
       </section>
 
