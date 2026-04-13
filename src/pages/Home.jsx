@@ -918,14 +918,6 @@ function CapabilityVisual({ cap }) {
         </div>
         {renders[cap.num] || renders['01']}
       </div>
-      <div className="capviz-stats-row">
-        {cap.stats.map(s => (
-          <div key={s.label} className="capviz-stat-item">
-            <div className="capviz-stat-val" style={{ color: accent }}>{s.value}</div>
-            <div className="capviz-stat-lbl">{s.label}</div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
