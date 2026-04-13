@@ -11,10 +11,10 @@ const navLinks = [
       {
         heading: 'Capabilities',
         items: [
-          { label: 'Analytics & Conversational AI', to: '/platform/analytics-nlp', desc: 'Extract intelligence from clinical data' },
-          { label: 'Reporting & Conversational AI', to: '/platform/reporting-nlp', desc: 'Conversational queries for healthcare data' },
+          { label: 'AI-Driven Analytics & Insights', to: '/platform/analytics-nlp', desc: 'Extract intelligence from data' },
+          { label: 'Reporting & Conversational AI', to: '/platform/reporting-nlp', desc: 'Conversational queries for any data' },
           { label: 'Governance & Compliance', to: '/platform/governance-compliance', desc: 'Automated HIPAA, Cures Act, FHIR' },
-          { label: 'Governance & Version Control', to: '/platform/governance-versioning', desc: 'Data lineage & pipeline versioning' },
+          { label: 'Version Lineage & Control', to: '/platform/governance-versioning', desc: 'Data lineage & pipeline versioning' },
           { label: 'Interfacing', to: '/platform/interfacing', desc: 'HL7, FHIR, EDI — every standard' },
           { label: 'AI Readiness', to: '/platform/ai-readiness', desc: 'Data lake & ML-ready pipelines' },
           { label: 'Workflow Orchestration', to: '/platform/workflow-orchestration', desc: 'AI-powered automation' },

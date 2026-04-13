@@ -8,7 +8,7 @@ const categoryColors = {
   'Compliance': 'navy',
   'Data Quality': 'green',
   'AI Readiness': 'cyan',
-  'Analytics & Conversational AI': 'orange',
+  'AI-Driven Analytics & Insights': 'orange',
   'Reporting & Conversational AI': 'primary',
   'Workflow Orchestration': 'cyan',
 };

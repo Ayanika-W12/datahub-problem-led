@@ -1991,6 +1991,7 @@
     0 0 40px rgba(32, 211, 239, 0.10);
   animation: coreBreath 6.5s ease-in-out infinite;
   z-index: 3;
+  pointer-events: none;
 }
 
 .frame-center-core::before,
@@ -2067,16 +2068,21 @@
     inset 0 1px 0 rgba(255,255,255,0.10),
     0 12px 30px rgba(0,0,0,0.18);
   overflow: hidden;
-  transform: translate(-50%, -50%) scale(1);
+  /* Use individual CSS transform properties so scale and translate
+     are completely independent — no shared 'transform' value to conflict */
+  translate: -50% -50%;
+  scale: 1;
   animation: floatCenter 7.2s ease-in-out infinite;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  will-change: scale;
+  transition: scale 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease, border-color 0.28s ease;
 }
 
 .frame-pillar:hover {
-  transform: translate(-50%, -50%) scale(1.1);
+  scale: 1.08;
+  animation-play-state: paused;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.15),
     0 16px 40px rgba(0,0,0,0.25);

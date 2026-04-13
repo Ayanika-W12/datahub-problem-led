@@ -50,7 +50,7 @@ const industries = {
       { label: 'HL7 & FHIR', to: '/platform/interfacing' },
       { label: 'Governance & Compliance', to: '/platform/governance-compliance' },
       { label: 'AI Readiness', to: '/platform/ai-readiness' },
-      { label: 'Analytics & Conversational AI', to: '/platform/analytics-nlp' },
+      { label: 'AI-Driven Analytics & Insights', to: '/platform/analytics-nlp' },
     ],
   },
   ecommerce: {

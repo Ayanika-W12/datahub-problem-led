@@ -44,7 +44,7 @@ const capabilities = [
   {
     num: '01',
     icon: <BarChart3 size={28} />,
-    label: 'Analytics & Conversational AI',
+    label: 'AI-Driven Analytics & Insights',
     title: 'Extract Intelligence from Clinical Data',
     desc: 'Transform unstructured clinical notes, discharge summaries, and prior auth letters into structured FHIR R4 data. Auto-map to ICD-10, CPT, SNOMED CT, LOINC, and RxNorm.',
     color: 'primary',
@@ -56,7 +56,7 @@ const capabilities = [
   {
     num: '02',
     icon: <Workflow size={28} />,
-    label: 'Reporting & Conversational AI',
+    label: 'Conversational AI Reporting',
     title: 'Conversational Queries. Instant Reports.',
     desc: 'Ask your data questions in plain English using Conversational AI. Get HEDIS, eCQM, QRDA, claims adjudication, and executive dashboard reports — automatically, without SQL.',
     color: 'cyan',
@@ -80,7 +80,7 @@ const capabilities = [
   {
     num: '04',
     icon: <GitBranch size={28} />,
-    label: 'Governance & Version Control',
+    label: 'Version Lineage & Control',
     title: 'Git-Like Versioning for Healthcare Data',
     desc: 'The first healthcare-native data version control layer. Every pipeline, mapping, and transformation is versioned, attributed, and audit-ready.',
     color: 'green',

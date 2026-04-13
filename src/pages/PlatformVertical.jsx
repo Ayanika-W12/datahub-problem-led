@@ -6,7 +6,7 @@ import '../styles/vertical.css';
 export const verticals = {
   'analytics-nlp': {
     num: '01',
-    title: 'Analytics & Conversational AI',
+    title: 'AI-Driven Analytics & Insights',
     headline: 'Extract Structured Intelligence from Unstructured Clinical Data',
     sub: 'Transform clinical notes, discharge summaries, radiology reports, and prior auth letters into governed, FHIR-native structured data — at scale.',
     color: 'primary',
@@ -132,7 +132,7 @@ export const verticals = {
 
   'governance-versioning': {
     num: '04',
-    title: 'Governance & Version Control',
+    title: 'Version Lineage & Control',
     headline: 'Git-Like Version Control for Healthcare Data Pipelines.',
     sub: 'The first healthcare-native data version control layer — with full regulatory auditability. Every pipeline, mapping, and transformation is versioned, attributed, and rollback-ready.',
     color: 'green',

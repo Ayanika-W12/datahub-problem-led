@@ -6,10 +6,10 @@ import BookDemoModal from '../ui/BookDemoModal';
 
 const footerLinks = {
   Platform: [
-    { label: 'Analytics & Conversational AI', to: '/platform/analytics-nlp' },
+    { label: 'AI-Driven Analytics & Insights', to: '/platform/analytics-nlp' },
     { label: 'Reporting & Conversational AI', to: '/platform/reporting-nlp' },
     { label: 'Governance & Compliance', to: '/platform/governance-compliance' },
-    { label: 'Governance & Versioning', to: '/platform/governance-versioning' },
+    { label: 'Version Lineage & Control', to: '/platform/governance-versioning' },
     { label: 'Interfacing', to: '/platform/interfacing' },
     { label: 'AI Readiness', to: '/platform/ai-readiness' },
     { label: 'Workflow Orchestration', to: '/platform/workflow-orchestration' },
