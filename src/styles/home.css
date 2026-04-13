@@ -704,94 +704,436 @@
   50%       { opacity: 0.5; transform: scale(1.4); }
 }
 
-.capviz-chart { height: 80px; margin-bottom: 1.25rem; }
-.capviz-chart svg { width: 100%; height: 100%; }
-
-.capviz-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
+/* Stats row below the unique visual */
+.capviz-stats-row {
+  display: flex;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  overflow: hidden;
+  animation: pltShowIn 0.5s 0.1s cubic-bezier(0.16,1,0.3,1) both;
 }
-
-.capviz-stat {
+.capviz-stat-item {
+  flex: 1;
   text-align: center;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 10px;
-  padding: 0.65rem 0.4rem;
+  padding: 0.7rem 0.4rem;
+  border-right: 1px solid rgba(255,255,255,0.05);
 }
-
+.capviz-stat-item:last-child { border-right: none; }
 .capviz-stat-val {
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.02em;
 }
-
 .capviz-stat-lbl {
-  font-size: 10px;
-  color: rgba(255,255,255,0.38);
+  font-size: 9px;
+  color: rgba(255,255,255,0.32);
   font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-/* Performance card */
-.capviz-perf {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.09);
-  border-radius: 16px;
-  padding: 1.25rem 1.5rem;
-}
+/* ============================================================
+   Unique per-capability product UI visuals
+   ============================================================ */
 
-.capviz-perf-title {
-  font-size: 10px;
+/* Shared micro-label */
+.cviz-section-lbl {
+  font-size: 9px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: rgba(255,255,255,0.3);
-  margin-bottom: 1rem;
+  letter-spacing: 0.07em;
+  color: rgba(255,255,255,0.28);
+  margin-bottom: 0.4rem;
+}
+.cviz-arrow-label {
+  font-size: 10px;
+  color: rgba(255,255,255,0.22);
+  text-align: center;
+  margin: 0.45rem 0;
+  letter-spacing: 0.02em;
 }
 
-.capviz-bar-row {
+/* 01 — NLP Entity Extraction */
+.cviz-nlp-doc {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 8px;
+  padding: 0.65rem 0.875rem;
+  margin-bottom: 0.35rem;
+}
+.cviz-nlp-text {
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.8;
+  margin: 0;
+}
+.cviz-entity-grid {
+  display: flex;
+  gap: 0.4rem;
+}
+.cviz-entity-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.03);
+  flex: 1;
+  min-width: 0;
+}
+.cviz-chip-type {
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.cviz-chip-code {
+  font-size: 13px;
+  font-weight: 800;
+  color: white;
+  font-variant-numeric: tabular-nums;
+}
+.cviz-chip-label {
+  font-size: 9px;
+  color: rgba(255,255,255,0.35);
+}
+
+/* 02 — Conversational Query */
+.cviz-chat-bubble {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.6rem;
-}
-.capviz-bar-row:last-child { margin-bottom: 0; }
-
-.capviz-bar-label {
-  font-size: 12px;
+  gap: 0.5rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 18px;
+  padding: 0.45rem 0.875rem;
+  font-size: 11px;
   color: rgba(255,255,255,0.6);
-  width: 120px;
+  margin-bottom: 0.65rem;
+  font-style: italic;
+}
+.cviz-table-wrap {
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.cviz-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11.5px;
+}
+.cviz-table thead tr { background: rgba(255,255,255,0.04); }
+.cviz-table th {
+  padding: 0.38rem 0.65rem;
+  text-align: left;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: rgba(255,255,255,0.28);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.cviz-table td {
+  padding: 0.38rem 0.65rem;
+  color: rgba(255,255,255,0.6);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.cviz-table tbody tr:last-child td { border-bottom: none; }
+
+/* 03 — Compliance Dashboard */
+.cviz-compliance {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.cviz-comp-item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.65rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+}
+.cviz-comp-check {
+  font-size: 13px;
+  font-weight: 800;
+  flex-shrink: 0;
+  width: 18px;
+  text-align: center;
+}
+.cviz-comp-label {
+  flex: 1;
+  font-size: 11px;
+  color: rgba(255,255,255,0.58);
+}
+.cviz-comp-badge {
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid;
   flex-shrink: 0;
 }
 
-.capviz-bar-track {
-  flex: 1;
-  height: 5px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 999px;
+/* 04 — Version Timeline */
+.cviz-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+.cviz-timeline::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: rgba(255,255,255,0.07);
+  z-index: 0;
+}
+.cviz-commit {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.42rem 0;
+  position: relative;
+}
+.cviz-commit-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  transition: all 0.2s;
+}
+.cviz-commit-body { flex: 1; min-width: 0; }
+.cviz-commit-msg {
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.6);
+  font-weight: 500;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.15rem;
 }
-
-.capviz-bar-fill {
-  height: 100%;
-  border-radius: 999px;
-  animation: capvizBarGrow 0.7s ease forwards;
-}
-
-@keyframes capvizBarGrow {
-  from { width: 0 !important; }
-  to   { /* width set inline */ }
-}
-
-.capviz-bar-pct {
-  font-size: 11px;
+.cviz-commit-active .cviz-commit-msg { color: white; font-weight: 600; }
+.cviz-commit-meta { display: flex; gap: 0.6rem; font-size: 9.5px; }
+.cviz-commit-hash { color: rgba(255,255,255,0.22); font-family: monospace; }
+.cviz-commit-time { color: rgba(255,255,255,0.22); }
+.cviz-commit-tag {
+  font-size: 9px;
   font-weight: 700;
-  color: rgba(255,255,255,0.4);
-  width: 30px;
-  text-align: right;
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  border: 1px solid;
+  flex-shrink: 0;
 }
+
+/* 05 — Protocol Hub */
+.cviz-hub {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 108px;
+}
+.cviz-hub-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.32rem;
+  flex: 1;
+  min-width: 0;
+}
+.cviz-hub-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.32rem;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.52);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 6px;
+  padding: 0.28rem 0.5rem;
+  white-space: nowrap;
+}
+.cviz-hub-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.cviz-hub-arr {
+  font-size: 10px;
+  color: rgba(255,255,255,0.18);
+  flex-shrink: 0;
+}
+.cviz-hub-core {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.03);
+  flex-shrink: 0;
+  text-align: center;
+}
+.cviz-hub-core-sub {
+  font-size: 7.5px;
+  color: rgba(255,255,255,0.38);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.cviz-hub-core-main {
+  font-size: 11px;
+  font-weight: 800;
+  color: white;
+}
+
+/* 06 — Medallion Architecture */
+.cviz-medallion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.cviz-tier {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.48rem 0.75rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid;
+  border-radius: 9px;
+}
+.cviz-tier-badge {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid;
+  flex-shrink: 0;
+  width: 52px;
+  text-align: center;
+}
+.cviz-tier-desc {
+  flex: 1;
+  font-size: 11px;
+  color: rgba(255,255,255,0.48);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cviz-tier-arrow {
+  text-align: center;
+  color: rgba(255,255,255,0.14);
+  font-size: 14px;
+  padding: 0.05rem 0;
+}
+.cviz-medallion-out {
+  font-size: 10px;
+  color: rgba(255,255,255,0.25);
+  text-align: center;
+  padding-top: 0.35rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 07 — Workflow Orchestration */
+.cviz-wf-title {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: rgba(255,255,255,0.28);
+  margin-bottom: 0.6rem;
+}
+.cviz-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.22rem;
+  position: relative;
+  margin-bottom: 0.6rem;
+}
+.cviz-steps::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 14px;
+  bottom: 14px;
+  width: 1px;
+  background: rgba(255,255,255,0.07);
+  z-index: 0;
+}
+.cviz-step {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.32rem 0.45rem;
+  border-radius: 7px;
+  position: relative;
+}
+.cviz-step-active { background: rgba(255,255,255,0.03); }
+.cviz-step-pending { opacity: 0.38; }
+.cviz-step-dot {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  color: rgba(255,255,255,0.22);
+  position: relative;
+  z-index: 1;
+}
+.cviz-step-done .cviz-step-dot {
+  background: rgba(2,177,100,0.14);
+  border-color: rgba(2,177,100,0.38);
+  color: #02B164;
+}
+.cviz-step-body { flex: 1; min-width: 0; }
+.cviz-step-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+}
+.cviz-step-done .cviz-step-label { color: rgba(255,255,255,0.78); }
+.cviz-step-active .cviz-step-label { color: white; }
+.cviz-step-detail {
+  font-size: 9.5px;
+  color: rgba(255,255,255,0.26);
+  margin-top: 0.1rem;
+}
+.cviz-wf-kpis {
+  display: flex;
+  gap: 1rem;
+  font-size: 11px;
+  color: rgba(255,255,255,0.32);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding-top: 0.45rem;
+  flex-wrap: wrap;
+}
+.cviz-wf-kpis b { font-weight: 700; }
 
 /* Responsive */
 @media (max-width: 960px) {

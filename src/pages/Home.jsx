@@ -688,28 +688,220 @@ const accentColors = {
   orange: '#F17A42',
 };
 
-// Unique sparkline paths per capability num
-const sparklines = {
-  '01': 'M0,60 20,45 40,55 60,30 80,38 100,22 120,28 140,15 160,20 180,10',
-  '02': 'M0,55 20,50 40,42 60,48 80,32 100,36 120,20 140,24 160,15 180,8',
-  '03': 'M0,65 20,58 40,62 60,45 80,50 100,35 120,40 140,28 160,32 180,18',
-  '04': 'M0,58 20,52 40,46 60,38 80,42 100,30 120,22 140,18 160,12 180,6',
-  '05': 'M0,62 20,55 40,60 60,42 80,50 100,38 120,32 140,22 160,26 180,14',
-  '06': 'M0,64 20,58 40,50 60,44 80,48 100,34 120,28 140,20 160,16 180,8',
-  '07': 'M0,60 20,48 40,56 60,36 80,44 100,28 120,34 140,18 160,22 180,12',
-};
+/* ---- Unique per-capability product UI visuals ---- */
+
+function CapViz01({ accent }) {
+  return (
+    <div style={{ padding: '0.25rem 0' }}>
+      <div className="cviz-nlp-doc">
+        <div className="cviz-section-lbl">Clinical Note Input</div>
+        <p className="cviz-nlp-text">
+          Patient with{' '}
+          <mark style={{ background: `${accent}28`, color: accent, borderRadius: 3, padding: '1px 4px' }}>Type 2 Diabetes (E11.9)</mark>
+          {' '}and{' '}
+          <mark style={{ background: '#20D3EF22', color: '#20D3EF', borderRadius: 3, padding: '1px 4px' }}>Hypertension (I10)</mark>
+          . Prescribed{' '}
+          <mark style={{ background: '#02B16422', color: '#02B164', borderRadius: 3, padding: '1px 4px' }}>Metformin 500mg</mark>.
+        </p>
+      </div>
+      <div className="cviz-arrow-label">⬇ NLP Extraction → FHIR R4 Output</div>
+      <div className="cviz-entity-grid">
+        {[
+          { type: 'ICD-10', code: 'E11.9', label: 'Type 2 DM', color: accent },
+          { type: 'ICD-10', code: 'I10', label: 'Hypertension', color: '#20D3EF' },
+          { type: 'RxNorm', code: '861007', label: 'Metformin', color: '#02B164' },
+        ].map(e => (
+          <div key={e.code} className="cviz-entity-chip" style={{ borderColor: `${e.color}40` }}>
+            <span className="cviz-chip-type" style={{ color: e.color }}>{e.type}</span>
+            <span className="cviz-chip-code">{e.code}</span>
+            <span className="cviz-chip-label">{e.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function CapViz02({ accent }) {
+  return (
+    <div style={{ padding: '0.25rem 0' }}>
+      <div className="cviz-chat-bubble">
+        <span>💬</span>
+        <span>"Show HEDIS gap closure by region, Q4 2024"</span>
+      </div>
+      <div className="cviz-table-wrap">
+        <table className="cviz-table">
+          <thead><tr><th>Region</th><th>Gap Closure</th><th>vs Q3</th></tr></thead>
+          <tbody>
+            <tr><td>Northeast</td><td style={{ color: accent, fontWeight: 700 }}>84.2%</td><td style={{ color: '#02B164' }}>↑ +3.1%</td></tr>
+            <tr><td>Midwest</td><td style={{ color: accent, fontWeight: 700 }}>79.6%</td><td style={{ color: '#02B164' }}>↑ +1.8%</td></tr>
+            <tr><td>South</td><td style={{ color: accent, fontWeight: 700 }}>71.3%</td><td style={{ color: 'rgba(255,255,255,0.35)' }}>→ 0.2%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function CapViz03({ accent }) {
+  const items = [
+    { label: 'HIPAA Privacy & Security', ok: true },
+    { label: '21st Century Cures Act', ok: true },
+    { label: 'CMS-0057-F Prior Auth Rule', ok: true },
+    { label: 'TEFCA / QHIN Framework', ok: false },
+  ];
+  return (
+    <div className="cviz-compliance">
+      {items.map(item => (
+        <div key={item.label} className="cviz-comp-item">
+          <span className="cviz-comp-check" style={{ color: item.ok ? '#02B164' : accent }}>
+            {item.ok ? '✓' : '●'}
+          </span>
+          <span className="cviz-comp-label">{item.label}</span>
+          <span className="cviz-comp-badge" style={{
+            background: item.ok ? 'rgba(2,177,100,0.12)' : `${accent}18`,
+            color: item.ok ? '#02B164' : accent,
+            borderColor: item.ok ? 'rgba(2,177,100,0.3)' : `${accent}40`,
+          }}>
+            {item.ok ? 'Compliant' : 'Active'}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function CapViz04({ accent }) {
+  const commits = [
+    { hash: 'a1b2c', msg: 'ADT→FHIR mapping v1.0', time: '3 days ago', tag: 'v1.0' },
+    { hash: 'd4e5f', msg: 'CPT-4 normalization layer', time: '2 days ago' },
+    { hash: 'g7h8i', msg: 'Hotfix: date format edge case', time: '1 day ago' },
+    { hash: 'j0k1l', msg: 'FHIR R4 upgrade + rollback', time: 'Today', tag: 'v2.0', active: true },
+  ];
+  return (
+    <div className="cviz-timeline">
+      {commits.map(c => (
+        <div key={c.hash} className={`cviz-commit${c.active ? ' cviz-commit-active' : ''}`}>
+          <div className="cviz-commit-dot" style={{
+            background: c.active ? accent : 'rgba(255,255,255,0.18)',
+            boxShadow: c.active ? `0 0 10px ${accent}` : 'none',
+          }} />
+          <div className="cviz-commit-body">
+            <div className="cviz-commit-msg">{c.msg}</div>
+            <div className="cviz-commit-meta">
+              <code className="cviz-commit-hash">{c.hash}</code>
+              <span className="cviz-commit-time">{c.time}</span>
+            </div>
+          </div>
+          {c.tag && <span className="cviz-commit-tag" style={{ color: accent, borderColor: `${accent}50` }}>{c.tag}</span>}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function CapViz05({ accent }) {
+  const ins  = ['HL7 v2', 'FHIR R4', 'EDI X12'];
+  const outs = ['NCPDP', 'C-CDA', 'DICOM'];
+  return (
+    <div className="cviz-hub">
+      <div className="cviz-hub-col">
+        {ins.map(p => (
+          <div key={p} className="cviz-hub-chip">
+            <span className="cviz-hub-dot" style={{ background: accent }} />
+            <span>{p}</span>
+            <span className="cviz-hub-arr">→</span>
+          </div>
+        ))}
+      </div>
+      <div className="cviz-hub-core" style={{ borderColor: accent, boxShadow: `0 0 20px ${accent}30` }}>
+        <div className="cviz-hub-core-sub">BridgeGate</div>
+        <div className="cviz-hub-core-main">EiPaaS</div>
+      </div>
+      <div className="cviz-hub-col">
+        {outs.map(p => (
+          <div key={p} className="cviz-hub-chip">
+            <span className="cviz-hub-arr">→</span>
+            <span>{p}</span>
+            <span className="cviz-hub-dot" style={{ background: '#02B164' }} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function CapViz06({ accent }) {
+  const tiers = [
+    { name: 'Bronze', desc: 'Raw Ingest — 44M+ files', color: '#CD853F' },
+    { name: 'Silver', desc: 'Cleansed & Normalized', color: '#A8A9AD' },
+    { name: 'Gold',   desc: 'ML-Ready — 25M rec/day',  color: '#FFD700' },
+  ];
+  return (
+    <div className="cviz-medallion">
+      {tiers.map((tier, i) => (
+        <div key={tier.name}>
+          <div className="cviz-tier" style={{ borderColor: `${tier.color}40` }}>
+            <span className="cviz-tier-badge" style={{ background: `${tier.color}18`, color: tier.color, borderColor: `${tier.color}40` }}>
+              {tier.name}
+            </span>
+            <span className="cviz-tier-desc">{tier.desc}</span>
+          </div>
+          {i < 2 && <div className="cviz-tier-arrow">↓</div>}
+        </div>
+      ))}
+      <div className="cviz-medallion-out">→ Databricks · SageMaker · Snowflake · dbt</div>
+    </div>
+  );
+}
+
+function CapViz07({ accent }) {
+  const steps = [
+    { label: 'Request Submitted', detail: 'via FHIR R4 CRD', status: 'done' },
+    { label: 'AI Clinical Review', detail: '0.4s decision time', status: 'done' },
+    { label: 'Eligibility Verification', detail: 'In Progress…', status: 'active' },
+    { label: 'Auto-Approval Decision', detail: 'Awaiting result', status: 'pending' },
+  ];
+  return (
+    <div style={{ padding: '0.25rem 0' }}>
+      <div className="cviz-wf-title">Prior Auth Pipeline — Live</div>
+      <div className="cviz-steps">
+        {steps.map(step => (
+          <div key={step.label} className={`cviz-step cviz-step-${step.status}`}>
+            <div className="cviz-step-dot" style={step.status === 'active'
+              ? { background: `${accent}22`, borderColor: accent, color: accent, boxShadow: `0 0 8px ${accent}50` }
+              : {}}>
+              {step.status === 'done' ? '✓' : step.status === 'active' ? '▶' : '○'}
+            </div>
+            <div className="cviz-step-body">
+              <div className="cviz-step-label">{step.label}</div>
+              <div className="cviz-step-detail">{step.detail}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="cviz-wf-kpis">
+        <span><b style={{ color: accent }}>80%</b> auto-approved</span>
+        <span><b style={{ color: '#02B164' }}>2.4s</b> avg decision</span>
+        <span><b style={{ color: '#FFD700' }}>500+</b> flows</span>
+      </div>
+    </div>
+  );
+}
 
 function CapabilityVisual({ cap }) {
   const accent = accentColors[cap.color] || accentColors.primary;
-  const line = sparklines[cap.num] || sparklines['01'];
-  const gradId = `cg-${cap.num}`;
-
-  // Build SVG area fill path from polyline
-  const areaPath = `${line} L180,75 L0,75 Z`;
-
+  const renders = {
+    '01': <CapViz01 accent={accent} />,
+    '02': <CapViz02 accent={accent} />,
+    '03': <CapViz03 accent={accent} />,
+    '04': <CapViz04 accent={accent} />,
+    '05': <CapViz05 accent={accent} />,
+    '06': <CapViz06 accent={accent} />,
+    '07': <CapViz07 accent={accent} />,
+  };
   return (
     <div className="capviz">
-      {/* Main card */}
       <div className="capviz-main">
         <div className="capviz-header">
           <div className="capviz-icon" style={{ background: `${accent}22`, color: accent }}>
@@ -724,50 +916,13 @@ function CapabilityVisual({ cap }) {
             Live Platform
           </div>
         </div>
-
-        <div className="capviz-chart">
-          <svg viewBox="0 0 180 75" preserveAspectRatio="none" aria-hidden="true">
-            <defs>
-              <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor={accent} stopOpacity="0.35" />
-                <stop offset="100%" stopColor={accent} stopOpacity="0" />
-              </linearGradient>
-            </defs>
-            <path d={areaPath} fill={`url(#${gradId})`} />
-            <polyline
-              points={line}
-              fill="none"
-              stroke={accent}
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
-
-        <div className="capviz-stats">
-          {cap.stats.map(s => (
-            <div key={s.label} className="capviz-stat">
-              <div className="capviz-stat-val" style={{ color: accent }}>{s.value}</div>
-              <div className="capviz-stat-lbl">{s.label}</div>
-            </div>
-          ))}
-        </div>
+        {renders[cap.num] || renders['01']}
       </div>
-
-      {/* Performance card */}
-      <div className="capviz-perf">
-        <div className="capviz-perf-title">Capability Performance</div>
-        {cap.perfBars.map((b, i) => (
-          <div key={b.label} className="capviz-bar-row">
-            <div className="capviz-bar-label">{b.label}</div>
-            <div className="capviz-bar-track">
-              <div
-                className="capviz-bar-fill"
-                style={{ width: `${b.pct}%`, background: accent, animationDelay: `${i * 0.12}s` }}
-              />
-            </div>
-            <div className="capviz-bar-pct">{b.pct}%</div>
+      <div className="capviz-stats-row">
+        {cap.stats.map(s => (
+          <div key={s.label} className="capviz-stat-item">
+            <div className="capviz-stat-val" style={{ color: accent }}>{s.value}</div>
+            <div className="capviz-stat-lbl">{s.label}</div>
           </div>
         ))}
       </div>
