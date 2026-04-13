@@ -50,6 +50,8 @@ const capabilities = [
     color: 'primary',
     to: '/platform/analytics-nlp',
     bullets: ['De-identification & PHI redaction', 'Entity extraction', 'FHIR R4 structured output'],
+    stats: [{ value: '99.2%', label: 'Accuracy' }, { value: '<2 min', label: 'Processing' }, { value: '25M+', label: 'Records/day' }],
+    perfBars: [{ label: 'NLP Processing', pct: 95 }, { label: 'FHIR R4 Output', pct: 87 }, { label: 'Throughput', pct: 92 }],
   },
   {
     num: '02',
@@ -60,6 +62,8 @@ const capabilities = [
     color: 'cyan',
     to: '/platform/reporting-nlp',
     bullets: ['No SQL required', 'HEDIS, Stars, CAHPS reports', 'eCQM / QRDA I & III'],
+    stats: [{ value: '6 sec', label: 'Query time' }, { value: '40+', label: 'Report types' }, { value: '0', label: 'SQL required' }],
+    perfBars: [{ label: 'Query Speed', pct: 98 }, { label: 'Report Coverage', pct: 91 }, { label: 'Accuracy', pct: 94 }],
   },
   {
     num: '03',
@@ -70,6 +74,8 @@ const capabilities = [
     color: 'navy',
     to: '/platform/governance-compliance',
     bullets: ['HIPAA Privacy & Security Rules', 'ONC Cures Act Final Rule', 'CMS Prior Auth Rule (CMS-0057-F)'],
+    stats: [{ value: '100%', label: 'Audit coverage' }, { value: '3', label: 'Mandates auto' }, { value: '0', label: 'Manual steps' }],
+    perfBars: [{ label: 'HIPAA Compliance', pct: 100 }, { label: 'Audit Readiness', pct: 97 }, { label: 'Policy Automation', pct: 89 }],
   },
   {
     num: '04',
@@ -80,6 +86,8 @@ const capabilities = [
     color: 'green',
     to: '/platform/governance-versioning',
     bullets: ['Full data lineage', 'One-click rollback', 'One-click audit exports'],
+    stats: [{ value: '100%', label: 'Data lineage' }, { value: '1-click', label: 'Rollback' }, { value: '∞', label: 'Version history' }],
+    perfBars: [{ label: 'Lineage Tracking', pct: 100 }, { label: 'Rollback Speed', pct: 96 }, { label: 'Audit Export', pct: 93 }],
   },
   {
     num: '05',
@@ -90,6 +98,8 @@ const capabilities = [
     color: 'orange',
     to: '/platform/interfacing',
     bullets: ['22+ enterprise deployments', 'Real-time & batch modes', 'No rip-and-replace required'],
+    stats: [{ value: '7+', label: 'Protocols' }, { value: '500+', label: 'Connectors' }, { value: '22+', label: 'Deployments' }],
+    perfBars: [{ label: 'Protocol Coverage', pct: 100 }, { label: 'Connector Uptime', pct: 99 }, { label: 'Onboard Speed', pct: 88 }],
   },
   {
     num: '06',
@@ -100,6 +110,8 @@ const capabilities = [
     color: 'primary',
     to: '/platform/ai-readiness',
     bullets: ['Master Patient Index (MPI)', 'Feature store integration', 'Model drift monitoring'],
+    stats: [{ value: '3-tier', label: 'Data lake' }, { value: '4+', label: 'ML platforms' }, { value: '70%', label: 'Less prep time' }],
+    perfBars: [{ label: 'Data Quality', pct: 97 }, { label: 'ML Pipeline Speed', pct: 90 }, { label: 'MPI Accuracy', pct: 95 }],
   },
   {
     num: '07',
@@ -110,6 +122,8 @@ const capabilities = [
     color: 'cyan',
     to: '/platform/workflow-orchestration',
     bullets: ['500+ pre-built connectors', 'FHIR R4 event triggers', 'Human-in-the-loop approval gates'],
+    stats: [{ value: '500+', label: 'Pre-built flows' }, { value: '80%', label: 'Auth auto-approve' }, { value: '<1 day', label: 'Deploy time' }],
+    perfBars: [{ label: 'Automation Rate', pct: 92 }, { label: 'Prior Auth Speed', pct: 88 }, { label: 'Uptime SLA', pct: 99 }],
   },
 ];
 
@@ -467,54 +481,78 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PLATFORM OVERVIEW — tab pills + detail panel */}
-      <section className="section platform-section">
+      {/* PLATFORM OVERVIEW */}
+      <section className="platform-section">
+        <div className="platform-bg-grid" />
         <div className="container">
+
+          {/* Header */}
           <FadeIn>
-            <div className="section-header centered">
+            <div className="plt-header">
               <div className="eyebrow">The Platform</div>
-              <h2>Seven Capabilities. One Integrated Platform.</h2>
-              <p>Each capability is powerful standalone. Together, they form the most complete healthcare data platform built for enterprise interoperability.</p>
+              <h2>Seven Capabilities.<br />One Integrated Platform.</h2>
             </div>
           </FadeIn>
-          {/* Pills */}
+
+          {/* Icon selector row */}
           <FadeIn>
-            <div className="cap-tabs">
+            <div className="plt-selector">
               {capabilities.map((cap, i) => (
                 <button
                   key={cap.num}
-                  className={`cap-tab${i === activeCapIdx ? ' cap-tab-active' : ''}`}
+                  className={`plt-sel-btn${i === activeCapIdx ? ' plt-sel-active' : ''}`}
                   onClick={() => setActiveCapIdx(i)}
+                  style={{ '--acc': accentColors[cap.color] || accentColors.primary }}
+                  title={cap.label}
                 >
-                  <span className="cap-tab-num">{cap.num}</span>
-                  {cap.label}
+                  <div className="plt-sel-icon">{cap.icon}</div>
+                  <div className="plt-sel-num">{cap.num}</div>
+                  <div className="plt-sel-lbl">{cap.label}</div>
                 </button>
               ))}
             </div>
           </FadeIn>
-          {/* Detail Panel */}
-          <FadeIn>
-            <div className="cap-panel">
-              <div className="cap-panel-left">
-                <div className={`cap-panel-icon cap-icon-${activeCap.color}`}>{activeCap.icon}</div>
-                <div className="cap-panel-num">{activeCap.num}</div>
-                <div className={`cap-panel-label cap-label-${activeCap.color}`}>{activeCap.label.toUpperCase()}</div>
-                <h3 className="cap-panel-title">{activeCap.title}</h3>
-                <p className="cap-panel-desc">{activeCap.desc}</p>
-                <ul className="cap-panel-bullets">
-                  {activeCap.bullets.map(b => (
-                    <li key={b}><CheckCircle2 size={14} /> {b}</li>
-                  ))}
-                </ul>
-                <Link to={activeCap.to} className="btn btn-primary btn-md" style={{ marginTop: '1.5rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-                  Explore {activeCap.label} <ArrowRight size={14} />
-                </Link>
+
+          {/* Editorial showcase */}
+          <div className="plt-showcase" key={activeCap.num}>
+            <div className="plt-show-left">
+              <div className="plt-show-meta">
+                <span className="plt-show-num">{activeCap.num}</span>
+                <span
+                  className="plt-show-tag"
+                  style={{ color: accentColors[activeCap.color], borderColor: `${accentColors[activeCap.color]}40`, background: `${accentColors[activeCap.color]}15` }}
+                >
+                  {activeCap.label}
+                </span>
               </div>
-              <div className="cap-panel-right">
-                <CapabilityVisual num={activeCap.num} color={activeCap.color} icon={activeCap.icon} label={activeCap.label} />
+              <h3 className="plt-show-title">{activeCap.title}</h3>
+              <p className="plt-show-desc">{activeCap.desc}</p>
+
+              <div className="plt-show-stats">
+                {activeCap.stats.map(s => (
+                  <div key={s.label} className="plt-stat">
+                    <div className="plt-stat-val" style={{ color: accentColors[activeCap.color] }}>{s.value}</div>
+                    <div className="plt-stat-lbl">{s.label}</div>
+                  </div>
+                ))}
               </div>
+
+              <ul className="plt-bullets">
+                {activeCap.bullets.map(b => (
+                  <li key={b}><CheckCircle2 size={14} /> {b}</li>
+                ))}
+              </ul>
+
+              <Link to={activeCap.to} className="btn btn-primary btn-md plt-cta">
+                Explore {activeCap.label} <ArrowRight size={14} />
+              </Link>
             </div>
-          </FadeIn>
+
+            <div className="plt-show-right">
+              <CapabilityVisual cap={activeCap} />
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -642,38 +680,96 @@ export default function Home() {
 }
 
 /* ---- Capability Visual Mockup ---- */
-function CapabilityVisual({ num, color, icon, label }) {
-  const colorMap = {
-    primary: ['var(--color-primary)', 'rgba(172,65,151,0.15)'],
-    cyan: ['var(--color-cyan)', 'rgba(32,211,239,0.15)'],
-    navy: ['var(--color-navy)', 'rgba(32,34,79,0.15)'],
-    green: ['var(--color-green)', 'rgba(2,177,100,0.15)'],
-    orange: ['var(--color-orange)', 'rgba(241,122,66,0.15)'],
-  };
-  const [accent, bg] = colorMap[color] || colorMap.primary;
+const accentColors = {
+  primary: '#AC4197',
+  cyan: '#20D3EF',
+  navy: '#7b82e0',
+  green: '#02B164',
+  orange: '#F17A42',
+};
+
+// Unique sparkline paths per capability num
+const sparklines = {
+  '01': 'M0,60 20,45 40,55 60,30 80,38 100,22 120,28 140,15 160,20 180,10',
+  '02': 'M0,55 20,50 40,42 60,48 80,32 100,36 120,20 140,24 160,15 180,8',
+  '03': 'M0,65 20,58 40,62 60,45 80,50 100,35 120,40 140,28 160,32 180,18',
+  '04': 'M0,58 20,52 40,46 60,38 80,42 100,30 120,22 140,18 160,12 180,6',
+  '05': 'M0,62 20,55 40,60 60,42 80,50 100,38 120,32 140,22 160,26 180,14',
+  '06': 'M0,64 20,58 40,50 60,44 80,48 100,34 120,28 140,20 160,16 180,8',
+  '07': 'M0,60 20,48 40,56 60,36 80,44 100,28 120,34 140,18 160,22 180,12',
+};
+
+function CapabilityVisual({ cap }) {
+  const accent = accentColors[cap.color] || accentColors.primary;
+  const line = sparklines[cap.num] || sparklines['01'];
+  const gradId = `cg-${cap.num}`;
+
+  // Build SVG area fill path from polyline
+  const areaPath = `${line} L180,75 L0,75 Z`;
 
   return (
-    <div className="cap-visual" style={{ '--accent': accent, '--bg': bg }}>
-      <div className="cap-visual-card">
-        <div className="cap-visual-header">
-          <div className="cap-visual-icon">{icon}</div>
-          <div>
-            <div className="cap-visual-num">{num}</div>
-            <div className="cap-visual-label">{label}</div>
+    <div className="capviz">
+      {/* Main card */}
+      <div className="capviz-main">
+        <div className="capviz-header">
+          <div className="capviz-icon" style={{ background: `${accent}22`, color: accent }}>
+            {cap.icon}
+          </div>
+          <div className="capviz-header-text">
+            <div className="capviz-num">{cap.num}</div>
+            <div className="capviz-label">{cap.label}</div>
+          </div>
+          <div className="capviz-live">
+            <span className="capviz-live-dot" />
+            Live Platform
           </div>
         </div>
-        <div className="cap-visual-lines">
-          {[85, 65, 90, 50, 75].map((w, i) => (
-            <div key={i} className="cap-visual-line">
-              <div className="cap-visual-line-fill" style={{ width: `${w}%`, animationDelay: `${i * 0.1}s` }} />
+
+        <div className="capviz-chart">
+          <svg viewBox="0 0 180 75" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={accent} stopOpacity="0.35" />
+                <stop offset="100%" stopColor={accent} stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <path d={areaPath} fill={`url(#${gradId})`} />
+            <polyline
+              points={line}
+              fill="none"
+              stroke={accent}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+
+        <div className="capviz-stats">
+          {cap.stats.map(s => (
+            <div key={s.label} className="capviz-stat">
+              <div className="capviz-stat-val" style={{ color: accent }}>{s.value}</div>
+              <div className="capviz-stat-lbl">{s.label}</div>
             </div>
           ))}
         </div>
-        <div className="cap-visual-tags">
-          {['HL7', 'FHIR R4', 'HIPAA', 'AI-Ready'].map((t) => (
-            <span key={t} className="cap-visual-tag">{t}</span>
-          ))}
-        </div>
+      </div>
+
+      {/* Performance card */}
+      <div className="capviz-perf">
+        <div className="capviz-perf-title">Capability Performance</div>
+        {cap.perfBars.map((b, i) => (
+          <div key={b.label} className="capviz-bar-row">
+            <div className="capviz-bar-label">{b.label}</div>
+            <div className="capviz-bar-track">
+              <div
+                className="capviz-bar-fill"
+                style={{ width: `${b.pct}%`, background: accent, animationDelay: `${i * 0.12}s` }}
+              />
+            </div>
+            <div className="capviz-bar-pct">{b.pct}%</div>
+          </div>
+        ))}
       </div>
     </div>
   );
