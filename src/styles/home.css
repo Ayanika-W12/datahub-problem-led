@@ -2313,14 +2313,14 @@
     font-size: 13px;
   }
   
-  /* Adjusted pillar positions for 768px - closer to center like desktop */
-  .p1 { top: 8%; left: 50%; }
-  .p2 { top: 22%; left: 82%; }
-  .p3 { top: 52%; left: 88%; }
-  .p4 { top: 85%; left: 72%; }
-  .p5 { top: 85%; left: 28%; }
-  .p6 { top: 52%; left: 12%; }
-  .p7 { top: 22%; left: 18%; }
+  /* Adjusted pillar positions for 768px - proper circular arrangement */
+  .p1 { top: 5%; left: 50%; width: 115px; }
+  .p2 { top: 18%; left: 78%; }
+  .p3 { top: 42%; left: 85%; }
+  .p4 { top: 70%; left: 72%; }
+  .p5 { top: 70%; left: 28%; }
+  .p6 { top: 42%; left: 15%; }
+  .p7 { top: 18%; left: 22%; }
 }
 
 @media (max-width: 640px) {
@@ -2364,14 +2364,14 @@
     font-size: 6px;
   }
   
-  /* Adjusted pillar positions for 640px - closer to center like desktop */
-  .p1 { top: 6%; left: 50%; }
-  .p2 { top: 20%; left: 80%; }
-  .p3 { top: 52%; left: 85%; }
-  .p4 { top: 84%; left: 72%; }
-  .p5 { top: 84%; left: 28%; }
-  .p6 { top: 52%; left: 15%; }
-  .p7 { top: 20%; left: 20%; }
+  /* Adjusted pillar positions for 640px - proper circular arrangement */
+  .p1 { top: 4%; left: 50%; width: 100px; }
+  .p2 { top: 16%; left: 76%; }
+  .p3 { top: 40%; left: 82%; }
+  .p4 { top: 68%; left: 70%; }
+  .p5 { top: 68%; left: 30%; }
+  .p6 { top: 40%; left: 18%; }
+  .p7 { top: 16%; left: 24%; }
   
   .core-kicker,
   .core-sub {
@@ -2433,14 +2433,14 @@
     line-height: 1.2;
   }
   
-  /* Pillar positions for very small screens - closer to center like desktop */
-  .p1 { top: 5%; left: 50%; }
-  .p2 { top: 18%; left: 78%; }
-  .p3 { top: 50%; left: 82%; }
-  .p4 { top: 82%; left: 70%; }
-  .p5 { top: 82%; left: 30%; }
-  .p6 { top: 50%; left: 18%; }
-  .p7 { top: 18%; left: 22%; }
+  /* Pillar positions for very small screens - proper circular arrangement */
+  .p1 { top: 3%; left: 50%; width: 85px; }
+  .p2 { top: 14%; left: 75%; }
+  .p3 { top: 38%; left: 80%; }
+  .p4 { top: 65%; left: 68%; }
+  .p5 { top: 65%; left: 32%; }
+  .p6 { top: 38%; left: 20%; }
+  .p7 { top: 14%; left: 25%; }
 }
 
 /* ============================================
