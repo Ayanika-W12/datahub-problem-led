@@ -85,7 +85,7 @@
 
 @media (max-width: 1024px) {
   .about-stats-section .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .about-client-card { flex: 0 1 calc(50% - 0.5rem); min-width: 180px; }
+  .about-client-card { flex: 0 1 calc(33.333% - 0.67rem); min-width: 180px; }
 }
 
 @media (max-width: 768px) {
