@@ -57,8 +57,9 @@
 }
 
 .about-clients-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
 }
 
@@ -72,6 +73,9 @@
   color: rgba(255,255,255,0.8);
   text-align: center;
   transition: all var(--transition-fast);
+  flex: 0 1 calc(25% - 0.75rem);
+  min-width: 200px;
+  box-sizing: border-box;
 }
 
 .about-client-card:hover {
@@ -81,17 +85,17 @@
 
 @media (max-width: 1024px) {
   .about-stats-section .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .about-clients-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-client-card { flex: 0 1 calc(50% - 0.5rem); min-width: 180px; }
 }
 
 @media (max-width: 768px) {
   .about-mission-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .about-clients-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-client-card { flex: 0 1 calc(50% - 0.5rem); min-width: 160px; }
 }
 
 @media (max-width: 480px) {
   .about-stats-section .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .about-clients-grid { grid-template-columns: 1fr 1fr; }
+  .about-client-card { flex: 0 1 calc(50% - 0.5rem); min-width: 140px; }
 }
 
 /* Team Cards with Photos */
