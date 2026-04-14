@@ -2313,14 +2313,14 @@
     font-size: 13px;
   }
   
-  /* Adjusted pillar positions for 768px - spread out more to prevent overlap */
-  .p1 { top: 5%; left: 50%; }
-  .p2 { top: 20%; left: 88%; }
-  .p3 { top: 55%; left: 95%; }
-  .p4 { top: 90%; left: 75%; }
-  .p5 { top: 90%; left: 25%; }
-  .p6 { top: 55%; left: 5%; }
-  .p7 { top: 20%; left: 12%; }
+  /* Adjusted pillar positions for 768px - closer to center like desktop */
+  .p1 { top: 8%; left: 50%; }
+  .p2 { top: 22%; left: 82%; }
+  .p3 { top: 52%; left: 88%; }
+  .p4 { top: 85%; left: 72%; }
+  .p5 { top: 85%; left: 28%; }
+  .p6 { top: 52%; left: 12%; }
+  .p7 { top: 22%; left: 18%; }
 }
 
 @media (max-width: 640px) {
@@ -2364,14 +2364,14 @@
     font-size: 6px;
   }
   
-  /* Adjusted pillar positions for 640px - circular layout with proper spacing */
-  .p1 { top: 2%; left: 50%; }
-  .p2 { top: 18%; left: 92%; }
-  .p3 { top: 55%; left: 98%; }
-  .p4 { top: 92%; left: 78%; }
-  .p5 { top: 92%; left: 22%; }
-  .p6 { top: 55%; left: 2%; }
-  .p7 { top: 18%; left: 8%; }
+  /* Adjusted pillar positions for 640px - closer to center like desktop */
+  .p1 { top: 6%; left: 50%; }
+  .p2 { top: 20%; left: 80%; }
+  .p3 { top: 52%; left: 85%; }
+  .p4 { top: 84%; left: 72%; }
+  .p5 { top: 84%; left: 28%; }
+  .p6 { top: 52%; left: 15%; }
+  .p7 { top: 20%; left: 20%; }
   
   .core-kicker,
   .core-sub {
@@ -2433,14 +2433,14 @@
     line-height: 1.2;
   }
   
-  /* Pillar positions for very small screens - circular layout with maximum spacing */
-  .p1 { top: 0%; left: 50%; }
-  .p2 { top: 15%; left: 95%; }
-  .p3 { top: 55%; left: 100%; }
-  .p4 { top: 95%; left: 82%; }
-  .p5 { top: 95%; left: 18%; }
-  .p6 { top: 55%; left: 0%; }
-  .p7 { top: 15%; left: 5%; }
+  /* Pillar positions for very small screens - closer to center like desktop */
+  .p1 { top: 5%; left: 50%; }
+  .p2 { top: 18%; left: 78%; }
+  .p3 { top: 50%; left: 82%; }
+  .p4 { top: 82%; left: 70%; }
+  .p5 { top: 82%; left: 30%; }
+  .p6 { top: 50%; left: 18%; }
+  .p7 { top: 18%; left: 22%; }
 }
 
 /* ============================================
