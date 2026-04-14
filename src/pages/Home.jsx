@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {
   ArrowRight, CheckCircle2, ChevronRight, Zap, Shield,
   Database, Brain, GitBranch, Network, Workflow, BarChart3,
-  TrendingUp, Award, Users, Globe
+  TrendingUp, Award, Users, Globe, Quote
 } from 'lucide-react';
 import '../styles/home.css';
 import { BookDemoModal } from '../components/ui/BookDemoModal';
@@ -614,17 +614,21 @@ export default function Home() {
           <div className="testimonials-grid">
             {testimonials.map((t, i) => (
               <FadeIn key={i} delay={i * 100}>
-                <div className="testimonial-card">
-                  <div className="testimonial-quote-icon">"</div>
-                  <blockquote className="testimonial-quote">{t.quote}</blockquote>
-                  <div className="testimonial-author">
-                    <div className="testimonial-avatar">{t.initials}</div>
-                    <div>
-                      <div className="testimonial-name">{t.author}</div>
-                      <div className="testimonial-title">{t.org}</div>
-                    </div>
+                <blockquote className="cs-quote-block" style={{ '--accent': '#AC4197' }}>
+                  <div className="cs-quote-decoration" style={{ background: 'linear-gradient(135deg, #AC4197 0%, #d376b8 100%)' }}>
+                    <Quote size={24} />
                   </div>
-                </div>
+                  <p className="cs-quote-text">{t.quote}</p>
+                  <footer className="cs-quote-footer">
+                    <div className="cs-quote-avatar" style={{ background: 'linear-gradient(135deg, #AC4197 0%, #d376b8 100%)' }}>
+                      {t.initials}
+                    </div>
+                    <div>
+                      <cite className="cs-quote-author">{t.author}</cite>
+                      <span className="cs-quote-company">{t.org}</span>
+                    </div>
+                  </footer>
+                </blockquote>
               </FadeIn>
             ))}
           </div>
