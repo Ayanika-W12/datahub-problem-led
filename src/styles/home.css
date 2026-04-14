@@ -2313,14 +2313,14 @@
     font-size: 13px;
   }
   
-  /* Pillar positions for 768px - exact desktop circular percentages */
-  .p1 { top: 12%; left: 50%; width: 120px; }
-  .p2 { top: 26%; left: 82%; }
+  /* Pillar positions for 768px - adjusted to prevent overlap */
+  .p1 { top: 8%; left: 50%; width: 120px; }
+  .p2 { top: 24%; left: 85%; }
   .p3 { top: 58%; left: 88%; }
-  .p4 { top: 88%; left: 68%; }
-  .p5 { top: 88%; left: 32%; }
+  .p4 { top: 85%; left: 72%; }
+  .p5 { top: 85%; left: 28%; }
   .p6 { top: 58%; left: 12%; }
-  .p7 { top: 26%; left: 18%; }
+  .p7 { top: 24%; left: 15%; }
 }
 
 @media (max-width: 640px) {
@@ -2364,14 +2364,14 @@
     font-size: 6px;
   }
   
-  /* Pillar positions for 640px - exact desktop circular percentages */
-  .p1 { top: 12%; left: 50%; width: 105px; }
-  .p2 { top: 26%; left: 82%; }
+  /* Pillar positions for 640px - adjusted to prevent overlap */
+  .p1 { top: 8%; left: 50%; width: 105px; }
+  .p2 { top: 24%; left: 85%; }
   .p3 { top: 58%; left: 88%; }
-  .p4 { top: 88%; left: 68%; }
-  .p5 { top: 88%; left: 32%; }
+  .p4 { top: 85%; left: 72%; }
+  .p5 { top: 85%; left: 28%; }
   .p6 { top: 58%; left: 12%; }
-  .p7 { top: 26%; left: 18%; }
+  .p7 { top: 24%; left: 15%; }
   
   .core-kicker,
   .core-sub {
@@ -2433,14 +2433,14 @@
     line-height: 1.2;
   }
   
-  /* Pillar positions for 480px - exact desktop circular percentages */
-  .p1 { top: 12%; left: 50%; width: 90px; }
-  .p2 { top: 26%; left: 82%; }
+  /* Pillar positions for 480px - adjusted to prevent overlap */
+  .p1 { top: 8%; left: 50%; width: 90px; }
+  .p2 { top: 24%; left: 85%; }
   .p3 { top: 58%; left: 88%; }
-  .p4 { top: 88%; left: 68%; }
-  .p5 { top: 88%; left: 32%; }
+  .p4 { top: 85%; left: 72%; }
+  .p5 { top: 85%; left: 28%; }
   .p6 { top: 58%; left: 12%; }
-  .p7 { top: 26%; left: 18%; }
+  .p7 { top: 24%; left: 15%; }
 }
 
 /* ============================================
