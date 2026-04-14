@@ -1585,6 +1585,8 @@
   .hero-split { grid-template-columns: 1fr; gap: 2.5rem; padding-bottom: 4rem; }
   .hero-split-text { max-width: 100%; }
   .hero-pillars-grid { grid-template-columns: repeat(4, 1fr); }
+  .capabilities-wrapper { align-items: center; }
+  .capabilities-frame { margin: 0 auto; }
 }
 
 @media (max-width: 640px) {
@@ -2310,18 +2312,28 @@
   .frame-badge-value {
     font-size: 13px;
   }
+  
+  /* Pillar positions for 768px - adjusted to prevent overlap */
+  .p1 { top: 12%; left: 50%; width: 120px; }
+  .p2 { top: 29%; left: 89%; }
+  .p3 { top: 58%; left: 92%; }
+  .p4 { top: 85%; left: 72%; }
+  .p5 { top: 85%; left: 28%; }
+  .p6 { top: 58%; left: 8%; }
+  .p7 { top: 29%; left: 11%; }
 }
 
 @media (max-width: 640px) {
   .capabilities-frame {
-    aspect-ratio: auto;
+    aspect-ratio: 1;
     height: auto;
-    min-height: 500px;
-    padding: 16px;
+    min-height: 380px;
+    max-width: 340px;
+    padding: 12px;
   }
   
   .frame-content {
-    padding: 12px;
+    padding: 8px;
   }
   
   .frame-topbar {
@@ -2340,13 +2352,26 @@
   }
   
   .frame-center-core {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
   }
   
   .core-title {
-    font-size: 12px;
+    font-size: 11px;
   }
+  
+  .core-kicker {
+    font-size: 6px;
+  }
+  
+  /* Pillar positions for 640px - adjusted to prevent overlap */
+  .p1 { top: 12%; left: 50%; width: 105px; }
+  .p2 { top: 29%; left: 89%; }
+  .p3 { top: 58%; left: 92%; }
+  .p4 { top: 85%; left: 72%; }
+  .p5 { top: 85%; left: 28%; }
+  .p6 { top: 58%; left: 8%; }
+  .p7 { top: 29%; left: 11%; }
   
   .core-kicker,
   .core-sub {
@@ -2370,6 +2395,52 @@
   .frame-pillar .pillar-label {
     font-size: 9px;
   }
+}
+
+@media (max-width: 480px) {
+  .capabilities-frame {
+    aspect-ratio: 1;
+    max-width: 300px;
+    min-height: 320px;
+    padding: 8px;
+  }
+  
+  .frame-center-core {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .core-title {
+    font-size: 10px;
+  }
+  
+  .frame-pillar {
+    width: 80px;
+    min-height: 48px;
+    padding: 5px 6px;
+    border-radius: 8px;
+  }
+  
+  .frame-pillar .cap-num {
+    width: 16px;
+    height: 16px;
+    font-size: 7px;
+    margin-bottom: 3px;
+  }
+  
+  .frame-pillar .pillar-label {
+    font-size: 8px;
+    line-height: 1.2;
+  }
+  
+  /* Pillar positions for 480px - adjusted to prevent overlap */
+  .p1 { top: 12%; left: 50%; width: 90px; }
+  .p2 { top: 29%; left: 89%; }
+  .p3 { top: 58%; left: 92%; }
+  .p4 { top: 85%; left: 72%; }
+  .p5 { top: 85%; left: 28%; }
+  .p6 { top: 58%; left: 8%; }
+  .p7 { top: 29%; left: 11%; }
 }
 
 /* ============================================
