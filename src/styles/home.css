@@ -2315,12 +2315,12 @@
   
   /* Pillar positions for 768px - adjusted to prevent overlap */
   .p1 { top: 8%; left: 50%; width: 120px; }
-  .p2 { top: 24%; left: 85%; }
-  .p3 { top: 58%; left: 88%; }
+  .p2 { top: 24%; left: 80%; }
+  .p3 { top: 58%; left: 92%; }
   .p4 { top: 85%; left: 72%; }
   .p5 { top: 85%; left: 28%; }
-  .p6 { top: 58%; left: 12%; }
-  .p7 { top: 24%; left: 15%; }
+  .p6 { top: 58%; left: 8%; }
+  .p7 { top: 24%; left: 20%; }
 }
 
 @media (max-width: 640px) {
@@ -2366,12 +2366,12 @@
   
   /* Pillar positions for 640px - adjusted to prevent overlap */
   .p1 { top: 8%; left: 50%; width: 105px; }
-  .p2 { top: 24%; left: 85%; }
-  .p3 { top: 58%; left: 88%; }
+  .p2 { top: 24%; left: 80%; }
+  .p3 { top: 58%; left: 92%; }
   .p4 { top: 85%; left: 72%; }
   .p5 { top: 85%; left: 28%; }
-  .p6 { top: 58%; left: 12%; }
-  .p7 { top: 24%; left: 15%; }
+  .p6 { top: 58%; left: 8%; }
+  .p7 { top: 24%; left: 20%; }
   
   .core-kicker,
   .core-sub {
@@ -2435,12 +2435,12 @@
   
   /* Pillar positions for 480px - adjusted to prevent overlap */
   .p1 { top: 8%; left: 50%; width: 90px; }
-  .p2 { top: 24%; left: 85%; }
-  .p3 { top: 58%; left: 88%; }
+  .p2 { top: 24%; left: 80%; }
+  .p3 { top: 58%; left: 92%; }
   .p4 { top: 85%; left: 72%; }
   .p5 { top: 85%; left: 28%; }
-  .p6 { top: 58%; left: 12%; }
-  .p7 { top: 24%; left: 15%; }
+  .p6 { top: 58%; left: 8%; }
+  .p7 { top: 24%; left: 20%; }
 }
 
 /* ============================================
