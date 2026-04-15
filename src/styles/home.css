@@ -1960,14 +1960,14 @@
 .conn-base {
   fill: none;
   stroke: rgba(237, 237, 237, 0.10);
-  stroke-width: 1.2;
+  stroke-width: 2.95;
   stroke-dasharray: 4 8;
 }
 
 .conn-glow {
   fill: none;
   stroke-linecap: round;
-  stroke-width: 2.2;
+  stroke-width: 3.95;
   stroke-dasharray: 6 12;
   animation: flowDash 9s linear infinite;
   opacity: 0.9;
@@ -2313,6 +2313,21 @@
     font-size: 13px;
   }
   
+  /* Connection lines - full opacity and increased width */
+  .frame-grid-overlay,
+  .frame-orbital-ring,
+  .frame-connections {
+    opacity: 1;
+  }
+  
+  .conn-base {
+    stroke-width: 2.95;
+  }
+  
+  .conn-glow {
+    stroke-width: 3.95;
+  }
+  
   /* Pillar positions for 768px - adjusted to prevent overlap */
   .p1 { top: 12%; left: 50%; width: 120px; }
   .p2 { top: 29%; left: 89%; }
@@ -2344,11 +2359,22 @@
     justify-content: center;
   }
   
-  /* Hide orbital elements on small mobile */
+  /* Reduce orbital elements on small mobile but keep connections visible */
   .frame-grid-overlay,
-  .frame-connections,
   .frame-orbital-ring {
-    opacity: 0.3;
+    opacity: 1;
+  }
+  
+  .frame-connections {
+    opacity: 1;
+  }
+  
+  .conn-base {
+    stroke-width: 3.95;
+  }
+  
+  .conn-glow {
+    stroke-width: 4.95;
   }
   
   .frame-center-core {
@@ -2403,6 +2429,21 @@
     max-width: 300px;
     min-height: 320px;
     padding: 8px;
+  }
+  
+  /* Connection lines - full opacity and increased width */
+  .frame-grid-overlay,
+  .frame-orbital-ring,
+  .frame-connections {
+    opacity: 1;
+  }
+  
+  .conn-base {
+    stroke-width: 3.95;
+  }
+  
+  .conn-glow {
+    stroke-width: 4.95;
   }
   
   .frame-center-core {
