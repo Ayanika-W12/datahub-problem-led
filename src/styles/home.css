@@ -1996,6 +1996,7 @@
   z-index: 3;
   pointer-events: none;
   scale: 1;
+  transform-origin: 0 0;
   transition: scale 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease;
 }
 
@@ -2033,6 +2034,12 @@
   inset: -14px;
   border: 1px solid rgba(32, 211, 239, 0.16);
   animation: rotateSlow 18s linear infinite;
+  scale: 1;
+  transition: scale 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.frame-center-core:has(.core-link:hover)::after {
+  scale: calc(1 / 1.08);
 }
 
 .core-inner {
