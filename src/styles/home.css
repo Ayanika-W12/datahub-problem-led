@@ -2344,11 +2344,14 @@
     justify-content: center;
   }
   
-  /* Hide orbital elements on small mobile */
+  /* Reduce orbital elements on small mobile but keep connections visible */
   .frame-grid-overlay,
-  .frame-connections,
   .frame-orbital-ring {
     opacity: 0.3;
+  }
+  
+  .frame-connections {
+    opacity: 0.8;
   }
   
   .frame-center-core {
