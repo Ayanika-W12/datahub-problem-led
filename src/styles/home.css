@@ -2313,6 +2313,21 @@
     font-size: 13px;
   }
   
+  /* Connection lines - full opacity and increased width */
+  .frame-grid-overlay,
+  .frame-orbital-ring,
+  .frame-connections {
+    opacity: 1;
+  }
+  
+  .conn-base {
+    stroke-width: 1.95;
+  }
+  
+  .conn-glow {
+    stroke-width: 2.95;
+  }
+  
   /* Pillar positions for 768px - adjusted to prevent overlap */
   .p1 { top: 12%; left: 50%; width: 120px; }
   .p2 { top: 29%; left: 89%; }
@@ -2347,11 +2362,19 @@
   /* Reduce orbital elements on small mobile but keep connections visible */
   .frame-grid-overlay,
   .frame-orbital-ring {
-    opacity: 0.3;
+    opacity: 1;
   }
   
   .frame-connections {
-    opacity: 0.8;
+    opacity: 1;
+  }
+  
+  .conn-base {
+    stroke-width: 1.95;
+  }
+  
+  .conn-glow {
+    stroke-width: 2.95;
   }
   
   .frame-center-core {
