@@ -1995,6 +1995,26 @@
   animation: coreBreath 6.5s ease-in-out infinite;
   z-index: 3;
   pointer-events: none;
+  scale: 1;
+  transition: scale 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease;
+}
+
+.frame-center-core:has(.core-link:hover) {
+  scale: 1.08;
+  animation-play-state: paused;
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.24),
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    0 0 60px rgba(32, 211, 239, 0.22);
+}
+
+.core-link {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .frame-center-core::before,

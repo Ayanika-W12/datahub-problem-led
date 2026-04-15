@@ -374,6 +374,15 @@ export default function Home() {
 
                   {/* Center Core */}
                   <div className="frame-center-core">
+                    <a
+                      className="core-link"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.querySelector('.platform-section')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      href="#platform-section"
+                      aria-label="Go to Platform section"
+                    />
                     <div className="core-inner">
                       <div className="core-kicker">Unified Architecture</div>
                       <div className="core-title">AI Healthcare Data Hub</div>
