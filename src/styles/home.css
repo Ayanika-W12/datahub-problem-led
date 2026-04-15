@@ -2321,11 +2321,11 @@
   }
   
   .conn-base {
-    stroke-width: 1.95;
+    stroke-width: 2.95;
   }
   
   .conn-glow {
-    stroke-width: 2.95;
+    stroke-width: 3.95;
   }
   
   /* Pillar positions for 768px - adjusted to prevent overlap */
@@ -2370,11 +2370,11 @@
   }
   
   .conn-base {
-    stroke-width: 1.95;
+    stroke-width: 2.95;
   }
   
   .conn-glow {
-    stroke-width: 2.95;
+    stroke-width: 3.95;
   }
   
   .frame-center-core {
