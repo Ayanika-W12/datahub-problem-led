@@ -284,7 +284,13 @@
   padding: 2.5rem 0;
   border-bottom: 1px solid rgba(255,255,255,0.06);
   overflow: hidden;
-  background: transparent;
+  /* Needs an explicit dark background for mix-blend-mode: screen to work —
+     transparent won't give screen blend the dark surface it needs */
+  background: #0b0820;
+}
+
+.marquee-container {
+  background: #0b0820;
 }
 
 .logos-label {
@@ -297,27 +303,35 @@
   margin-bottom: 1.5rem;
 }
 
-.marquee-item {
-  font-size: var(--text-sm);
-  font-weight: var(--font-semibold);
-  color: rgba(255,255,255,0.3);
-  letter-spacing: 0.05em;
-  white-space: nowrap;
-  padding: 0 1rem;
-  border-right: 1px solid rgba(255,255,255,0.07);
-}
-
 .marquee-item:last-child {
   border-right: none;
 }
 
 .logo-img {
-  height: 48px;
+  height: 44px;
   width: auto;
-  max-width: 160px;
+  max-width: 150px;
   object-fit: contain;
-  opacity: 0.45;
-  filter: brightness(0) invert(1);
+  /* grayscale + lighten removes colored tints, screen blend
+     makes any white/light background disappear into the dark page */
+  filter: grayscale(1) brightness(1.6) contrast(0.9);
+  mix-blend-mode: screen;
+  opacity: 0.55;
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.logo-img:hover {
+  opacity: 0.85;
+  filter: grayscale(0.4) brightness(1.4) contrast(1);
+}
+
+/* Marquee item — remove border dividers, use gap instead */
+.marquee-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2.5rem;
+  border-right: none;
 }
 
 
