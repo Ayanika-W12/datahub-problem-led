@@ -282,8 +282,9 @@
 /* ---- Logos ---- */
 .logos-section {
   padding: 2.5rem 0;
-  border-bottom: 1px solid var(--color-gray-100);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
   overflow: hidden;
+  background: transparent;
 }
 
 .logos-label {
@@ -292,18 +293,18 @@
   font-weight: var(--font-semibold);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-gray-400);
+  color: rgba(255,255,255,0.25);
   margin-bottom: 1.5rem;
 }
 
 .marquee-item {
   font-size: var(--text-sm);
   font-weight: var(--font-semibold);
-  color: var(--color-gray-400);
+  color: rgba(255,255,255,0.3);
   letter-spacing: 0.05em;
   white-space: nowrap;
   padding: 0 1rem;
-  border-right: 1px solid var(--color-gray-200);
+  border-right: 1px solid rgba(255,255,255,0.07);
 }
 
 .marquee-item:last-child {
@@ -315,7 +316,8 @@
   width: auto;
   max-width: 160px;
   object-fit: contain;
-  opacity: 0.8;
+  opacity: 0.45;
+  filter: brightness(0) invert(1);
 }
 
 
@@ -416,10 +418,19 @@
 /* ============================================================
    DARK ZONE — single continuous canvas for 3 dark sections
    ============================================================ */
+/* ---- Unified dark page background ---- */
+/* Set on the home page <main> so the entire page shares one backdrop */
+main.home-page {
+  background: #0b0820;
+  background-image:
+    radial-gradient(ellipse 80% 40% at 20% 10%, rgba(172,65,151,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 80% 60%, rgba(32,211,239,0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 50% 90%, rgba(32,34,79,0.6) 0%, transparent 60%);
+}
+
 .dark-zone {
   position: relative;
-  /* Single gradient — no seams possible */
-  background: linear-gradient(175deg, #0b0820 0%, #111036 30%, #17103d 55%, #1c1248 80%, #0f0c2a 100%);
+  background: transparent; /* inherits from main.home-page */
   overflow: hidden;
 }
 
@@ -979,14 +990,16 @@
 /* Hub visual inside the platform section — full width, taller than when it was a hero inset */
 .plt-hub-visual {
   margin-bottom: 3rem;
-  border-radius: 1.25rem;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.07);
-  box-shadow: 0 0 80px rgba(32, 211, 239, 0.06), 0 0 40px rgba(172, 65, 151, 0.08);
+  /* No border, no card — bleeds into page background */
+}
+
+.plt-hub-visual .capabilities-wrapper {
+  width: 100%;
 }
 
 .plt-hub-visual .capabilities-frame {
-  min-height: 600px;
+  max-width: 100%;
+  min-height: 580px;
   aspect-ratio: 16 / 9;
 }
 .plt-header .eyebrow {
@@ -6688,7 +6701,7 @@ button.cs-cta-link {
    PROOF BAND — dark full-bleed stats wall
    ============================================================ */
 .proof-band {
-  background: var(--color-navy-dark, #0c0a22);
+  background: transparent;
   border-top: 1px solid rgba(255,255,255,0.06);
   border-bottom: 1px solid rgba(255,255,255,0.06);
   padding: 4rem 0;
@@ -6750,10 +6763,7 @@ button.cs-cta-link {
    ============================================================ */
 .closing-dark-zone {
   position: relative;
-  background:
-    radial-gradient(ellipse 60% 120% at 0% 50%, rgba(172,65,151,0.2) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 120% at 100% 50%, rgba(32,211,239,0.12) 0%, transparent 55%),
-    linear-gradient(160deg, #1a1040 0%, #20224F 60%, #0f0d2a 100%);
+  background: transparent;
 }
 
 /* Remove FTB's own background when nested inside closing-dark-zone */

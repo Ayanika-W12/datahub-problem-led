@@ -436,7 +436,7 @@ export default function Home() {
   const [demoModalOpen, setDemoModalOpen] = useState(false);
 
   return (
-    <main>
+    <main className="home-page">
       {/* ==========================================
           PROBLEM HERO + PROBLEM NAVIGATOR
           One continuous dark zone. Hero states the
