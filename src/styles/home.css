@@ -6522,9 +6522,30 @@ button.cs-cta-link {
 }
 
 .problem-hero {
-  padding: 9rem 0 3rem; /* top padding clears fixed navbar */
+  padding: 8rem 0 3rem; /* top padding clears fixed navbar */
   position: relative;
   z-index: 1;
+}
+
+/* Split layout: text left, orbital visual right */
+.ph-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* Text column — left-aligned content, centred within its column */
+.ph-text-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Visual column */
+.ph-visual-col {
+  width: 100%;
+  min-height: 480px;
 }
 
 /* Kicker — "Enterprise Data Problem" label */
@@ -6556,13 +6577,13 @@ button.cs-cta-link {
 
 /* Main headline */
 .ph-headline {
-  font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+  font-size: clamp(2rem, 3.5vw, 3.25rem);
   font-weight: var(--font-black);
   color: #fff;
   line-height: 1.1;
   letter-spacing: -0.04em;
-  margin-bottom: 1.5rem;
-  max-width: 820px;
+  margin-bottom: 1.25rem;
+  max-width: 100%;
 }
 
 .ph-accent {
@@ -6572,11 +6593,21 @@ button.cs-cta-link {
 
 /* Sub copy */
 .ph-sub {
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-size: clamp(0.95rem, 1.25vw, 1.05rem);
   color: rgba(255, 255, 255, 0.55);
-  max-width: 600px;
+  max-width: 100%;
   line-height: 1.7;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
+}
+
+/* Responsive — stack on mobile */
+@media (max-width: 900px) {
+  .ph-split {
+    grid-template-columns: 1fr;
+  }
+  .ph-visual-col {
+    min-height: 360px;
+  }
 }
 
 /* Cost row — three punchy numbers */

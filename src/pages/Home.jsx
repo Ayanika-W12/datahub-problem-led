@@ -447,58 +447,119 @@ export default function Home() {
         <div className="dz-orb-purple" aria-hidden="true" />
         <div className="dz-orb-cyan2" aria-hidden="true" />
 
-        {/* — PROBLEM STATEMENT HERO — */}
+        {/* — PROBLEM STATEMENT HERO — split layout */}
         <section className="problem-hero">
-          <div className="container">
-            <FadeIn>
-              <div className="ph-kicker">
-                <span className="ph-kicker-dot" />
-                Enterprise Data Problem
+          <div className="container ph-split">
+
+            {/* Left — problem copy, centre-aligned */}
+            <div className="ph-text-col">
+              <FadeIn>
+                <div className="ph-kicker">
+                  <span className="ph-kicker-dot" />
+                  Enterprise Data Problem
+                </div>
+              </FadeIn>
+              <FadeIn delay={60}>
+                <h1 className="ph-headline">
+                  Your enterprise data is<br />
+                  <span className="ph-accent">broken, siloed,<br />and bleeding money.</span>
+                </h1>
+              </FadeIn>
+              <FadeIn delay={120}>
+                <p className="ph-sub">
+                  Disconnected systems. Manual reconciliation. Compliance gaps.
+                  The real cost isn&apos;t just wasted IT spend — it&apos;s every decision made on bad data.
+                </p>
+              </FadeIn>
+              <FadeIn delay={180}>
+                <div className="ph-scroll-cue">
+                  <span>Pick your industry below — see exactly what it&apos;s costing you</span>
+                  <div className="ph-scroll-arrow" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M10 3v14M4 11l6 6 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                </div>
+              </FadeIn>
+            </div>
+
+            {/* Right — orbital hub visual (industry-agnostic platform flex) */}
+            <FadeIn delay={100} className="ph-visual-col">
+              <div className="capabilities-wrapper">
+                <div className="capabilities-frame">
+                  <div className="frame-grid-overlay" />
+                  <div className="frame-particles" />
+                  <div className="frame-orbital-ring" />
+                  <div className="frame-content">
+                    <div className="frame-hub-area">
+                      <div className="frame-connections">
+                        <svg viewBox="0 0 1200 675" preserveAspectRatio="none" aria-hidden="true">
+                          <defs>
+                            <linearGradient id="grad1" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="600" y2="120">
+                              <stop offset="0%" stopColor="#20D3EF" stopOpacity="0" /><stop offset="50%" stopColor="#20D3EF" stopOpacity="1" /><stop offset="100%" stopColor="#20D3EF" stopOpacity="0" />
+                            </linearGradient>
+                            <linearGradient id="grad2" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="928" y2="210">
+                              <stop offset="0%" stopColor="#AC4197" stopOpacity="0" /><stop offset="50%" stopColor="#AC4197" stopOpacity="1" /><stop offset="100%" stopColor="#AC4197" stopOpacity="0" />
+                            </linearGradient>
+                            <linearGradient id="grad3" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="1009" y2="413">
+                              <stop offset="0%" stopColor="#02B164" stopOpacity="0" /><stop offset="50%" stopColor="#02B164" stopOpacity="1" /><stop offset="100%" stopColor="#02B164" stopOpacity="0" />
+                            </linearGradient>
+                            <linearGradient id="grad4" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="782" y2="576">
+                              <stop offset="0%" stopColor="#F17A42" stopOpacity="0" /><stop offset="50%" stopColor="#F17A42" stopOpacity="1" /><stop offset="100%" stopColor="#F17A42" stopOpacity="0" />
+                            </linearGradient>
+                            <linearGradient id="grad5" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="418" y2="576">
+                              <stop offset="0%" stopColor="#20D3EF" stopOpacity="0" /><stop offset="50%" stopColor="#20D3EF" stopOpacity="1" /><stop offset="100%" stopColor="#20D3EF" stopOpacity="0" />
+                            </linearGradient>
+                            <linearGradient id="grad6" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="191" y2="413">
+                              <stop offset="0%" stopColor="#AC4197" stopOpacity="0" /><stop offset="50%" stopColor="#AC4197" stopOpacity="1" /><stop offset="100%" stopColor="#AC4197" stopOpacity="0" />
+                            </linearGradient>
+                            <linearGradient id="grad7" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="272" y2="210">
+                              <stop offset="0%" stopColor="#02B164" stopOpacity="0" /><stop offset="50%" stopColor="#02B164" stopOpacity="1" /><stop offset="100%" stopColor="#02B164" stopOpacity="0" />
+                            </linearGradient>
+                          </defs>
+                          <path className="conn-base" d="M600 358 L600 120" />
+                          <path className="conn-glow" stroke="url(#grad1)" d="M600 358 L600 120" />
+                          <path className="conn-base" d="M600 358 L928 210" />
+                          <path className="conn-glow" stroke="url(#grad2)" d="M600 358 L928 210" style={{ animationDelay: '-1s' }} />
+                          <path className="conn-base" d="M600 358 L1009 413" />
+                          <path className="conn-glow" stroke="url(#grad3)" d="M600 358 L1009 413" style={{ animationDelay: '-2s' }} />
+                          <path className="conn-base" d="M600 358 L782 576" />
+                          <path className="conn-glow" stroke="url(#grad4)" d="M600 358 L782 576" style={{ animationDelay: '-3s' }} />
+                          <path className="conn-base" d="M600 358 L418 576" />
+                          <path className="conn-glow" stroke="url(#grad5)" d="M600 358 L418 576" style={{ animationDelay: '-4s' }} />
+                          <path className="conn-base" d="M600 358 L191 413" />
+                          <path className="conn-glow" stroke="url(#grad6)" d="M600 358 L191 413" style={{ animationDelay: '-5s' }} />
+                          <path className="conn-base" d="M600 358 L272 210" />
+                          <path className="conn-glow" stroke="url(#grad7)" d="M600 358 L272 210" style={{ animationDelay: '-6s' }} />
+                        </svg>
+                      </div>
+                      <div className="frame-center-core">
+                        <a className="core-link" onClick={(e) => { e.preventDefault(); document.querySelector('.platform-section')?.scrollIntoView({ behavior: 'smooth' }); }} href="#platform-section" aria-label="Go to Platform section" />
+                        <div className="core-inner">
+                          <div className="core-kicker">Unified Architecture</div>
+                          <div className="core-title">AI Enterprise Data Hub</div>
+                        </div>
+                      </div>
+                      <div className="frame-pillars">
+                        {capabilities.map((cap, i) => (
+                          <Link
+                            key={cap.num}
+                            to={cap.to}
+                            className={`frame-pillar p${i + 1}`}
+                            style={{ '--accent': cap.color === 'cyan' ? '#20D3EF' : cap.color === 'primary' ? '#AC4197' : cap.color === 'green' ? '#02B164' : cap.color === 'orange' ? '#F17A42' : '#7b82e0' }}
+                          >
+                            <div className="cap-num">{cap.num}</div>
+                            <div className="pillar-label">{cap.label}</div>
+                            <div className="pillar-micro">{cap.bullets[0]}</div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </FadeIn>
-            <FadeIn delay={60}>
-              <h1 className="ph-headline">
-                Your enterprise data is<br />
-                <span className="ph-accent">broken, siloed, and bleeding money.</span>
-              </h1>
-            </FadeIn>
-            <FadeIn delay={120}>
-              <p className="ph-sub">
-                Disconnected systems. Manual reconciliation. Compliance gaps.
-                The real cost isn&apos;t just wasted IT spend — it&apos;s every decision made on bad data.
-              </p>
             </FadeIn>
 
-            {/* Cost tickers — three punchy stats */}
-            <FadeIn delay={180}>
-              <div className="ph-cost-row">
-                <div className="ph-cost-item">
-                  <div className="ph-cost-val" style={{ color: '#20D3EF' }}>$18.3B</div>
-                  <div className="ph-cost-lbl">Lost annually in healthcare data admin alone</div>
-                </div>
-                <div className="ph-cost-divider" aria-hidden="true" />
-                <div className="ph-cost-item">
-                  <div className="ph-cost-val" style={{ color: '#AC4197' }}>$1.77T</div>
-                  <div className="ph-cost-lbl">Retail revenue lost to inventory data distortion</div>
-                </div>
-                <div className="ph-cost-divider" aria-hidden="true" />
-                <div className="ph-cost-item">
-                  <div className="ph-cost-val" style={{ color: '#02B164' }}>83%</div>
-                  <div className="ph-cost-lbl">Of orgs say silos are blocking AI at scale</div>
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={240}>
-              <div className="ph-scroll-cue">
-                <span>Pick your industry below — see exactly what it&apos;s costing you</span>
-                <div className="ph-scroll-arrow" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M10 3v14M4 11l6 6 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-              </div>
-            </FadeIn>
           </div>
         </section>
 
