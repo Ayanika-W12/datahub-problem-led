@@ -430,43 +430,93 @@
   font-weight: var(--font-normal);
 }
 
-/* ---- Problem Navigator section — seamless dark background ---- */
-.prob-nav-section {
+/* ============================================================
+   DARK ZONE — single continuous canvas for 3 dark sections
+   ============================================================ */
+.dark-zone {
   position: relative;
-  background: linear-gradient(160deg, #0d0a1f 0%, #14103a 55%, #1a1245 100%);
+  /* Single gradient — no seams possible */
+  background: linear-gradient(175deg, #0b0820 0%, #111036 30%, #17103d 55%, #1c1248 80%, #0f0c2a 100%);
   overflow: hidden;
-  /* Remove bottom padding so the platform section's top margin covers the seam */
-  padding-bottom: 0 !important;
 }
 
-/* Shared dot-grid pattern (same technique as platform section) */
-.prob-nav-section::before {
+/* Dot grid overlay */
+.dark-zone::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image:
-    radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px);
+  background-size: 34px 34px;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Cyan orb top-left */
-.prob-nav-section::after {
+/* Large cyan orb — top left */
+.dark-zone::after {
   content: '';
   position: absolute;
-  top: -80px;
-  left: -120px;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(32,211,239,0.12) 0%, transparent 65%);
+  top: -150px;
+  left: -180px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(32,211,239,0.14) 0%, transparent 60%);
   pointer-events: none;
   z-index: 0;
 }
 
-.prob-nav-section > .container {
+/* Purple orb — center right (extra graphics element via an inner pseudo) */
+.dark-zone .dz-orb-purple {
+  position: absolute;
+  top: 35%;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(172,65,151,0.18) 0%, transparent 60%);
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+/* Second cyan orb — lower left (for the why-vorro section depth) */
+.dark-zone .dz-orb-cyan2 {
+  position: absolute;
+  bottom: 10%;
+  left: 30%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(32,211,239,0.08) 0%, transparent 65%);
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+/* Diagonal line graphic (subtle) */
+.dark-zone .dz-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(45deg, rgba(255,255,255,0.012) 1px, transparent 1px),
+    linear-gradient(-45deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* All direct children sit above the background layers */
+.dark-zone > * {
   position: relative;
   z-index: 1;
+}
+/* But the deco orbs/lines are absolute so they override */
+.dark-zone .dz-orb-purple,
+.dark-zone .dz-orb-cyan2,
+.dark-zone .dz-lines {
+  z-index: 0;
+}
+
+/* ---- prob-nav-section: transparent — inherits dark-zone bg ---- */
+.prob-nav-section {
+  background: transparent;
 }
 
 .prob-nav-section .section-header h2,
@@ -872,9 +922,9 @@
 .platform-section {
   position: relative;
   padding: 4rem 0 7rem;
-  /* Seamlessly continues the prob-nav-section gradient — same values */
-  background: linear-gradient(160deg, #0d0a1f 0%, #14103a 45%, #1a1245 100%);
-  overflow: hidden;
+  /* Background comes from .dark-zone parent */
+  background: transparent;
+  overflow: visible;
 }
 
 .platform-bg-grid {
@@ -888,17 +938,7 @@
   pointer-events: none;
 }
 
-/* Subtle orb glow */
-.platform-section::after {
-  content: '';
-  position: absolute;
-  top: -120px;
-  right: -200px;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(172,65,151,0.18) 0%, transparent 65%);
-  pointer-events: none;
-}
+/* Orb glow is now handled by .dark-zone .dz-orb-purple */
 
 /* Header */
 .plt-header {
@@ -1711,7 +1751,8 @@
 
 /* ---- Why Section ---- */
 .why-section {
-  background: var(--color-navy-dark);
+  /* Background comes from .dark-zone parent */
+  background: transparent;
 }
 
 .why-grid {

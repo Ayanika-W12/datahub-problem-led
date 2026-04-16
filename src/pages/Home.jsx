@@ -670,6 +670,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* DARK ZONE — single shared background for prob-nav + platform + why-vorro */}
+      <div className="dark-zone">
+        {/* Decorative background graphics */}
+        <div className="dz-lines" aria-hidden="true" />
+        <div className="dz-orb-purple" aria-hidden="true" />
+        <div className="dz-orb-cyan2" aria-hidden="true" />
+
       {/* PROBLEM NAVIGATOR */}
       <section className="section prob-nav-section">
         <div className="container">
@@ -825,6 +832,8 @@ export default function Home() {
           </FadeIn>
         </div>
       </section>
+
+      </div>{/* end .dark-zone */}
 
       {/* TESTIMONIALS */}
       <section className="section testimonials-section">
