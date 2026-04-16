@@ -4,8 +4,14 @@ import { ArrowRight, CheckCircle2, Zap } from 'lucide-react';
 const industries = {
   healthcare: {
     badge: 'Healthcare',
+    problemEyebrow: 'The Problem',
+    problemHeadline: 'Fragmented EHR, Payer & Lab Data Is Crippling Care Coordination.',
     headline: 'The Data Infrastructure Behind Modern Healthcare',
-    sub: 'Vorro powers health systems, HIEs, payers, providers, and specialty networks — connecting clinical, financial, and operational data across every system in your environment.',
+    sub: 'Health systems, HIEs, and payers operate across dozens of incompatible systems. Every gap between them creates compliance risk, delayed care, and wasted IT spend. Vorro closes every gap.',
+    costStats: [
+      { val: '$18.3B', label: 'Potential annual savings if healthcare administrative transactions moved fully electronic', citation: 'CAQH Index 2023', color: '#20D3EF' },
+      { val: '56%', label: 'Of health systems still rely on manual or partially-manual prior auth and eligibility processes', citation: 'KLAS Research 2023', color: '#AC4197' },
+    ],
     color: 'var(--color-primary)',
     colorHex: '#7c3aed',
     colorLight: '#f5f3ff',
@@ -55,8 +61,14 @@ const industries = {
   },
   ecommerce: {
     badge: 'eCommerce & Retail',
+    problemEyebrow: 'The Problem',
+    problemHeadline: 'Siloed Order, Inventory & Customer Data Is Killing Your Margin.',
     headline: 'Unified Data Across Every Channel, Platform, and Warehouse',
-    sub: "Vorro's enterprise integration platform connects your eCommerce platforms, ERP systems, order management, inventory, and customer data — eliminating silos and enabling real-time operational intelligence.",
+    sub: "Retailers and ecommerce brands run across ERPs, WMS platforms, storefronts, and marketplaces — all generating data that never connects, causing stockouts, wrong shipments, and lost revenue. Vorro unifies it all.",
+    costStats: [
+      { val: '$1.77T', label: 'Projected retail revenue lost to inventory distortion — overstock, stockouts, and shrink', citation: 'IHL Group 2023', color: '#20D3EF' },
+      { val: '88%', label: 'Of commerce leaders say customer expectations are harder to meet than ever due to data gaps', citation: 'Salesforce State of Commerce', color: '#AC4197' },
+    ],
     color: 'var(--color-cyan)',
     colorHex: '#06b6d4',
     colorLight: '#ecfeff',
@@ -99,8 +111,14 @@ const industries = {
   },
   'hr-tech': {
     badge: 'HR Tech',
+    problemEyebrow: 'The Problem',
+    problemHeadline: 'Disconnected HRIS, Payroll & Benefits Data Is Creating Compliance Exposure.',
     headline: 'HRIS, Payroll, and Benefits Data — Connected and Compliant',
-    sub: "Vorro's integration platform eliminates the data chaos between your HR systems — from HRIS and payroll to benefits portals and compliance reporting — so your workforce data is always accurate, governed, and audit-ready.",
+    sub: "HR teams juggle Workday, ADP, SAP SuccessFactors, benefits portals, and compliance systems that never share data cleanly. The result: payroll errors, audit failures, and zero workforce visibility. Vorro fixes the data layer.",
+    costStats: [
+      { val: '79%', label: 'Of HR leaders say their organization\'s people data is fragmented across too many disconnected systems', citation: 'SHRM 2023–2024', color: '#F17A42' },
+      { val: '20%', label: 'Of US payrolls contain errors — each error costs an average of $291 to remedy directly and indirectly', citation: 'EY Payroll Survey 2022', color: '#AC4197' },
+    ],
     color: '#F59E0B',
     colorHex: '#F59E0B',
     colorLight: '#fffbeb',
@@ -154,8 +172,14 @@ const industries = {
   },
   insurance: {
     badge: 'Insurance',
+    problemEyebrow: 'The Problem',
+    problemHeadline: 'Claims & Policy Data Stuck in Legacy Silos Is Costing Millions.',
     headline: 'Claims, Eligibility, Policy, and Member Data — Automated',
-    sub: "Vorro's integration platform handles the complex, high-volume data flows that define insurance operations — from real-time eligibility verification to policy lifecycle management to claims processing.",
+    sub: "Insurers run on decades-old mainframes, outdated EDI formats, and manual reconciliation. Every integration gap delays settlement, increases leakage, and exposes regulatory risk. Vorro automates the entire data layer.",
+    costStats: [
+      { val: '$67B', label: 'Annual claims leakage cost to US-based insurance companies — approximately 6% of total claim payments', citation: 'Insurance Thought Leadership', color: '#02B164' },
+      { val: '74%', label: 'Of insurers say legacy system complexity is the #1 barrier to digital transformation and data modernization', citation: 'Deloitte Insurance Outlook 2023', color: '#20D3EF' },
+    ],
     color: 'var(--color-navy)',
     colorHex: '#0f1035',
     colorLight: '#f0f1ff',
@@ -217,11 +241,18 @@ export default function IndustryPage({ industry }) {
       <section className="vertical-hero">
         <div className="container vertical-hero-inner">
           <div className="badge badge-white" style={{ marginBottom: '1.25rem' }}>{data.badge}</div>
-          <h1 className="vertical-hero-headline">{data.headline}</h1>
+          {data.problemHeadline && (
+            <p style={{ fontSize: 'var(--text-sm)', fontWeight: 'var(--font-semibold)', color: 'rgba(255,255,255,0.55)', textTransform: 'uppercase', letterSpacing: '0.09em', marginBottom: '0.75rem' }}>
+              {data.problemEyebrow}
+            </p>
+          )}
+          <h1 className="vertical-hero-headline">
+            {data.problemHeadline || data.headline}
+          </h1>
           <p className="vertical-hero-sub">{data.sub}</p>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '2rem' }}>
             <Link to="/contact-us" className="btn btn-cyan btn-md">
-              Talk to an Expert <ArrowRight size={16} />
+              Show Me the Fix <ArrowRight size={16} />
             </Link>
             <Link to="/case-studies" className="btn btn-ghost-white btn-md">
               View Case Studies
@@ -229,6 +260,32 @@ export default function IndustryPage({ industry }) {
           </div>
         </div>
       </section>
+
+      {/* COST OF THE PROBLEM BAND */}
+      {data.costStats && (
+        <section style={{ background: 'var(--color-navy)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+          <div className="container" style={{ padding: 0 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: `repeat(${data.costStats.length}, 1fr)` }}>
+              {data.costStats.map((s, i) => (
+                <div key={s.label} style={{
+                  padding: '2.5rem 2rem',
+                  textAlign: 'center',
+                  borderRight: i < data.costStats.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none',
+                }}>
+                  <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.6rem' }}>
+                    The Cost
+                  </div>
+                  <div style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 'var(--font-bold)', color: s.color, lineHeight: 1, marginBottom: '0.5rem' }}>
+                    {s.val}
+                  </div>
+                  <div style={{ fontSize: 'var(--text-sm)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.5, marginBottom: '0.4rem' }}>{s.label}</div>
+                  <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.3)' }}>{s.citation}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* STATS BAND */}
       <section style={{ borderBottom: '1px solid var(--color-gray-100)' }}>
@@ -255,9 +312,9 @@ export default function IndustryPage({ industry }) {
       <section className="section">
         <div className="container">
           <div className="section-header">
-            <div className="eyebrow">What We Power</div>
+            <div className="eyebrow">How Vorro Fixes It</div>
             <h2>Built for Every Part of Your Organization</h2>
-            <p>One platform. Multiple entry points. Purpose-built for each team's specific integration needs.</p>
+            <p>One platform. Multiple entry points. Purpose-built to eliminate the specific data problems each team faces.</p>
           </div>
 
           {/* Featured first segment */}

@@ -506,24 +506,25 @@ export default function Home() {
             <div className="hero-badge">
               <span className="badge badge-white">
                 <Zap size={10} />
-                AI Enterprise Data Hub
+                Your data problem — solved
               </span>
             </div>
             <h1 className="hero-headline">
-              The AI-Native Data<br />
-              <span className="hero-headline-accent">Orchestration Platform,</span><br />
-              Built for <IndustrySlider />
+              Your <IndustrySlider />{' '}
+              <span className="hero-headline-accent">Data Is Fragmented.</span><br />
+              Vorro Fixes That.
             </h1>
             <p className="hero-sub">
-              Stop chasing data. Vorro connects, monitors, and automates your enterprise data
-              workflows — fully managed, low cost, ready in weeks.
+              Disconnected systems are costing your organization more than you think —
+              in wasted spend, compliance risk, and missed AI potential. Vorro unifies,
+              governs, and automates your entire data estate.
             </p>
             <div className="hero-actions hero-actions-inline">
               <button onClick={() => setDemoModalOpen(true)} className="btn btn-cyan btn-md">
-                Talk to an Expert <ArrowRight size={16} />
+                Show Me My Problem <ArrowRight size={16} />
               </button>
-              <Link to="/case-studies" className="btn btn-ghost-white btn-md">
-                View Case Studies
+              <Link to="/enterprise-data-fragmentation" className="btn btn-ghost-white btn-md">
+                See the Cost of Inaction
               </Link>
             </div>
             <div className="hero-proof">
@@ -533,11 +534,11 @@ export default function Home() {
               </div>
               <div className="hero-proof-item">
                 <CheckCircle2 size={14} />
-                <span>Proven Low Cost</span>
+                <span>70% Less Cost vs. In-House</span>
               </div>
               <div className="hero-proof-item">
                 <CheckCircle2 size={14} />
-                <span>Enterprise-Grade Security</span>
+                <span>Live in Weeks, Not Months</span>
               </div>
             </div>
           </FadeIn>
@@ -649,9 +650,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FREE TOOLS BANNER - right after hero */}
-      <FreeToolsBanner />
-
       {/* STATS */}
       <section className="section-sm stats-section">
         <div className="container">
@@ -690,19 +688,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* DARK ZONE — single shared background for prob-nav + platform + why-vorro */}
-      <div className="dark-zone">
-        {/* Decorative background graphics */}
-        <div className="dz-lines" aria-hidden="true" />
-        <div className="dz-orb-purple" aria-hidden="true" />
-        <div className="dz-orb-cyan2" aria-hidden="true" />
-
-      {/* PROBLEM NAVIGATOR */}
-      <section className="section prob-nav-section">
+      {/* PROBLEM NAVIGATOR — immediately after logos, before platform */}
+      <section className="section prob-nav-section" style={{ background: '#fff' }}>
         <div className="container">
           <FadeIn>
             <div className="section-header centered">
-              <div className="eyebrow">The Challenge</div>
+              <div className="eyebrow">Identify Your Problem</div>
               <h2>What&apos;s the biggest data problem costing your organization?</h2>
               <p>
                 Pick your industry. We&apos;ll show you the real cost, the root cause, and exactly how Vorro fixes it.
@@ -714,7 +705,6 @@ export default function Home() {
           </FadeIn>
           <FadeIn delay={200}>
             <Link to="/enterprise-data-fragmentation" className="stat-glass-banner">
-              {/* Decorative orb glows behind the glass */}
               <span className="stat-glass-orb stat-glass-orb-1" aria-hidden="true" />
               <span className="stat-glass-orb stat-glass-orb-2" aria-hidden="true" />
               <span className="stat-glass-orb stat-glass-orb-3" aria-hidden="true" />
@@ -741,6 +731,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* DARK ZONE — shared background for platform + why-vorro */}
+      <div className="dark-zone">
+        {/* Decorative background graphics */}
+        <div className="dz-lines" aria-hidden="true" />
+        <div className="dz-orb-purple" aria-hidden="true" />
+        <div className="dz-orb-cyan2" aria-hidden="true" />
+
       {/* PLATFORM OVERVIEW */}
       <section className="platform-section">
         <div className="platform-bg-grid" />
@@ -749,7 +746,7 @@ export default function Home() {
           {/* Header */}
           <FadeIn>
             <div className="plt-header">
-              <div className="eyebrow">The Platform</div>
+              <div className="eyebrow">The Fix</div>
               <h2>Seven Capabilities.<br />One Integrated Platform.</h2>
             </div>
           </FadeIn>
@@ -821,11 +818,11 @@ export default function Home() {
         <div className="container">
           <FadeIn>
             <div className="section-header centered dark">
-              <div className="eyebrow">Why Vorro</div>
-              <h2>Built for Complexity.<br />Not Adapted for It.</h2>
+              <div className="eyebrow">Why Teams Trust Vorro</div>
+              <h2>Purpose-Built for the Problems<br />Others Patch Around.</h2>
               <p>
-                We did not bolt enterprise data support onto a generic integration platform.
-                Vorro was purpose-built for complex, multi-system orchestration — from{' '}
+                Generic integration tools require months of custom engineering to handle enterprise-grade complexity.
+                Vorro was purpose-built for exactly this — from{' '}
                 <strong style={{ color: 'var(--color-cyan)', fontWeight: 'var(--font-bold)' }}>day one</strong>.
               </p>
             </div>
@@ -869,9 +866,9 @@ export default function Home() {
         <div className="container">
           <FadeIn>
             <div className="section-header centered">
-              <div className="eyebrow">Client Outcomes</div>
-              <h2>Results That Speak for Themselves</h2>
-              <p>Organizations across industries trust Vorro to power their data infrastructure.</p>
+              <div className="eyebrow">Proof It Works</div>
+              <h2>Problems Solved. Results Measured.</h2>
+              <p>Organizations across industries eliminated their biggest data problems with Vorro — here&apos;s what happened next.</p>
             </div>
           </FadeIn>
           <div className="testimonials-grid">
@@ -905,6 +902,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FREE TOOLS BANNER */}
+      <FreeToolsBanner />
+
       {/* CTA SECTION */}
       <section className="section cta-outer">
         <div className="container">
@@ -912,19 +912,19 @@ export default function Home() {
             <div className="cta-banner">
               <div className="cta-banner-content">
                 <div className="badge badge-white" style={{ marginBottom: '1.5rem' }}>
-                  <Zap size={10} /> Ready to Transform Your Data?
+                  <Zap size={10} /> Stop Paying for Broken Data
                 </div>
-                <h2>Let&apos;s Build the Future of<br />Enterprise Data Together</h2>
+                <h2>Your Data Problem Has a Fix.<br />Let&apos;s Map It Together.</h2>
                 <p>
-                  Talk to an expert and see how Vorro unifies your data estate,
-                  automates governance, and accelerates AI adoption — across every industry.
+                  Tell us your biggest data challenge. Our engineers will assess your environment
+                  and show you exactly how Vorro eliminates it — no generic demos, no guesswork.
                 </p>
                 <div className="cta-banner-actions">
                   <button onClick={() => setDemoModalOpen(true)} className="btn btn-cyan btn-xl">
-                    Talk to an Expert <ArrowRight size={18} />
+                    Show Me the Fix <ArrowRight size={18} />
                   </button>
-                  <Link to="/solutions" className="btn btn-ghost-white btn-xl">
-                    Explore Solutions
+                  <Link to="/enterprise-data-fragmentation" className="btn btn-ghost-white btn-xl">
+                    See the Cost of Inaction
                   </Link>
                 </div>
                 <div className="cta-trust-badges">
