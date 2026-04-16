@@ -517,26 +517,23 @@ export default function Home() {
       </div>{/* end .problem-hero-zone */}
 
       {/* ==========================================
-          PROOF BAND — light background
-          Social proof + headline about the solution
+          PROOF BAND — dark, full-bleed stats wall
          ========================================== */}
       <section className="proof-band">
         <div className="container">
           <FadeIn>
-            <div className="proof-band-inner">
-              <div className="proof-band-text">
-                <p className="proof-band-label">The fix exists. 22+ enterprises already solved it.</p>
-                <div className="proof-band-stats">
-                  {stats.map(s => (
-                    <div key={s.label} className="proof-stat">
-                      <span className="proof-stat-val">{s.value}</span>
-                      <span className="proof-stat-lbl">{s.label}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <p className="proof-band-label">The fix exists. 22+ enterprises already solved it.</p>
           </FadeIn>
+          <div className="proof-band-stats">
+            {stats.map((s, i) => (
+              <FadeIn key={s.label} delay={i * 80}>
+                <div className="proof-stat">
+                  <span className="proof-stat-val" style={{ color: i === 0 ? '#20D3EF' : i === 1 ? '#AC4197' : i === 2 ? '#02B164' : '#F17A42' }}>{s.value}</span>
+                  <span className="proof-stat-lbl">{s.label}</span>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -811,43 +808,61 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FREE TOOLS BANNER */}
-      <FreeToolsBanner />
+      {/* ==========================================
+          CLOSING DARK ZONE — Free Tools + Final CTA
+          One continuous section, no white gaps
+         ========================================== */}
+      <div className="closing-dark-zone">
+        <div className="dz-lines" aria-hidden="true" />
+        <div className="dz-orb-purple" aria-hidden="true" />
+        <div className="dz-orb-cyan2" aria-hidden="true" />
 
-      {/* CTA SECTION */}
-      <section className="section cta-outer">
-        <div className="container">
-          <FadeIn>
-            <div className="cta-banner">
-              <div className="cta-banner-content">
-                <div className="badge badge-white" style={{ marginBottom: '1.5rem' }}>
-                  <Zap size={10} /> Stop Paying for Broken Data
-                </div>
-                <h2>Your Data Problem Has a Fix.<br />Let&apos;s Map It Together.</h2>
-                <p>
-                  Tell us your biggest data challenge. Our engineers will assess your environment
-                  and show you exactly how Vorro eliminates it — no generic demos, no guesswork.
-                </p>
-                <div className="cta-banner-actions">
-                  <button onClick={() => setDemoModalOpen(true)} className="btn btn-cyan btn-xl">
-                    Show Me the Fix <ArrowRight size={18} />
-                  </button>
-                  <Link to="/enterprise-data-fragmentation" className="btn btn-ghost-white btn-xl">
-                    See the Cost of Inaction
-                  </Link>
-                </div>
-                <div className="cta-trust-badges">
-                  {['SOC 2 Type II', 'HIPAA Compliant', 'Enterprise-Grade Security', 'Fully Managed'].map((b) => (
-                    <span key={b} className="cta-trust-badge">
-                      <CheckCircle2 size={12} /> {b}
-                    </span>
-                  ))}
-                </div>
+        {/* Free Tools strip */}
+        <FreeToolsBanner />
+
+        {/* Final CTA — full-bleed, no floating card */}
+        <section className="final-cta-section">
+          <div className="container final-cta-inner">
+            <FadeIn>
+              <div className="final-cta-eyebrow">
+                <Zap size={12} />
+                Stop Paying for Broken Data
               </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+            </FadeIn>
+            <FadeIn delay={60}>
+              <h2 className="final-cta-headline">
+                Your Data Problem Has a Fix.<br />
+                Let&apos;s Map It Together.
+              </h2>
+            </FadeIn>
+            <FadeIn delay={120}>
+              <p className="final-cta-sub">
+                Tell us your biggest data challenge. Our engineers will assess your environment
+                and show you exactly how Vorro eliminates it — no generic demos, no guesswork.
+              </p>
+            </FadeIn>
+            <FadeIn delay={180}>
+              <div className="final-cta-actions">
+                <button onClick={() => setDemoModalOpen(true)} className="btn btn-cyan btn-xl">
+                  Show Me the Fix <ArrowRight size={18} />
+                </button>
+                <Link to="/enterprise-data-fragmentation" className="btn btn-ghost-white btn-xl">
+                  See the Cost of Inaction
+                </Link>
+              </div>
+            </FadeIn>
+            <FadeIn delay={240}>
+              <div className="final-cta-trust">
+                {['SOC 2 Type II', 'HIPAA Compliant', 'Enterprise-Grade Security', 'Fully Managed'].map((b) => (
+                  <span key={b} className="final-cta-trust-badge">
+                    <CheckCircle2 size={11} /> {b}
+                  </span>
+                ))}
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+      </div>
 
       {/* Book Demo Modal */}
       <BookDemoModal open={demoModalOpen} onOpenChange={setDemoModalOpen} />
