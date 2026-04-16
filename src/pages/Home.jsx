@@ -9,9 +9,6 @@ import '../styles/home.css';
 import { BookDemoModal } from '../components/ui/BookDemoModal';
 import { FreeToolsBanner } from '../components/ui/FreeToolsBanner';
 
-/* ---- Vertical text slider industries ---- */
-const INDUSTRIES = ['Healthcare', 'Ecommerce', 'Insurance', 'HR Tech'];
-
 /* ---- Data ---- */
 const stats = [
   { value: '15M+', label: 'Daily Transactions' },
@@ -322,57 +319,6 @@ function FadeIn({ children, delay = 0, className = '' }) {
   );
 }
 
-/* ---- Typewriter Industry Animator ---- */
-const TYPE_SPEED   = 70;  // ms per character typed
-const DELETE_SPEED = 40;  // ms per character deleted
-const PAUSE_AFTER  = 1800; // ms to hold the fully-typed word
-const PAUSE_BEFORE = 200;  // ms pause before typing the next word
-
-function IndustrySlider() {
-  const [wordIndex, setWordIndex] = useState(0);
-  const [displayed, setDisplayed] = useState('');
-  const [phase, setPhase] = useState('typing'); // 'typing' | 'holding' | 'deleting'
-
-  useEffect(() => {
-    const word = INDUSTRIES[wordIndex];
-
-    if (phase === 'typing') {
-      if (displayed.length < word.length) {
-        const t = setTimeout(() => setDisplayed(word.slice(0, displayed.length + 1)), TYPE_SPEED);
-        return () => clearTimeout(t);
-      } else {
-        const t = setTimeout(() => setPhase('holding'), PAUSE_AFTER);
-        return () => clearTimeout(t);
-      }
-    }
-
-    if (phase === 'holding') {
-      const t = setTimeout(() => setPhase('deleting'), 0);
-      return () => clearTimeout(t);
-    }
-
-    if (phase === 'deleting') {
-      if (displayed.length > 0) {
-        const t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), DELETE_SPEED);
-        return () => clearTimeout(t);
-      } else {
-        const t = setTimeout(() => {
-          setWordIndex((wordIndex + 1) % INDUSTRIES.length);
-          setPhase('typing');
-        }, PAUSE_BEFORE);
-        return () => clearTimeout(t);
-      }
-    }
-  }, [phase, displayed, wordIndex]);
-
-  return (
-    <span className="typewriter-wrap" aria-live="polite" aria-atomic="true">
-      <span className="typewriter-text">{displayed}</span>
-      <span className="typewriter-cursor" aria-hidden="true">|</span>
-    </span>
-  );
-}
-
 /* ---- Problem Navigator Component ---- */
 function ProblemNavigator() {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -543,57 +489,48 @@ export default function Home() {
       </div>
 
       {/* ==========================================
-          PLATFORM HERO — moved below problem navigator
-          Shows what Vorro actually is / how it works
+          THE SOLUTION — light-bg bridge section
+          Follows the problem navigator, shows the
+          Vorro platform as the answer.
          ========================================== */}
-      <section className="hero">
-        <div className="hero-bg">
-          <div className="hero-gradient" />
-          <div className="hero-grid" />
-          <div className="hero-orb hero-orb-1" />
-          <div className="hero-orb hero-orb-2" />
-          <div className="hero-orb hero-orb-3" />
-        </div>
+      <section className="solution-bridge-section">
         <div className="container hero-split">
-          {/* Left — text */}
+          {/* Left — What Vorro is */}
           <FadeIn className="hero-split-text">
-            <div className="hero-badge">
-              <span className="badge badge-white">
+            <div className="solution-bridge-eyebrow">
+              <span className="badge badge-primary">
                 <Zap size={10} />
-                Your data problem — solved
+                One Platform. Every Problem Fixed.
               </span>
             </div>
-            <h1 className="hero-headline">
-              Your <IndustrySlider />{' '}
-              <span className="hero-headline-accent">Data Is Fragmented.</span><br />
-              Vorro Fixes That.
-            </h1>
-            <p className="hero-sub">
-              Disconnected systems are costing your organization more than you think —
-              in wasted spend, compliance risk, and missed AI potential. Vorro unifies,
-              governs, and automates your entire data estate.
+            <h2 className="solution-bridge-headline">
+              Vorro is the AI-Native<br />
+              <span className="hero-headline-accent">Enterprise Data Hub</span><br />
+              that eliminates fragmentation.
+            </h2>
+            <p className="solution-bridge-sub">
+              Seven integrated capabilities — from data interfacing to AI-ready pipelines to automated
+              compliance — deployed as a fully managed, low-cost platform. Live in weeks, not months.
             </p>
-            <div className="hero-actions hero-actions-inline">
-              <button onClick={() => setDemoModalOpen(true)} className="btn btn-cyan btn-md">
-                Show Me My Problem <ArrowRight size={16} />
-              </button>
-              <Link to="/enterprise-data-fragmentation" className="btn btn-ghost-white btn-md">
-                See the Cost of Inaction
-              </Link>
+            <div className="solution-bridge-proof">
+              {[
+                { val: '15M+', label: 'Daily Transactions' },
+                { val: '70%', label: 'Less cost vs. in-house' },
+                { val: '22+', label: 'Enterprise deployments' },
+              ].map(s => (
+                <div key={s.label} className="solution-bridge-stat">
+                  <span className="solution-bridge-stat-val">{s.val}</span>
+                  <span className="solution-bridge-stat-lbl">{s.label}</span>
+                </div>
+              ))}
             </div>
-            <div className="hero-proof">
-              <div className="hero-proof-item">
-                <CheckCircle2 size={14} />
-                <span>Fully Managed</span>
-              </div>
-              <div className="hero-proof-item">
-                <CheckCircle2 size={14} />
-                <span>70% Less Cost vs. In-House</span>
-              </div>
-              <div className="hero-proof-item">
-                <CheckCircle2 size={14} />
-                <span>Live in Weeks, Not Months</span>
-              </div>
+            <div className="hero-actions hero-actions-inline" style={{ marginTop: '2rem' }}>
+              <button onClick={() => setDemoModalOpen(true)} className="btn btn-primary btn-md">
+                Show Me How It Works <ArrowRight size={16} />
+              </button>
+              <Link to="/solutions" className="btn btn-outline btn-md">
+                Explore All Solutions
+              </Link>
             </div>
           </FadeIn>
 
@@ -702,7 +639,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section>{/* end .solution-bridge-section */}
 
       {/* STATS */}
       <section className="section-sm stats-section">
