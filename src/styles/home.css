@@ -13,19 +13,30 @@
 }
 
 .industry-slider-wrap {
+  /* Clip the sliding words, lock the height to one text line */
   display: inline-block;
   position: relative;
   overflow: hidden;
-  vertical-align: baseline;
+  /* Match the parent h1 line-height exactly so the wrap never shifts */
+  line-height: 1;
+  /* Sit on the same baseline as the static text */
+  vertical-align: middle;
+  /* Prevent collapse during absolute-positioned phase transition */
   min-width: 8ch;
-  line-height: 1.2;
+  /* Height = 1 cap-height of the surrounding h1 font-size */
+  height: 1.05em;
 }
 
 .industry-slider-word {
-  display: inline-block;
+  display: block;
   color: var(--color-cyan);
   font-style: normal;
   will-change: transform, opacity;
+  /* Keep it full width of the container */
+  width: 100%;
+  white-space: nowrap;
+  /* Vertically center within the fixed-height wrap */
+  line-height: 1.05em;
 }
 
 /* Current word resting state */
@@ -40,11 +51,12 @@
   animation: slider-out 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-/* Next word slides in from below — positioned absolutely so it overlaps */
+/* Next word slides in from below — absolutely positioned inside the clip */
 .industry-slider-word.slider-enter {
   position: absolute;
   left: 0;
   top: 0;
+  width: 100%;
   animation: slider-in 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 

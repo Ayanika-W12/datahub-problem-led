@@ -158,7 +158,7 @@ export default function Navbar() {
     >
       <div className="navbar-inner container">
         {/* Logo */}
-        <Link to="/" className="navbar-logo">
+        <Link to="/" className="navbar-logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <VorroLogo white={!isScrolled} height={34} />
         </Link>
 
