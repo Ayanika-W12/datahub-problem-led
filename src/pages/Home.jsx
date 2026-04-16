@@ -9,6 +9,9 @@ import '../styles/home.css';
 import { BookDemoModal } from '../components/ui/BookDemoModal';
 import { FreeToolsBanner } from '../components/ui/FreeToolsBanner';
 
+/* ---- Vertical text slider industries ---- */
+const INDUSTRIES = ['Healthcare', 'Ecommerce', 'Insurance', 'HR Tech'];
+
 /* ---- Data ---- */
 const stats = [
   { value: '15M+', label: 'Daily Transactions' },
@@ -21,22 +24,98 @@ const problems = [
   {
     icon: <TrendingUp size={24} />,
     title: 'Accelerate Time-to-Market',
-    desc: 'Launch new applications and products into major cloud marketplaces 4X faster with streamlined, no-code onboarding.',
+    desc: 'Launch new applications and products into major cloud marketplaces 4x faster with streamlined, no-code onboarding and pre-built connectors.',
   },
   {
     icon: <Shield size={24} />,
-    title: 'Improve Financial Outcomes',
-    desc: 'Reduce critical operational costs by eliminating up to 70% of manual data scripting, and speed up revenue cycles through cleaner data.',
+    title: 'Reduce Operational Cost',
+    desc: 'Eliminate up to 70% of manual data scripting, reduce integration overhead, and accelerate revenue cycles through cleaner, governed data.',
   },
   {
     icon: <Globe size={24} />,
     title: 'Scale with Confidence',
-    desc: 'Manage millions of records and transactions smoothly, guaranteeing performance and uptime as your organization expands globally.',
+    desc: 'Manage millions of records and transactions smoothly, guaranteeing performance and uptime as your organization expands across markets.',
   },
   {
     icon: <Brain size={24} />,
-    title: 'Support Innovation',
-    desc: 'Enable advanced initiatives like real-world evidence research, predictive analytics, and faster R&D through unified, high-quality data.',
+    title: 'Unlock AI Initiatives',
+    desc: 'Enable predictive analytics, real-time decision engines, and AI-driven automation through unified, high-quality, ML-ready data pipelines.',
+  },
+];
+
+/* ---- Problem Navigator Data ---- */
+const industryProblems = [
+  {
+    tab: 'Healthcare',
+    category: 'Healthcare Data Complexity',
+    title: 'Fragmented EHR, payer, and lab data is crippling care coordination.',
+    desc: 'Health systems, HIEs, and payers operate across dozens of incompatible systems — Epic, Cerner, HL7 v2, FHIR, EDI 837. Every gap creates compliance risk, delayed care, and wasted IT spend.',
+    stats: [
+      { val: '$8.3B', label: 'Annual cost of poor interoperability in the US healthcare system', citation: 'CAQH. "Index Report 2023: Closing the Gap." caqh.org' },
+      { val: '70%', label: 'Of health systems say integration complexity is their #1 IT barrier', citation: 'KLAS Research. "Interoperability 2023: The State of Data Sharing." klasresearch.com' },
+    ],
+    solutions: [
+      'EHR & HIE bidirectional integration',
+      'FHIR R4 and HL7 v2/v3 compliance automation',
+      'Prior auth & claims workflow orchestration',
+      'Real-time patient data governance & audit trails',
+      'CMS mandate readiness (ONC, Cures Act, CMS-0057-F)',
+    ],
+    color: '#20D3EF',
+  },
+  {
+    tab: 'Ecommerce',
+    category: 'Ecommerce Operational Data',
+    title: 'Siloed order, inventory, and customer data kills margin and speed.',
+    desc: 'Retailers and ecommerce brands operate across ERPs, WMS, storefronts, and marketplaces — all generating data that never talks to each other, causing stockouts, wrong shipments, and lost revenue.',
+    stats: [
+      { val: '$1.8T', label: 'In retail revenue lost annually to inventory distortion (overstock, stockouts, shrink)', citation: 'IHL Group. "Inventory Distortion: The $1.8 Trillion Problem." ihlservices.com' },
+      { val: '34%', label: 'Of retailers report that data silos are their top barrier to omnichannel growth', citation: 'Salesforce. "State of Commerce Report 2023." salesforce.com/research' },
+    ],
+    solutions: [
+      'Order management & inventory sync across all channels',
+      'Marketplace & ERP data unification (Amazon, Shopify, SAP)',
+      'Real-time fulfillment and returns data orchestration',
+      'Customer 360 across CRM, DTC, and wholesale',
+      'Automated EDI trading partner onboarding',
+    ],
+    color: '#AC4197',
+  },
+  {
+    tab: 'Insurance',
+    category: 'Insurance Data Fragmentation',
+    title: 'Claims, eligibility, and policy data stuck in legacy silos costs millions.',
+    desc: 'Insurers run on decades-old mainframes, outdated EDI formats, and manual reconciliation processes. Every integration gap delays claims settlement, increases leakage, and exposes regulatory risk.',
+    stats: [
+      { val: '40%', label: 'Of P&C insurers\u2019 IT budgets consumed by legacy system maintenance', citation: 'Deloitte. "2023 Insurance Industry Outlook." deloitte.com/us/en/insights' },
+      { val: '$80B', label: 'Annual claims leakage across the US insurance industry', citation: 'McKinsey & Company. "Stemming the Rising Tide of Insurance Fraud." mckinsey.com' },
+    ],
+    solutions: [
+      'Claims 837/835 and EOB automated processing',
+      'Eligibility 270/271 real-time verification',
+      'Policy and premium data unification across systems',
+      'Regulatory compliance reporting (NAIC, state mandates)',
+      'Fraud detection data pipelines and audit trails',
+    ],
+    color: '#4CAF50',
+  },
+  {
+    tab: 'HR Tech',
+    category: 'HR & Workforce Data Chaos',
+    title: 'Disconnected HRIS, payroll, and benefits data creates compliance exposure.',
+    desc: 'HR teams juggle Workday, ADP, SAP SuccessFactors, benefits portals, and compliance systems — none of which share data cleanly. The result: payroll errors, audit failures, and poor workforce visibility.',
+    stats: [
+      { val: '62%', label: 'Of HR leaders cite data integration as their #1 technology challenge', citation: 'SHRM. "State of HR Technology 2023." shrm.org/research' },
+      { val: '$1.5M', label: 'Average annual cost of payroll errors per enterprise organization', citation: 'American Payroll Association. "Payroll Benchmarking Survey 2023." americanpayroll.org' },
+    ],
+    solutions: [
+      'HRIS, payroll, and benefits bidirectional sync',
+      'Workforce analytics and headcount reporting pipelines',
+      'New hire onboarding data orchestration',
+      'ACA, ERISA, and labor compliance automation',
+      'Employee 360 across all HR systems',
+    ],
+    color: '#F59E0B',
   },
 ];
 
@@ -45,23 +124,23 @@ const capabilities = [
     num: '01',
     icon: <BarChart3 size={28} />,
     label: 'AI-Driven Analytics & Insights',
-    title: 'Extract Intelligence from Clinical Data',
-    desc: 'Transform unstructured clinical notes, discharge summaries, and prior auth letters into structured FHIR R4 data. Auto-map to ICD-10, CPT, SNOMED CT, LOINC, and RxNorm.',
+    title: 'Extract Intelligence from Your Data',
+    desc: 'Transform unstructured documents, records, and data streams into structured, standardized outputs. Auto-map to your target schemas and taxonomies with AI-powered entity extraction.',
     color: 'primary',
     to: '/platform/analytics-nlp',
-    bullets: ['De-identification & PHI redaction', 'Entity extraction', 'FHIR R4 structured output'],
+    bullets: ['Entity extraction & enrichment', 'Structured data output', 'Real-time & batch processing'],
     stats: [{ value: '99.2%', label: 'Accuracy' }, { value: '<2 min', label: 'Processing' }, { value: '25M+', label: 'Records/day' }],
-    perfBars: [{ label: 'NLP Processing', pct: 95 }, { label: 'FHIR R4 Output', pct: 87 }, { label: 'Throughput', pct: 92 }],
+    perfBars: [{ label: 'NLP Processing', pct: 95 }, { label: 'Structured Output', pct: 87 }, { label: 'Throughput', pct: 92 }],
   },
   {
     num: '02',
     icon: <Workflow size={28} />,
     label: 'Conversational AI Reporting',
     title: 'Conversational Queries. Instant Reports.',
-    desc: 'Ask your data questions in plain English using Conversational AI. Get HEDIS, eCQM, QRDA, claims adjudication, and executive dashboard reports — automatically, without SQL.',
+    desc: 'Ask your data questions in plain English using Conversational AI. Get operational, compliance, and executive dashboard reports — automatically, without SQL or coding.',
     color: 'cyan',
     to: '/platform/reporting-nlp',
-    bullets: ['No SQL required', 'HEDIS, Stars, CAHPS reports', 'eCQM / QRDA I & III'],
+    bullets: ['No SQL required', 'Custom report builder', 'Scheduled & on-demand'],
     stats: [{ value: '6 sec', label: 'Query time' }, { value: '40+', label: 'Report types' }, { value: '0', label: 'SQL required' }],
     perfBars: [{ label: 'Query Speed', pct: 98 }, { label: 'Report Coverage', pct: 91 }, { label: 'Accuracy', pct: 94 }],
   },
@@ -69,32 +148,32 @@ const capabilities = [
     num: '03',
     icon: <Shield size={28} />,
     label: 'Governance & Compliance',
-    title: 'Every Federal Mandate. Automated.',
-    desc: 'Stay ahead of HIPAA, 21st Century Cures Act, CMS Interoperability Rule, and TEFCA without a compliance army. Vorro automates it end-to-end.',
+    title: 'Every Regulatory Mandate. Automated.',
+    desc: 'Stay ahead of industry mandates and data regulations without a compliance army. Vorro automates policy enforcement, audit trails, and reporting end-to-end across your entire data estate.',
     color: 'navy',
     to: '/platform/governance-compliance',
-    bullets: ['HIPAA Privacy & Security Rules', 'ONC Cures Act Final Rule', 'CMS Prior Auth Rule (CMS-0057-F)'],
-    stats: [{ value: '100%', label: 'Audit coverage' }, { value: '3', label: 'Mandates auto' }, { value: '0', label: 'Manual steps' }],
-    perfBars: [{ label: 'HIPAA Compliance', pct: 100 }, { label: 'Audit Readiness', pct: 97 }, { label: 'Policy Automation', pct: 89 }],
+    bullets: ['Policy enforcement automation', 'Audit-ready reporting', 'Data access controls'],
+    stats: [{ value: '100%', label: 'Audit coverage' }, { value: '3+', label: 'Mandates auto' }, { value: '0', label: 'Manual steps' }],
+    perfBars: [{ label: 'Compliance Coverage', pct: 100 }, { label: 'Audit Readiness', pct: 97 }, { label: 'Policy Automation', pct: 89 }],
   },
   {
     num: '04',
     icon: <GitBranch size={28} />,
     label: 'Version Lineage & Control',
-    title: 'Git-Like Versioning for Healthcare Data',
-    desc: 'The first healthcare-native data version control layer. Every pipeline, mapping, and transformation is versioned, attributed, and audit-ready.',
+    title: 'Git-Like Versioning for Enterprise Data',
+    desc: 'The first enterprise-native data version control layer. Every pipeline, mapping, and transformation is versioned, attributed, and audit-ready — with one-click rollback.',
     color: 'green',
     to: '/platform/governance-versioning',
     bullets: ['Full data lineage', 'One-click rollback', 'One-click audit exports'],
-    stats: [{ value: '100%', label: 'Data lineage' }, { value: '1-click', label: 'Rollback' }, { value: '∞', label: 'Version history' }],
+    stats: [{ value: '100%', label: 'Data lineage' }, { value: '1-click', label: 'Rollback' }, { value: '\u221e', label: 'Version history' }],
     perfBars: [{ label: 'Lineage Tracking', pct: 100 }, { label: 'Rollback Speed', pct: 96 }, { label: 'Audit Export', pct: 93 }],
   },
   {
     num: '05',
     icon: <Network size={28} />,
     label: 'Interfacing',
-    title: 'Every Healthcare Standard. One Platform.',
-    desc: 'HL7 v2, FHIR R4, EDI X12, NCPDP, C-CDA, DICOM metadata, Direct Trust — if it moves healthcare data, we speak it natively.',
+    title: 'Every Data Standard. One Platform.',
+    desc: 'REST, SOAP, GraphQL, EDI, HL7, FHIR, XML, JSON, flat files — if it moves enterprise data, Vorro speaks it natively with 500+ pre-built connectors.',
     color: 'orange',
     to: '/platform/interfacing',
     bullets: ['22+ enterprise deployments', 'Real-time & batch modes', 'No rip-and-replace required'],
@@ -106,24 +185,24 @@ const capabilities = [
     icon: <Database size={28} />,
     label: 'AI Readiness',
     title: 'From Raw Data to ML-Ready Gold',
-    desc: 'Bronze → Silver → Gold data lake architecture. Ingest, cleanse, normalize, and serve ML-ready data to Azure Databricks, AWS SageMaker, Google Vertex AI, Snowflake, and dbt.',
+    desc: 'Bronze \u2192 Silver \u2192 Gold data lake architecture. Ingest, cleanse, normalize, and serve ML-ready data to Azure Databricks, AWS SageMaker, Google Vertex AI, Snowflake, and dbt.',
     color: 'primary',
     to: '/platform/ai-readiness',
-    bullets: ['Master Patient Index (MPI)', 'Feature store integration', 'Model drift monitoring'],
+    bullets: ['Master Entity Index', 'Feature store integration', 'Model drift monitoring'],
     stats: [{ value: '3-tier', label: 'Data lake' }, { value: '4+', label: 'ML platforms' }, { value: '70%', label: 'Less prep time' }],
-    perfBars: [{ label: 'Data Quality', pct: 97 }, { label: 'ML Pipeline Speed', pct: 90 }, { label: 'MPI Accuracy', pct: 95 }],
+    perfBars: [{ label: 'Data Quality', pct: 97 }, { label: 'ML Pipeline Speed', pct: 90 }, { label: 'Entity Accuracy', pct: 95 }],
   },
   {
     num: '07',
     icon: <Zap size={28} />,
     label: 'Workflow Orchestration',
-    title: 'Healthcare Automation. No Code Required.',
-    desc: 'AI-powered workflows for prior auth, eligibility verification, denial management, care gap outreach, and more — HIPAA-compliant by design.',
+    title: 'Enterprise Automation. No Code Required.',
+    desc: 'AI-powered workflows for order management, eligibility verification, approval routing, exception handling, and more — compliant by design, deployed in days.',
     color: 'cyan',
     to: '/platform/workflow-orchestration',
-    bullets: ['500+ pre-built connectors', 'FHIR R4 event triggers', 'Human-in-the-loop approval gates'],
-    stats: [{ value: '500+', label: 'Pre-built flows' }, { value: '80%', label: 'Auth auto-approve' }, { value: '<1 day', label: 'Deploy time' }],
-    perfBars: [{ label: 'Automation Rate', pct: 92 }, { label: 'Prior Auth Speed', pct: 88 }, { label: 'Uptime SLA', pct: 99 }],
+    bullets: ['500+ pre-built connectors', 'Event-driven triggers', 'Human-in-the-loop approval gates'],
+    stats: [{ value: '500+', label: 'Pre-built flows' }, { value: '80%', label: 'Auto-approval rate' }, { value: '<1 day', label: 'Deploy time' }],
+    perfBars: [{ label: 'Automation Rate', pct: 92 }, { label: 'Approval Speed', pct: 88 }, { label: 'Uptime SLA', pct: 99 }],
   },
 ];
 
@@ -146,19 +225,19 @@ const testimonials = [
   {
     quote: "We signed an enterprise-wide integration deal with BridgeGate because of the results we achieved with their product. We realised immediate gains in productivity along with vastly improved data & process management. In our business, data must flow across many platforms seamlessly, quickly and dependably.",
     author: "Vice President of IT",
-    org: "Senior Healthcare Company",
+    org: "Enterprise Technology Company",
     initials: "VP",
   },
   {
     quote: "We have peace of mind with BridgeGate's robust, scalable and easy to use integration platform. We deployed it within hours, rather than days or weeks, and following the migration of my financial processes my financials close time was reduced by 75%.",
     author: "Chief Information Officer",
-    org: "Senior Healthcare Company",
+    org: "Large Service Organization",
     initials: "CIO",
   },
   {
-    quote: "BridgeGate has facilitated HL7 Data ingestion and integration into a routine task. Through the reuse of established templates, onboarding new clients can be accomplished within an hour — basically at Zero Cost.",
+    quote: "BridgeGate has facilitated data ingestion and integration into a routine task. Through the reuse of established templates, onboarding new clients can be accomplished within an hour — basically at Zero Cost.",
     author: "IT Finance Manager",
-    org: "Pharmacy Benefit Manager Company",
+    org: "Enterprise Data Company",
     initials: "IT",
   },
 ];
@@ -166,23 +245,23 @@ const testimonials = [
 const differentiators = [
   {
     icon: <Globe size={22} />,
-    title: 'Healthcare-Native from Day One',
-    desc: "We didn't adapt a generic iPaaS for healthcare. We built for HL7, FHIR, and EDI from the ground up.",
+    title: 'Enterprise-Native from Day One',
+    desc: "We didn't adapt a generic tool for enterprise data. Vorro was purpose-built for complex, multi-system data orchestration from the ground up.",
   },
   {
     icon: <Award size={22} />,
     title: 'Full-Stack Coverage',
-    desc: 'From raw data interfacing to AI-ready pipelines to automated workflows — one platform, one vendor.',
+    desc: 'From raw data interfacing to AI-ready pipelines to automated workflows — one platform, one vendor, zero gaps.',
   },
   {
     icon: <Users size={22} />,
     title: 'Proven at Enterprise Scale',
-    desc: '22+ enterprise deployments across health systems, HIEs, PBMs, home health, and specialty networks.',
+    desc: '22+ enterprise deployments across industries including healthcare, retail, insurance, logistics, and specialty networks.',
   },
   {
     icon: <TrendingUp size={22} />,
     title: 'AI-First Architecture',
-    desc: 'Purpose-built for the era of AI — with governed, clean data pipelines and intelligent orchestration.',
+    desc: 'Purpose-built for the era of AI — with governed, clean data pipelines and intelligent orchestration across every data source.',
   },
 ];
 
@@ -243,6 +322,153 @@ function FadeIn({ children, delay = 0, className = '' }) {
   );
 }
 
+/* ---- Typewriter Industry Animator ---- */
+const TYPE_SPEED   = 70;  // ms per character typed
+const DELETE_SPEED = 40;  // ms per character deleted
+const PAUSE_AFTER  = 1800; // ms to hold the fully-typed word
+const PAUSE_BEFORE = 200;  // ms pause before typing the next word
+
+function IndustrySlider() {
+  const [wordIndex, setWordIndex] = useState(0);
+  const [displayed, setDisplayed] = useState('');
+  const [phase, setPhase] = useState('typing'); // 'typing' | 'holding' | 'deleting'
+
+  useEffect(() => {
+    const word = INDUSTRIES[wordIndex];
+
+    if (phase === 'typing') {
+      if (displayed.length < word.length) {
+        const t = setTimeout(() => setDisplayed(word.slice(0, displayed.length + 1)), TYPE_SPEED);
+        return () => clearTimeout(t);
+      } else {
+        const t = setTimeout(() => setPhase('holding'), PAUSE_AFTER);
+        return () => clearTimeout(t);
+      }
+    }
+
+    if (phase === 'holding') {
+      const t = setTimeout(() => setPhase('deleting'), 0);
+      return () => clearTimeout(t);
+    }
+
+    if (phase === 'deleting') {
+      if (displayed.length > 0) {
+        const t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), DELETE_SPEED);
+        return () => clearTimeout(t);
+      } else {
+        const t = setTimeout(() => {
+          setWordIndex((wordIndex + 1) % INDUSTRIES.length);
+          setPhase('typing');
+        }, PAUSE_BEFORE);
+        return () => clearTimeout(t);
+      }
+    }
+  }, [phase, displayed, wordIndex]);
+
+  return (
+    <span className="typewriter-wrap" aria-live="polite" aria-atomic="true">
+      <span className="typewriter-text">{displayed}</span>
+      <span className="typewriter-cursor" aria-hidden="true">|</span>
+    </span>
+  );
+}
+
+/* ---- Problem Navigator Component ---- */
+function ProblemNavigator() {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [fading, setFading] = useState(false);
+  const [displayIdx, setDisplayIdx] = useState(0);
+  const problem = industryProblems[displayIdx];
+
+  const switchTo = (idx) => {
+    if (idx === activeIdx || fading) return;
+    setFading(true);
+    setTimeout(() => {
+      setDisplayIdx(idx);
+      setActiveIdx(idx);
+      setFading(false);
+    }, 240);
+  };
+
+  return (
+    <div className="pn-root">
+
+      {/* Left column — industry selector */}
+      <div className="pn-selector" role="tablist">
+        {industryProblems.map((p, i) => (
+          <button
+            key={p.tab}
+            role="tab"
+            aria-selected={i === activeIdx}
+            className={`pn-industry-btn${i === activeIdx ? ' pn-industry-btn--active' : ''}`}
+            style={{ '--ind-color': p.color }}
+            onClick={() => switchTo(i)}
+          >
+            <span className="pn-industry-accent" />
+            <span className="pn-industry-inner">
+              <span className="pn-industry-name">{p.tab}</span>
+              <span className="pn-industry-preview">{p.title}</span>
+            </span>
+            <ArrowRight size={14} className="pn-industry-arrow" />
+          </button>
+        ))}
+      </div>
+
+      {/* Center column — giant stat focal point */}
+      <div className={`pn-focal${fading ? ' pn-focal--fade' : ''}`}>
+        <div className="pn-focal-eyebrow" style={{ color: problem.color }}>
+          {problem.category}
+        </div>
+        <div className="pn-focal-stat" style={{ color: problem.color }}>
+          {problem.stats[0].val}
+        </div>
+        <div className="pn-focal-stat-label">{problem.stats[0].label}</div>
+        {problem.stats[0].citation && (
+          <div className="pn-focal-citation">{problem.stats[0].citation}</div>
+        )}
+        <div className="pn-focal-divider" style={{ background: problem.color }} />
+        <p className="pn-focal-desc">{problem.desc}</p>
+        {problem.stats[1] && (
+          <div className="pn-focal-secondary-stat">
+            <span style={{ color: problem.color }}>{problem.stats[1].val}</span>
+            <span>{problem.stats[1].label}</span>
+          </div>
+        )}
+        {problem.stats[1]?.citation && (
+          <div className="pn-focal-citation">{problem.stats[1].citation}</div>
+        )}
+        <Link
+          to={`/solutions/${problem.tab.toLowerCase().replace(/\s+/g, '-')}`}
+          className="pn-focal-link"
+          style={{ '--ind-color': problem.color }}
+        >
+          See how Vorro solves this for {problem.tab} <ArrowRight size={13} />
+        </Link>
+      </div>
+
+      {/* Right column — numbered solution list */}
+      <div className={`pn-solutions${fading ? ' pn-solutions--fade' : ''}`}>
+        <div className="pn-solutions-heading">How Vorro fixes it</div>
+        <ol className="pn-solutions-list">
+          {problem.solutions.map((s, i) => (
+            <li
+              key={s}
+              className="pn-solutions-item"
+              style={{ animationDelay: `${i * 55}ms`, '--ind-color': problem.color }}
+            >
+              <span className="pn-solutions-num" style={{ color: problem.color }}>
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span>{s}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+    </div>
+  );
+}
+
 /* ============================================
    HOME PAGE
    ============================================ */
@@ -268,16 +494,16 @@ export default function Home() {
             <div className="hero-badge">
               <span className="badge badge-white">
                 <Zap size={10} />
-                AI Health Data Hub
+                AI Enterprise Data Hub
               </span>
             </div>
             <h1 className="hero-headline">
-              The AI Native Data<br />
+              The AI-Native Data<br />
               <span className="hero-headline-accent">Orchestration Platform,</span><br />
-              Built for Healthcare.
+              Built for <IndustrySlider />
             </h1>
             <p className="hero-sub">
-              Stop chasing data. Vorro connects, monitors, and automates your healthcare data
+              Stop chasing data. Vorro connects, monitors, and automates your enterprise data
               workflows — fully managed, low cost, ready in weeks.
             </p>
             <div className="hero-actions hero-actions-inline">
@@ -299,12 +525,12 @@ export default function Home() {
               </div>
               <div className="hero-proof-item">
                 <CheckCircle2 size={14} />
-                <span>HIPAA-compliant by design</span>
+                <span>Enterprise-Grade Security</span>
               </div>
             </div>
           </FadeIn>
 
-          {/* Right — Platform Capabilities Frame (exact design from provided HTML) */}
+          {/* Right — Platform Capabilities Frame */}
           <div className="capabilities-wrapper">
             <div className="capabilities-frame">
               <div className="frame-grid-overlay" />
@@ -385,7 +611,7 @@ export default function Home() {
                     />
                     <div className="core-inner">
                       <div className="core-kicker">Unified Architecture</div>
-                      <div className="core-title">AI Healthcare Data Hub</div>
+                      <div className="core-title">AI Enterprise Data Hub</div>
                     </div>
                   </div>
 
@@ -434,7 +660,7 @@ export default function Home() {
       <section className="logos-section">
         <div className="container">
           <FadeIn>
-            <div className="logos-label">Trusted by leading healthcare organizations</div>
+            <div className="logos-label">Trusted by leading organizations across industries</div>
           </FadeIn>
           <div className="marquee-container">
             <div className="marquee-track">
@@ -452,38 +678,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PROBLEM STATEMENT */}
-      <section className="section bg-light problem-section">
+      {/* DARK ZONE — single shared background for prob-nav + platform + why-vorro */}
+      <div className="dark-zone">
+        {/* Decorative background graphics */}
+        <div className="dz-lines" aria-hidden="true" />
+        <div className="dz-orb-purple" aria-hidden="true" />
+        <div className="dz-orb-cyan2" aria-hidden="true" />
+
+      {/* PROBLEM NAVIGATOR */}
+      <section className="section prob-nav-section">
         <div className="container">
           <FadeIn>
             <div className="section-header centered">
               <div className="eyebrow">The Challenge</div>
-              <h2>Healthcare Data Is <em>Still</em> Broken</h2>
+              <h2>What&apos;s the biggest data problem costing your organization?</h2>
               <p>
-                84% of hospitals report greater challenges exchanging data across different EHR vendor platforms.
-                The result: AI stalls, compliance fails, and care suffers.
+                Pick your industry. We&apos;ll show you the real cost, the root cause, and exactly how Vorro fixes it.
               </p>
             </div>
           </FadeIn>
-          <div className="problem-grid">
-            {problems.map((p, i) => (
-              <FadeIn key={p.title} delay={i * 80}>
-                <div className="problem-card">
-                  <div className="icon-box icon-box-primary icon-box-lg">
-                    {p.icon}
-                  </div>
-                  <h3>{p.title}</h3>
-                  <p>{p.desc}</p>
+          <FadeIn delay={100}>
+            <ProblemNavigator />
+          </FadeIn>
+          <FadeIn delay={200}>
+            <Link to="/enterprise-data-fragmentation" className="stat-glass-banner">
+              {/* Decorative orb glows behind the glass */}
+              <span className="stat-glass-orb stat-glass-orb-1" aria-hidden="true" />
+              <span className="stat-glass-orb stat-glass-orb-2" aria-hidden="true" />
+              <span className="stat-glass-orb stat-glass-orb-3" aria-hidden="true" />
+              <div className="stat-glass-number">83%</div>
+              <div className="stat-glass-body">
+                <p className="stat-glass-text">
+                  of organizations report that data silos significantly hinder their ability to deploy AI and analytics at scale
+                </p>
+                <div className="stat-glass-source">
+                  NewVantage Partners &mdash; Data &amp; AI Executive Survey 2024
+                  <span className="stat-glass-cta">Read the research &rarr;</span>
                 </div>
-              </FadeIn>
-            ))}
-          </div>
-          <FadeIn>
-            <Link to="/healthcare-data-fragmentation" className="problem-stat-banner problem-stat-banner-link">
-              <div className="problem-stat-number">84%</div>
-              <div className="problem-stat-text">
-                of hospitals report greater challenges exchanging data across different EHR vendor platforms
-                <div className="problem-stat-source">Everson &amp; Richwine, JAMIA 2024 — tap to learn more →</div>
               </div>
             </Link>
           </FadeIn>
@@ -571,10 +802,11 @@ export default function Home() {
           <FadeIn>
             <div className="section-header centered dark">
               <div className="eyebrow">Why Vorro</div>
-              <h2>Built for Healthcare.<br />Not Adapted For It.</h2>
+              <h2>Built for Complexity.<br />Not Adapted for It.</h2>
               <p>
-                We didn't bolt healthcare onto a generic integration platform.
-                Vorro was purpose-built for HL7, FHIR, and EDI — from day one.
+                We did not bolt enterprise data support onto a generic integration platform.
+                Vorro was purpose-built for complex, multi-system orchestration — from{' '}
+                <strong style={{ color: 'var(--color-cyan)', fontWeight: 'var(--font-bold)' }}>day one</strong>.
               </p>
             </div>
           </FadeIn>
@@ -610,6 +842,8 @@ export default function Home() {
         </div>
       </section>
 
+      </div>{/* end .dark-zone */}
+
       {/* TESTIMONIALS */}
       <section className="section testimonials-section">
         <div className="container">
@@ -617,7 +851,7 @@ export default function Home() {
             <div className="section-header centered">
               <div className="eyebrow">Client Outcomes</div>
               <h2>Results That Speak for Themselves</h2>
-              <p>Healthcare organizations across the country trust Vorro to power their data infrastructure.</p>
+              <p>Organizations across industries trust Vorro to power their data infrastructure.</p>
             </div>
           </FadeIn>
           <div className="testimonials-grid">
@@ -660,10 +894,10 @@ export default function Home() {
                 <div className="badge badge-white" style={{ marginBottom: '1.5rem' }}>
                   <Zap size={10} /> Ready to Transform Your Data?
                 </div>
-                <h2>Let's Build the Future of<br />Healthcare Data Together</h2>
+                <h2>Let&apos;s Build the Future of<br />Enterprise Data Together</h2>
                 <p>
                   Talk to an expert and see how Vorro unifies your data estate,
-                  automates compliance, and accelerates AI adoption.
+                  automates governance, and accelerates AI adoption — across every industry.
                 </p>
                 <div className="cta-banner-actions">
                   <button onClick={() => setDemoModalOpen(true)} className="btn btn-cyan btn-xl">
@@ -674,7 +908,7 @@ export default function Home() {
                   </Link>
                 </div>
                 <div className="cta-trust-badges">
-                  {['HIPAA Compliant', 'SOC 2 Type II', 'HITRUST Ready', 'ONC Certified'].map((b) => (
+                  {['SOC 2 Type II', 'HIPAA Compliant', 'Enterprise-Grade Security', 'Fully Managed'].map((b) => (
                     <span key={b} className="cta-trust-badge">
                       <CheckCircle2 size={12} /> {b}
                     </span>
@@ -707,22 +941,22 @@ function CapViz01({ accent }) {
   return (
     <div style={{ padding: '0.25rem 0' }}>
       <div className="cviz-nlp-doc">
-        <div className="cviz-section-lbl">Clinical Note Input</div>
+        <div className="cviz-section-lbl">Document Input</div>
         <p className="cviz-nlp-text">
-          Patient with{' '}
-          <mark style={{ background: `${accent}28`, color: accent, borderRadius: 3, padding: '1px 4px' }}>Type 2 Diabetes (E11.9)</mark>
+          Customer with{' '}
+          <mark style={{ background: `${accent}28`, color: accent, borderRadius: 3, padding: '1px 4px' }}>Premium Account (TIR-9812)</mark>
           {' '}and{' '}
-          <mark style={{ background: '#20D3EF22', color: '#20D3EF', borderRadius: 3, padding: '1px 4px' }}>Hypertension (I10)</mark>
-          . Prescribed{' '}
-          <mark style={{ background: '#02B16422', color: '#02B164', borderRadius: 3, padding: '1px 4px' }}>Metformin 500mg</mark>.
+          <mark style={{ background: '#20D3EF22', color: '#20D3EF', borderRadius: 3, padding: '1px 4px' }}>Active Claim (CLM-4471)</mark>
+          . Status:{' '}
+          <mark style={{ background: '#02B16422', color: '#02B164', borderRadius: 3, padding: '1px 4px' }}>Approved</mark>.
         </p>
       </div>
-      <div className="cviz-arrow-label">⬇ NLP Extraction → FHIR R4 Output</div>
+      <div className="cviz-arrow-label">&#8595; AI Extraction &#8594; Structured Output</div>
       <div className="cviz-entity-grid">
         {[
-          { type: 'ICD-10', code: 'E11.9', label: 'Type 2 DM', color: accent },
-          { type: 'ICD-10', code: 'I10', label: 'Hypertension', color: '#20D3EF' },
-          { type: 'RxNorm', code: '861007', label: 'Metformin', color: '#02B164' },
+          { type: 'Entity', code: 'TIR-9812', label: 'Account Tier', color: accent },
+          { type: 'Status', code: 'CLM-4471', label: 'Claim ID', color: '#20D3EF' },
+          { type: 'Decision', code: 'APPRVD', label: 'Approved', color: '#02B164' },
         ].map(e => (
           <div key={e.code} className="cviz-entity-chip" style={{ borderColor: `${e.color}40` }}>
             <span className="cviz-chip-type" style={{ color: e.color }}>{e.type}</span>
@@ -739,16 +973,16 @@ function CapViz02({ accent }) {
   return (
     <div style={{ padding: '0.25rem 0' }}>
       <div className="cviz-chat-bubble">
-        <span>💬</span>
-        <span>"Show HEDIS gap closure by region, Q4 2024"</span>
+        <span>&#128172;</span>
+        <span>&ldquo;Show order fulfillment rate by region, Q4 2024&rdquo;</span>
       </div>
       <div className="cviz-table-wrap">
         <table className="cviz-table">
-          <thead><tr><th>Region</th><th>Gap Closure</th><th>vs Q3</th></tr></thead>
+          <thead><tr><th>Region</th><th>Fulfillment</th><th>vs Q3</th></tr></thead>
           <tbody>
-            <tr><td>Northeast</td><td style={{ color: accent, fontWeight: 700 }}>84.2%</td><td style={{ color: '#02B164' }}>↑ +3.1%</td></tr>
-            <tr><td>Midwest</td><td style={{ color: accent, fontWeight: 700 }}>79.6%</td><td style={{ color: '#02B164' }}>↑ +1.8%</td></tr>
-            <tr><td>South</td><td style={{ color: accent, fontWeight: 700 }}>71.3%</td><td style={{ color: 'rgba(255,255,255,0.35)' }}>→ 0.2%</td></tr>
+            <tr><td>Northeast</td><td style={{ color: accent, fontWeight: 700 }}>94.2%</td><td style={{ color: '#02B164' }}>&#8679; +3.1%</td></tr>
+            <tr><td>Midwest</td><td style={{ color: accent, fontWeight: 700 }}>91.6%</td><td style={{ color: '#02B164' }}>&#8679; +1.8%</td></tr>
+            <tr><td>West</td><td style={{ color: accent, fontWeight: 700 }}>88.3%</td><td style={{ color: 'rgba(255,255,255,0.35)' }}>&rarr; 0.2%</td></tr>
           </tbody>
         </table>
       </div>
@@ -758,10 +992,10 @@ function CapViz02({ accent }) {
 
 function CapViz03({ accent }) {
   const items = [
-    { label: 'HIPAA Privacy & Security', ok: true },
-    { label: '21st Century Cures Act', ok: true },
-    { label: 'CMS-0057-F Prior Auth Rule', ok: true },
-    { label: 'TEFCA / QHIN Framework', ok: false },
+    { label: 'Data Privacy & Security Policy', ok: true },
+    { label: 'GDPR / CCPA Compliance', ok: true },
+    { label: 'SOC 2 Type II Controls', ok: true },
+    { label: 'ISO 27001 Framework', ok: false },
   ];
   return (
     <div className="cviz-compliance">
@@ -786,10 +1020,10 @@ function CapViz03({ accent }) {
 
 function CapViz04({ accent }) {
   const commits = [
-    { hash: 'a1b2c', msg: 'ADT→FHIR mapping v1.0', time: '3 days ago', tag: 'v1.0' },
-    { hash: 'd4e5f', msg: 'CPT-4 normalization layer', time: '2 days ago' },
+    { hash: 'a1b2c', msg: 'Order schema mapping v1.0', time: '3 days ago', tag: 'v1.0' },
+    { hash: 'd4e5f', msg: 'Product taxonomy normalization', time: '2 days ago' },
     { hash: 'g7h8i', msg: 'Hotfix: date format edge case', time: '1 day ago' },
-    { hash: 'j0k1l', msg: 'FHIR R4 upgrade + rollback', time: 'Today', tag: 'v2.0', active: true },
+    { hash: 'j0k1l', msg: 'API v3 upgrade + rollback', time: 'Today', tag: 'v2.0', active: true },
   ];
   return (
     <div className="cviz-timeline">
@@ -814,8 +1048,8 @@ function CapViz04({ accent }) {
 }
 
 function CapViz05({ accent }) {
-  const ins  = ['HL7 v2', 'FHIR R4', 'EDI X12'];
-  const outs = ['NCPDP', 'C-CDA', 'DICOM'];
+  const ins  = ['REST / JSON', 'EDI X12', 'SOAP / XML'];
+  const outs = ['GraphQL', 'CSV / Flat', 'Parquet'];
   return (
     <div className="cviz-hub">
       <div className="cviz-hub-col">
@@ -823,7 +1057,7 @@ function CapViz05({ accent }) {
           <div key={p} className="cviz-hub-chip">
             <span className="cviz-hub-dot" style={{ background: accent }} />
             <span>{p}</span>
-            <span className="cviz-hub-arr">→</span>
+            <span className="cviz-hub-arr">&rarr;</span>
           </div>
         ))}
       </div>
@@ -834,7 +1068,7 @@ function CapViz05({ accent }) {
       <div className="cviz-hub-col">
         {outs.map(p => (
           <div key={p} className="cviz-hub-chip">
-            <span className="cviz-hub-arr">→</span>
+            <span className="cviz-hub-arr">&rarr;</span>
             <span>{p}</span>
             <span className="cviz-hub-dot" style={{ background: '#02B164' }} />
           </div>
@@ -860,24 +1094,24 @@ function CapViz06({ accent }) {
             </span>
             <span className="cviz-tier-desc">{tier.desc}</span>
           </div>
-          {i < 2 && <div className="cviz-tier-arrow">↓</div>}
+          {i < 2 && <div className="cviz-tier-arrow">&darr;</div>}
         </div>
       ))}
-      <div className="cviz-medallion-out">→ Databricks · SageMaker · Snowflake · dbt</div>
+      <div className="cviz-medallion-out">&rarr; Databricks &middot; SageMaker &middot; Snowflake &middot; dbt</div>
     </div>
   );
 }
 
 function CapViz07({ accent }) {
   const steps = [
-    { label: 'Request Submitted', detail: 'via FHIR R4 CRD', status: 'done' },
-    { label: 'AI Clinical Review', detail: '0.4s decision time', status: 'done' },
-    { label: 'Eligibility Verification', detail: 'In Progress…', status: 'active' },
+    { label: 'Request Submitted', detail: 'via REST API trigger', status: 'done' },
+    { label: 'AI Validation Review', detail: '0.4s decision time', status: 'done' },
+    { label: 'Eligibility Check', detail: 'In Progress&hellip;', status: 'active' },
     { label: 'Auto-Approval Decision', detail: 'Awaiting result', status: 'pending' },
   ];
   return (
     <div style={{ padding: '0.25rem 0' }}>
-      <div className="cviz-wf-title">Prior Auth Pipeline — Live</div>
+      <div className="cviz-wf-title">Approval Workflow Pipeline — Live</div>
       <div className="cviz-steps">
         {steps.map(step => (
           <div key={step.label} className={`cviz-step cviz-step-${step.status}`}>
@@ -888,7 +1122,7 @@ function CapViz07({ accent }) {
             </div>
             <div className="cviz-step-body">
               <div className="cviz-step-label">{step.label}</div>
-              <div className="cviz-step-detail">{step.detail}</div>
+              <div className="cviz-step-detail" dangerouslySetInnerHTML={{ __html: step.detail }} />
             </div>
           </div>
         ))}

@@ -21,6 +21,7 @@ import IndustryPage from './pages/IndustryPage';
 import UseCasePage from './pages/UseCasePage';
 import FreeTools from './pages/FreeTools';
 import DataFragmentationPage from './pages/DataFragmentationPage';
+import EnterpriseDataFragmentation from './pages/EnterpriseDataFragmentation';
 import NotFound from './pages/NotFound';
 
 function ScrollToTop() {
@@ -50,7 +51,12 @@ function AppRoutes() {
         <Route path="/platform/ai-readiness" element={<PlatformVertical slug="ai-readiness" />} />
         <Route path="/platform/workflow-orchestration" element={<PlatformVertical slug="workflow-orchestration" />} />
 
-        {/* Solution Sub-pages */}
+        {/* Solution Sub-pages — new industry-agnostic integration type routes */}
+        <Route path="/solutions/system-integrations" element={<SolutionPage slug="system-integrations" />} />
+        <Route path="/solutions/network-integrations" element={<SolutionPage slug="network-integrations" />} />
+        <Route path="/solutions/partner-integrations" element={<SolutionPage slug="partner-integrations" />} />
+        <Route path="/solutions/specialized-integrations" element={<SolutionPage slug="specialized-integrations" />} />
+        {/* Legacy healthcare routes — kept for backwards compatibility */}
         <Route path="/solutions/emr-integrations" element={<SolutionPage slug="emr-integrations" />} />
         <Route path="/solutions/hie-integrations" element={<SolutionPage slug="hie-integrations" />} />
         <Route path="/solutions/payer-integrations" element={<SolutionPage slug="payer-integrations" />} />
@@ -63,6 +69,7 @@ function AppRoutes() {
         <Route path="/solutions/healthcare" element={<IndustryPage industry="healthcare" />} />
         <Route path="/solutions/ecommerce" element={<IndustryPage industry="ecommerce" />} />
         <Route path="/solutions/insurance" element={<IndustryPage industry="insurance" />} />
+        <Route path="/solutions/hr-tech" element={<IndustryPage industry="hr-tech" />} />
 
         {/* Use Case pages */}
         <Route path="/solutions/use-case/340b-compliance-without-the-roadblocks" element={<UseCasePage slug="340b" />} />
@@ -102,6 +109,7 @@ function AppRoutes() {
 
         {/* Research / Stat pages */}
         <Route path="/healthcare-data-fragmentation" element={<DataFragmentationPage />} />
+        <Route path="/enterprise-data-fragmentation" element={<EnterpriseDataFragmentation />} />
 
         {/* 404 */}
         <Route path="*" element={<NotFound />} />

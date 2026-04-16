@@ -20,7 +20,7 @@ const leadership = [
     name: 'Andrew Baker',
     title: 'Chief Executive Officer',
     photo: 'https://vorro.net/wp-content/uploads/2025/11/Andrew.jpeg',
-    bio: 'Andrew is the driving force behind Vorro\'s mission to lead the AI transformation market in healthcare. With over 30 years of executive leadership in IT and data management across healthcare, insurance, and fintech, he guides operational excellence and market execution. He has served in executive roles at both high-growth startups and Fortune 500 companies and he holds an MBA degree from New Hampshire College.',
+    bio: 'Andrew is the driving force behind Vorro\'s mission to lead the AI transformation market across industries. With over 30 years of executive leadership in IT and data management across healthcare, insurance, and fintech, he guides operational excellence and market execution. He has served in executive roles at both high-growth startups and Fortune 500 companies and he holds an MBA degree from New Hampshire College.',
   },
   {
     name: 'Scott Sirdevan',
@@ -32,7 +32,7 @@ const leadership = [
     name: 'Terry Sirdevan',
     title: 'VP - Product Development',
     photo: 'https://vorro.net/wp-content/uploads/2025/07/Terry-Sirdevan.webp',
-    bio: 'Terry is the lead product strategist, responsible for transforming complex healthcare challenges into the seamless, no-code features of the VIIA platform. He drives the product roadmap from concept to deployment, ensuring BridgeGate remains the most agile integration solution on the market. Terry was a former analyst at Fidelity Information Services.',
+    bio: 'Terry is the lead product strategist, responsible for transforming complex enterprise data challenges into the seamless, no-code features of the VIIA platform. He drives the product roadmap from concept to deployment, ensuring BridgeGate remains the most agile integration solution on the market. Terry was a former analyst at Fidelity Information Services.',
   },
   {
     name: 'Manish Agarwal',
@@ -44,22 +44,22 @@ const leadership = [
     name: 'Shashank Tewari',
     title: 'Chief Operating Officer',
     photo: 'https://vorro.net/wp-content/uploads/2025/07/Shashank-Tewari.webp',
-    bio: 'Shashank focuses on operational excellence, ensuring a scalable and efficient delivery model for all customers. He brings over 14 years of experience in scaling high-growth SaaS and automation platforms, with a strong domain fluency in the needs of modern healthcare organizations. He leads cross-functional execution across product, technology, and operations. He is an electronics engineer and BITS Pilani alumnus.',
+    bio: 'Shashank focuses on operational excellence, ensuring a scalable and efficient delivery model for all customers. He brings over 14 years of experience in scaling high-growth SaaS and automation platforms, with strong domain fluency across data-intensive industries. He leads cross-functional execution across product, technology, and operations. He is an electronics engineer and BITS Pilani alumnus.',
   },
 ];
 
 const clients = [
-  'Geisinger Health', 'Contexture (HIE)', 'WISHIN (HIE)', 'Therap',
-  'SunRx / 340B Holdings', 'CareOne', 'MedGenerations', 'Avesis / Guardian Life',
-  'DMEScripts', 'Ognomy', 'SendCare', 'Secure Exchange Solutions',
+  'HSN', 'QVC', 'Contexture', 'WISHIN', 'Therap',
+  'SunRx', 'CareOne', 'Avesis / Guardian Life',
+  'DMEScripts', 'Secure Exchange Solutions',
   'American Lung Association', '4L Data', 'BlueStep Systems',
 ];
 
 const stats = [
-  { value: '25M+', label: 'Managed Lives Powered Annually' },
-  { value: '22+', label: 'Enterprise Healthcare Clients' },
+  { value: '25M+', label: 'Records Processed Annually' },
+  { value: '22+', label: 'Enterprise Clients' },
   { value: '300%', label: 'Average Client ROI' },
-  { value: '100%', label: 'HIPAA-Compliant by Design' },
+  { value: '70%', label: 'Cost Reduction vs. In-House Build' },
 ];
 
 export default function About() {
@@ -72,11 +72,11 @@ export default function About() {
             About Vorro
           </div>
           <h1 className="vertical-hero-headline">
-            Healthcare Data Experts.<br />
-            Built for the Complexity of Care.
+            Enterprise Data Experts.<br />
+            Built for Complexity at Scale.
           </h1>
           <p className="vertical-hero-sub">
-            Vorro was founded with one mission: make healthcare data work the way care teams,
+            Vorro was founded with one mission: make enterprise data work the way operations teams,
             compliance officers, and data engineers need it to — reliably, securely, and at scale.
           </p>
           <div className="vertical-hero-actions">
@@ -111,7 +111,7 @@ export default function About() {
             <div>
               <div className="section-header">
                 <div className="eyebrow">Our Goal</div>
-                <h2>Streamline Healthcare Data and Workflows With AI</h2>
+                <h2>Streamline Enterprise Data and Workflows With AI</h2>
                 <p>
                   We help organizations unify data, connect systems, and automate
                   decision-making without custom code or complex rebuilds.
@@ -120,18 +120,18 @@ export default function About() {
                   Technology Should Work the Way You Do
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>
-                  We believe modern healthcare shouldn't be held back by outdated processes
-                  or integration pain. Vorro's AI-powered platform connects every system in
-                  your data estate — EHRs, payers, labs, pharmacy, HIEs, and more — and
+                  We believe modern organizations should not be held back by outdated processes
+                  or integration pain. Vorro&apos;s AI-powered platform connects every system in
+                  your data estate — across healthcare, ecommerce, insurance, logistics, and more — and
                   governs, enriches, and automates the flow of data across all of them.
                 </p>
               </div>
             </div>
             <div className="about-mission-bullets">
               {[
-                'Healthcare-native from day one — built for HL7, FHIR, and EDI',
-                '22+ enterprise deployments across health systems, HIEs, PBMs, and specialty networks',
-                'Enabling data transactions for over 25 million managed lives every year',
+                'Industry-agnostic from day one — built for HL7, FHIR, EDI, REST, SOAP, and more',
+                '22+ enterprise deployments across healthcare, retail, insurance, and specialty networks',
+                'Processing over 25 million records and transactions every year',
                 'Fully managed, cloud-based, or self-hosted deployment options',
                 'Dedicated integration engineers and project managers on every engagement',
                 'No rip-and-replace — connects to your existing systems and data flows',
@@ -215,8 +215,8 @@ export default function About() {
         <div className="container">
           <div className="section-header centered dark" style={{ marginBottom: '3rem' }}>
             <div className="eyebrow" style={{ color: 'var(--color-cyan)' }}>Trusted By</div>
-            <h2>Powering Healthcare Leaders Nationwide</h2>
-            <p>From regional health systems to national HIEs, PBMs, and specialty networks.</p>
+            <h2>Powering Enterprise Leaders Across Industries</h2>
+            <p>From regional organizations to national networks spanning healthcare, retail, insurance, and beyond.</p>
           </div>
           <div className="about-clients-grid">
             {clients.map((c) => (
@@ -236,7 +236,7 @@ export default function About() {
               <h2>Ready to Transform Your Data Infrastructure?</h2>
               <p>
                 Schedule a conversation with our team and learn how Vorro can eliminate data
-                fragmentation across your entire healthcare organization.
+                fragmentation and unlock AI potential across your entire organization.
               </p>
               <div className="cta-banner-actions">
                 <Link to="/contact-us" className="btn btn-cyan btn-xl">

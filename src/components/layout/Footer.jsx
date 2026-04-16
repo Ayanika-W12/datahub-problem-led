@@ -60,12 +60,12 @@ export default function Footer() {
           <div className="footer-grid">
             {/* Brand Column */}
             <div className="footer-brand">
-              <Link to="/" className="footer-logo" style={{ lineHeight: 0 }}>
+              <Link to="/" className="footer-logo" style={{ lineHeight: 0 }} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                 <VorroLogo white={true} height={30} />
               </Link>
               <p className="footer-tagline">
                 AI Native Data Orchestration.<br />
-                Built for Healthcare.
+                Built for Enterprise.
               </p>
               <div className="footer-contact">
                 <a href="mailto:sales@vorro.net" className="footer-contact-link">
