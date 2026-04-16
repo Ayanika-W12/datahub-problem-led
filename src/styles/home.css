@@ -2,6 +2,35 @@
    HOME PAGE STYLES
    ============================================ */
 
+/* ---- Industry Vertical Slider ---- */
+.industry-slider-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  /* Reserve space for the tallest word so the headline doesn't reflow */
+  min-width: 9ch;
+}
+
+.industry-slider-word {
+  display: inline-block;
+  color: var(--color-cyan);
+  font-style: normal;
+  will-change: transform, opacity;
+  transition:
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity   0.26s ease;
+}
+
+.industry-slider-word.industry-slider-enter {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.industry-slider-word.industry-slider-exit {
+  transform: translateY(-60%);
+  opacity: 0;
+}
+
 /* ---- Hero ---- */
 .hero {
   position: relative;

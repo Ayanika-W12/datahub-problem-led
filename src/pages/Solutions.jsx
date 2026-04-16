@@ -3,32 +3,32 @@ import { ArrowRight, Zap } from 'lucide-react';
 
 const byIntegrationType = [
   {
-    title: 'EMR / EHR Integrations',
-    sub: 'Connect any electronic health record — bidirectionally',
+    title: 'System Integrations',
+    sub: 'Connect any enterprise system — bidirectionally',
     to: '/solutions/emr-integrations',
-    vendors: ['Epic', 'Oracle Cerner', 'Athenahealth', 'Meditech', 'eClinicalWorks', '40+ more'],
-    desc: 'Production-proven connectors to every major EHR. Real-time and batch. No rip-and-replace required.',
+    vendors: ['ERP / CRM Systems', 'SaaS Platforms', 'Legacy Databases', 'Cloud Services', 'On-premise Apps', '40+ more'],
+    desc: 'Production-proven connectors to every major enterprise system. Real-time and batch. No rip-and-replace required.',
   },
   {
-    title: 'HIE Integrations',
-    sub: 'Network-wide interoperability at scale',
+    title: 'Network & Partner Integrations',
+    sub: 'Multi-party data exchange at scale',
     to: '/solutions/hie-integrations',
-    vendors: ['Carequality', 'CommonWell', 'TEFCA / QHIN', 'Direct Trust', 'Public Health'],
-    desc: 'Power a regional or statewide HIE — or connect your organization to one. Trusted by Contexture and WISHIN.',
+    vendors: ['B2B Data Exchanges', 'Industry Networks', 'Partner Portals', 'Regulatory Bodies', 'Public Registries'],
+    desc: 'Power network-wide data exchange across partners, regulators, and industry networks — trusted by leading organizations.',
   },
   {
-    title: 'Payer Integrations',
-    sub: 'Claims, eligibility, and prior auth — automated',
+    title: 'Operational Integrations',
+    sub: 'Workflows, approvals, and reconciliation — automated',
     to: '/solutions/payer-integrations',
-    vendors: ['Prior Authorization', 'Eligibility 270/271', 'Claims 837/835', 'ERA / EFT', 'CMS-0057-F APIs'],
-    desc: 'Automate the full payer-provider data loop. CMS mandate-compliant, FHIR-native, and live in weeks.',
+    vendors: ['Approval Workflows', 'Eligibility Checks', 'Claims & Billing', 'ERA / EFT', 'Compliance APIs'],
+    desc: 'Automate the full operational data loop. Mandate-compliant, standards-native, and live in weeks.',
   },
   {
-    title: 'Pharmacy Integrations',
-    sub: 'ePrescribing, 340B, and PBM data unified',
+    title: 'Specialized Data Connectors',
+    sub: 'Domain-specific data flows unified',
     to: '/solutions/pharmacy-integrations',
-    vendors: ['Surescripts', 'NCPDP SCRIPT', '340B Platforms', 'PBM Systems', 'Specialty Pharmacy'],
-    desc: 'End-to-end pharmacy data connectivity — from ePrescribing to 340B compliance to PBM claims reconciliation.',
+    vendors: ['Industry EDI', 'Specialized Platforms', 'Compliance Systems', 'Specialty Networks', 'Data Registries'],
+    desc: 'End-to-end domain-specific data connectivity — from specialized ingestion to compliance reporting and reconciliation.',
   },
 ];
 
@@ -73,8 +73,8 @@ export default function Solutions() {
             Every Integration Challenge.<br />One Platform.
           </h1>
           <p className="vertical-hero-sub">
-            From connecting a single EMR to building a governed AI-ready data lake —
-            Vorro delivers production-proven solutions across the full healthcare data stack.
+            From connecting a single system to building a governed AI-ready data lake —
+            Vorro delivers production-proven solutions across the full enterprise data stack.
           </p>
           <div className="vertical-hero-actions">
             <Link to="/contact-us" className="btn btn-cyan btn-md">
@@ -93,7 +93,7 @@ export default function Solutions() {
           <div className="section-header">
             <div className="eyebrow">By Integration Type</div>
             <h2>Connect Any System. In Any Direction.</h2>
-            <p>Pre-built connectors and protocol support for every major healthcare data standard and vendor ecosystem.</p>
+            <p>Pre-built connectors and protocol support for every major enterprise data standard and vendor ecosystem.</p>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '2.5rem' }}>

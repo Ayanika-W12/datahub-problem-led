@@ -11,13 +11,13 @@ const navLinks = [
       {
         heading: 'Capabilities',
         items: [
-          { label: 'AI-Driven Analytics & Insights', to: '/platform/analytics-nlp', desc: 'Extract intelligence from data' },
-          { label: 'Reporting & Conversational AI', to: '/platform/reporting-nlp', desc: 'Conversational queries for any data' },
-          { label: 'Governance & Compliance', to: '/platform/governance-compliance', desc: 'Automated HIPAA, Cures Act, FHIR' },
-          { label: 'Version Lineage & Control', to: '/platform/governance-versioning', desc: 'Data lineage & pipeline versioning' },
-          { label: 'Interfacing', to: '/platform/interfacing', desc: 'HL7, FHIR, EDI — every standard' },
+          { label: 'AI-Driven Analytics & Insights', to: '/platform/analytics-nlp', desc: 'Extract intelligence from any data source' },
+          { label: 'Reporting & Conversational AI', to: '/platform/reporting-nlp', desc: 'Natural language queries, instant reports' },
+          { label: 'Governance & Compliance', to: '/platform/governance-compliance', desc: 'Automated policy enforcement & auditing' },
+          { label: 'Version Lineage & Control', to: '/platform/governance-versioning', desc: 'Full data lineage & pipeline versioning' },
+          { label: 'Interfacing', to: '/platform/interfacing', desc: 'REST, EDI, FHIR, SOAP — every standard' },
           { label: 'AI Readiness', to: '/platform/ai-readiness', desc: 'Data lake & ML-ready pipelines' },
-          { label: 'Workflow Orchestration', to: '/platform/workflow-orchestration', desc: 'AI-powered automation' },
+          { label: 'Workflow Orchestration', to: '/platform/workflow-orchestration', desc: 'AI-powered process automation' },
         ],
       },
       {
@@ -36,10 +36,10 @@ const navLinks = [
       {
         heading: 'By Integration Type',
         items: [
-          { label: 'EMR Integrations', to: '/solutions/emr-integrations', desc: 'Epic, Cerner, Athena & beyond' },
-          { label: 'HIE Integrations', to: '/solutions/hie-integrations', desc: 'Health information exchange' },
-          { label: 'Payer Integrations', to: '/solutions/payer-integrations', desc: 'Prior auth, eligibility, claims' },
-          { label: 'Pharmacy Integrations', to: '/solutions/pharmacy-integrations', desc: 'ePrescribing & pharmacy data' },
+          { label: 'System Integrations', to: '/solutions/emr-integrations', desc: 'Connect any enterprise system, bidirectionally' },
+          { label: 'Network Integrations', to: '/solutions/hie-integrations', desc: 'Multi-party data exchange at scale' },
+          { label: 'Partner Integrations', to: '/solutions/payer-integrations', desc: 'B2B data flows, claims & reconciliation' },
+          { label: 'Specialized Integrations', to: '/solutions/pharmacy-integrations', desc: 'Domain-specific data connectors' },
         ],
       },
       {
@@ -59,19 +59,19 @@ const navLinks = [
       {
         heading: 'By Role',
         items: [
-          { label: 'For Health Systems', to: '/solutions', desc: 'Enterprise data orchestration' },
-          { label: 'For Payers', to: '/solutions/payer-integrations', desc: 'Claims, eligibility, prior auth' },
-          { label: 'For HIEs', to: '/solutions/hie-integrations', desc: 'Network-wide interoperability' },
+          { label: 'For Enterprises', to: '/solutions', desc: 'End-to-end data orchestration at scale' },
+          { label: 'For Operations Teams', to: '/solutions/payer-integrations', desc: 'Automate complex operational workflows' },
+          { label: 'For Data Teams', to: '/solutions/hie-integrations', desc: 'Governed, AI-ready data infrastructure' },
           { label: 'For Startups', to: '/vorro-for-startups', desc: 'Launch fast with managed integration' },
         ],
       },
       {
         heading: 'By Challenge',
         items: [
-          { label: '340B Compliance', to: '/solutions/pharmacy-integrations', desc: 'Automate 340B workflows' },
-          { label: 'Behavioral Health', to: '/solutions/hie-integrations', desc: '42 CFR Part 2 compliance' },
+          { label: 'Regulatory Compliance', to: '/solutions/pharmacy-integrations', desc: 'Automate mandate & compliance workflows' },
+          { label: 'Data Fragmentation', to: '/enterprise-data-fragmentation', desc: 'Eliminate silos across every system' },
           { label: 'Build vs Buy', to: '/build-vs-buy', desc: 'Make the right integration decision' },
-          { label: 'AI Readiness', to: '/platform/ai-readiness', desc: 'Prepare data for ML/AI' },
+          { label: 'AI Readiness', to: '/platform/ai-readiness', desc: 'Prepare data for ML/AI initiatives' },
         ],
       },
     ],
@@ -83,7 +83,7 @@ const navLinks = [
         heading: 'Resources',
         items: [
           { label: 'Case Studies', to: '/case-studies', desc: 'Client outcomes & results' },
-          { label: 'Blog', to: '/blog', desc: 'Healthcare data insights' },
+          { label: 'Blog', to: '/blog', desc: 'Data & AI industry insights' },
           { label: 'Webinars', to: '/webinar', desc: 'Live & on-demand sessions' },
           { label: 'Contact Us', to: '/contact-us', desc: 'Talk to an expert' },
         ],

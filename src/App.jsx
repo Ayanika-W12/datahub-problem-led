@@ -21,6 +21,7 @@ import IndustryPage from './pages/IndustryPage';
 import UseCasePage from './pages/UseCasePage';
 import FreeTools from './pages/FreeTools';
 import DataFragmentationPage from './pages/DataFragmentationPage';
+import EnterpriseDataFragmentation from './pages/EnterpriseDataFragmentation';
 import NotFound from './pages/NotFound';
 
 function ScrollToTop() {
@@ -102,6 +103,7 @@ function AppRoutes() {
 
         {/* Research / Stat pages */}
         <Route path="/healthcare-data-fragmentation" element={<DataFragmentationPage />} />
+        <Route path="/enterprise-data-fragmentation" element={<EnterpriseDataFragmentation />} />
 
         {/* 404 */}
         <Route path="*" element={<NotFound />} />
