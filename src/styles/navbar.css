@@ -189,6 +189,20 @@
   gap: var(--space-6);
 }
 
+/* 3-column dropdown variant — for menus with 3 groups */
+.nav-dropdown-3col {
+  min-width: 780px;
+}
+
+.nav-dropdown-inner-3col {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Position the Problems We Solve (idx 1) dropdown to not go off-screen */
+.nav-dropdown-pos-1 {
+  left: -80px;
+}
+
 .nav-dropdown-group {
   display: flex;
   flex-direction: column;

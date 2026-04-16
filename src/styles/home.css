@@ -500,7 +500,17 @@
 /* ---- prob-nav-section: transparent — inherits dark-zone bg ---- */
 .prob-nav-section {
   background: transparent;
-}
+  }
+
+/* Hero variant — first on page, needs room for fixed navbar */
+.prob-nav-hero-zone {
+  position: relative;
+  }
+
+.prob-nav-section--hero {
+  padding-top: 7rem; /* clear fixed navbar */
+  padding-bottom: 3rem;
+  }
 
 .prob-nav-section .section-header h2,
 .prob-nav-section .section-header p,

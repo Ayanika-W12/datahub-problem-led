@@ -198,8 +198,8 @@ export default function Navbar() {
               )}
 
               {link.dropdown && activeDropdown === idx && (
-                <div className={`nav-dropdown nav-dropdown-pos-${idx} ${link.dropdown.length === 1 ? 'nav-dropdown-narrow' : ''}`}>
-                  <div className={`nav-dropdown-inner ${link.dropdown.length === 1 ? 'nav-dropdown-inner-single' : ''}`}>
+                <div className={`nav-dropdown nav-dropdown-pos-${idx} ${link.dropdown.length === 1 ? 'nav-dropdown-narrow' : ''} ${link.dropdown.length === 3 ? 'nav-dropdown-3col' : ''}`}>
+                  <div className={`nav-dropdown-inner ${link.dropdown.length === 1 ? 'nav-dropdown-inner-single' : ''} ${link.dropdown.length === 3 ? 'nav-dropdown-inner-3col' : ''}`}>
                     {link.dropdown.map((group) => (
                       <div key={group.heading} className="nav-dropdown-group">
                         <div className="nav-dropdown-heading">{group.heading}</div>

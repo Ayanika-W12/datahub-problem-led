@@ -491,7 +491,61 @@ export default function Home() {
 
   return (
     <main>
-      {/* HERO */}
+      {/* ==========================================
+          PROBLEM NAVIGATOR — HERO (first on page)
+          Own dark-zone so pn-root styles render correctly
+         ========================================== */}
+      <div className="dark-zone prob-nav-hero-zone">
+        <div className="dz-lines" aria-hidden="true" />
+        <div className="dz-orb-purple" aria-hidden="true" />
+        <div className="dz-orb-cyan2" aria-hidden="true" />
+        <section className="section prob-nav-section prob-nav-section--hero">
+          <div className="container">
+            <FadeIn>
+              <div className="section-header centered">
+                <div className="eyebrow">Identify Your Problem</div>
+                <h2>What&apos;s the biggest data problem costing your organization?</h2>
+                <p>
+                  Pick your industry. We&apos;ll show you the real cost, the root cause, and exactly how Vorro fixes it.
+                </p>
+              </div>
+            </FadeIn>
+            <FadeIn delay={100}>
+              <ProblemNavigator />
+            </FadeIn>
+            <FadeIn delay={200}>
+              <Link to="/enterprise-data-fragmentation" className="stat-glass-banner">
+                <span className="stat-glass-orb stat-glass-orb-1" aria-hidden="true" />
+                <span className="stat-glass-orb stat-glass-orb-2" aria-hidden="true" />
+                <span className="stat-glass-orb stat-glass-orb-3" aria-hidden="true" />
+                <div className="stat-glass-number">83%</div>
+                <div className="stat-glass-body">
+                  <p className="stat-glass-text">
+                    of organizations report that data silos significantly hinder their ability to deploy AI and analytics at scale
+                  </p>
+                  <div className="stat-glass-source">
+                    Wavestone (formerly NewVantage Partners) &mdash; Data &amp; AI Leadership Executive Survey 2024
+                    <a
+                      href="https://www.wavestone.com/en/insight/data-ai-executive-leadership-survey-2024"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="stat-glass-cta"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Read the research &rarr;
+                    </a>
+                  </div>
+                </div>
+              </Link>
+            </FadeIn>
+          </div>
+        </section>
+      </div>
+
+      {/* ==========================================
+          PLATFORM HERO — moved below problem navigator
+          Shows what Vorro actually is / how it works
+         ========================================== */}
       <section className="hero">
         <div className="hero-bg">
           <div className="hero-gradient" />
@@ -685,49 +739,6 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* PROBLEM NAVIGATOR — immediately after logos, before platform */}
-      <section className="section prob-nav-section" style={{ background: '#fff' }}>
-        <div className="container">
-          <FadeIn>
-            <div className="section-header centered">
-              <div className="eyebrow">Identify Your Problem</div>
-              <h2>What&apos;s the biggest data problem costing your organization?</h2>
-              <p>
-                Pick your industry. We&apos;ll show you the real cost, the root cause, and exactly how Vorro fixes it.
-              </p>
-            </div>
-          </FadeIn>
-          <FadeIn delay={100}>
-            <ProblemNavigator />
-          </FadeIn>
-          <FadeIn delay={200}>
-            <Link to="/enterprise-data-fragmentation" className="stat-glass-banner">
-              <span className="stat-glass-orb stat-glass-orb-1" aria-hidden="true" />
-              <span className="stat-glass-orb stat-glass-orb-2" aria-hidden="true" />
-              <span className="stat-glass-orb stat-glass-orb-3" aria-hidden="true" />
-              <div className="stat-glass-number">83%</div>
-              <div className="stat-glass-body">
-                <p className="stat-glass-text">
-                  of organizations report that data silos significantly hinder their ability to deploy AI and analytics at scale
-                </p>
-                <div className="stat-glass-source">
-                  Wavestone (formerly NewVantage Partners) &mdash; Data &amp; AI Leadership Executive Survey 2024
-                  <a
-                    href="https://www.wavestone.com/en/insight/data-ai-executive-leadership-survey-2024"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="stat-glass-cta"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    Read the research &rarr;
-                  </a>
-                </div>
-              </div>
-            </Link>
-          </FadeIn>
         </div>
       </section>
 
