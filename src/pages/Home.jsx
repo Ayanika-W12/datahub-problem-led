@@ -368,77 +368,89 @@ function IndustrySlider() {
 /* ---- Problem Navigator Component ---- */
 function ProblemNavigator() {
   const [activeIdx, setActiveIdx] = useState(0);
-  const [animating, setAnimating] = useState(false);
+  const [fading, setFading] = useState(false);
   const [displayIdx, setDisplayIdx] = useState(0);
   const problem = industryProblems[displayIdx];
 
   const switchTo = (idx) => {
-    if (idx === activeIdx || animating) return;
-    setAnimating(true);
+    if (idx === activeIdx || fading) return;
+    setFading(true);
     setTimeout(() => {
       setDisplayIdx(idx);
       setActiveIdx(idx);
-      setAnimating(false);
-    }, 220);
+      setFading(false);
+    }, 240);
   };
 
   return (
-    <div className="prob-nav">
-      {/* Tabs */}
-      <div className="prob-nav-tabs" role="tablist">
+    <div className="pn-root">
+
+      {/* Left column — industry selector */}
+      <div className="pn-selector" role="tablist">
         {industryProblems.map((p, i) => (
           <button
             key={p.tab}
             role="tab"
             aria-selected={i === activeIdx}
-            className={`prob-nav-tab${i === activeIdx ? ' prob-nav-tab-active' : ''}`}
-            style={i === activeIdx ? { '--tab-color': p.color } : {}}
+            className={`pn-industry-btn${i === activeIdx ? ' pn-industry-btn--active' : ''}`}
+            style={{ '--ind-color': p.color }}
             onClick={() => switchTo(i)}
           >
-            {p.tab}
+            <span className="pn-industry-accent" />
+            <span className="pn-industry-inner">
+              <span className="pn-industry-name">{p.tab}</span>
+              <span className="pn-industry-preview">{p.title}</span>
+            </span>
+            <ArrowRight size={14} className="pn-industry-arrow" />
           </button>
         ))}
       </div>
 
-      {/* Detail panel */}
-      <div className={`prob-nav-panel${animating ? ' prob-nav-panel-exit' : ' prob-nav-panel-enter'}`}>
-        <div className="prob-nav-left">
-          <div className="prob-nav-category" style={{ color: problem.color }}>
-            {problem.category}
-          </div>
-          <h3 className="prob-nav-title">{problem.title}</h3>
-          <p className="prob-nav-desc">{problem.desc}</p>
-          <div className="prob-nav-stats">
-            {problem.stats.map((s) => (
-              <div key={s.label} className="prob-nav-stat">
-                <strong style={{ color: problem.color }}>{s.val}</strong>
-                <span>{s.label}</span>
-              </div>
-            ))}
-          </div>
-          <Link
-            to={`/solutions/${problem.tab.toLowerCase().replace(/\s+/g, '-')}`}
-            className="prob-nav-link"
-            style={{ color: problem.color }}
-          >
-            See how Vorro solves this <ArrowRight size={14} />
-          </Link>
+      {/* Center column — giant stat focal point */}
+      <div className={`pn-focal${fading ? ' pn-focal--fade' : ''}`}>
+        <div className="pn-focal-eyebrow" style={{ color: problem.color }}>
+          {problem.category}
         </div>
-
-        <div className="prob-nav-right">
-          <div className="prob-nav-solutions-label">How Vorro fixes it</div>
-          <ul className="prob-nav-solutions">
-            {problem.solutions.map((s, i) => (
-              <li key={s} style={{ animationDelay: `${i * 60}ms` }}>
-                <span className="prob-nav-check" style={{ background: `${problem.color}20`, color: problem.color }}>
-                  <CheckCircle2 size={14} />
-                </span>
-                {s}
-              </li>
-            ))}
-          </ul>
+        <div className="pn-focal-stat" style={{ color: problem.color }}>
+          {problem.stats[0].val}
         </div>
+        <div className="pn-focal-stat-label">{problem.stats[0].label}</div>
+        <div className="pn-focal-divider" style={{ background: problem.color }} />
+        <p className="pn-focal-desc">{problem.desc}</p>
+        {problem.stats[1] && (
+          <div className="pn-focal-secondary-stat">
+            <span style={{ color: problem.color }}>{problem.stats[1].val}</span>
+            <span>{problem.stats[1].label}</span>
+          </div>
+        )}
+        <Link
+          to={`/solutions/${problem.tab.toLowerCase().replace(/\s+/g, '-')}`}
+          className="pn-focal-link"
+          style={{ '--ind-color': problem.color }}
+        >
+          See how Vorro solves this for {problem.tab} <ArrowRight size={13} />
+        </Link>
       </div>
+
+      {/* Right column — numbered solution list */}
+      <div className={`pn-solutions${fading ? ' pn-solutions--fade' : ''}`}>
+        <div className="pn-solutions-heading">How Vorro fixes it</div>
+        <ol className="pn-solutions-list">
+          {problem.solutions.map((s, i) => (
+            <li
+              key={s}
+              className="pn-solutions-item"
+              style={{ animationDelay: `${i * 55}ms`, '--ind-color': problem.color }}
+            >
+              <span className="pn-solutions-num" style={{ color: problem.color }}>
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span>{s}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+
     </div>
   );
 }
@@ -653,7 +665,7 @@ export default function Home() {
       </section>
 
       {/* PROBLEM NAVIGATOR */}
-      <section className="section bg-light prob-nav-section">
+      <section className="section prob-nav-section">
         <div className="container">
           <FadeIn>
             <div className="section-header centered">
