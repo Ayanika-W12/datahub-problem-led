@@ -322,45 +322,53 @@ function FadeIn({ children, delay = 0, className = '' }) {
   );
 }
 
-/* ---- Vertical Industry Slider ---- */
+/* ---- Typewriter Industry Animator ---- */
+const TYPE_SPEED   = 70;  // ms per character typed
+const DELETE_SPEED = 40;  // ms per character deleted
+const PAUSE_AFTER  = 1800; // ms to hold the fully-typed word
+const PAUSE_BEFORE = 200;  // ms pause before typing the next word
+
 function IndustrySlider() {
-  const [current, setCurrent] = useState(0);
-  const [next, setNext] = useState(null);
-  const [phase, setPhase] = useState('idle'); // 'idle' | 'animating'
+  const [wordIndex, setWordIndex] = useState(0);
+  const [displayed, setDisplayed] = useState('');
+  const [phase, setPhase] = useState('typing'); // 'typing' | 'holding' | 'deleting'
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const nextIdx = (current + 1) % INDUSTRIES.length;
-      setNext(nextIdx);
-      setPhase('animating');
-      const timeout = setTimeout(() => {
-        setCurrent(nextIdx);
-        setNext(null);
-        setPhase('idle');
-      }, 380);
-      return () => clearTimeout(timeout);
-    }, 2400);
-    return () => clearInterval(interval);
-  }, [current]);
+    const word = INDUSTRIES[wordIndex];
+
+    if (phase === 'typing') {
+      if (displayed.length < word.length) {
+        const t = setTimeout(() => setDisplayed(word.slice(0, displayed.length + 1)), TYPE_SPEED);
+        return () => clearTimeout(t);
+      } else {
+        const t = setTimeout(() => setPhase('holding'), PAUSE_AFTER);
+        return () => clearTimeout(t);
+      }
+    }
+
+    if (phase === 'holding') {
+      const t = setTimeout(() => setPhase('deleting'), 0);
+      return () => clearTimeout(t);
+    }
+
+    if (phase === 'deleting') {
+      if (displayed.length > 0) {
+        const t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), DELETE_SPEED);
+        return () => clearTimeout(t);
+      } else {
+        const t = setTimeout(() => {
+          setWordIndex((wordIndex + 1) % INDUSTRIES.length);
+          setPhase('typing');
+        }, PAUSE_BEFORE);
+        return () => clearTimeout(t);
+      }
+    }
+  }, [phase, displayed, wordIndex]);
 
   return (
-    <span className="industry-slider-wrap" aria-live="polite" aria-atomic="true">
-      {/* Current word — slides up and fades out when animating */}
-      <span
-        key={`cur-${current}`}
-        className={`industry-slider-word${phase === 'animating' ? ' slider-exit' : ' slider-idle'}`}
-      >
-        {INDUSTRIES[current]}
-      </span>
-      {/* Next word — slides up from below and fades in when animating */}
-      {phase === 'animating' && next !== null && (
-        <span
-          key={`nxt-${next}`}
-          className="industry-slider-word slider-enter"
-        >
-          {INDUSTRIES[next]}
-        </span>
-      )}
+    <span className="typewriter-wrap" aria-live="polite" aria-atomic="true">
+      <span className="typewriter-text">{displayed}</span>
+      <span className="typewriter-cursor" aria-hidden="true">|</span>
     </span>
   );
 }

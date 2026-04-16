@@ -2,64 +2,32 @@
    HOME PAGE STYLES
    ============================================ */
 
-/* ---- Industry Vertical Slider ---- */
-/*
-  Crossfade approach: no translateY, no overflow:hidden.
-  overflow:hidden on an inline-block moves the baseline to the bottom margin
-  edge (CSS spec), which is the root cause of every vertical drift bug.
-  By using opacity-only transitions the wrap can stay overflow:visible and
-  the baseline is always the text's own baseline — identical to the
-  surrounding "Built for" static text.
-*/
-@keyframes word-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-@keyframes word-out {
-  from { opacity: 1; }
-  to   { opacity: 0; }
+/* ---- Typewriter Industry Animator ---- */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 
-.industry-slider-wrap {
-  /*
-    inline-block with overflow:VISIBLE — this is the critical rule.
-    Per CSS spec, overflow:hidden on inline-block resets the baseline to
-    the bottom margin edge, causing vertical drift. overflow:visible keeps
-    the baseline at the last line box of the content, which matches the
-    surrounding static text perfectly.
-    The crossfade (opacity only) means we never need to clip translateY travel.
-  */
-  display: inline-block;
-  overflow: visible;
-  position: relative;
+/* The wrap is plain inline — zero extra layout, zero baseline impact */
+.typewriter-wrap {
+  display: inline;
   white-space: nowrap;
-  vertical-align: baseline;
 }
 
-.industry-slider-word {
+/* The typed text — sits on the same baseline as surrounding h1 text */
+.typewriter-text {
   color: var(--color-cyan);
-  font-style: normal;
-  will-change: opacity;
-  white-space: nowrap;
+  font: inherit; /* exact same font-size, weight, line-height as h1 */
 }
 
-/* Idle: fully visible */
-.industry-slider-word.slider-idle {
-  opacity: 1;
-}
-
-/* Exiting word fades out */
-.industry-slider-word.slider-exit {
-  animation: word-out 0.35s ease forwards;
-}
-
-/* Entering word: sit exactly on top of the exiting word via absolute,
-   anchored to the wrap's own position. */
-.industry-slider-word.slider-enter {
-  position: absolute;
-  left: 0;
-  top: 0;
-  animation: word-in 0.35s ease forwards;
+/* Blinking cursor */
+.typewriter-cursor {
+  display: inline;
+  color: var(--color-cyan);
+  font: inherit;
+  margin-left: 2px;
+  animation: blink 0.8s step-start infinite;
+  font-weight: 300; /* keep cursor slim */
 }
 
 /* ---- Hero ---- */
