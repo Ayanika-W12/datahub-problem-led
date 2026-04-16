@@ -36,7 +36,7 @@
 
 /* Current word slides out upward */
 .industry-slider-word.slider-exit {
-  animation: slider-out 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: slider-out 0.28s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* Next word slides in from below — positioned absolutely so it overlaps */
@@ -44,7 +44,7 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  animation: slider-in 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: slider-in 0.28s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* ---- Hero ---- */
@@ -921,7 +921,7 @@
    ============================================ */
 .platform-section {
   position: relative;
-  padding: 4rem 0 7rem;
+  padding: 4rem 0 3rem;
   /* Background comes from .dark-zone parent */
   background: transparent;
   overflow: visible;
@@ -1753,13 +1753,15 @@
 .why-section {
   /* Background comes from .dark-zone parent */
   background: transparent;
+  padding-top: 2rem;
+  padding-bottom: 3.5rem;
 }
 
 .why-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
-  margin: 3rem 0;
+  margin: 1.75rem 0;
 }
 
 .why-card {

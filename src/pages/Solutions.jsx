@@ -3,32 +3,32 @@ import { ArrowRight, Zap } from 'lucide-react';
 
 const byIntegrationType = [
   {
-    title: 'System Integrations',
-    sub: 'Connect any enterprise system — bidirectionally',
+    title: 'EMR / EHR Integrations',
+    sub: 'Connect any EHR or clinical system — bidirectionally',
     to: '/solutions/emr-integrations',
-    vendors: ['ERP / CRM Systems', 'SaaS Platforms', 'Legacy Databases', 'Cloud Services', 'On-premise Apps', '40+ more'],
-    desc: 'Production-proven connectors to every major enterprise system. Real-time and batch. No rip-and-replace required.',
+    vendors: ['Epic', 'Oracle Cerner', 'Athenahealth', 'Meditech', 'eClinicalWorks', '40+ more'],
+    desc: 'Production-proven connectors to every major EHR. Real-time and batch. No rip-and-replace required.',
   },
   {
-    title: 'Network & Partner Integrations',
-    sub: 'Multi-party data exchange at scale',
+    title: 'HIE & Network Integrations',
+    sub: 'Network-wide interoperability at scale',
     to: '/solutions/hie-integrations',
-    vendors: ['B2B Data Exchanges', 'Industry Networks', 'Partner Portals', 'Regulatory Bodies', 'Public Registries'],
-    desc: 'Power network-wide data exchange across partners, regulators, and industry networks — trusted by leading organizations.',
+    vendors: ['Carequality', 'CommonWell', 'TEFCA / QHIN', 'Direct Trust', 'Public Health'],
+    desc: 'Power a regional or statewide HIE — or connect your organization to one. Trusted by Contexture and WISHIN.',
   },
   {
-    title: 'Operational Integrations',
-    sub: 'Workflows, approvals, and reconciliation — automated',
+    title: 'Payer & Partner Integrations',
+    sub: 'Claims, eligibility, and prior auth — automated',
     to: '/solutions/payer-integrations',
-    vendors: ['Approval Workflows', 'Eligibility Checks', 'Claims & Billing', 'ERA / EFT', 'Compliance APIs'],
-    desc: 'Automate the full operational data loop. Mandate-compliant, standards-native, and live in weeks.',
+    vendors: ['Prior Authorization', 'Eligibility 270/271', 'Claims 837/835', 'ERA / EFT', 'CMS-0057-F APIs'],
+    desc: 'Automate the full payer-provider data loop. CMS mandate-compliant, FHIR-native, and live in weeks.',
   },
   {
-    title: 'Specialized Data Connectors',
-    sub: 'Domain-specific data flows unified',
+    title: 'Pharmacy & Specialty Integrations',
+    sub: 'ePrescribing, 340B, and PBM data unified',
     to: '/solutions/pharmacy-integrations',
-    vendors: ['Industry EDI', 'Specialized Platforms', 'Compliance Systems', 'Specialty Networks', 'Data Registries'],
-    desc: 'End-to-end domain-specific data connectivity — from specialized ingestion to compliance reporting and reconciliation.',
+    vendors: ['Surescripts', 'NCPDP SCRIPT', '340B Platforms', 'PBM Systems', 'Specialty Pharmacy'],
+    desc: 'End-to-end pharmacy data connectivity — from ePrescribing to 340B compliance to PBM claims reconciliation.',
   },
 ];
 
@@ -38,14 +38,14 @@ const byCapability = [
     sub: 'Clean, accurate, trustworthy data',
     to: '/solutions/data-quality',
     icon: '⬡',
-    desc: 'Master Patient Index, record deduplication, FHIR profile validation, and continuous anomaly detection — so your data can actually be trusted.',
+    desc: 'Record deduplication, schema validation, referential integrity checks, and continuous anomaly detection — so your data can actually be trusted.',
   },
   {
     title: 'Data Lake',
     sub: 'Bronze → Silver → Gold, ML-ready',
     to: '/solutions/data-lake',
     icon: '◈',
-    desc: 'Healthcare-native Medallion architecture delivering analytics-ready datasets to Databricks, Snowflake, dbt, and SageMaker.',
+    desc: 'Enterprise Medallion architecture delivering analytics-ready datasets to Databricks, Snowflake, dbt, and SageMaker — across any industry.',
   },
   {
     title: 'Pipeline Auto-Healing',
@@ -59,7 +59,7 @@ const byCapability = [
     sub: 'Governed, secured, and auditable',
     to: '/solutions/data-management',
     icon: '◉',
-    desc: 'Lineage tracking, PHI controls, consent management, and RBAC — across every data asset in your estate.',
+    desc: 'Full data lineage tracking, access controls, consent management, and RBAC — across every data asset in your estate.',
   },
 ];
 
@@ -93,7 +93,7 @@ export default function Solutions() {
           <div className="section-header">
             <div className="eyebrow">By Integration Type</div>
             <h2>Connect Any System. In Any Direction.</h2>
-            <p>Pre-built connectors and protocol support for every major enterprise data standard and vendor ecosystem.</p>
+            <p>Pre-built connectors and protocol support for every major data standard and vendor ecosystem — HL7, FHIR, EDI, REST, and beyond.</p>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '2.5rem' }}>
@@ -172,11 +172,12 @@ export default function Solutions() {
             <h2>Solutions Shaped for Your Market</h2>
             <p>The same platform, configured for the specific workflows, compliance requirements, and data standards of your industry.</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', marginTop: '2.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem', marginTop: '2.5rem' }}>
             {[
-              { label: 'Healthcare', desc: 'Health systems, HIEs, payers, providers, and specialty networks', to: '/solutions/healthcare', color: 'var(--color-primary)' },
-              { label: 'eCommerce & Retail', desc: 'Unified product, order, and customer data across platforms', to: '/solutions/ecommerce', color: 'var(--color-cyan)' },
-              { label: 'Insurance', desc: 'Claims, eligibility, policy, and member data automation', to: '/solutions/insurance', color: 'var(--color-navy)' },
+              { label: 'Healthcare', desc: 'Health systems, HIEs, payers, providers, and specialty networks', to: '/solutions/healthcare', color: 'var(--color-cyan)' },
+              { label: 'eCommerce & Retail', desc: 'Unified product, order, and customer data across platforms', to: '/solutions/ecommerce', color: 'var(--color-primary)' },
+              { label: 'Insurance', desc: 'Claims, eligibility, policy, and member data automation', to: '/solutions/insurance', color: '#4CAF50' },
+              { label: 'HR Tech', desc: 'HRIS, payroll, benefits, and workforce compliance data flows', to: '/solutions/hr-tech', color: '#F59E0B' },
             ].map((ind) => (
               <Link key={ind.label} to={ind.to} style={{ textDecoration: 'none' }} className="card-feature">
                 <div style={{ width: '36px', height: '4px', background: ind.color, borderRadius: '2px', marginBottom: '1rem' }} />

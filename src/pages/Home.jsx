@@ -337,9 +337,9 @@ function IndustrySlider() {
         setCurrent(nextIdx);
         setNext(null);
         setPhase('idle');
-      }, 500);
+      }, 300);
       return () => clearTimeout(timeout);
-    }, 2800);
+    }, 1800);
     return () => clearInterval(interval);
   }, [current]);
 
@@ -797,7 +797,8 @@ export default function Home() {
               <h2>Built for Complexity.<br />Not Adapted for It.</h2>
               <p>
                 We did not bolt enterprise data support onto a generic integration platform.
-                Vorro was purpose-built for complex, multi-system orchestration — from day one.
+                Vorro was purpose-built for complex, multi-system orchestration — from{' '}
+                <strong style={{ color: 'var(--color-cyan)', fontWeight: 'var(--font-bold)' }}>day one</strong>.
               </p>
             </div>
           </FadeIn>
