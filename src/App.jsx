@@ -19,6 +19,8 @@ import VorroForStartups from './pages/VorroForStartups';
 import SimplePage from './pages/SimplePage';
 import IndustryPage from './pages/IndustryPage';
 import UseCasePage from './pages/UseCasePage';
+import FreeTools from './pages/FreeTools';
+import DataFragmentationPage from './pages/DataFragmentationPage';
 import NotFound from './pages/NotFound';
 
 function ScrollToTop() {
@@ -94,6 +96,12 @@ function AppRoutes() {
 
         {/* AI Platform overview */}
         <Route path="/healthcare-ai-platform" element={<SimplePage page="ai-platform" />} />
+
+        {/* Free Tools */}
+        <Route path="/free-tools" element={<FreeTools />} />
+
+        {/* Research / Stat pages */}
+        <Route path="/healthcare-data-fragmentation" element={<DataFragmentationPage />} />
 
         {/* 404 */}
         <Route path="*" element={<NotFound />} />

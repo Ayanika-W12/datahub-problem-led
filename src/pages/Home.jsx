@@ -291,7 +291,7 @@ export default function Home() {
             <div className="hero-proof">
               <div className="hero-proof-item">
                 <CheckCircle2 size={14} />
-                <span>Fully Managed by Vorro</span>
+                <span>Fully Managed</span>
               </div>
               <div className="hero-proof-item">
                 <CheckCircle2 size={14} />
@@ -460,7 +460,7 @@ export default function Home() {
               <div className="eyebrow">The Challenge</div>
               <h2>Healthcare Data Is <em>Still</em> Broken</h2>
               <p>
-                89% of health systems cite data fragmentation as their #1 operational challenge.
+                84% of hospitals report greater challenges exchanging data across different EHR vendor platforms.
                 The result: AI stalls, compliance fails, and care suffers.
               </p>
             </div>
@@ -479,13 +479,13 @@ export default function Home() {
             ))}
           </div>
           <FadeIn>
-            <div className="problem-stat-banner">
-              <div className="problem-stat-number">89%</div>
+            <Link to="/healthcare-data-fragmentation" className="problem-stat-banner problem-stat-banner-link">
+              <div className="problem-stat-number">84%</div>
               <div className="problem-stat-text">
-                of health systems cite data fragmentation as their #1 operational challenge
-                <div className="problem-stat-source">Source: HIMSS Analytics 2024</div>
+                of hospitals report greater challenges exchanging data across different EHR vendor platforms
+                <div className="problem-stat-source">Everson &amp; Richwine, JAMIA 2024 — tap to learn more →</div>
               </div>
-            </div>
+            </Link>
           </FadeIn>
         </div>
       </section>

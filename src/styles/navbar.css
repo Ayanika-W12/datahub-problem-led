@@ -114,15 +114,68 @@
   animation: dropdownIn 0.15s ease forwards;
 }
 
-/* Company: open left-aligned like other items */
-.nav-dropdown-pos-3 {
-  left: 0;
-}
-
 /* Use Cases (idx 2): center under the trigger */
 .nav-dropdown-pos-2 {
   left: 50%;
   transform: translateX(-50%);
+}
+
+/* Resources (idx 3): left-aligned, narrow single-column */
+.nav-dropdown-pos-3 {
+  left: 0;
+}
+
+/* Company (idx 5): rightmost — open to the left */
+.nav-dropdown-pos-5 {
+  left: auto;
+  right: 0;
+}
+
+/* Single-group dropdown: narrower width, single column */
+.nav-dropdown-narrow {
+  min-width: 260px;
+}
+
+.nav-dropdown-inner-single {
+  grid-template-columns: 1fr;
+}
+
+.nav-dropdown-inner-single .nav-dropdown-item-label,
+.nav-dropdown-inner-single .nav-dropdown-item-desc {
+  white-space: nowrap;
+}
+
+/* Direct link nav item (no chevron) */
+.nav-link-direct {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.875rem;
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-gray-700);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.nav-link-direct:hover {
+  color: var(--color-primary);
+  background: rgba(172,65,151,0.06);
+}
+
+.navbar:not(.navbar-scrolled) .nav-link-direct {
+  color: rgba(255,255,255,0.85);
+}
+
+.navbar:not(.navbar-scrolled) .nav-link-direct:hover {
+  color: white;
+  background: rgba(255,255,255,0.1);
+}
+
+/* Mobile direct link */
+.mobile-nav-link-direct {
+  justify-content: flex-start;
 }
 
 @keyframes dropdownIn {

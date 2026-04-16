@@ -77,6 +77,24 @@ const navLinks = [
     ],
   },
   {
+    label: 'Resources',
+    dropdown: [
+      {
+        heading: 'Resources',
+        items: [
+          { label: 'Case Studies', to: '/case-studies', desc: 'Client outcomes & results' },
+          { label: 'Blog', to: '/blog', desc: 'Healthcare data insights' },
+          { label: 'Webinars', to: '/webinar', desc: 'Live & on-demand sessions' },
+          { label: 'Contact Us', to: '/contact-us', desc: 'Talk to an expert' },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Free Tools',
+    to: '/free-tools',
+  },
+  {
     label: 'Company',
     dropdown: [
       {
@@ -86,15 +104,6 @@ const navLinks = [
           { label: 'Careers', to: '/company/careers', desc: 'Join the team' },
           { label: 'Partners', to: '/partners', desc: 'Technology & channel partners' },
           { label: 'Press', to: '/press-releases', desc: 'News and announcements' },
-        ],
-      },
-      {
-        heading: 'Resources',
-        items: [
-          { label: 'Case Studies', to: '/case-studies', desc: 'Real outcomes from real clients' },
-          { label: 'Blog', to: '/blog', desc: 'Healthcare data insights' },
-          { label: 'Webinars', to: '/webinar', desc: 'Live and on-demand sessions' },
-          { label: 'Contact Us', to: '/contact-us', desc: 'Talk to an integration expert' },
         ],
       },
     ],
@@ -158,20 +167,29 @@ export default function Navbar() {
             <div
               key={link.label}
               className="nav-item"
-              onMouseEnter={() => handleMouseEnter(idx)}
-              onMouseLeave={handleMouseLeave}
+              onMouseEnter={() => link.dropdown && handleMouseEnter(idx)}
+              onMouseLeave={() => link.dropdown && handleMouseLeave()}
             >
-              <button
-                className={`nav-link ${activeDropdown === idx ? 'active' : ''}`}
-                onClick={() => setActiveDropdown(activeDropdown === idx ? null : idx)}
-              >
-                {link.label}
-                <ChevronDown size={14} className={`nav-chevron ${activeDropdown === idx ? 'rotated' : ''}`} />
-              </button>
+              {link.to ? (
+                <Link
+                  to={link.to}
+                  className="nav-link nav-link-direct"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <button
+                  className={`nav-link ${activeDropdown === idx ? 'active' : ''}`}
+                  onClick={() => setActiveDropdown(activeDropdown === idx ? null : idx)}
+                >
+                  {link.label}
+                  <ChevronDown size={14} className={`nav-chevron ${activeDropdown === idx ? 'rotated' : ''}`} />
+                </button>
+              )}
 
               {link.dropdown && activeDropdown === idx && (
-                <div className={`nav-dropdown nav-dropdown-pos-${idx}`}>
-                  <div className="nav-dropdown-inner">
+                <div className={`nav-dropdown nav-dropdown-pos-${idx} ${link.dropdown.length === 1 ? 'nav-dropdown-narrow' : ''}`}>
+                  <div className={`nav-dropdown-inner ${link.dropdown.length === 1 ? 'nav-dropdown-inner-single' : ''}`}>
                     {link.dropdown.map((group) => (
                       <div key={group.heading} className="nav-dropdown-group">
                         <div className="nav-dropdown-heading">{group.heading}</div>
@@ -217,27 +235,35 @@ export default function Navbar() {
           <div className="container">
             {navLinks.map((link, idx) => (
               <div key={link.label} className="mobile-nav-item">
-                <button
-                  className="mobile-nav-link"
-                  onClick={() => setMobileExpanded(mobileExpanded === idx ? null : idx)}
-                >
-                  {link.label}
-                  <ChevronDown size={16} className={mobileExpanded === idx ? 'rotated' : ''} />
-                </button>
+                {link.to ? (
+                  <Link to={link.to} className="mobile-nav-link mobile-nav-link-direct" onClick={() => setMobileOpen(false)}>
+                    {link.label}
+                  </Link>
+                ) : (
+                  <>
+                    <button
+                      className="mobile-nav-link"
+                      onClick={() => setMobileExpanded(mobileExpanded === idx ? null : idx)}
+                    >
+                      {link.label}
+                      <ChevronDown size={16} className={mobileExpanded === idx ? 'rotated' : ''} />
+                    </button>
 
-                {mobileExpanded === idx && link.dropdown && (
-                  <div className="mobile-nav-dropdown">
-                    {link.dropdown.map((group) => (
-                      <div key={group.heading}>
-                        <div className="mobile-nav-group-heading">{group.heading}</div>
-                        {group.items.map((item) => (
-                          <Link key={item.label} to={item.to} className="mobile-nav-dropdown-item">
-                            {item.label}
-                          </Link>
+                    {mobileExpanded === idx && link.dropdown && (
+                      <div className="mobile-nav-dropdown">
+                        {link.dropdown.map((group) => (
+                          <div key={group.heading}>
+                            <div className="mobile-nav-group-heading">{group.heading}</div>
+                            {group.items.map((item) => (
+                              <Link key={item.label} to={item.to} className="mobile-nav-dropdown-item">
+                                {item.label}
+                              </Link>
+                            ))}
+                          </div>
                         ))}
                       </div>
-                    ))}
-                  </div>
+                    )}
+                  </>
                 )}
               </div>
             ))}
