@@ -502,105 +502,10 @@
   background: transparent;
   }
 
-/* Hero variant — first on page, needs room for fixed navbar */
+/* Prob nav hero zone — position context for decorative elements */
 .prob-nav-hero-zone {
   position: relative;
   }
-
-.prob-nav-section--hero {
-  padding-top: 7rem; /* clear fixed navbar */
-  padding-bottom: 3rem;
-  }
-
-/* ============================================================
-   SOLUTION BRIDGE SECTION
-   Light-bg section that follows the problem navigator and
-   introduces Vorro as the answer — with the orbital visual.
-   ============================================================ */
-.solution-bridge-section {
-  background: #f8f9fc;
-  border-top: 1px solid var(--color-gray-100);
-  border-bottom: 1px solid var(--color-gray-100);
-  padding: 5rem 0;
-}
-
-.solution-bridge-section .hero-split {
-  align-items: center;
-  gap: 4rem;
-}
-
-.solution-bridge-eyebrow {
-  margin-bottom: 1.5rem;
-}
-
-.badge-primary {
-  background: rgba(172,65,151,0.1);
-  border: 1px solid rgba(172,65,151,0.25);
-  color: #AC4197;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.9rem;
-  border-radius: 999px;
-  font-size: var(--text-xs);
-  font-weight: var(--font-semibold);
-  letter-spacing: 0.04em;
-}
-
-.solution-bridge-headline {
-  font-size: clamp(1.65rem, 3vw, 2.5rem);
-  font-weight: var(--font-black);
-  color: var(--color-navy);
-  line-height: 1.15;
-  letter-spacing: -0.03em;
-  margin-bottom: 1.25rem;
-}
-
-/* Reuse hero-headline-accent — gradient text already works on light bg */
-
-.solution-bridge-sub {
-  font-size: var(--text-base);
-  color: var(--color-gray-500);
-  max-width: 500px;
-  line-height: 1.65;
-  margin-bottom: 0;
-}
-
-.solution-bridge-proof {
-  display: flex;
-  gap: 2.5rem;
-  margin-top: 2rem;
-  padding-top: 1.75rem;
-  border-top: 1px solid var(--color-gray-200);
-}
-
-.solution-bridge-stat {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.solution-bridge-stat-val {
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
-  font-weight: var(--font-bold);
-  color: var(--color-navy);
-  line-height: 1;
-}
-
-.solution-bridge-stat-lbl {
-  font-size: var(--text-xs);
-  color: var(--color-gray-400);
-  font-weight: var(--font-medium);
-}
-
-/* Keep the orbital visual dark so SVG renders correctly */
-.solution-bridge-section .capabilities-wrapper {
-  background: #0c0a22;
-  border-radius: 1.25rem;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.07);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-}
 
 /* btn-outline for light backgrounds */
 .btn-outline {
@@ -6605,5 +6510,228 @@ button.cs-cta-link {
   
   .csl-cta-content {
     max-width: none;
+  }
+}
+
+/* ============================================================
+   PROBLEM HERO — above-fold problem statement section
+   Part of the continuous dark-zone, not a separate block.
+   ============================================================ */
+.problem-hero-zone {
+  position: relative;
+}
+
+.problem-hero {
+  padding: 9rem 0 3rem; /* top padding clears fixed navbar */
+  position: relative;
+  z-index: 1;
+}
+
+/* Kicker — "Enterprise Data Problem" label */
+.ph-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 1.75rem;
+}
+
+.ph-kicker-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #20D3EF;
+  box-shadow: 0 0 8px rgba(32, 211, 239, 0.7);
+  animation: ph-dot-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes ph-dot-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.75); }
+}
+
+/* Main headline */
+.ph-headline {
+  font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+  font-weight: var(--font-black);
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin-bottom: 1.5rem;
+  max-width: 820px;
+}
+
+.ph-accent {
+  color: #20D3EF;
+  display: inline;
+}
+
+/* Sub copy */
+.ph-sub {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 600px;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+}
+
+/* Cost row — three punchy numbers */
+.ph-cost-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.ph-cost-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0 2.5rem 0 0;
+}
+
+.ph-cost-item:first-child {
+  padding-left: 0;
+}
+
+.ph-cost-val {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: var(--font-black);
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.ph-cost-lbl {
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.38);
+  max-width: 160px;
+  line-height: 1.4;
+  font-weight: var(--font-medium);
+}
+
+.ph-cost-divider {
+  width: 1px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 2.5rem 0 0;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+/* Scroll cue */
+.ph-scroll-cue {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.35);
+  font-weight: var(--font-medium);
+  letter-spacing: 0.01em;
+}
+
+.ph-scroll-arrow {
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.25);
+  animation: ph-bounce 2s ease-in-out infinite;
+}
+
+@keyframes ph-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+/* ============================================================
+   PROOF BAND — transition from dark to light
+   Shows "The fix exists" + key metrics before logos
+   ============================================================ */
+.proof-band {
+  background: #f8f9fc;
+  border-bottom: 1px solid var(--color-gray-100);
+  padding: 2.5rem 0;
+}
+
+.proof-band-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.proof-band-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.proof-band-label {
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-weight: var(--font-semibold);
+  color: var(--color-navy);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.proof-band-stats {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.proof-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.proof-stat-val {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: var(--font-bold);
+  color: var(--color-navy);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.proof-stat-lbl {
+  font-size: var(--text-xs);
+  color: var(--color-gray-400);
+  font-weight: var(--font-medium);
+}
+
+/* ============================================================
+   RESPONSIVE — problem hero
+   ============================================================ */
+@media (max-width: 768px) {
+  .problem-hero {
+    padding: 7rem 0 2.5rem;
+  }
+
+  .ph-headline {
+    font-size: clamp(2rem, 7vw, 3rem);
+  }
+
+  .ph-cost-row {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .ph-cost-divider {
+    display: none;
+  }
+
+  .ph-cost-item {
+    padding: 0;
+    min-width: 120px;
+  }
+
+  .proof-band-stats {
+    gap: 1.5rem;
   }
 }
