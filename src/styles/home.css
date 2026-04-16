@@ -14,29 +14,31 @@
 
 .industry-slider-wrap {
   /*
-    Use inline-flex + align-items: flex-end so the word's bottom edge
-    sits on the same baseline as the surrounding static text.
-    overflow: hidden clips the entering/exiting words during animation.
+    inline-block so the wrap's baseline = its content's text baseline,
+    which aligns perfectly with the surrounding static h1 text.
+    No forced height — the natural text height is exactly right.
+    overflow: hidden clips the translateY travel of entering/exiting words.
+    The extra padding-bottom gives clip room below without moving the baseline.
   */
-  display: inline-flex;
-  align-items: flex-end;
+  display: inline-block;
   position: relative;
   overflow: hidden;
-  vertical-align: bottom;
+  vertical-align: baseline;
   min-width: 8ch;
-  /* Tall enough to clip the translateY travel but not taller than one line */
-  height: 1.1em;
+  /* Pad below so the entering-from-below word has clip room */
+  padding-bottom: 0.25em;
+  /* Pull the bottom back up so the extra padding doesn't add line spacing */
+  margin-bottom: -0.25em;
 }
 
 .industry-slider-word {
-  display: block;
+  display: inline-block;
   color: var(--color-cyan);
   font-style: normal;
   will-change: transform, opacity;
-  width: 100%;
   white-space: nowrap;
-  /* Match the h1 line-height so text sits flush at the bottom of the wrap */
-  line-height: 1;
+  /* Inherit the h1 line-height exactly */
+  line-height: inherit;
 }
 
 /* Current word resting state */
@@ -55,7 +57,7 @@
 .industry-slider-word.slider-enter {
   position: absolute;
   left: 0;
-  bottom: 0;
+  top: 0;
   width: 100%;
   animation: slider-in 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
