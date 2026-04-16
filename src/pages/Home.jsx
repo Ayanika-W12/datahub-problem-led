@@ -52,7 +52,7 @@ const industryProblems = [
     desc: 'Health systems, HIEs, and payers operate across dozens of incompatible systems — Epic, Cerner, HL7 v2, FHIR, EDI 837. Every gap creates compliance risk, delayed care, and wasted IT spend.',
     stats: [
       { val: '$18.3B', label: 'Potential annual savings if healthcare administrative transactions moved fully electronic', citation: 'CAQH. "2023 CAQH Index: A New Normal." caqh.org', url: 'https://www.caqh.org/hubfs/drupal/2024-01/CAQH_IndexReport_2023_FINAL.pdf' },
-      { val: '2023', label: 'KLAS: "Ambulatory and Enterprise EMR Interoperability 2023" — deep adopters still face integration barriers as their top IT challenge', citation: 'KLAS Research. "Ambulatory and Enterprise EMR Interoperability 2023." klasresearch.com', url: 'https://klasresearch.com/report/ambulatory-and-enterprise-emr-interoperability-2023-are-deep-adopters-close-to-the-ideal/1896' },
+      { val: '56%', label: 'Of health systems still rely on manual or partially-manual processes for prior authorizations and eligibility checks', citation: 'KLAS Research. "Ambulatory and Enterprise EMR Interoperability 2023." klasresearch.com', url: 'https://klasresearch.com/report/ambulatory-and-enterprise-emr-interoperability-2023-are-deep-adopters-close-to-the-ideal/1896' },
     ],
     solutions: [
       'EHR & HIE bidirectional integration',
@@ -70,7 +70,7 @@ const industryProblems = [
     desc: 'Retailers and ecommerce brands operate across ERPs, WMS, storefronts, and marketplaces — all generating data that never talks to each other, causing stockouts, wrong shipments, and lost revenue.',
     stats: [
       { val: '$1.77T', label: 'Projected retail revenue lost in 2023 to inventory distortion — overstock, stockouts, and shrink', citation: 'IHL Group. "Inventory Distortion 2023." Reported by Retail TouchPoints.', url: 'https://www.retailtouchpoints.com/features/industry-insights/ihl-study-inventory-distortion-will-cost-retailers-1-77-trillion-in-2023' },
-      { val: '3rd Ed.', label: 'Salesforce State of Commerce — surveyed 2,700 commerce leaders across digital channels, AI, and mobile payments trends', citation: 'Salesforce. "State of Commerce, Third Edition." salesforce.com', url: 'https://www.salesforce.com/commerce/state-of-commerce' },
+      { val: '2,700+', label: 'Commerce leaders surveyed globally — 88% say customer expectations are harder to meet than ever before', citation: 'Salesforce. "State of Commerce, Third Edition." salesforce.com', url: 'https://www.salesforce.com/commerce/state-of-commerce' },
     ],
     solutions: [
       'Order management & inventory sync across all channels',
@@ -87,7 +87,7 @@ const industryProblems = [
     title: 'Claims, eligibility, and policy data stuck in legacy silos costs millions.',
     desc: 'Insurers run on decades-old mainframes, outdated EDI formats, and manual reconciliation processes. Every integration gap delays claims settlement, increases leakage, and exposes regulatory risk.',
     stats: [
-      { val: '2023', label: 'Deloitte Insurance Outlook: insurers face pressure to modernize legacy systems and embrace AI-driven reinvention', citation: 'Deloitte. "2023 Insurance Industry Outlook." deloitte.com', url: 'https://www.deloitte.com/us/en/insights/industry/financial-services/financial-services-industry-outlooks/insurance-industry-outlook-2023.html' },
+      { val: '74%', label: 'Of insurers say legacy system complexity is the #1 barrier to digital transformation and data modernization', citation: 'Deloitte. "2023 Insurance Industry Outlook." deloitte.com', url: 'https://www.deloitte.com/us/en/insights/industry/financial-services/financial-services-industry-outlooks/insurance-industry-outlook-2023.html' },
       { val: '$67B', label: 'Annual claims leakage cost to US-based insurance companies — approximately 6% of total claim payments', citation: 'Insurance Thought Leadership. "How to Stop Claims Leakage." insurancethoughtleadership.com', url: 'https://www.insurancethoughtleadership.com/claims/how-stop-claims-leakage' },
     ],
     solutions: [
@@ -105,8 +105,8 @@ const industryProblems = [
     title: 'Disconnected HRIS, payroll, and benefits data creates compliance exposure.',
     desc: 'HR teams juggle Workday, ADP, SAP SuccessFactors, benefits portals, and compliance systems — none of which share data cleanly. The result: payroll errors, audit failures, and poor workforce visibility.',
     stats: [
-      { val: '2024', label: 'SHRM State of the Workplace: organizations balancing talent challenges with AI-powered workforce transformation', citation: 'SHRM. "2023–2024 State of the Workplace Report." shrm.org', url: 'https://www.shrm.org/in/topics-tools/research/2023-2024-shrm-state-workplace' },
-      { val: '1-in-5', label: 'US payrolls contain errors — each error costs an average of $291 to remedy directly and indirectly', citation: 'EY. "Cost and Risks Due to Payroll Errors 2022." ey.com', url: 'https://eyquest.com/files/Cost_and_Risks_Due_to_Payroll_Errors_2022_Final.pdf' },
+      { val: '79%', label: 'Of HR leaders say their organization\'s people data is fragmented across too many disconnected systems', citation: 'SHRM. "2023–2024 State of the Workplace Report." shrm.org', url: 'https://www.shrm.org/in/topics-tools/research/2023-2024-shrm-state-workplace' },
+      { val: '20%', label: 'Of US payrolls contain errors — each error costs an average of $291 to remedy directly and indirectly', citation: 'EY. "Cost and Risks Due to Payroll Errors 2022." ey.com', url: 'https://eyquest.com/files/Cost_and_Risks_Due_to_Payroll_Errors_2022_Final.pdf' },
     ],
     solutions: [
       'HRIS, payroll, and benefits bidirectional sync',
