@@ -6,10 +6,10 @@ import BookDemoModal from '../ui/BookDemoModal';
 
 const navLinks = [
   {
-    label: 'Platform',
+    label: 'How It Works',
     dropdown: [
       {
-        heading: 'Capabilities',
+        heading: 'Platform Capabilities',
         items: [
           { label: 'AI-Driven Analytics & Insights', to: '/platform/analytics-nlp', desc: 'Extract intelligence from any data source' },
           { label: 'Reporting & Conversational AI', to: '/platform/reporting-nlp', desc: 'Natural language queries, instant reports' },
@@ -32,8 +32,17 @@ const navLinks = [
     ],
   },
   {
-    label: 'Solutions',
+    label: 'Problems We Solve',
     dropdown: [
+      {
+        heading: 'By Problem',
+        items: [
+          { label: 'Data Fragmentation', to: '/enterprise-data-fragmentation', desc: 'Eliminate silos across every system' },
+          { label: 'Compliance Risk', to: '/platform/governance-compliance', desc: 'Automate mandate & regulatory workflows' },
+          { label: 'Legacy System Debt', to: '/solutions/system-integrations', desc: 'Modernize without rip-and-replace' },
+          { label: 'AI Readiness Gaps', to: '/platform/ai-readiness', desc: 'Prepare your data for ML/AI initiatives' },
+        ],
+      },
       {
         heading: 'By Integration Type',
         items: [
@@ -67,7 +76,7 @@ const navLinks = [
         ],
       },
       {
-        heading: 'By Challenge',
+        heading: 'By Pain Point',
         items: [
           { label: 'Regulatory Compliance', to: '/solutions/pharmacy-integrations', desc: 'Automate mandate & compliance workflows' },
           { label: 'Data Fragmentation', to: '/enterprise-data-fragmentation', desc: 'Eliminate silos across every system' },
@@ -189,8 +198,8 @@ export default function Navbar() {
               )}
 
               {link.dropdown && activeDropdown === idx && (
-                <div className={`nav-dropdown nav-dropdown-pos-${idx} ${link.dropdown.length === 1 ? 'nav-dropdown-narrow' : ''}`}>
-                  <div className={`nav-dropdown-inner ${link.dropdown.length === 1 ? 'nav-dropdown-inner-single' : ''}`}>
+                <div className={`nav-dropdown nav-dropdown-pos-${idx} ${link.dropdown.length === 1 ? 'nav-dropdown-narrow' : ''} ${link.dropdown.length === 3 ? 'nav-dropdown-3col' : ''}`}>
+                  <div className={`nav-dropdown-inner ${link.dropdown.length === 1 ? 'nav-dropdown-inner-single' : ''} ${link.dropdown.length === 3 ? 'nav-dropdown-inner-3col' : ''}`}>
                     {link.dropdown.map((group) => (
                       <div key={group.heading} className="nav-dropdown-group">
                         <div className="nav-dropdown-heading">{group.heading}</div>

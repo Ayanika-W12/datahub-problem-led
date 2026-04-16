@@ -9,9 +9,6 @@ import '../styles/home.css';
 import { BookDemoModal } from '../components/ui/BookDemoModal';
 import { FreeToolsBanner } from '../components/ui/FreeToolsBanner';
 
-/* ---- Vertical text slider industries ---- */
-const INDUSTRIES = ['Healthcare', 'Ecommerce', 'Insurance', 'HR Tech'];
-
 /* ---- Data ---- */
 const stats = [
   { value: '15M+', label: 'Daily Transactions' },
@@ -322,53 +319,37 @@ function FadeIn({ children, delay = 0, className = '' }) {
   );
 }
 
-/* ---- Typewriter Industry Animator ---- */
-const TYPE_SPEED   = 70;  // ms per character typed
-const DELETE_SPEED = 40;  // ms per character deleted
-const PAUSE_AFTER  = 1800; // ms to hold the fully-typed word
-const PAUSE_BEFORE = 200;  // ms pause before typing the next word
+/* ---- Industry Typewriter Hook ---- */
+const INDUSTRIES = [
+  'Healthcare', 'Retail & Ecommerce', 'Insurance', 'HR Technology',
+  'Logistics', 'Financial Services', 'Life Sciences', 'Government',
+];
 
-function IndustrySlider() {
-  const [wordIndex, setWordIndex] = useState(0);
+function IndustryTypewriter() {
+  const [idx, setIdx] = useState(0);
   const [displayed, setDisplayed] = useState('');
-  const [phase, setPhase] = useState('typing'); // 'typing' | 'holding' | 'deleting'
+  const [deleting, setDeleting] = useState(false);
+  const full = INDUSTRIES[idx];
 
   useEffect(() => {
-    const word = INDUSTRIES[wordIndex];
-
-    if (phase === 'typing') {
-      if (displayed.length < word.length) {
-        const t = setTimeout(() => setDisplayed(word.slice(0, displayed.length + 1)), TYPE_SPEED);
-        return () => clearTimeout(t);
-      } else {
-        const t = setTimeout(() => setPhase('holding'), PAUSE_AFTER);
-        return () => clearTimeout(t);
-      }
+    let timeout;
+    if (!deleting && displayed.length < full.length) {
+      timeout = setTimeout(() => setDisplayed(full.slice(0, displayed.length + 1)), 60);
+    } else if (!deleting && displayed.length === full.length) {
+      timeout = setTimeout(() => setDeleting(true), 2200);
+    } else if (deleting && displayed.length > 0) {
+      timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 30);
+    } else if (deleting && displayed.length === 0) {
+      setDeleting(false);
+      setIdx((i) => (i + 1) % INDUSTRIES.length);
     }
-
-    if (phase === 'holding') {
-      const t = setTimeout(() => setPhase('deleting'), 0);
-      return () => clearTimeout(t);
-    }
-
-    if (phase === 'deleting') {
-      if (displayed.length > 0) {
-        const t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), DELETE_SPEED);
-        return () => clearTimeout(t);
-      } else {
-        const t = setTimeout(() => {
-          setWordIndex((wordIndex + 1) % INDUSTRIES.length);
-          setPhase('typing');
-        }, PAUSE_BEFORE);
-        return () => clearTimeout(t);
-      }
-    }
-  }, [phase, displayed, wordIndex]);
+    return () => clearTimeout(timeout);
+  }, [displayed, deleting, full]);
 
   return (
-    <span className="typewriter-wrap" aria-live="polite" aria-atomic="true">
-      <span className="typewriter-text">{displayed}</span>
-      <span className="typewriter-cursor" aria-hidden="true">|</span>
+    <span className="industry-tw">
+      {displayed}
+      <span className="industry-tw-cursor" aria-hidden="true">|</span>
     </span>
   );
 }
@@ -490,181 +471,104 @@ export default function Home() {
   const [demoModalOpen, setDemoModalOpen] = useState(false);
 
   return (
-    <main>
-      {/* HERO */}
-      <section className="hero">
-        <div className="hero-bg">
-          <div className="hero-gradient" />
-          <div className="hero-grid" />
-          <div className="hero-orb hero-orb-1" />
-          <div className="hero-orb hero-orb-2" />
-          <div className="hero-orb hero-orb-3" />
-        </div>
-        <div className="container hero-split">
-          {/* Left — text */}
-          <FadeIn className="hero-split-text">
-            <div className="hero-badge">
-              <span className="badge badge-white">
-                <Zap size={10} />
-                AI Enterprise Data Hub
-              </span>
-            </div>
-            <h1 className="hero-headline">
-              The AI-Native Data<br />
-              <span className="hero-headline-accent">Orchestration Platform,</span><br />
-              Built for <IndustrySlider />
-            </h1>
-            <p className="hero-sub">
-              Stop chasing data. Vorro connects, monitors, and automates your enterprise data
-              workflows — fully managed, low cost, ready in weeks.
-            </p>
-            <div className="hero-actions hero-actions-inline">
-              <button onClick={() => setDemoModalOpen(true)} className="btn btn-cyan btn-md">
-                Talk to an Expert <ArrowRight size={16} />
-              </button>
-              <Link to="/case-studies" className="btn btn-ghost-white btn-md">
-                View Case Studies
-              </Link>
-            </div>
-            <div className="hero-proof">
-              <div className="hero-proof-item">
-                <CheckCircle2 size={14} />
-                <span>Fully Managed</span>
+    <main className="home-page">
+      {/* ==========================================
+          PROBLEM HERO + PROBLEM NAVIGATOR
+          One continuous dark zone. Hero states the
+          problem bluntly. Navigator makes it personal.
+         ========================================== */}
+      <div className="dark-zone problem-hero-zone">
+        <div className="dz-lines" aria-hidden="true" />
+        <div className="dz-orb-purple" aria-hidden="true" />
+        <div className="dz-orb-cyan2" aria-hidden="true" />
+
+        {/* — PROBLEM STATEMENT HERO — centred */}
+        <section className="problem-hero">
+          <div className="container problem-hero-inner">
+            <FadeIn>
+              <div className="ph-kicker">
+                <span className="ph-kicker-dot" />
+                Enterprise Data Problem
               </div>
-              <div className="hero-proof-item">
-                <CheckCircle2 size={14} />
-                <span>Proven Low Cost</span>
-              </div>
-              <div className="hero-proof-item">
-                <CheckCircle2 size={14} />
-                <span>Enterprise-Grade Security</span>
-              </div>
-            </div>
-          </FadeIn>
-
-          {/* Right — Platform Capabilities Frame */}
-          <div className="capabilities-wrapper">
-            <div className="capabilities-frame">
-              <div className="frame-grid-overlay" />
-              <div className="frame-particles" />
-              <div className="frame-orbital-ring" />
-
-              <div className="frame-content">
-                {/* Hub area with center core and pillars */}
-                <div className="frame-hub-area">
-                  {/* Connection lines SVG */}
-                  <div className="frame-connections">
-                    <svg viewBox="0 0 1200 675" preserveAspectRatio="none" aria-hidden="true">
-                      <defs>
-                        <linearGradient id="grad1" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="600" y2="120">
-                          <stop offset="0%" stopColor="#20D3EF" stopOpacity="0" />
-                          <stop offset="50%" stopColor="#20D3EF" stopOpacity="1" />
-                          <stop offset="100%" stopColor="#20D3EF" stopOpacity="0" />
-                        </linearGradient>
-                        <linearGradient id="grad2" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="928" y2="210">
-                          <stop offset="0%" stopColor="#AC4197" stopOpacity="0" />
-                          <stop offset="50%" stopColor="#AC4197" stopOpacity="1" />
-                          <stop offset="100%" stopColor="#AC4197" stopOpacity="0" />
-                        </linearGradient>
-                        <linearGradient id="grad3" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="1009" y2="413">
-                          <stop offset="0%" stopColor="#02B164" stopOpacity="0" />
-                          <stop offset="50%" stopColor="#02B164" stopOpacity="1" />
-                          <stop offset="100%" stopColor="#02B164" stopOpacity="0" />
-                        </linearGradient>
-                        <linearGradient id="grad4" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="782" y2="576">
-                          <stop offset="0%" stopColor="#F17A42" stopOpacity="0" />
-                          <stop offset="50%" stopColor="#F17A42" stopOpacity="1" />
-                          <stop offset="100%" stopColor="#F17A42" stopOpacity="0" />
-                        </linearGradient>
-                        <linearGradient id="grad5" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="418" y2="576">
-                          <stop offset="0%" stopColor="#20D3EF" stopOpacity="0" />
-                          <stop offset="50%" stopColor="#20D3EF" stopOpacity="1" />
-                          <stop offset="100%" stopColor="#20D3EF" stopOpacity="0" />
-                        </linearGradient>
-                        <linearGradient id="grad6" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="191" y2="413">
-                          <stop offset="0%" stopColor="#AC4197" stopOpacity="0" />
-                          <stop offset="50%" stopColor="#AC4197" stopOpacity="1" />
-                          <stop offset="100%" stopColor="#AC4197" stopOpacity="0" />
-                        </linearGradient>
-                        <linearGradient id="grad7" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="272" y2="210">
-                          <stop offset="0%" stopColor="#02B164" stopOpacity="0" />
-                          <stop offset="50%" stopColor="#02B164" stopOpacity="1" />
-                          <stop offset="100%" stopColor="#02B164" stopOpacity="0" />
-                        </linearGradient>
-                      </defs>
-
-                      <path className="conn-base" d="M600 358 L600 120" />
-                      <path className="conn-glow" stroke="url(#grad1)" d="M600 358 L600 120" />
-                      <path className="conn-base" d="M600 358 L928 210" />
-                      <path className="conn-glow" stroke="url(#grad2)" d="M600 358 L928 210" style={{ animationDelay: '-1s' }} />
-                      <path className="conn-base" d="M600 358 L1009 413" />
-                      <path className="conn-glow" stroke="url(#grad3)" d="M600 358 L1009 413" style={{ animationDelay: '-2s' }} />
-                      <path className="conn-base" d="M600 358 L782 576" />
-                      <path className="conn-glow" stroke="url(#grad4)" d="M600 358 L782 576" style={{ animationDelay: '-3s' }} />
-                      <path className="conn-base" d="M600 358 L418 576" />
-                      <path className="conn-glow" stroke="url(#grad5)" d="M600 358 L418 576" style={{ animationDelay: '-4s' }} />
-                      <path className="conn-base" d="M600 358 L191 413" />
-                      <path className="conn-glow" stroke="url(#grad6)" d="M600 358 L191 413" style={{ animationDelay: '-5s' }} />
-                      <path className="conn-base" d="M600 358 L272 210" />
-                      <path className="conn-glow" stroke="url(#grad7)" d="M600 358 L272 210" style={{ animationDelay: '-6s' }} />
-                    </svg>
-                  </div>
-
-                  {/* Center Core */}
-                  <div className="frame-center-core">
-                    <a
-                      className="core-link"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        document.querySelector('.platform-section')?.scrollIntoView({ behavior: 'smooth' });
-                      }}
-                      href="#platform-section"
-                      aria-label="Go to Platform section"
-                    />
-                    <div className="core-inner">
-                      <div className="core-kicker">Unified Architecture</div>
-                      <div className="core-title">AI Enterprise Data Hub</div>
-                    </div>
-                  </div>
-
-                  {/* 7 Pillars */}
-                  <div className="frame-pillars">
-                    {capabilities.map((cap, i) => (
-                      <Link
-                        key={cap.num}
-                        to={cap.to}
-                        className={`frame-pillar p${i + 1}`}
-                        style={{ '--accent': cap.color === 'cyan' ? '#20D3EF' : cap.color === 'primary' ? '#AC4197' : cap.color === 'green' ? '#02B164' : cap.color === 'orange' ? '#F17A42' : '#7b82e0' }}
-                      >
-                        <div className="cap-num">{cap.num}</div>
-                        <div className="pillar-label">{cap.label}</div>
-                        <div className="pillar-micro">{cap.bullets[0]}</div>
-                      </Link>
-                    ))}
-                  </div>
+            </FadeIn>
+            <FadeIn delay={60}>
+              <h1 className="ph-headline">
+                Your enterprise data is<br />
+                <span className="ph-accent">broken, siloed, and bleeding money.</span>
+              </h1>
+            </FadeIn>
+            <FadeIn delay={120}>
+              <p className="ph-sub">
+                Disconnected systems. Manual reconciliation. Compliance gaps.
+                The real cost isn&apos;t just wasted IT spend — it&apos;s every decision made on bad data.
+              </p>
+            </FadeIn>
+            <FadeIn delay={180}>
+              <div className="ph-scroll-cue">
+                <span>Pick your industry below — see exactly what it&apos;s costing you</span>
+                <div className="ph-scroll-arrow" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 3v14M4 11l6 6 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
                 </div>
               </div>
-            </div>
+            </FadeIn>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* FREE TOOLS BANNER - right after hero */}
-      <FreeToolsBanner />
+        {/* — PROBLEM NAVIGATOR — */}
+        <section className="section prob-nav-section">
+          <div className="container">
+            <FadeIn delay={100}>
+              <ProblemNavigator />
+            </FadeIn>
+            <FadeIn delay={200}>
+              <Link to="/enterprise-data-fragmentation" className="stat-glass-banner">
+                <span className="stat-glass-orb stat-glass-orb-1" aria-hidden="true" />
+                <span className="stat-glass-orb stat-glass-orb-2" aria-hidden="true" />
+                <span className="stat-glass-orb stat-glass-orb-3" aria-hidden="true" />
+                <div className="stat-glass-number">83%</div>
+                <div className="stat-glass-body">
+                  <p className="stat-glass-text">
+                    of organizations report that data silos significantly hinder their ability to deploy AI and analytics at scale
+                  </p>
+                  <div className="stat-glass-source">
+                    Wavestone (formerly NewVantage Partners) &mdash; Data &amp; AI Leadership Executive Survey 2024
+                    <a
+                      href="https://www.wavestone.com/en/insight/data-ai-executive-leadership-survey-2024"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="stat-glass-cta"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Read the research &rarr;
+                    </a>
+                  </div>
+                </div>
+              </Link>
+            </FadeIn>
+          </div>
+        </section>
+      </div>{/* end .problem-hero-zone */}
 
-      {/* STATS */}
-      <section className="section-sm stats-section">
+      {/* ==========================================
+          PROOF BAND — dark, full-bleed stats wall
+         ========================================== */}
+      <section className="proof-band">
         <div className="container">
           <FadeIn>
-            <div className="stats-grid">
-              {stats.map((s, i) => (
-                <div key={s.label} className="stat-item" style={{ '--delay': `${i * 100}ms` }}>
-                  <div className="stat-number gradient-text">{s.value}</div>
-                  <div className="stat-label">{s.label}</div>
-                </div>
-              ))}
-            </div>
+            <p className="proof-band-label">The fix exists. 22+ enterprises already solved it.</p>
           </FadeIn>
+          <div className="proof-band-stats">
+            {stats.map((s, i) => (
+              <FadeIn key={s.label} delay={i * 80}>
+                <div className="proof-stat">
+                  <span className="proof-stat-val" style={{ color: i === 0 ? '#20D3EF' : i === 1 ? '#AC4197' : i === 2 ? '#02B164' : '#F17A42' }}>{s.value}</span>
+                  <span className="proof-stat-lbl">{s.label}</span>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -678,11 +582,7 @@ export default function Home() {
             <div className="marquee-track">
               {[...clients, ...clients].map((c, i) => (
                 <div key={i} className="marquee-item">
-                  <img
-                    src={c.logo}
-                    alt={c.name}
-                    className="logo-img"
-                  />
+                  <img src={c.logo} alt={c.name} className="logo-img" />
                 </div>
               ))}
             </div>
@@ -690,73 +590,121 @@ export default function Home() {
         </div>
       </section>
 
-      {/* DARK ZONE — single shared background for prob-nav + platform + why-vorro */}
+      {/* STATS — removed in favour of proof-band above */}
+
+      {/* DARK ZONE — shared background for platform + why-vorro */}
       <div className="dark-zone">
         {/* Decorative background graphics */}
         <div className="dz-lines" aria-hidden="true" />
         <div className="dz-orb-purple" aria-hidden="true" />
         <div className="dz-orb-cyan2" aria-hidden="true" />
 
-      {/* PROBLEM NAVIGATOR */}
-      <section className="section prob-nav-section">
-        <div className="container">
-          <FadeIn>
-            <div className="section-header centered">
-              <div className="eyebrow">The Challenge</div>
-              <h2>What&apos;s the biggest data problem costing your organization?</h2>
-              <p>
-                Pick your industry. We&apos;ll show you the real cost, the root cause, and exactly how Vorro fixes it.
-              </p>
-            </div>
-          </FadeIn>
-          <FadeIn delay={100}>
-            <ProblemNavigator />
-          </FadeIn>
-          <FadeIn delay={200}>
-            <Link to="/enterprise-data-fragmentation" className="stat-glass-banner">
-              {/* Decorative orb glows behind the glass */}
-              <span className="stat-glass-orb stat-glass-orb-1" aria-hidden="true" />
-              <span className="stat-glass-orb stat-glass-orb-2" aria-hidden="true" />
-              <span className="stat-glass-orb stat-glass-orb-3" aria-hidden="true" />
-              <div className="stat-glass-number">83%</div>
-              <div className="stat-glass-body">
-                <p className="stat-glass-text">
-                  of organizations report that data silos significantly hinder their ability to deploy AI and analytics at scale
-                </p>
-                <div className="stat-glass-source">
-                  Wavestone (formerly NewVantage Partners) &mdash; Data &amp; AI Leadership Executive Survey 2024
-                  <a
-                    href="https://www.wavestone.com/en/insight/data-ai-executive-leadership-survey-2024"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="stat-glass-cta"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    Read the research &rarr;
-                  </a>
-                </div>
-              </div>
-            </Link>
-          </FadeIn>
-        </div>
-      </section>
-
       {/* PLATFORM OVERVIEW */}
       <section className="platform-section">
         <div className="platform-bg-grid" />
         <div className="container">
 
-          {/* Header */}
+          {/* Industry-agnostic platform reveal — typewriter + hub diagram together */}
+          <div className="plt-reveal-section">
+            {/* Text layer — centred, above the hub */}
+            <FadeIn>
+              <div className="plt-reveal-text">
+                <div className="eyebrow">The Fix</div>
+                <h2 className="plt-reveal-headline">
+                  One platform that solves it
+                  <div className="plt-reveal-tw-row">
+                    for <IndustryTypewriter />
+                  </div>
+                </h2>
+                <p className="plt-reveal-sub">
+                  Seven capabilities. One hub. No rip-and-replace.
+                </p>
+              </div>
+            </FadeIn>
+
+            {/* Orbital hub — full-bleed, no curtain overlay */}
+            <FadeIn delay={60}>
+              <div className="capabilities-wrapper plt-hub-visual">
+                <div className="capabilities-frame">
+                  <div className="frame-content">
+                    <div className="frame-hub-area">
+                      <div className="frame-connections">
+                        <svg viewBox="0 0 1200 675" preserveAspectRatio="none" aria-hidden="true">
+                          <defs>
+                            <linearGradient id="grad1" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="600" y2="120">
+                              <stop offset="0%" stopColor="#20D3EF" stopOpacity="0" /><stop offset="50%" stopColor="#20D3EF" stopOpacity="1" /><stop offset="100%" stopColor="#20D3EF" stopOpacity="0" />
+                            </linearGradient>
+                            <linearGradient id="grad2" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="928" y2="210">
+                              <stop offset="0%" stopColor="#AC4197" stopOpacity="0" /><stop offset="50%" stopColor="#AC4197" stopOpacity="1" /><stop offset="100%" stopColor="#AC4197" stopOpacity="0" />
+                            </linearGradient>
+                            <linearGradient id="grad3" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="1009" y2="413">
+                              <stop offset="0%" stopColor="#02B164" stopOpacity="0" /><stop offset="50%" stopColor="#02B164" stopOpacity="1" /><stop offset="100%" stopColor="#02B164" stopOpacity="0" />
+                            </linearGradient>
+                            <linearGradient id="grad4" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="782" y2="576">
+                              <stop offset="0%" stopColor="#F17A42" stopOpacity="0" /><stop offset="50%" stopColor="#F17A42" stopOpacity="1" /><stop offset="100%" stopColor="#F17A42" stopOpacity="0" />
+                            </linearGradient>
+                            <linearGradient id="grad5" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="418" y2="576">
+                              <stop offset="0%" stopColor="#20D3EF" stopOpacity="0" /><stop offset="50%" stopColor="#20D3EF" stopOpacity="1" /><stop offset="100%" stopColor="#20D3EF" stopOpacity="0" />
+                            </linearGradient>
+                            <linearGradient id="grad6" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="191" y2="413">
+                              <stop offset="0%" stopColor="#AC4197" stopOpacity="0" /><stop offset="50%" stopColor="#AC4197" stopOpacity="1" /><stop offset="100%" stopColor="#AC4197" stopOpacity="0" />
+                            </linearGradient>
+                            <linearGradient id="grad7" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="272" y2="210">
+                              <stop offset="0%" stopColor="#02B164" stopOpacity="0" /><stop offset="50%" stopColor="#02B164" stopOpacity="1" /><stop offset="100%" stopColor="#02B164" stopOpacity="0" />
+                            </linearGradient>
+                          </defs>
+                          <path className="conn-base" d="M600 358 L600 120" />
+                          <path className="conn-glow" stroke="url(#grad1)" d="M600 358 L600 120" />
+                          <path className="conn-base" d="M600 358 L928 210" />
+                          <path className="conn-glow" stroke="url(#grad2)" d="M600 358 L928 210" style={{ animationDelay: '-1s' }} />
+                          <path className="conn-base" d="M600 358 L1009 413" />
+                          <path className="conn-glow" stroke="url(#grad3)" d="M600 358 L1009 413" style={{ animationDelay: '-2s' }} />
+                          <path className="conn-base" d="M600 358 L782 576" />
+                          <path className="conn-glow" stroke="url(#grad4)" d="M600 358 L782 576" style={{ animationDelay: '-3s' }} />
+                          <path className="conn-base" d="M600 358 L418 576" />
+                          <path className="conn-glow" stroke="url(#grad5)" d="M600 358 L418 576" style={{ animationDelay: '-4s' }} />
+                          <path className="conn-base" d="M600 358 L191 413" />
+                          <path className="conn-glow" stroke="url(#grad6)" d="M600 358 L191 413" style={{ animationDelay: '-5s' }} />
+                          <path className="conn-base" d="M600 358 L272 210" />
+                          <path className="conn-glow" stroke="url(#grad7)" d="M600 358 L272 210" style={{ animationDelay: '-6s' }} />
+                        </svg>
+                      </div>
+                      <div className="frame-center-core">
+                        <div className="core-inner">
+                          <div className="core-kicker">Unified Architecture</div>
+                          <div className="core-title">AI Enterprise Data Hub</div>
+                        </div>
+                      </div>
+                      <div className="frame-pillars">
+                        {capabilities.map((cap, i) => (
+                          <Link
+                            key={cap.num}
+                            to={cap.to}
+                            className={`frame-pillar p${i + 1}`}
+                            style={{ '--accent': cap.color === 'cyan' ? '#20D3EF' : cap.color === 'primary' ? '#AC4197' : cap.color === 'green' ? '#02B164' : cap.color === 'orange' ? '#F17A42' : '#7b82e0' }}
+                          >
+                            <div className="cap-num">{cap.num}</div>
+                            <div className="pillar-label">{cap.label}</div>
+                            <div className="pillar-micro">{cap.bullets[0]}</div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
+
+          </div>
+
+          {/* Capability preview — select any of the 7 to see what it eliminates */}
           <FadeIn>
-            <div className="plt-header">
-              <div className="eyebrow">The Platform</div>
-              <h2>Seven Capabilities.<br />One Integrated Platform.</h2>
+            <div className="plt-caps-intro">
+              <h3 className="plt-caps-intro-label">Pick a capability to see exactly what it eliminates</h3>
             </div>
           </FadeIn>
-
-          {/* Icon selector row */}
           <FadeIn>
-            <div className="plt-selector">
+            <div className="plt-selector" id="capability-tabs">
               {capabilities.map((cap, i) => (
                 <button
                   key={cap.num}
@@ -816,16 +764,44 @@ export default function Home() {
         </div>
       </section>
 
+      {/* BRIDGE — transition strip between platform capabilities and why-vorro */}
+      <div className="section-bridge">
+        <div className="container">
+          <FadeIn>
+            <div className="bridge-inner">
+              <div className="bridge-stat">
+                <span className="bridge-stat-val">22+</span>
+                <span className="bridge-stat-lbl">enterprises live on Vorro</span>
+              </div>
+              <div className="bridge-divider" aria-hidden="true" />
+              <div className="bridge-stat">
+                <span className="bridge-stat-val">15M+</span>
+                <span className="bridge-stat-lbl">daily transactions processed</span>
+              </div>
+              <div className="bridge-divider" aria-hidden="true" />
+              <div className="bridge-stat">
+                <span className="bridge-stat-val">70%</span>
+                <span className="bridge-stat-lbl">less cost vs. in-house build</span>
+              </div>
+              <div className="bridge-divider" aria-hidden="true" />
+              <p className="bridge-quote">
+                &ldquo;We evaluated every major integration vendor. Vorro was the only one that understood the actual problem.&rdquo;
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+      </div>
+
       {/* WHY VORRO */}
       <section className="section bg-navy why-section">
         <div className="container">
           <FadeIn>
             <div className="section-header centered dark">
-              <div className="eyebrow">Why Vorro</div>
-              <h2>Built for Complexity.<br />Not Adapted for It.</h2>
+              <div className="eyebrow">Why Teams Trust Vorro</div>
+              <h2>Purpose-Built for the Problems<br />Others Patch Around.</h2>
               <p>
-                We did not bolt enterprise data support onto a generic integration platform.
-                Vorro was purpose-built for complex, multi-system orchestration — from{' '}
+                Generic integration tools require months of custom engineering to handle enterprise-grade complexity.
+                Vorro was purpose-built for exactly this — from{' '}
                 <strong style={{ color: 'var(--color-cyan)', fontWeight: 'var(--font-bold)' }}>day one</strong>.
               </p>
             </div>
@@ -862,16 +838,14 @@ export default function Home() {
         </div>
       </section>
 
-      </div>{/* end .dark-zone */}
-
-      {/* TESTIMONIALS */}
+      {/* TESTIMONIALS — inside dark-zone so background stays seamless */}
       <section className="section testimonials-section">
         <div className="container">
           <FadeIn>
-            <div className="section-header centered">
-              <div className="eyebrow">Client Outcomes</div>
-              <h2>Results That Speak for Themselves</h2>
-              <p>Organizations across industries trust Vorro to power their data infrastructure.</p>
+            <div className="section-header centered dark">
+              <div className="eyebrow">Proof It Works</div>
+              <h2>Problems Solved. Results Measured.</h2>
+              <p>Organizations across industries eliminated their biggest data problems with Vorro — here&apos;s what happened next.</p>
             </div>
           </FadeIn>
           <div className="testimonials-grid">
@@ -897,7 +871,7 @@ export default function Home() {
           </div>
           <FadeIn>
             <div className="case-studies-cta">
-              <Link to="/case-studies" className="btn btn-secondary btn-lg">
+              <Link to="/case-studies" className="btn btn-ghost-white btn-lg">
                 View All Case Studies <ArrowRight size={16} />
               </Link>
             </div>
@@ -905,40 +879,63 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA SECTION */}
-      <section className="section cta-outer">
-        <div className="container">
-          <FadeIn>
-            <div className="cta-banner">
-              <div className="cta-banner-content">
-                <div className="badge badge-white" style={{ marginBottom: '1.5rem' }}>
-                  <Zap size={10} /> Ready to Transform Your Data?
-                </div>
-                <h2>Let&apos;s Build the Future of<br />Enterprise Data Together</h2>
-                <p>
-                  Talk to an expert and see how Vorro unifies your data estate,
-                  automates governance, and accelerates AI adoption — across every industry.
-                </p>
-                <div className="cta-banner-actions">
-                  <button onClick={() => setDemoModalOpen(true)} className="btn btn-cyan btn-xl">
-                    Talk to an Expert <ArrowRight size={18} />
-                  </button>
-                  <Link to="/solutions" className="btn btn-ghost-white btn-xl">
-                    Explore Solutions
-                  </Link>
-                </div>
-                <div className="cta-trust-badges">
-                  {['SOC 2 Type II', 'HIPAA Compliant', 'Enterprise-Grade Security', 'Fully Managed'].map((b) => (
-                    <span key={b} className="cta-trust-badge">
-                      <CheckCircle2 size={12} /> {b}
-                    </span>
-                  ))}
-                </div>
+      </div>{/* end .dark-zone */}
+
+      {/* ==========================================
+          CLOSING DARK ZONE — Free Tools + Final CTA
+          One continuous section, no white gaps
+         ========================================== */}
+      <div className="closing-dark-zone">
+        <div className="dz-lines" aria-hidden="true" />
+        <div className="dz-orb-purple" aria-hidden="true" />
+        <div className="dz-orb-cyan2" aria-hidden="true" />
+
+        {/* Free Tools strip */}
+        <FreeToolsBanner />
+
+        {/* Final CTA — full-bleed, no floating card */}
+        <section className="final-cta-section">
+          <div className="container final-cta-inner">
+            <FadeIn>
+              <div className="final-cta-eyebrow">
+                <Zap size={12} />
+                Stop Paying for Broken Data
               </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+            </FadeIn>
+            <FadeIn delay={60}>
+              <h2 className="final-cta-headline">
+                Your Data Problem Has a Fix.<br />
+                Let&apos;s Map It Together.
+              </h2>
+            </FadeIn>
+            <FadeIn delay={120}>
+              <p className="final-cta-sub">
+                Tell us your biggest data challenge. Our engineers will assess your environment
+                and show you exactly how Vorro eliminates it — no generic demos, no guesswork.
+              </p>
+            </FadeIn>
+            <FadeIn delay={180}>
+              <div className="final-cta-actions">
+                <button onClick={() => setDemoModalOpen(true)} className="btn btn-cyan btn-xl">
+                  Show Me the Fix <ArrowRight size={18} />
+                </button>
+                <Link to="/enterprise-data-fragmentation" className="btn btn-ghost-white btn-xl">
+                  See the Cost of Inaction
+                </Link>
+              </div>
+            </FadeIn>
+            <FadeIn delay={240}>
+              <div className="final-cta-trust">
+                {['SOC 2 Type II', 'HIPAA Compliant', 'Enterprise-Grade Security', 'Fully Managed'].map((b) => (
+                  <span key={b} className="final-cta-trust-badge">
+                    <CheckCircle2 size={11} /> {b}
+                  </span>
+                ))}
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+      </div>
 
       {/* Book Demo Modal */}
       <BookDemoModal open={demoModalOpen} onOpenChange={setDemoModalOpen} />

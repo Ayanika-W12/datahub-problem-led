@@ -63,26 +63,86 @@ const byCapability = [
   },
 ];
 
+const problemsWeSolve = [
+  {
+    stat: '$18.3B',
+    statColor: '#20D3EF',
+    title: 'Healthcare Data Fragmentation',
+    desc: 'EHR, payer, and lab data that never talks to each other — causing compliance risk, delayed care, and wasted IT spend.',
+    to: '/solutions/healthcare',
+  },
+  {
+    stat: '$1.77T',
+    statColor: '#AC4197',
+    title: 'Ecommerce Inventory Chaos',
+    desc: 'Siloed order, inventory, and fulfillment data creating stockouts, wrong shipments, and margin erosion.',
+    to: '/solutions/ecommerce',
+  },
+  {
+    stat: '$67B',
+    statColor: '#02B164',
+    title: 'Insurance Claims Leakage',
+    desc: 'Legacy EDI formats and manual reconciliation causing settlement delays, leakage, and regulatory exposure.',
+    to: '/solutions/insurance',
+  },
+  {
+    stat: '20%',
+    statColor: '#F17A42',
+    title: 'HR & Payroll Data Errors',
+    desc: 'Disconnected HRIS, payroll, and benefits systems generating errors, compliance failures, and audit risk.',
+    to: '/solutions/hr-tech',
+  },
+];
+
 export default function Solutions() {
   return (
     <main>
       <section className="vertical-hero">
         <div className="container vertical-hero-inner">
-          <div className="badge badge-white" style={{ marginBottom: '1.25rem' }}>Solutions</div>
+          <div className="badge badge-white" style={{ marginBottom: '1.25rem' }}>Problems We Solve</div>
           <h1 className="vertical-hero-headline">
-            Every Integration Challenge.<br />One Platform.
+            Data Fragmentation Is Costing You<br />More Than You Think.
           </h1>
           <p className="vertical-hero-sub">
-            From connecting a single system to building a governed AI-ready data lake —
-            Vorro delivers production-proven solutions across the full enterprise data stack.
+            Siloed systems, legacy formats, and manual workflows create hidden costs across every function.
+            Vorro identifies the root cause — and eliminates it across your entire data estate.
           </p>
           <div className="vertical-hero-actions">
             <Link to="/contact-us" className="btn btn-cyan btn-md">
-              Talk to an Expert <ArrowRight size={16} />
+              Show Me My Problem <ArrowRight size={16} />
             </Link>
-            <Link to="/build-vs-buy" className="btn btn-ghost-white btn-md">
-              Build vs. Buy Guide
+            <Link to="/enterprise-data-fragmentation" className="btn btn-ghost-white btn-md">
+              See the Cost of Inaction
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Problems We Solve */}
+      <section className="section bg-light">
+        <div className="container">
+          <div className="section-header">
+            <div className="eyebrow">Problems We Solve</div>
+            <h2>Four Industries. One Root Cause.</h2>
+            <p>Every industry has a different symptom — but the underlying problem is always the same: data that doesn&apos;t connect, govern, or move cleanly between systems.</p>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '2.5rem' }}>
+            {problemsWeSolve.map((p) => (
+              <Link key={p.title} to={p.to} style={{ textDecoration: 'none', display: 'block' }} className="card-feature">
+                <div style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)', fontWeight: 'var(--font-bold)', color: p.statColor, lineHeight: 1, marginBottom: '0.75rem' }}>
+                  {p.stat}
+                </div>
+                <h3 style={{ fontSize: 'var(--text-lg)', fontWeight: 'var(--font-bold)', color: 'var(--color-navy)', marginBottom: '0.4rem' }}>
+                  {p.title}
+                </h3>
+                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-gray-500)', lineHeight: 1.65, marginBottom: '1rem' }}>
+                  {p.desc}
+                </p>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', fontSize: 'var(--text-sm)', fontWeight: 'var(--font-semibold)', color: p.statColor }}>
+                  See how we fix it <ArrowRight size={13} />
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -197,10 +257,10 @@ export default function Solutions() {
           <div className="cta-banner">
             <div className="cta-banner-content">
               <div className="badge badge-white" style={{ marginBottom: '1.25rem' }}>
-                <Zap size={10} /> Not sure where to start?
+                <Zap size={10} /> Know your problem. Start your fix.
               </div>
-              <h2>Let's Map Your Integration Environment</h2>
-              <p>Our engineers will assess your current systems and recommend the fastest path to value — no generic demos.</p>
+              <h2>Tell Us Your Biggest Data Problem</h2>
+              <p>Our engineers will map your environment, identify the root cause, and show you the fastest path to eliminating it — no generic demos, no guesswork.</p>
               <div className="cta-banner-actions">
                 <Link to="/contact-us" className="btn btn-cyan btn-xl">
                   Talk to an Expert <ArrowRight size={18} />

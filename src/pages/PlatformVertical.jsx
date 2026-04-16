@@ -7,10 +7,17 @@ export const verticals = {
   'analytics-nlp': {
     num: '01',
     title: 'AI-Driven Analytics & Insights',
-    headline: 'Extract Structured Intelligence from Unstructured Clinical Data',
-    sub: 'Transform clinical notes, discharge summaries, radiology reports, and prior auth letters into governed, FHIR-native structured data — at scale.',
+    headline: 'Unstructured Clinical Data Is Blocking Your AI Initiatives.',
+    sub: 'Clinical notes, discharge summaries, and prior auth letters contain critical intelligence — locked in formats no system can read. Vorro extracts, structures, and routes it automatically.',
     color: 'primary',
     tags: ['Healthcare AI', 'FHIR R4', 'HIPAA', 'ICD-10', 'SNOMED CT'],
+    challenge: {
+      statement: 'Over 80% of healthcare data is unstructured — sitting in PDFs, clinical notes, and fax documents that AI models cannot consume directly. Every manual extraction step adds cost and latency.',
+      stats: [
+        { val: '80%', label: 'Of healthcare data is unstructured and inaccessible to AI systems without transformation' },
+        { val: '60%', label: 'Reduction in coder workload when clinical NLP is applied to documentation' },
+      ],
+    },
     sections: [
       {
         heading: 'The AI Pipeline',
@@ -62,10 +69,17 @@ export const verticals = {
   'reporting-nlp': {
     num: '02',
     title: 'Reporting & Conversational AI',
-    headline: 'Conversational AI Queries. Automated Healthcare Reports. No SQL Required.',
-    sub: 'Ask your data questions in plain English. Get clinical, compliance, operational, and executive reports — instantly, without a data team or SQL expertise.',
+    headline: 'Your Data Teams Spend More Time Building Reports Than Using Them.',
+    sub: 'Executives wait days for reports. Data teams spend weeks building them. Vorro eliminates the queue — letting anyone query data in plain English and receive accurate reports instantly.',
     color: 'cyan',
     tags: ['Conversational AI', 'HEDIS', 'eCQM', 'QRDA', 'No-Code'],
+    challenge: {
+      statement: 'Most organizations have a reporting bottleneck: every question requires a data engineer, every report takes days, and by the time leadership receives it, the data is already stale.',
+      stats: [
+        { val: '6 sec', label: 'Average query-to-report time with Vorro\'s Conversational AI engine' },
+        { val: '0', label: 'SQL knowledge required to generate operational, compliance, and executive reports' },
+      ],
+    },
     sections: [
       {
         heading: 'Conversational Query Examples',
@@ -97,10 +111,17 @@ export const verticals = {
   'governance-compliance': {
     num: '03',
     title: 'Governance & Compliance',
-    headline: 'Every Federal Healthcare Mandate. Automated.',
-    sub: "Stay ahead of HIPAA, 21st Century Cures Act, CMS Interoperability Rules, and TEFCA without building a compliance army. Vorro automates it end-to-end.",
+    headline: 'Every Federal Healthcare Mandate Is a Manual Compliance Risk.',
+    sub: "HIPAA, 21st Century Cures Act, CMS-0057-F — each new mandate adds complexity to an already strained compliance operation. Vorro automates every requirement end-to-end, without a compliance army.",
     color: 'navy',
     tags: ['HIPAA', 'ONC Cures Act', 'TEFCA', 'SOC 2', 'HITRUST'],
+    challenge: {
+      statement: 'Healthcare mandates multiply every year. Most organizations address them reactively — with manual audits, late filings, and compliance staff stretched across too many requirements.',
+      stats: [
+        { val: '100%', label: 'Audit coverage across every data asset with automated policy enforcement and trail generation' },
+        { val: '3+', label: 'Federal mandates automated end-to-end — HIPAA, ONC Cures, CMS-0057-F, and TEFCA' },
+      ],
+    },
     sections: [
       {
         heading: 'Federal Laws & FHIR Mandates Covered',
@@ -133,10 +154,17 @@ export const verticals = {
   'governance-versioning': {
     num: '04',
     title: 'Version Lineage & Control',
-    headline: 'Git-Like Version Control for Healthcare Data Pipelines.',
-    sub: 'The first healthcare-native data version control layer — with full regulatory auditability. Every pipeline, mapping, and transformation is versioned, attributed, and rollback-ready.',
+    headline: 'No One Knows What Changed, When, or Why — Until It Breaks.',
+    sub: 'When a pipeline breaks or an audit arrives, most teams have no reliable record of what changed or who changed it. Vorro gives every pipeline, mapping, and transformation a complete, versioned, rollback-ready audit trail.',
     color: 'green',
     tags: ['Data Lineage', 'Pipeline Versioning', 'Audit Trail', 'HIPAA Audit', 'Change Management'],
+    challenge: {
+      statement: 'Enterprise data pipelines change constantly — but most platforms offer no version history, no attribution, and no rollback. When something breaks, recovery means rebuilding from scratch.',
+      stats: [
+        { val: '100%', label: 'Data lineage tracked from source through every transformation to its final consumer' },
+        { val: '1-click', label: 'Rollback to any prior pipeline state — no rebuild, no manual recovery, no downtime' },
+      ],
+    },
     sections: [
       {
         heading: 'Core Capabilities',
@@ -157,10 +185,17 @@ export const verticals = {
   'interfacing': {
     num: '05',
     title: 'Interfacing',
-    headline: 'Every Healthcare Data Standard. One Integration Layer.',
-    sub: 'HL7 v2, FHIR R4, EDI X12, NCPDP, C-CDA, DICOM, Direct Trust — if it moves healthcare data, Vorro speaks it natively. 22+ enterprise deployments. No rip-and-replace required.',
+    headline: 'Your Systems Speak Different Languages. Nothing Connects.',
+    sub: 'HL7 v2, FHIR R4, EDI X12, NCPDP, C-CDA, DICOM — every system speaks a different protocol, and custom point-to-point integrations collapse under enterprise scale. Vorro speaks all of them natively.',
     color: 'orange',
     tags: ['HL7', 'FHIR R4', 'EDI X12', 'NCPDP', 'DICOM'],
+    challenge: {
+      statement: 'Healthcare runs on a patchwork of 30+ data standards, each requiring custom translation logic. Point-to-point integrations multiply the problem — creating a brittle web that breaks every time a system updates.',
+      stats: [
+        { val: '500+', label: 'Pre-built connectors covering every major enterprise and healthcare protocol natively' },
+        { val: '22+', label: 'Enterprise deployments live across health systems, HIEs, payers, and specialty networks' },
+      ],
+    },
     sections: [
       {
         heading: 'Supported Standards',
@@ -191,10 +226,17 @@ export const verticals = {
   'ai-readiness': {
     num: '06',
     title: 'AI Readiness',
-    headline: 'From Raw, Siloed Data to a Governed, ML-Ready Foundation.',
-    sub: 'Your AI initiatives are only as good as your data. Vorro\'s Bronze → Silver → Gold data lake architecture ensures your AI gets clean, normalized, governed data — not garbage.',
+    headline: 'Your AI Models Are Only as Good as the Data You Feed Them.',
+    sub: 'Most AI initiatives stall not because of the model — but because the underlying data is fragmented, ungoverned, and ML-incompatible. Vorro\'s Bronze → Silver → Gold architecture solves the data problem first.',
     color: 'primary',
     tags: ['Data Lake', 'ML-Ready', 'Azure Databricks', 'SageMaker', 'Snowflake'],
+    challenge: {
+      statement: 'Organizations spend 80% of their AI budget on data preparation — cleaning, normalizing, and governing data that should already be ready. The result: delayed launches, inaccurate models, and wasted ML spend.',
+      stats: [
+        { val: '70%', label: 'Reduction in ML data preparation time when Vorro\'s governed data lake architecture is in place' },
+        { val: '83%', label: 'Of organizations say data silos are the #1 barrier to deploying AI and analytics at scale' },
+      ],
+    },
     sections: [
       {
         heading: 'Bronze → Silver → Gold Architecture',
@@ -234,10 +276,17 @@ export const verticals = {
   'workflow-orchestration': {
     num: '07',
     title: 'Workflow Orchestration',
-    headline: 'Healthcare-Native Workflow Automation. AI-Powered.',
-    sub: 'No-code, FHIR-native, audit-ready workflow automation for revenue cycle, clinical operations, and patient engagement — deployed in days, not months.',
+    headline: 'Manual Workflows Are Costing You Patients, Claims, and Time.',
+    sub: 'Prior auth, eligibility checks, claims routing, and care transitions still run on manual phone calls and faxes for most organizations. Vorro automates the entire workflow layer — FHIR-native, audit-ready, deployed in days.',
     color: 'cyan',
     tags: ['Automation', 'AI-Powered', 'Prior Auth', 'FHIR Triggers', 'No-Code'],
+    challenge: {
+      statement: 'The average prior authorization takes 2+ hours of staff time. Eligibility is re-verified manually for every patient. These aren\'t edge cases — they\'re systemic, expensive, and entirely automatable.',
+      stats: [
+        { val: '80%', label: 'Of workflows auto-approved without human intervention using Vorro\'s AI decision nodes' },
+        { val: '500+', label: 'Pre-built healthcare workflow templates covering revenue cycle, clinical ops, and patient engagement' },
+      ],
+    },
     sections: [
       {
         heading: 'Pre-Built Healthcare Workflow Library',
@@ -337,6 +386,44 @@ export default function PlatformVertical({ slug }) {
           </div>
         </div>
       </section>
+
+      {/* THE CHALLENGE BLOCK */}
+      {data.challenge && (
+        <section style={{ background: 'var(--color-navy)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+          <div className="container" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
+              {/* Left: challenge statement */}
+              <div>
+                <div style={{ fontSize: 'var(--text-xs)', fontWeight: 'var(--font-semibold)', color: colors.accent, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.75rem' }}>
+                  The Challenge
+                </div>
+                <p style={{ fontSize: 'var(--text-lg)', color: 'rgba(255,255,255,0.85)', lineHeight: 1.7 }}>
+                  {data.challenge.statement}
+                </p>
+              </div>
+              {/* Right: Why This Matters stats */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                {data.challenge.stats.map((s) => (
+                  <div key={s.val} style={{
+                    background: 'rgba(255,255,255,0.05)',
+                    border: `1px solid ${colors.accent}30`,
+                    borderRadius: 'var(--radius-xl)',
+                    padding: '1.5rem',
+                    textAlign: 'center',
+                  }}>
+                    <div style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 'var(--font-bold)', color: colors.accent, lineHeight: 1, marginBottom: '0.6rem' }}>
+                      {s.val}
+                    </div>
+                    <div style={{ fontSize: 'var(--text-sm)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.5 }}>
+                      {s.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Sections */}
       {data.sections.map((section, si) => (
