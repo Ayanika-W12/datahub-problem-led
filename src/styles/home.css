@@ -7,8 +7,8 @@
   display: inline-block;
   overflow: hidden;
   vertical-align: bottom;
-  /* Reserve space for the tallest word so the headline doesn't reflow */
-  min-width: 9ch;
+  /* Reserve space for the longest word ("Healthcare") so the headline doesn't reflow */
+  min-width: 10ch;
 }
 
 .industry-slider-word {
@@ -17,8 +17,8 @@
   font-style: normal;
   will-change: transform, opacity;
   transition:
-    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity   0.26s ease;
+    transform 0.48s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity   0.42s ease-in-out;
 }
 
 .industry-slider-word.industry-slider-enter {
@@ -27,7 +27,7 @@
 }
 
 .industry-slider-word.industry-slider-exit {
-  transform: translateY(-60%);
+  transform: translateY(-50%);
   opacity: 0;
 }
 

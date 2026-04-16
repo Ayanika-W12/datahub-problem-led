@@ -10,7 +10,7 @@ import { BookDemoModal } from '../components/ui/BookDemoModal';
 import { FreeToolsBanner } from '../components/ui/FreeToolsBanner';
 
 /* ---- Vertical text slider industries ---- */
-const INDUSTRIES = ['Healthcare', 'Ecommerce', 'Insurance', 'Logistics', 'Finance'];
+const INDUSTRIES = ['Healthcare', 'Ecommerce', 'Insurance', 'HR Tech'];
 
 /* ---- Data ---- */
 const stats = [
@@ -257,8 +257,8 @@ function IndustrySlider() {
       setTimeout(() => {
         setActiveIdx((prev) => (prev + 1) % INDUSTRIES.length);
         setAnimating(false);
-      }, 300);
-    }, 2200);
+      }, 480);
+    }, 2800);
     return () => clearInterval(interval);
   }, []);
 
@@ -302,10 +302,9 @@ export default function Home() {
               </span>
             </div>
             <h1 className="hero-headline">
-              The AI-Native Data<br />
-              <span className="hero-headline-accent">Orchestration Platform,</span><br />
-              Built for{' '}
-              <IndustrySlider />.
+              The AI-Native Data Orchestration<br />
+              <span className="hero-headline-accent">Platform,</span> Built for{' '}
+              <IndustrySlider />
             </h1>
             <p className="hero-sub">
               Stop chasing data. Vorro connects, monitors, and automates your enterprise data
