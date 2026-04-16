@@ -617,18 +617,20 @@ export default function Home() {
                   </div>
                 </h2>
                 <p className="plt-reveal-sub">
-                  Seven integrated capabilities. One unified data hub. No rip-and-replace required.
+                  Seven capabilities. One hub. No rip-and-replace.
                 </p>
+                <div className="plt-reveal-industries">
+                  {INDUSTRIES.map((ind) => (
+                    <span key={ind} className="plt-reveal-ind-tag">{ind}</span>
+                  ))}
+                </div>
               </div>
             </FadeIn>
 
-            {/* Orbital hub — full-bleed behind the text */}
+            {/* Orbital hub — full-bleed, no curtain overlay */}
             <FadeIn delay={60}>
               <div className="capabilities-wrapper plt-hub-visual">
                 <div className="capabilities-frame">
-                  <div className="frame-grid-overlay" />
-                  <div className="frame-particles" />
-                  <div className="frame-orbital-ring" />
                   <div className="frame-content">
                     <div className="frame-hub-area">
                       <div className="frame-connections">
@@ -698,16 +700,14 @@ export default function Home() {
               </div>
             </FadeIn>
 
-            {/* Scroll nudge into the capability tabs */}
-            <div className="plt-reveal-scroll-nudge">
-              <span>Explore each capability</span>
-              <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <path d="M10 3v14M4 11l6 6 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
           </div>
 
-          {/* Icon selector row */}
+          {/* Capability preview — select any of the 7 to see what it eliminates */}
+          <FadeIn>
+            <div className="plt-caps-intro">
+              <h3 className="plt-caps-intro-label">Pick a capability to see exactly what it eliminates</h3>
+            </div>
+          </FadeIn>
           <FadeIn>
             <div className="plt-selector" id="capability-tabs">
               {capabilities.map((cap, i) => (

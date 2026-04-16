@@ -308,21 +308,18 @@
 }
 
 .logo-img {
-  height: 44px;
+  height: 40px;
   width: auto;
-  max-width: 150px;
+  max-width: 160px;
   object-fit: contain;
-  /* grayscale + lighten removes colored tints, screen blend
-     makes any white/light background disappear into the dark page */
-  filter: grayscale(1) brightness(1.6) contrast(0.9);
-  mix-blend-mode: screen;
-  opacity: 0.55;
-  transition: opacity 0.2s ease, filter 0.2s ease;
+  /* Invert to white — only reliable technique when logos have opaque backgrounds */
+  filter: brightness(0) invert(1);
+  opacity: 0.45;
+  transition: opacity 0.25s ease;
 }
 
 .logo-img:hover {
   opacity: 0.85;
-  filter: grayscale(0.4) brightness(1.4) contrast(1);
 }
 
 /* Marquee item — remove border dividers, use gap instead */
@@ -1064,6 +1061,13 @@ main.home-page {
   position: relative;
 }
 
+/* Kill the shining curtain overlay on the homepage hub instance */
+.plt-hub-visual .frame-grid-overlay,
+.plt-hub-visual .frame-particles,
+.plt-hub-visual .frame-orbital-ring {
+  display: none;
+}
+
 /* Bottom fade — hub dissolves into the dark page seamlessly */
 .plt-hub-visual::after {
   content: '';
@@ -1088,18 +1092,48 @@ main.home-page {
   aspect-ratio: unset;
 }
 
-/* Scroll nudge below the hub */
-.plt-reveal-scroll-nudge {
+/* Industry tags below the subtitle */
+.plt-reveal-industries {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem;
-  font-size: var(--text-xs);
+  margin-top: 1.25rem;
+}
+
+.plt-reveal-ind-tag {
+  font-size: 0.7rem;
+  font-weight: var(--font-semibold);
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.plt-reveal-ind-tag:hover {
+  color: #20D3EF;
+  border-color: rgba(32,211,239,0.3);
+}
+
+/* Capability preview section separator */
+.plt-caps-intro {
+  text-align: center;
+  padding: 2rem 0 0.5rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin-top: 0.5rem;
+}
+
+.plt-caps-intro-label {
+  font-size: var(--text-sm);
   font-weight: var(--font-medium);
-  color: rgba(255,255,255,0.25);
-  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 1.5rem 0;
+  margin: 0;
 }
 
 /* ============================================================
@@ -6900,28 +6934,34 @@ button.cs-cta-link {
   border-top: 1px solid rgba(255,255,255,0.06);
   border-bottom: 1px solid rgba(255,255,255,0.06);
   padding: 4rem 0;
+  text-align: center;
 }
 
 .proof-band-label {
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
   color: rgba(255,255,255,0.35);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   margin: 0 0 2.5rem;
+  text-align: center;
 }
 
 .proof-band-stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  justify-content: center;
   gap: 0;
+  max-width: 860px;
+  margin: 0 auto;
 }
 
 .proof-stat {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.5rem;
-  padding: 0 2rem 0 0;
+  flex: 1;
+  padding: 0 2rem;
   border-right: 1px solid rgba(255,255,255,0.07);
 }
 
@@ -6931,12 +6971,7 @@ button.cs-cta-link {
 
 .proof-stat:last-child {
   border-right: none;
-  padding-left: 2rem;
   padding-right: 0;
-}
-
-.proof-stat:not(:first-child):not(:last-child) {
-  padding-left: 2rem;
 }
 
 .proof-stat-val {
