@@ -472,9 +472,9 @@ export default function Home() {
               </span>
             </div>
             <h1 className="hero-headline">
-              The AI-Native Data Orchestration{' '}
-              <span className="hero-headline-accent">Platform,</span>
-              <br />Built for <IndustrySlider />
+              The AI-Native Data<br />
+              <span className="hero-headline-accent">Orchestration Platform,</span><br />
+              Built for <IndustrySlider />
             </h1>
             <p className="hero-sub">
               Stop chasing data. Vorro connects, monitors, and automates your enterprise data
