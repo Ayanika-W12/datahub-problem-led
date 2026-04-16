@@ -312,14 +312,18 @@
   width: auto;
   max-width: 160px;
   object-fit: contain;
-  /* Invert to white — only reliable technique when logos have opaque backgrounds */
-  filter: brightness(0) invert(1);
-  opacity: 0.45;
-  transition: opacity 0.25s ease;
+  /* Boost brightness so dark text becomes muted white, keep color saturation.
+     mix-blend-mode: screen makes the baked-in white/light backgrounds disappear
+     into the dark page surface — only the logo marks remain visible */
+  filter: brightness(4) saturate(0.5);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+  transition: opacity 0.25s ease, filter 0.25s ease;
 }
 
 .logo-img:hover {
-  opacity: 0.85;
+  opacity: 1;
+  filter: brightness(5) saturate(0.7);
 }
 
 /* Marquee item — remove border dividers, use gap instead */
@@ -1061,11 +1065,23 @@ main.home-page {
   position: relative;
 }
 
-/* Kill the shining curtain overlay on the homepage hub instance */
+/* Kill ALL decorative overlays on the homepage hub — no curtain, no grid, no particles */
 .plt-hub-visual .frame-grid-overlay,
 .plt-hub-visual .frame-particles,
-.plt-hub-visual .frame-orbital-ring {
-  display: none;
+.plt-hub-visual .frame-orbital-ring,
+.plt-hub-visual .frame-grid-overlay::before,
+.plt-hub-visual .frame-grid-overlay::after {
+  display: none !important;
+  animation: none !important;
+  opacity: 0 !important;
+}
+
+/* Also nuke the global gridFloat on any element inside the hub visual */
+.plt-hub-visual * {
+  --grid-animation: none;
+}
+.plt-hub-visual .frame-content {
+  background: transparent;
 }
 
 /* Bottom fade — hub dissolves into the dark page seamlessly */
@@ -6930,7 +6946,7 @@ button.cs-cta-link {
    PROOF BAND — dark full-bleed stats wall
    ============================================================ */
 .proof-band {
-  background: transparent;
+  background: #0b0820;
   border-top: 1px solid rgba(255,255,255,0.06);
   border-bottom: 1px solid rgba(255,255,255,0.06);
   padding: 4rem 0;
@@ -6950,26 +6966,35 @@ button.cs-cta-link {
 .proof-band-stats {
   display: flex;
   justify-content: center;
+  align-items: stretch;
   gap: 0;
-  max-width: 860px;
+  max-width: 900px;
   margin: 0 auto;
+}
+
+/* FadeIn wrappers are direct children — make them fill equal space */
+.proof-band-stats > * {
+  flex: 1;
+  display: flex;
 }
 
 .proof-stat {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   flex: 1;
-  padding: 0 2rem;
+  padding: 0 2.5rem;
   border-right: 1px solid rgba(255,255,255,0.07);
+  text-align: center;
 }
 
-.proof-stat:first-child {
+.proof-band-stats > *:first-child .proof-stat {
   padding-left: 0;
 }
 
-.proof-stat:last-child {
+.proof-band-stats > *:last-child .proof-stat {
   border-right: none;
   padding-right: 0;
 }

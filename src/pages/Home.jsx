@@ -619,11 +619,6 @@ export default function Home() {
                 <p className="plt-reveal-sub">
                   Seven capabilities. One hub. No rip-and-replace.
                 </p>
-                <div className="plt-reveal-industries">
-                  {INDUSTRIES.map((ind) => (
-                    <span key={ind} className="plt-reveal-ind-tag">{ind}</span>
-                  ))}
-                </div>
               </div>
             </FadeIn>
 
