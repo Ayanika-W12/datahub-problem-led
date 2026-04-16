@@ -965,7 +965,28 @@
 /* Header */
 .plt-header {
   text-align: center;
-  margin-bottom: 3.5rem;
+  margin-bottom: 2rem;
+}
+
+.plt-header-sub {
+  font-size: var(--text-base);
+  color: rgba(255, 255, 255, 0.5);
+  max-width: 520px;
+  margin: 0.75rem auto 0;
+  line-height: 1.65;
+}
+
+/* Hub visual inside the platform section — full width, taller than when it was a hero inset */
+.plt-hub-visual {
+  margin-bottom: 3rem;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow: 0 0 80px rgba(32, 211, 239, 0.06), 0 0 40px rgba(172, 65, 151, 0.08);
+}
+
+.plt-hub-visual .capabilities-frame {
+  min-height: 520px;
 }
 .plt-header .eyebrow {
   color: rgba(255,255,255,0.55);
@@ -6527,25 +6548,14 @@ button.cs-cta-link {
   z-index: 1;
 }
 
-/* Split layout: text left, orbital visual right */
-.ph-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
-}
-
-/* Text column — left-aligned content, centred within its column */
-.ph-text-col {
+/* Centred single-column layout */
+.problem-hero-inner {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-}
-
-/* Visual column */
-.ph-visual-col {
-  width: 100%;
-  min-height: 480px;
+  align-items: center;
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto;
 }
 
 /* Kicker — "Enterprise Data Problem" label */
@@ -6577,13 +6587,14 @@ button.cs-cta-link {
 
 /* Main headline */
 .ph-headline {
-  font-size: clamp(2rem, 3.5vw, 3.25rem);
+  font-size: clamp(2.25rem, 4.5vw, 3.75rem);
   font-weight: var(--font-black);
   color: #fff;
   line-height: 1.1;
   letter-spacing: -0.04em;
   margin-bottom: 1.25rem;
-  max-width: 100%;
+  max-width: 700px;
+  text-wrap: balance;
 }
 
 .ph-accent {
@@ -6593,21 +6604,16 @@ button.cs-cta-link {
 
 /* Sub copy */
 .ph-sub {
-  font-size: clamp(0.95rem, 1.25vw, 1.05rem);
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   color: rgba(255, 255, 255, 0.55);
-  max-width: 100%;
+  max-width: 540px;
   line-height: 1.7;
   margin-bottom: 2rem;
 }
 
-/* Responsive — stack on mobile */
-@media (max-width: 900px) {
-  .ph-split {
-    grid-template-columns: 1fr;
-  }
-  .ph-visual-col {
-    min-height: 360px;
-  }
+/* Scroll cue — centre under the text */
+.ph-scroll-cue {
+  justify-content: center;
 }
 
 /* Cost row — three punchy numbers */
