@@ -37,10 +37,10 @@ const navLinks = [
       {
         heading: 'By Integration Type',
         items: [
-          { label: 'System Integrations', to: '/solutions/emr-integrations', desc: 'Connect any enterprise system, bidirectionally' },
-          { label: 'Network Integrations', to: '/solutions/hie-integrations', desc: 'Multi-party data exchange at scale' },
-          { label: 'Partner Integrations', to: '/solutions/payer-integrations', desc: 'B2B data flows, claims & reconciliation' },
-          { label: 'Specialized Integrations', to: '/solutions/pharmacy-integrations', desc: 'Domain-specific data connectors' },
+          { label: 'System Integrations', to: '/solutions/system-integrations', desc: 'Connect any enterprise system, bidirectionally' },
+          { label: 'Network Integrations', to: '/solutions/network-integrations', desc: 'Multi-party data exchange at scale' },
+          { label: 'Partner Integrations', to: '/solutions/partner-integrations', desc: 'B2B data flows, claims & reconciliation' },
+          { label: 'Specialized Integrations', to: '/solutions/specialized-integrations', desc: 'Domain-specific data connectors' },
         ],
       },
       {

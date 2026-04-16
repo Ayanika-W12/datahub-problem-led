@@ -337,9 +337,9 @@ function IndustrySlider() {
         setCurrent(nextIdx);
         setNext(null);
         setPhase('idle');
-      }, 300);
+      }, 420);
       return () => clearTimeout(timeout);
-    }, 1800);
+    }, 2400);
     return () => clearInterval(interval);
   }, [current]);
 

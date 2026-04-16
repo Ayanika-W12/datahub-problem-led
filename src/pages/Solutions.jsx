@@ -3,32 +3,32 @@ import { ArrowRight, Zap } from 'lucide-react';
 
 const byIntegrationType = [
   {
-    title: 'EMR / EHR Integrations',
-    sub: 'Connect any EHR or clinical system — bidirectionally',
-    to: '/solutions/emr-integrations',
-    vendors: ['Epic', 'Oracle Cerner', 'Athenahealth', 'Meditech', 'eClinicalWorks', '40+ more'],
-    desc: 'Production-proven connectors to every major EHR. Real-time and batch. No rip-and-replace required.',
+    title: 'System Integrations',
+    sub: 'Connect any enterprise system — bidirectionally',
+    to: '/solutions/system-integrations',
+    vendors: ['Salesforce', 'SAP', 'Oracle ERP', 'Workday', 'HubSpot', '200+ more'],
+    desc: 'Production-proven connectors to every major enterprise system. Real-time and batch. No rip-and-replace required.',
   },
   {
-    title: 'HIE & Network Integrations',
-    sub: 'Network-wide interoperability at scale',
-    to: '/solutions/hie-integrations',
-    vendors: ['Carequality', 'CommonWell', 'TEFCA / QHIN', 'Direct Trust', 'Public Health'],
-    desc: 'Power a regional or statewide HIE — or connect your organization to one. Trusted by Contexture and WISHIN.',
+    title: 'Network Integrations',
+    sub: 'Multi-party data exchange at scale',
+    to: '/solutions/network-integrations',
+    vendors: ['AS2 Gateways', 'EDI Clearinghouses', 'MuleSoft', 'Azure Service Bus', 'AWS EventBridge'],
+    desc: 'Power network-wide data exchange across partners, regulators, and industry networks — at any scale.',
   },
   {
-    title: 'Payer & Partner Integrations',
-    sub: 'Claims, eligibility, and prior auth — automated',
-    to: '/solutions/payer-integrations',
-    vendors: ['Prior Authorization', 'Eligibility 270/271', 'Claims 837/835', 'ERA / EFT', 'CMS-0057-F APIs'],
-    desc: 'Automate the full payer-provider data loop. CMS mandate-compliant, FHIR-native, and live in weeks.',
+    title: 'Partner Integrations',
+    sub: 'B2B data flows, claims & reconciliation',
+    to: '/solutions/partner-integrations',
+    vendors: ['SAP Ariba', 'Coupa', 'SPS Commerce', 'TrueCommerce', 'OpenText', 'IBM Sterling'],
+    desc: 'Automate the full B2B data loop — EDI, invoices, orders, and reconciliation — reducing manual effort by up to 70%.',
   },
   {
-    title: 'Pharmacy & Specialty Integrations',
-    sub: 'ePrescribing, 340B, and PBM data unified',
-    to: '/solutions/pharmacy-integrations',
-    vendors: ['Surescripts', 'NCPDP SCRIPT', '340B Platforms', 'PBM Systems', 'Specialty Pharmacy'],
-    desc: 'End-to-end pharmacy data connectivity — from ePrescribing to 340B compliance to PBM claims reconciliation.',
+    title: 'Specialized Integrations',
+    sub: 'Domain-specific data connectors',
+    to: '/solutions/specialized-integrations',
+    vendors: ['Bloomberg', 'Plaid', 'MQTT Brokers', 'OPC-UA', 'Industry Registries', 'Vendor APIs'],
+    desc: 'Connectors for the domain-specific protocols, formats, and compliance requirements that generic tools miss.',
   },
 ];
 
@@ -93,7 +93,7 @@ export default function Solutions() {
           <div className="section-header">
             <div className="eyebrow">By Integration Type</div>
             <h2>Connect Any System. In Any Direction.</h2>
-            <p>Pre-built connectors and protocol support for every major data standard and vendor ecosystem — HL7, FHIR, EDI, REST, and beyond.</p>
+            <p>Pre-built connectors and protocol support for every major data standard and vendor ecosystem — EDI, REST, GraphQL, SOAP, and beyond.</p>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '2.5rem' }}>

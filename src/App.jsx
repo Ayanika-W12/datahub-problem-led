@@ -51,7 +51,12 @@ function AppRoutes() {
         <Route path="/platform/ai-readiness" element={<PlatformVertical slug="ai-readiness" />} />
         <Route path="/platform/workflow-orchestration" element={<PlatformVertical slug="workflow-orchestration" />} />
 
-        {/* Solution Sub-pages */}
+        {/* Solution Sub-pages — new industry-agnostic integration type routes */}
+        <Route path="/solutions/system-integrations" element={<SolutionPage slug="system-integrations" />} />
+        <Route path="/solutions/network-integrations" element={<SolutionPage slug="network-integrations" />} />
+        <Route path="/solutions/partner-integrations" element={<SolutionPage slug="partner-integrations" />} />
+        <Route path="/solutions/specialized-integrations" element={<SolutionPage slug="specialized-integrations" />} />
+        {/* Legacy healthcare routes — kept for backwards compatibility */}
         <Route path="/solutions/emr-integrations" element={<SolutionPage slug="emr-integrations" />} />
         <Route path="/solutions/hie-integrations" element={<SolutionPage slug="hie-integrations" />} />
         <Route path="/solutions/payer-integrations" element={<SolutionPage slug="payer-integrations" />} />

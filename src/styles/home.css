@@ -4,21 +4,21 @@
 
 /* ---- Industry Vertical Slider ---- */
 @keyframes slider-in {
-  from { transform: translateY(60%); opacity: 0; }
-  to   { transform: translateY(0);   opacity: 1; }
+  from { transform: translateY(100%); opacity: 0; filter: blur(2px); }
+  to   { transform: translateY(0);   opacity: 1; filter: blur(0); }
 }
 @keyframes slider-out {
-  from { transform: translateY(0);    opacity: 1; }
-  to   { transform: translateY(-60%); opacity: 0; }
+  from { transform: translateY(0);    opacity: 1; filter: blur(0); }
+  to   { transform: translateY(-100%); opacity: 0; filter: blur(2px); }
 }
 
 .industry-slider-wrap {
   display: inline-block;
   position: relative;
   overflow: hidden;
-  vertical-align: bottom;
-  min-width: 10ch;
-  min-height: 1.15em;
+  vertical-align: baseline;
+  min-width: 8ch;
+  line-height: 1.2;
 }
 
 .industry-slider-word {
@@ -32,19 +32,20 @@
 .industry-slider-word.slider-idle {
   transform: translateY(0);
   opacity: 1;
+  filter: blur(0);
 }
 
 /* Current word slides out upward */
 .industry-slider-word.slider-exit {
-  animation: slider-out 0.28s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: slider-out 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
 /* Next word slides in from below — positioned absolutely so it overlaps */
 .industry-slider-word.slider-enter {
   position: absolute;
   left: 0;
-  bottom: 0;
-  animation: slider-in 0.28s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  top: 0;
+  animation: slider-in 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
 /* ---- Hero ---- */
