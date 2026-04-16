@@ -419,13 +419,20 @@
    DARK ZONE — single continuous canvas for 3 dark sections
    ============================================================ */
 /* ---- Unified dark page background ---- */
-/* Set on the home page <main> so the entire page shares one backdrop */
+/* Set on <body> and main so white never bleeds through section gaps */
+body:has(main.home-page) {
+  background-color: #0b0820;
+}
+
 main.home-page {
-  background: #0b0820;
+  background-color: #0b0820;
   background-image:
-    radial-gradient(ellipse 80% 40% at 20% 10%, rgba(172,65,151,0.18) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 50% at 80% 60%, rgba(32,211,239,0.10) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 40% at 50% 90%, rgba(32,34,79,0.6) 0%, transparent 60%);
+    radial-gradient(ellipse 100% 30% at 15% 0%, rgba(172,65,151,0.16) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 40% at 85% 40%, rgba(32,211,239,0.09) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 35% at 50% 85%, rgba(20,20,60,0.7) 0%, transparent 65%);
+  /* Ensure it covers full height including all children */
+  min-height: 100vh;
+  isolation: isolate;
 }
 
 .dark-zone {
@@ -974,6 +981,91 @@ main.home-page {
 /* Orb glow is now handled by .dark-zone .dz-orb-purple */
 
 /* Header */
+/* ============================================================
+   PLATFORM REVEAL — typewriter headline over full-bleed hub
+   ============================================================ */
+.plt-reveal-section {
+  position: relative;
+  padding-bottom: 0;
+}
+
+/* Centred text sits above the hub diagram with proper breathing room */
+.plt-reveal-text {
+  text-align: center;
+  padding: 3rem 0 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.plt-reveal-headline {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: var(--font-black);
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  margin: 0.75rem 0 1rem;
+  text-wrap: balance;
+}
+
+.plt-reveal-sub {
+  font-size: var(--text-base);
+  color: rgba(255,255,255,0.45);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+/* Typewriter industry name */
+.industry-tw {
+  color: #20D3EF;
+  white-space: nowrap;
+  display: inline-block;
+  min-width: 16ch;
+  text-align: left;
+}
+
+.industry-tw-cursor {
+  display: inline-block;
+  animation: tw-blink 0.85s steps(1) infinite;
+  color: #20D3EF;
+  margin-left: 1px;
+}
+
+@keyframes tw-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Hub diagram — full-bleed, no card border, bleeds into dark background */
+.plt-hub-visual {
+  margin-bottom: 0;
+}
+
+.plt-hub-visual .capabilities-wrapper {
+  width: 100%;
+}
+
+.plt-hub-visual .capabilities-frame {
+  max-width: 100%;
+  min-height: 620px;
+  aspect-ratio: 16 / 9;
+}
+
+/* Scroll nudge below the hub */
+.plt-reveal-scroll-nudge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 1.5rem 0;
+}
+
+/* Legacy plt-header kept for safety */
 .plt-header {
   text-align: center;
   margin-bottom: 2rem;
@@ -985,22 +1077,6 @@ main.home-page {
   max-width: 520px;
   margin: 0.75rem auto 0;
   line-height: 1.65;
-}
-
-/* Hub visual inside the platform section — full width, taller than when it was a hero inset */
-.plt-hub-visual {
-  margin-bottom: 3rem;
-  /* No border, no card — bleeds into page background */
-}
-
-.plt-hub-visual .capabilities-wrapper {
-  width: 100%;
-}
-
-.plt-hub-visual .capabilities-frame {
-  max-width: 100%;
-  min-height: 580px;
-  aspect-ratio: 16 / 9;
 }
 .plt-header .eyebrow {
   color: rgba(255,255,255,0.55);
@@ -1894,7 +1970,8 @@ main.home-page {
 
 /* ---- Testimonials ---- */
 .testimonials-section {
-  background: var(--color-gray-50);
+  background: transparent;
+  border-top: 1px solid rgba(255,255,255,0.06);
 }
 
 .testimonials-grid {
@@ -5406,15 +5483,20 @@ main.home-page {
   margin-bottom: 0;
 }
 
-/* Quote Block */
+/* Quote Block — dark theme */
 .cs-quote-block {
   position: relative;
-  background: white;
+  background: rgba(255,255,255,0.04);
   border-radius: var(--radius-2xl);
   padding: 2rem 2rem 2rem 2.5rem;
-  border: 1px solid var(--color-gray-100);
+  border: 1px solid rgba(255,255,255,0.08);
   border-left: 4px solid var(--accent, var(--color-primary));
   margin: 0;
+  transition: background var(--transition-base), border-color var(--transition-base);
+}
+
+.cs-quote-block:hover {
+  background: rgba(255,255,255,0.07);
 }
 
 .cs-quote-decoration {
@@ -5428,13 +5510,13 @@ main.home-page {
   align-items: center;
   justify-content: center;
   color: white;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .cs-quote-text {
-  font-size: var(--text-lg);
+  font-size: var(--text-base);
   font-style: italic;
-  color: var(--color-gray-700);
+  color: rgba(255,255,255,0.65);
   line-height: 1.75;
   margin: 1rem 0 1.5rem;
 }
@@ -5461,13 +5543,13 @@ main.home-page {
   display: block;
   font-style: normal;
   font-weight: var(--font-bold);
-  color: var(--color-navy);
+  color: rgba(255,255,255,0.9);
   font-size: var(--text-sm);
 }
 
 .cs-quote-company {
   font-size: var(--text-xs);
-  color: var(--color-gray-500);
+  color: rgba(255,255,255,0.35);
 }
 
 /* Sidebar */

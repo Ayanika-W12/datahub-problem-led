@@ -319,6 +319,41 @@ function FadeIn({ children, delay = 0, className = '' }) {
   );
 }
 
+/* ---- Industry Typewriter Hook ---- */
+const INDUSTRIES = [
+  'Healthcare', 'Retail & Ecommerce', 'Insurance', 'HR Technology',
+  'Logistics', 'Financial Services', 'Life Sciences', 'Government',
+];
+
+function IndustryTypewriter() {
+  const [idx, setIdx] = useState(0);
+  const [displayed, setDisplayed] = useState('');
+  const [deleting, setDeleting] = useState(false);
+  const full = INDUSTRIES[idx];
+
+  useEffect(() => {
+    let timeout;
+    if (!deleting && displayed.length < full.length) {
+      timeout = setTimeout(() => setDisplayed(full.slice(0, displayed.length + 1)), 60);
+    } else if (!deleting && displayed.length === full.length) {
+      timeout = setTimeout(() => setDeleting(true), 2200);
+    } else if (deleting && displayed.length > 0) {
+      timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 30);
+    } else if (deleting && displayed.length === 0) {
+      setDeleting(false);
+      setIdx((i) => (i + 1) % INDUSTRIES.length);
+    }
+    return () => clearTimeout(timeout);
+  }, [displayed, deleting, full]);
+
+  return (
+    <span className="industry-tw">
+      {displayed}
+      <span className="industry-tw-cursor" aria-hidden="true">|</span>
+    </span>
+  );
+}
+
 /* ---- Problem Navigator Component ---- */
 function ProblemNavigator() {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -569,93 +604,106 @@ export default function Home() {
         <div className="platform-bg-grid" />
         <div className="container">
 
-          {/* Header */}
-          <FadeIn>
-            <div className="plt-header">
-              <div className="eyebrow">The Fix</div>
-              <h2>Seven Capabilities.<br />One Integrated Platform.</h2>
-              <p className="plt-header-sub">
-                One platform — connected to every system, across every industry. Pick a capability below to see exactly how it eliminates the problem.
-              </p>
-            </div>
-          </FadeIn>
+          {/* Industry-agnostic platform reveal — typewriter + hub diagram together */}
+          <div className="plt-reveal-section">
+            {/* Text layer — centred, above the hub */}
+            <FadeIn>
+              <div className="plt-reveal-text">
+                <div className="eyebrow">The Fix</div>
+                <h2 className="plt-reveal-headline">
+                  One platform that solves it<br />
+                  for <IndustryTypewriter />
+                </h2>
+                <p className="plt-reveal-sub">
+                  Seven integrated capabilities. One unified data hub. No rip-and-replace required.
+                </p>
+              </div>
+            </FadeIn>
 
-          {/* Orbital hub — full-width platform overview visual */}
-          <FadeIn delay={80}>
-            <div className="capabilities-wrapper plt-hub-visual">
-              <div className="capabilities-frame">
-                <div className="frame-grid-overlay" />
-                <div className="frame-particles" />
-                <div className="frame-orbital-ring" />
-                <div className="frame-content">
-                  <div className="frame-hub-area">
-                    <div className="frame-connections">
-                      <svg viewBox="0 0 1200 675" preserveAspectRatio="none" aria-hidden="true">
-                        <defs>
-                          <linearGradient id="grad1" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="600" y2="120">
-                            <stop offset="0%" stopColor="#20D3EF" stopOpacity="0" /><stop offset="50%" stopColor="#20D3EF" stopOpacity="1" /><stop offset="100%" stopColor="#20D3EF" stopOpacity="0" />
-                          </linearGradient>
-                          <linearGradient id="grad2" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="928" y2="210">
-                            <stop offset="0%" stopColor="#AC4197" stopOpacity="0" /><stop offset="50%" stopColor="#AC4197" stopOpacity="1" /><stop offset="100%" stopColor="#AC4197" stopOpacity="0" />
-                          </linearGradient>
-                          <linearGradient id="grad3" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="1009" y2="413">
-                            <stop offset="0%" stopColor="#02B164" stopOpacity="0" /><stop offset="50%" stopColor="#02B164" stopOpacity="1" /><stop offset="100%" stopColor="#02B164" stopOpacity="0" />
-                          </linearGradient>
-                          <linearGradient id="grad4" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="782" y2="576">
-                            <stop offset="0%" stopColor="#F17A42" stopOpacity="0" /><stop offset="50%" stopColor="#F17A42" stopOpacity="1" /><stop offset="100%" stopColor="#F17A42" stopOpacity="0" />
-                          </linearGradient>
-                          <linearGradient id="grad5" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="418" y2="576">
-                            <stop offset="0%" stopColor="#20D3EF" stopOpacity="0" /><stop offset="50%" stopColor="#20D3EF" stopOpacity="1" /><stop offset="100%" stopColor="#20D3EF" stopOpacity="0" />
-                          </linearGradient>
-                          <linearGradient id="grad6" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="191" y2="413">
-                            <stop offset="0%" stopColor="#AC4197" stopOpacity="0" /><stop offset="50%" stopColor="#AC4197" stopOpacity="1" /><stop offset="100%" stopColor="#AC4197" stopOpacity="0" />
-                          </linearGradient>
-                          <linearGradient id="grad7" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="272" y2="210">
-                            <stop offset="0%" stopColor="#02B164" stopOpacity="0" /><stop offset="50%" stopColor="#02B164" stopOpacity="1" /><stop offset="100%" stopColor="#02B164" stopOpacity="0" />
-                          </linearGradient>
-                        </defs>
-                        <path className="conn-base" d="M600 358 L600 120" />
-                        <path className="conn-glow" stroke="url(#grad1)" d="M600 358 L600 120" />
-                        <path className="conn-base" d="M600 358 L928 210" />
-                        <path className="conn-glow" stroke="url(#grad2)" d="M600 358 L928 210" style={{ animationDelay: '-1s' }} />
-                        <path className="conn-base" d="M600 358 L1009 413" />
-                        <path className="conn-glow" stroke="url(#grad3)" d="M600 358 L1009 413" style={{ animationDelay: '-2s' }} />
-                        <path className="conn-base" d="M600 358 L782 576" />
-                        <path className="conn-glow" stroke="url(#grad4)" d="M600 358 L782 576" style={{ animationDelay: '-3s' }} />
-                        <path className="conn-base" d="M600 358 L418 576" />
-                        <path className="conn-glow" stroke="url(#grad5)" d="M600 358 L418 576" style={{ animationDelay: '-4s' }} />
-                        <path className="conn-base" d="M600 358 L191 413" />
-                        <path className="conn-glow" stroke="url(#grad6)" d="M600 358 L191 413" style={{ animationDelay: '-5s' }} />
-                        <path className="conn-base" d="M600 358 L272 210" />
-                        <path className="conn-glow" stroke="url(#grad7)" d="M600 358 L272 210" style={{ animationDelay: '-6s' }} />
-                      </svg>
-                    </div>
-                    <div className="frame-center-core">
-                      <a className="core-link" href="#capability-tabs" onClick={(e) => { e.preventDefault(); document.getElementById('capability-tabs')?.scrollIntoView({ behavior: 'smooth' }); }} aria-label="Explore capabilities" />
-                      <div className="core-inner">
-                        <div className="core-kicker">Unified Architecture</div>
-                        <div className="core-title">AI Enterprise Data Hub</div>
+            {/* Orbital hub — full-bleed behind the text */}
+            <FadeIn delay={60}>
+              <div className="capabilities-wrapper plt-hub-visual">
+                <div className="capabilities-frame">
+                  <div className="frame-grid-overlay" />
+                  <div className="frame-particles" />
+                  <div className="frame-orbital-ring" />
+                  <div className="frame-content">
+                    <div className="frame-hub-area">
+                      <div className="frame-connections">
+                        <svg viewBox="0 0 1200 675" preserveAspectRatio="none" aria-hidden="true">
+                          <defs>
+                            <linearGradient id="grad1" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="600" y2="120">
+                              <stop offset="0%" stopColor="#20D3EF" stopOpacity="0" /><stop offset="50%" stopColor="#20D3EF" stopOpacity="1" /><stop offset="100%" stopColor="#20D3EF" stopOpacity="0" />
+                            </linearGradient>
+                            <linearGradient id="grad2" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="928" y2="210">
+                              <stop offset="0%" stopColor="#AC4197" stopOpacity="0" /><stop offset="50%" stopColor="#AC4197" stopOpacity="1" /><stop offset="100%" stopColor="#AC4197" stopOpacity="0" />
+                            </linearGradient>
+                            <linearGradient id="grad3" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="1009" y2="413">
+                              <stop offset="0%" stopColor="#02B164" stopOpacity="0" /><stop offset="50%" stopColor="#02B164" stopOpacity="1" /><stop offset="100%" stopColor="#02B164" stopOpacity="0" />
+                            </linearGradient>
+                            <linearGradient id="grad4" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="782" y2="576">
+                              <stop offset="0%" stopColor="#F17A42" stopOpacity="0" /><stop offset="50%" stopColor="#F17A42" stopOpacity="1" /><stop offset="100%" stopColor="#F17A42" stopOpacity="0" />
+                            </linearGradient>
+                            <linearGradient id="grad5" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="418" y2="576">
+                              <stop offset="0%" stopColor="#20D3EF" stopOpacity="0" /><stop offset="50%" stopColor="#20D3EF" stopOpacity="1" /><stop offset="100%" stopColor="#20D3EF" stopOpacity="0" />
+                            </linearGradient>
+                            <linearGradient id="grad6" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="191" y2="413">
+                              <stop offset="0%" stopColor="#AC4197" stopOpacity="0" /><stop offset="50%" stopColor="#AC4197" stopOpacity="1" /><stop offset="100%" stopColor="#AC4197" stopOpacity="0" />
+                            </linearGradient>
+                            <linearGradient id="grad7" gradientUnits="userSpaceOnUse" x1="600" y1="358" x2="272" y2="210">
+                              <stop offset="0%" stopColor="#02B164" stopOpacity="0" /><stop offset="50%" stopColor="#02B164" stopOpacity="1" /><stop offset="100%" stopColor="#02B164" stopOpacity="0" />
+                            </linearGradient>
+                          </defs>
+                          <path className="conn-base" d="M600 358 L600 120" />
+                          <path className="conn-glow" stroke="url(#grad1)" d="M600 358 L600 120" />
+                          <path className="conn-base" d="M600 358 L928 210" />
+                          <path className="conn-glow" stroke="url(#grad2)" d="M600 358 L928 210" style={{ animationDelay: '-1s' }} />
+                          <path className="conn-base" d="M600 358 L1009 413" />
+                          <path className="conn-glow" stroke="url(#grad3)" d="M600 358 L1009 413" style={{ animationDelay: '-2s' }} />
+                          <path className="conn-base" d="M600 358 L782 576" />
+                          <path className="conn-glow" stroke="url(#grad4)" d="M600 358 L782 576" style={{ animationDelay: '-3s' }} />
+                          <path className="conn-base" d="M600 358 L418 576" />
+                          <path className="conn-glow" stroke="url(#grad5)" d="M600 358 L418 576" style={{ animationDelay: '-4s' }} />
+                          <path className="conn-base" d="M600 358 L191 413" />
+                          <path className="conn-glow" stroke="url(#grad6)" d="M600 358 L191 413" style={{ animationDelay: '-5s' }} />
+                          <path className="conn-base" d="M600 358 L272 210" />
+                          <path className="conn-glow" stroke="url(#grad7)" d="M600 358 L272 210" style={{ animationDelay: '-6s' }} />
+                        </svg>
                       </div>
-                    </div>
-                    <div className="frame-pillars">
-                      {capabilities.map((cap, i) => (
-                        <Link
-                          key={cap.num}
-                          to={cap.to}
-                          className={`frame-pillar p${i + 1}`}
-                          style={{ '--accent': cap.color === 'cyan' ? '#20D3EF' : cap.color === 'primary' ? '#AC4197' : cap.color === 'green' ? '#02B164' : cap.color === 'orange' ? '#F17A42' : '#7b82e0' }}
-                        >
-                          <div className="cap-num">{cap.num}</div>
-                          <div className="pillar-label">{cap.label}</div>
-                          <div className="pillar-micro">{cap.bullets[0]}</div>
-                        </Link>
-                      ))}
+                      <div className="frame-center-core">
+                        <div className="core-inner">
+                          <div className="core-kicker">Unified Architecture</div>
+                          <div className="core-title">AI Enterprise Data Hub</div>
+                        </div>
+                      </div>
+                      <div className="frame-pillars">
+                        {capabilities.map((cap, i) => (
+                          <Link
+                            key={cap.num}
+                            to={cap.to}
+                            className={`frame-pillar p${i + 1}`}
+                            style={{ '--accent': cap.color === 'cyan' ? '#20D3EF' : cap.color === 'primary' ? '#AC4197' : cap.color === 'green' ? '#02B164' : cap.color === 'orange' ? '#F17A42' : '#7b82e0' }}
+                          >
+                            <div className="cap-num">{cap.num}</div>
+                            <div className="pillar-label">{cap.label}</div>
+                            <div className="pillar-micro">{cap.bullets[0]}</div>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </FadeIn>
+
+            {/* Scroll nudge into the capability tabs */}
+            <div className="plt-reveal-scroll-nudge">
+              <span>Explore each capability</span>
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M10 3v14M4 11l6 6 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </div>
-          </FadeIn>
+          </div>
 
           {/* Icon selector row */}
           <FadeIn>
@@ -765,13 +813,11 @@ export default function Home() {
         </div>
       </section>
 
-      </div>{/* end .dark-zone */}
-
-      {/* TESTIMONIALS */}
+      {/* TESTIMONIALS — inside dark-zone so background stays seamless */}
       <section className="section testimonials-section">
         <div className="container">
           <FadeIn>
-            <div className="section-header centered">
+            <div className="section-header centered dark">
               <div className="eyebrow">Proof It Works</div>
               <h2>Problems Solved. Results Measured.</h2>
               <p>Organizations across industries eliminated their biggest data problems with Vorro — here&apos;s what happened next.</p>
@@ -800,13 +846,15 @@ export default function Home() {
           </div>
           <FadeIn>
             <div className="case-studies-cta">
-              <Link to="/case-studies" className="btn btn-secondary btn-lg">
+              <Link to="/case-studies" className="btn btn-ghost-white btn-lg">
                 View All Case Studies <ArrowRight size={16} />
               </Link>
             </div>
           </FadeIn>
         </div>
       </section>
+
+      </div>{/* end .dark-zone */}
 
       {/* ==========================================
           CLOSING DARK ZONE — Free Tools + Final CTA
