@@ -26,6 +26,7 @@ const navLinks = [
           { label: 'Healthcare', to: '/solutions/healthcare', desc: 'Health systems, HIEs, payers & providers' },
           { label: 'eCommerce & Retail', to: '/solutions/ecommerce', desc: 'Unified product & order data integration' },
           { label: 'Insurance', to: '/solutions/insurance', desc: 'Claims, eligibility & policy data flows' },
+          { label: 'HR Tech', to: '/solutions/hr-tech', desc: 'HRIS, payroll, benefits & compliance data' },
         ],
       },
     ],

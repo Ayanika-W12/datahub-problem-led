@@ -64,6 +64,7 @@ function AppRoutes() {
         <Route path="/solutions/healthcare" element={<IndustryPage industry="healthcare" />} />
         <Route path="/solutions/ecommerce" element={<IndustryPage industry="ecommerce" />} />
         <Route path="/solutions/insurance" element={<IndustryPage industry="insurance" />} />
+        <Route path="/solutions/hr-tech" element={<IndustryPage industry="hr-tech" />} />
 
         {/* Use Case pages */}
         <Route path="/solutions/use-case/340b-compliance-without-the-roadblocks" element={<UseCasePage slug="340b" />} />

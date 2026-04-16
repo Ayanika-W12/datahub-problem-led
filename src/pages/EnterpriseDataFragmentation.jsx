@@ -118,12 +118,13 @@ export default function EnterpriseDataFragmentation() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
+              gridTemplateColumns: 'repeat(2, 1fr)',
               gap: '1.5rem',
+              alignItems: 'stretch',
             }}
           >
             {findings.map(({ stat, finding }, i) => (
-              <FadeIn key={stat + i} delay={i * 70}>
+              <FadeIn key={stat + i} delay={i * 70} style={{ display: 'flex' }}>
                 <div
                   style={{
                     display: 'flex',
@@ -134,6 +135,7 @@ export default function EnterpriseDataFragmentation() {
                     border: '1px solid var(--color-gray-100)',
                     borderRadius: 'var(--radius-xl)',
                     boxShadow: 'var(--shadow-sm)',
+                    width: '100%',
                   }}
                 >
                   <div
@@ -235,8 +237,8 @@ export default function EnterpriseDataFragmentation() {
               </h2>
             </div>
           </FadeIn>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '1.25rem' }}>
-            {[
+          {(() => {
+            const insights = [
               {
                 insight: 'Platform consolidation over point-to-point',
                 detail: 'Organizations that have successfully scaled AI are 3x more likely to have consolidated onto a centralized integration platform rather than managing dozens of individual system connections.',
@@ -249,35 +251,49 @@ export default function EnterpriseDataFragmentation() {
                 insight: 'Managed services reduce time-to-value',
                 detail: 'Firms using managed integration services consistently report faster deployment timelines and lower total cost of ownership compared to custom in-house builds.',
               },
-            ].map(({ insight, detail }, i) => (
-              <FadeIn key={insight} delay={i * 70}>
-                <div
-                  style={{
-                    padding: '1.75rem',
-                    background: '#fff',
-                    border: '1px solid var(--color-gray-100)',
-                    borderRadius: 'var(--radius-xl)',
-                    boxShadow: 'var(--shadow-sm)',
-                  }}
-                >
-                  <div
-                    style={{
-                      width: '32px', height: '3px',
-                      background: 'var(--color-cyan)',
-                      borderRadius: '2px',
-                      marginBottom: '1rem',
-                    }}
-                  />
-                  <h3 style={{ fontSize: 'var(--text-base)', fontWeight: 'var(--font-bold)', color: 'var(--color-navy)', marginBottom: '0.6rem' }}>
-                    {insight}
-                  </h3>
-                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-gray-600)', lineHeight: 1.7, margin: 0 }}>
-                    {detail}
-                  </p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
+            ];
+            const isOddTotal = insights.length % 2 !== 0;
+            return (
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.25rem' }}>
+                {insights.map(({ insight, detail }, i) => {
+                  const isLastOdd = isOddTotal && i === insights.length - 1;
+                  return (
+                    <FadeIn
+                      key={insight}
+                      delay={i * 70}
+                      style={isLastOdd ? { gridColumn: '1 / -1' } : {}}
+                    >
+                      <div
+                        style={{
+                          padding: '1.75rem',
+                          background: '#fff',
+                          border: '1px solid var(--color-gray-100)',
+                          borderRadius: 'var(--radius-xl)',
+                          boxShadow: 'var(--shadow-sm)',
+                          maxWidth: isLastOdd ? '50%' : undefined,
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: '32px', height: '3px',
+                            background: 'var(--color-cyan)',
+                            borderRadius: '2px',
+                            marginBottom: '1rem',
+                          }}
+                        />
+                        <h3 style={{ fontSize: 'var(--text-base)', fontWeight: 'var(--font-bold)', color: 'var(--color-navy)', marginBottom: '0.6rem' }}>
+                          {insight}
+                        </h3>
+                        <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-gray-600)', lineHeight: 1.7, margin: 0 }}>
+                          {detail}
+                        </p>
+                      </div>
+                    </FadeIn>
+                  );
+                })}
+              </div>
+            );
+          })()}
         </div>
       </section>
 

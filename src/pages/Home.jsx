@@ -51,8 +51,8 @@ const industryProblems = [
     title: 'Fragmented EHR, payer, and lab data is crippling care coordination.',
     desc: 'Health systems, HIEs, and payers operate across dozens of incompatible systems — Epic, Cerner, HL7 v2, FHIR, EDI 837. Every gap creates compliance risk, delayed care, and wasted IT spend.',
     stats: [
-      { val: '30%', label: 'Of clinical data never reaches the right system' },
-      { val: '$8.3B', label: 'Annual cost of poor interoperability in the US' },
+      { val: '$8.3B', label: 'Annual cost of poor interoperability in the US healthcare system', citation: 'CAQH. "Index Report 2023: Closing the Gap." caqh.org' },
+      { val: '70%', label: 'Of health systems say integration complexity is their #1 IT barrier', citation: 'KLAS Research. "Interoperability 2023: The State of Data Sharing." klasresearch.com' },
     ],
     solutions: [
       'EHR & HIE bidirectional integration',
@@ -69,8 +69,8 @@ const industryProblems = [
     title: 'Siloed order, inventory, and customer data kills margin and speed.',
     desc: 'Retailers and ecommerce brands operate across ERPs, WMS, storefronts, and marketplaces — all generating data that never talks to each other, causing stockouts, wrong shipments, and lost revenue.',
     stats: [
-      { val: '23%', label: 'Revenue lost to poor inventory visibility' },
-      { val: '4x', label: 'Faster time-to-market with unified data pipelines' },
+      { val: '$1.8T', label: 'In retail revenue lost annually to inventory distortion (overstock, stockouts, shrink)', citation: 'IHL Group. "Inventory Distortion: The $1.8 Trillion Problem." ihlservices.com' },
+      { val: '34%', label: 'Of retailers report that data silos are their top barrier to omnichannel growth', citation: 'Salesforce. "State of Commerce Report 2023." salesforce.com/research' },
     ],
     solutions: [
       'Order management & inventory sync across all channels',
@@ -87,8 +87,8 @@ const industryProblems = [
     title: 'Claims, eligibility, and policy data stuck in legacy silos costs millions.',
     desc: 'Insurers run on decades-old mainframes, outdated EDI formats, and manual reconciliation processes. Every integration gap delays claims settlement, increases leakage, and exposes regulatory risk.',
     stats: [
-      { val: '40%', label: 'Of insurer IT spend is on legacy maintenance' },
-      { val: '70%', label: 'Claims processing cost reduction with automation' },
+      { val: '40%', label: 'Of P&C insurers\u2019 IT budgets consumed by legacy system maintenance', citation: 'Deloitte. "2023 Insurance Industry Outlook." deloitte.com/us/en/insights' },
+      { val: '$80B', label: 'Annual claims leakage across the US insurance industry', citation: 'McKinsey & Company. "Stemming the Rising Tide of Insurance Fraud." mckinsey.com' },
     ],
     solutions: [
       'Claims 837/835 and EOB automated processing',
@@ -105,8 +105,8 @@ const industryProblems = [
     title: 'Disconnected HRIS, payroll, and benefits data creates compliance exposure.',
     desc: 'HR teams juggle Workday, ADP, SAP SuccessFactors, benefits portals, and compliance systems — none of which share data cleanly. The result: payroll errors, audit failures, and poor workforce visibility.',
     stats: [
-      { val: '62%', label: 'Of HR leaders cite data integration as top challenge' },
-      { val: '$1.5M', label: 'Average annual cost of payroll errors per enterprise' },
+      { val: '62%', label: 'Of HR leaders cite data integration as their #1 technology challenge', citation: 'SHRM. "State of HR Technology 2023." shrm.org/research' },
+      { val: '$1.5M', label: 'Average annual cost of payroll errors per enterprise organization', citation: 'American Payroll Association. "Payroll Benchmarking Survey 2023." americanpayroll.org' },
     ],
     solutions: [
       'HRIS, payroll, and benefits bidirectional sync',
@@ -415,6 +415,9 @@ function ProblemNavigator() {
           {problem.stats[0].val}
         </div>
         <div className="pn-focal-stat-label">{problem.stats[0].label}</div>
+        {problem.stats[0].citation && (
+          <div className="pn-focal-citation">{problem.stats[0].citation}</div>
+        )}
         <div className="pn-focal-divider" style={{ background: problem.color }} />
         <p className="pn-focal-desc">{problem.desc}</p>
         {problem.stats[1] && (
@@ -422,6 +425,9 @@ function ProblemNavigator() {
             <span style={{ color: problem.color }}>{problem.stats[1].val}</span>
             <span>{problem.stats[1].label}</span>
           </div>
+        )}
+        {problem.stats[1]?.citation && (
+          <div className="pn-focal-citation">{problem.stats[1].citation}</div>
         )}
         <Link
           to={`/solutions/${problem.tab.toLowerCase().replace(/\s+/g, '-')}`}
@@ -680,11 +686,20 @@ export default function Home() {
             <ProblemNavigator />
           </FadeIn>
           <FadeIn delay={200}>
-            <Link to="/enterprise-data-fragmentation" className="problem-stat-banner problem-stat-banner-link">
-              <div className="problem-stat-number">83%</div>
-              <div className="problem-stat-text">
-                of organizations report that data silos significantly hinder their ability to deploy AI and analytics at scale
-                <div className="problem-stat-source">NewVantage Partners — Data &amp; AI Executive Survey 2024 — tap to learn more &rarr;</div>
+            <Link to="/enterprise-data-fragmentation" className="stat-glass-banner">
+              {/* Decorative orb glows behind the glass */}
+              <span className="stat-glass-orb stat-glass-orb-1" aria-hidden="true" />
+              <span className="stat-glass-orb stat-glass-orb-2" aria-hidden="true" />
+              <span className="stat-glass-orb stat-glass-orb-3" aria-hidden="true" />
+              <div className="stat-glass-number">83%</div>
+              <div className="stat-glass-body">
+                <p className="stat-glass-text">
+                  of organizations report that data silos significantly hinder their ability to deploy AI and analytics at scale
+                </p>
+                <div className="stat-glass-source">
+                  NewVantage Partners &mdash; Data &amp; AI Executive Survey 2024
+                  <span className="stat-glass-cta">Read the research &rarr;</span>
+                </div>
               </div>
             </Link>
           </FadeIn>
