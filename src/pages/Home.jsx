@@ -427,7 +427,7 @@ function ProblemNavigator() {
           <div className="pn-focal-citation">
             {problem.stats[0].url ? (
               <a href={problem.stats[0].url} target="_blank" rel="noopener noreferrer" className="pn-focal-citation-link">
-                {problem.stats[0].citation} &nearr;
+                {problem.stats[0].citation} ↗
               </a>
             ) : problem.stats[0].citation}
           </div>
@@ -444,7 +444,7 @@ function ProblemNavigator() {
           <div className="pn-focal-citation">
             {problem.stats[1].url ? (
               <a href={problem.stats[1].url} target="_blank" rel="noopener noreferrer" className="pn-focal-citation-link">
-                {problem.stats[1].citation} &nearr;
+                {problem.stats[1].citation} ↗
               </a>
             ) : problem.stats[1].citation}
           </div>
