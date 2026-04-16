@@ -43,6 +43,82 @@ const problems = [
   },
 ];
 
+/* ---- Problem Navigator Data ---- */
+const industryProblems = [
+  {
+    tab: 'Healthcare',
+    category: 'Healthcare Data Complexity',
+    title: 'Fragmented EHR, payer, and lab data is crippling care coordination.',
+    desc: 'Health systems, HIEs, and payers operate across dozens of incompatible systems — Epic, Cerner, HL7 v2, FHIR, EDI 837. Every gap creates compliance risk, delayed care, and wasted IT spend.',
+    stats: [
+      { val: '30%', label: 'Of clinical data never reaches the right system' },
+      { val: '$8.3B', label: 'Annual cost of poor interoperability in the US' },
+    ],
+    solutions: [
+      'EHR & HIE bidirectional integration',
+      'FHIR R4 and HL7 v2/v3 compliance automation',
+      'Prior auth & claims workflow orchestration',
+      'Real-time patient data governance & audit trails',
+      'CMS mandate readiness (ONC, Cures Act, CMS-0057-F)',
+    ],
+    color: '#20D3EF',
+  },
+  {
+    tab: 'Ecommerce',
+    category: 'Ecommerce Operational Data',
+    title: 'Siloed order, inventory, and customer data kills margin and speed.',
+    desc: 'Retailers and ecommerce brands operate across ERPs, WMS, storefronts, and marketplaces — all generating data that never talks to each other, causing stockouts, wrong shipments, and lost revenue.',
+    stats: [
+      { val: '23%', label: 'Revenue lost to poor inventory visibility' },
+      { val: '4x', label: 'Faster time-to-market with unified data pipelines' },
+    ],
+    solutions: [
+      'Order management & inventory sync across all channels',
+      'Marketplace & ERP data unification (Amazon, Shopify, SAP)',
+      'Real-time fulfillment and returns data orchestration',
+      'Customer 360 across CRM, DTC, and wholesale',
+      'Automated EDI trading partner onboarding',
+    ],
+    color: '#AC4197',
+  },
+  {
+    tab: 'Insurance',
+    category: 'Insurance Data Fragmentation',
+    title: 'Claims, eligibility, and policy data stuck in legacy silos costs millions.',
+    desc: 'Insurers run on decades-old mainframes, outdated EDI formats, and manual reconciliation processes. Every integration gap delays claims settlement, increases leakage, and exposes regulatory risk.',
+    stats: [
+      { val: '40%', label: 'Of insurer IT spend is on legacy maintenance' },
+      { val: '70%', label: 'Claims processing cost reduction with automation' },
+    ],
+    solutions: [
+      'Claims 837/835 and EOB automated processing',
+      'Eligibility 270/271 real-time verification',
+      'Policy and premium data unification across systems',
+      'Regulatory compliance reporting (NAIC, state mandates)',
+      'Fraud detection data pipelines and audit trails',
+    ],
+    color: '#4CAF50',
+  },
+  {
+    tab: 'HR Tech',
+    category: 'HR & Workforce Data Chaos',
+    title: 'Disconnected HRIS, payroll, and benefits data creates compliance exposure.',
+    desc: 'HR teams juggle Workday, ADP, SAP SuccessFactors, benefits portals, and compliance systems — none of which share data cleanly. The result: payroll errors, audit failures, and poor workforce visibility.',
+    stats: [
+      { val: '62%', label: 'Of HR leaders cite data integration as top challenge' },
+      { val: '$1.5M', label: 'Average annual cost of payroll errors per enterprise' },
+    ],
+    solutions: [
+      'HRIS, payroll, and benefits bidirectional sync',
+      'Workforce analytics and headcount reporting pipelines',
+      'New hire onboarding data orchestration',
+      'ACA, ERISA, and labor compliance automation',
+      'Employee 360 across all HR systems',
+    ],
+    color: '#F59E0B',
+  },
+];
+
 const capabilities = [
   {
     num: '01',
@@ -248,28 +324,122 @@ function FadeIn({ children, delay = 0, className = '' }) {
 
 /* ---- Vertical Industry Slider ---- */
 function IndustrySlider() {
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [animating, setAnimating] = useState(false);
+  const [current, setCurrent] = useState(0);
+  const [next, setNext] = useState(null);
+  const [phase, setPhase] = useState('idle'); // 'idle' | 'animating'
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setAnimating(true);
-      setTimeout(() => {
-        setActiveIdx((prev) => (prev + 1) % INDUSTRIES.length);
-        setAnimating(false);
-      }, 480);
+      const nextIdx = (current + 1) % INDUSTRIES.length;
+      setNext(nextIdx);
+      setPhase('animating');
+      const timeout = setTimeout(() => {
+        setCurrent(nextIdx);
+        setNext(null);
+        setPhase('idle');
+      }, 500);
+      return () => clearTimeout(timeout);
     }, 2800);
     return () => clearInterval(interval);
-  }, []);
+  }, [current]);
 
   return (
     <span className="industry-slider-wrap" aria-live="polite" aria-atomic="true">
+      {/* Current word — slides up and fades out when animating */}
       <span
-        className={`industry-slider-word${animating ? ' industry-slider-exit' : ' industry-slider-enter'}`}
+        key={`cur-${current}`}
+        className={`industry-slider-word${phase === 'animating' ? ' slider-exit' : ' slider-idle'}`}
       >
-        {INDUSTRIES[activeIdx]}
+        {INDUSTRIES[current]}
       </span>
+      {/* Next word — slides up from below and fades in when animating */}
+      {phase === 'animating' && next !== null && (
+        <span
+          key={`nxt-${next}`}
+          className="industry-slider-word slider-enter"
+        >
+          {INDUSTRIES[next]}
+        </span>
+      )}
     </span>
+  );
+}
+
+/* ---- Problem Navigator Component ---- */
+function ProblemNavigator() {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [animating, setAnimating] = useState(false);
+  const [displayIdx, setDisplayIdx] = useState(0);
+  const problem = industryProblems[displayIdx];
+
+  const switchTo = (idx) => {
+    if (idx === activeIdx || animating) return;
+    setAnimating(true);
+    setTimeout(() => {
+      setDisplayIdx(idx);
+      setActiveIdx(idx);
+      setAnimating(false);
+    }, 220);
+  };
+
+  return (
+    <div className="prob-nav">
+      {/* Tabs */}
+      <div className="prob-nav-tabs" role="tablist">
+        {industryProblems.map((p, i) => (
+          <button
+            key={p.tab}
+            role="tab"
+            aria-selected={i === activeIdx}
+            className={`prob-nav-tab${i === activeIdx ? ' prob-nav-tab-active' : ''}`}
+            style={i === activeIdx ? { '--tab-color': p.color } : {}}
+            onClick={() => switchTo(i)}
+          >
+            {p.tab}
+          </button>
+        ))}
+      </div>
+
+      {/* Detail panel */}
+      <div className={`prob-nav-panel${animating ? ' prob-nav-panel-exit' : ' prob-nav-panel-enter'}`}>
+        <div className="prob-nav-left">
+          <div className="prob-nav-category" style={{ color: problem.color }}>
+            {problem.category}
+          </div>
+          <h3 className="prob-nav-title">{problem.title}</h3>
+          <p className="prob-nav-desc">{problem.desc}</p>
+          <div className="prob-nav-stats">
+            {problem.stats.map((s) => (
+              <div key={s.label} className="prob-nav-stat">
+                <strong style={{ color: problem.color }}>{s.val}</strong>
+                <span>{s.label}</span>
+              </div>
+            ))}
+          </div>
+          <Link
+            to={`/solutions/${problem.tab.toLowerCase().replace(/\s+/g, '-')}`}
+            className="prob-nav-link"
+            style={{ color: problem.color }}
+          >
+            See how Vorro solves this <ArrowRight size={14} />
+          </Link>
+        </div>
+
+        <div className="prob-nav-right">
+          <div className="prob-nav-solutions-label">How Vorro fixes it</div>
+          <ul className="prob-nav-solutions">
+            {problem.solutions.map((s, i) => (
+              <li key={s} style={{ animationDelay: `${i * 60}ms` }}>
+                <span className="prob-nav-check" style={{ background: `${problem.color}20`, color: problem.color }}>
+                  <CheckCircle2 size={14} />
+                </span>
+                {s}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -302,9 +472,9 @@ export default function Home() {
               </span>
             </div>
             <h1 className="hero-headline">
-              The AI-Native Data Orchestration<br />
-              <span className="hero-headline-accent">Platform,</span> Built for{' '}
-              <IndustrySlider />
+              The AI-Native Data Orchestration{' '}
+              <span className="hero-headline-accent">Platform,</span>
+              <br />Built for <IndustrySlider />
             </h1>
             <p className="hero-sub">
               Stop chasing data. Vorro connects, monitors, and automates your enterprise data
@@ -482,33 +652,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PROBLEM STATEMENT */}
-      <section className="section bg-light problem-section">
+      {/* PROBLEM NAVIGATOR */}
+      <section className="section bg-light prob-nav-section">
         <div className="container">
           <FadeIn>
             <div className="section-header centered">
               <div className="eyebrow">The Challenge</div>
-              <h2>Enterprise Data Is <em>Still</em> Fragmented</h2>
+              <h2>What&apos;s the biggest data problem costing your organization?</h2>
               <p>
-                Organizations across every industry struggle with disconnected systems, siloed data, and manual integration work.
-                The result: AI initiatives stall, compliance gaps emerge, and operational efficiency suffers.
+                Pick your industry. We&apos;ll show you the real cost, the root cause, and exactly how Vorro fixes it.
               </p>
             </div>
           </FadeIn>
-          <div className="problem-grid">
-            {problems.map((p, i) => (
-              <FadeIn key={p.title} delay={i * 80}>
-                <div className="problem-card">
-                  <div className="icon-box icon-box-primary icon-box-lg">
-                    {p.icon}
-                  </div>
-                  <h3>{p.title}</h3>
-                  <p>{p.desc}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-          <FadeIn>
+          <FadeIn delay={100}>
+            <ProblemNavigator />
+          </FadeIn>
+          <FadeIn delay={200}>
             <Link to="/enterprise-data-fragmentation" className="problem-stat-banner problem-stat-banner-link">
               <div className="problem-stat-number">83%</div>
               <div className="problem-stat-text">
