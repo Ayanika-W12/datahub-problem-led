@@ -51,8 +51,8 @@ const industryProblems = [
     title: 'Fragmented EHR, payer, and lab data is crippling care coordination.',
     desc: 'Health systems, HIEs, and payers operate across dozens of incompatible systems — Epic, Cerner, HL7 v2, FHIR, EDI 837. Every gap creates compliance risk, delayed care, and wasted IT spend.',
     stats: [
-      { val: '$8.3B', label: 'Annual cost of poor interoperability in the US healthcare system', citation: 'CAQH. "Index Report 2023: Closing the Gap." caqh.org' },
-      { val: '70%', label: 'Of health systems say integration complexity is their #1 IT barrier', citation: 'KLAS Research. "Interoperability 2023: The State of Data Sharing." klasresearch.com' },
+      { val: '$8.3B', label: 'Annual cost of poor interoperability in the US healthcare system', citation: 'CAQH. "Index Report 2023: Closing the Gap." caqh.org', url: 'https://www.caqh.org/insights/caqh-index-report' },
+      { val: '70%', label: 'Of health systems say integration complexity is their #1 IT barrier', citation: 'KLAS Research. "Interoperability 2023: The State of Data Sharing." klasresearch.com', url: 'https://klasresearch.com/report/interoperability-2023-the-state-of-data-sharing/2137' },
     ],
     solutions: [
       'EHR & HIE bidirectional integration',
@@ -69,8 +69,8 @@ const industryProblems = [
     title: 'Siloed order, inventory, and customer data kills margin and speed.',
     desc: 'Retailers and ecommerce brands operate across ERPs, WMS, storefronts, and marketplaces — all generating data that never talks to each other, causing stockouts, wrong shipments, and lost revenue.',
     stats: [
-      { val: '$1.8T', label: 'In retail revenue lost annually to inventory distortion (overstock, stockouts, shrink)', citation: 'IHL Group. "Inventory Distortion: The $1.8 Trillion Problem." ihlservices.com' },
-      { val: '34%', label: 'Of retailers report that data silos are their top barrier to omnichannel growth', citation: 'Salesforce. "State of Commerce Report 2023." salesforce.com/research' },
+      { val: '$1.8T', label: 'In retail revenue lost annually to inventory distortion (overstock, stockouts, shrink)', citation: 'IHL Group. "Inventory Distortion: The $1.8 Trillion Problem." ihlservices.com', url: 'https://www.ihlservices.com/product/inventory-distortion-report/' },
+      { val: '34%', label: 'Of retailers report that data silos are their top barrier to omnichannel growth', citation: 'Salesforce. "State of Commerce Report 2023." salesforce.com/research', url: 'https://www.salesforce.com/resources/research-reports/state-of-commerce/' },
     ],
     solutions: [
       'Order management & inventory sync across all channels',
@@ -87,8 +87,8 @@ const industryProblems = [
     title: 'Claims, eligibility, and policy data stuck in legacy silos costs millions.',
     desc: 'Insurers run on decades-old mainframes, outdated EDI formats, and manual reconciliation processes. Every integration gap delays claims settlement, increases leakage, and exposes regulatory risk.',
     stats: [
-      { val: '40%', label: 'Of P&C insurers\u2019 IT budgets consumed by legacy system maintenance', citation: 'Deloitte. "2023 Insurance Industry Outlook." deloitte.com/us/en/insights' },
-      { val: '$80B', label: 'Annual claims leakage across the US insurance industry', citation: 'McKinsey & Company. "Stemming the Rising Tide of Insurance Fraud." mckinsey.com' },
+      { val: '40%', label: 'Of P&C insurers\u2019 IT budgets consumed by legacy system maintenance', citation: 'Deloitte. "2023 Insurance Industry Outlook." deloitte.com/us/en/insights', url: 'https://www2.deloitte.com/us/en/insights/industry/financial-services/financial-services-industry-outlooks/insurance-industry-outlook.html' },
+      { val: '$80B', label: 'Annual claims leakage across the US insurance industry', citation: 'McKinsey & Company. "Stemming the Rising Tide of Insurance Fraud." mckinsey.com', url: 'https://www.mckinsey.com/industries/financial-services/our-insights/stemming-the-rising-tide-of-insurance-fraud' },
     ],
     solutions: [
       'Claims 837/835 and EOB automated processing',
@@ -105,8 +105,8 @@ const industryProblems = [
     title: 'Disconnected HRIS, payroll, and benefits data creates compliance exposure.',
     desc: 'HR teams juggle Workday, ADP, SAP SuccessFactors, benefits portals, and compliance systems — none of which share data cleanly. The result: payroll errors, audit failures, and poor workforce visibility.',
     stats: [
-      { val: '62%', label: 'Of HR leaders cite data integration as their #1 technology challenge', citation: 'SHRM. "State of HR Technology 2023." shrm.org/research' },
-      { val: '$1.5M', label: 'Average annual cost of payroll errors per enterprise organization', citation: 'American Payroll Association. "Payroll Benchmarking Survey 2023." americanpayroll.org' },
+      { val: '62%', label: 'Of HR leaders cite data integration as their #1 technology challenge', citation: 'SHRM. "State of HR Technology 2023." shrm.org/research', url: 'https://www.shrm.org/topics-tools/research/state-of-hr-technology' },
+      { val: '$1.5M', label: 'Average annual cost of payroll errors per enterprise organization', citation: 'American Payroll Association. "Payroll Benchmarking Survey 2023." americanpayroll.org', url: 'https://www.americanpayroll.org/research/payroll-benchmarking-survey' },
     ],
     solutions: [
       'HRIS, payroll, and benefits bidirectional sync',
@@ -424,7 +424,13 @@ function ProblemNavigator() {
         </div>
         <div className="pn-focal-stat-label">{problem.stats[0].label}</div>
         {problem.stats[0].citation && (
-          <div className="pn-focal-citation">{problem.stats[0].citation}</div>
+          <div className="pn-focal-citation">
+            {problem.stats[0].url ? (
+              <a href={problem.stats[0].url} target="_blank" rel="noopener noreferrer" className="pn-focal-citation-link">
+                {problem.stats[0].citation} &nearr;
+              </a>
+            ) : problem.stats[0].citation}
+          </div>
         )}
         <div className="pn-focal-divider" style={{ background: problem.color }} />
         <p className="pn-focal-desc">{problem.desc}</p>
@@ -435,7 +441,13 @@ function ProblemNavigator() {
           </div>
         )}
         {problem.stats[1]?.citation && (
-          <div className="pn-focal-citation">{problem.stats[1].citation}</div>
+          <div className="pn-focal-citation">
+            {problem.stats[1].url ? (
+              <a href={problem.stats[1].url} target="_blank" rel="noopener noreferrer" className="pn-focal-citation-link">
+                {problem.stats[1].citation} &nearr;
+              </a>
+            ) : problem.stats[1].citation}
+          </div>
         )}
         <Link
           to={`/solutions/${problem.tab.toLowerCase().replace(/\s+/g, '-')}`}
@@ -713,7 +725,15 @@ export default function Home() {
                 </p>
                 <div className="stat-glass-source">
                   NewVantage Partners &mdash; Data &amp; AI Executive Survey 2024
-                  <span className="stat-glass-cta">Read the research &rarr;</span>
+                  <a
+                    href="https://newvantage.com/wp-content/uploads/2024/01/NVP-2024-Data-AI-Executive-Survey.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="stat-glass-cta"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Read the research &rarr;
+                  </a>
                 </div>
               </div>
             </Link>
