@@ -3,63 +3,63 @@
    ============================================ */
 
 /* ---- Industry Vertical Slider ---- */
-@keyframes slider-in {
-  from { transform: translateY(100%); opacity: 0; filter: blur(2px); }
-  to   { transform: translateY(0);   opacity: 1; filter: blur(0); }
+/*
+  Crossfade approach: no translateY, no overflow:hidden.
+  overflow:hidden on an inline-block moves the baseline to the bottom margin
+  edge (CSS spec), which is the root cause of every vertical drift bug.
+  By using opacity-only transitions the wrap can stay overflow:visible and
+  the baseline is always the text's own baseline — identical to the
+  surrounding "Built for" static text.
+*/
+@keyframes word-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
-@keyframes slider-out {
-  from { transform: translateY(0);    opacity: 1; filter: blur(0); }
-  to   { transform: translateY(-100%); opacity: 0; filter: blur(2px); }
+@keyframes word-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
 }
 
 .industry-slider-wrap {
   /*
-    inline-block so the wrap's baseline = its content's text baseline,
-    which aligns perfectly with the surrounding static h1 text.
-    No forced height — the natural text height is exactly right.
-    overflow: hidden clips the translateY travel of entering/exiting words.
-    The extra padding-bottom gives clip room below without moving the baseline.
+    inline-block with overflow:VISIBLE — this is the critical rule.
+    Per CSS spec, overflow:hidden on inline-block resets the baseline to
+    the bottom margin edge, causing vertical drift. overflow:visible keeps
+    the baseline at the last line box of the content, which matches the
+    surrounding static text perfectly.
+    The crossfade (opacity only) means we never need to clip translateY travel.
   */
   display: inline-block;
+  overflow: visible;
   position: relative;
-  overflow: hidden;
+  white-space: nowrap;
   vertical-align: baseline;
-  min-width: 8ch;
-  /* Pad below so the entering-from-below word has clip room */
-  padding-bottom: 0.25em;
-  /* Pull the bottom back up so the extra padding doesn't add line spacing */
-  margin-bottom: -0.25em;
 }
 
 .industry-slider-word {
-  display: inline-block;
   color: var(--color-cyan);
   font-style: normal;
-  will-change: transform, opacity;
+  will-change: opacity;
   white-space: nowrap;
-  /* Inherit the h1 line-height exactly */
-  line-height: inherit;
 }
 
-/* Current word resting state */
+/* Idle: fully visible */
 .industry-slider-word.slider-idle {
-  transform: translateY(0);
   opacity: 1;
-  filter: blur(0);
 }
 
-/* Current word slides out upward */
+/* Exiting word fades out */
 .industry-slider-word.slider-exit {
-  animation: slider-out 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  animation: word-out 0.35s ease forwards;
 }
 
-/* Next word slides in from below — absolutely positioned inside the clip */
+/* Entering word: sit exactly on top of the exiting word via absolute,
+   anchored to the wrap's own position. */
 .industry-slider-word.slider-enter {
   position: absolute;
   left: 0;
   top: 0;
-  width: 100%;
-  animation: slider-in 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  animation: word-in 0.35s ease forwards;
 }
 
 /* ---- Hero ---- */
