@@ -611,8 +611,10 @@ export default function Home() {
               <div className="plt-reveal-text">
                 <div className="eyebrow">The Fix</div>
                 <h2 className="plt-reveal-headline">
-                  One platform that solves it<br />
-                  for <IndustryTypewriter />
+                  One platform that solves it
+                  <div className="plt-reveal-tw-row">
+                    for <IndustryTypewriter />
+                  </div>
                 </h2>
                 <p className="plt-reveal-sub">
                   Seven integrated capabilities. One unified data hub. No rip-and-replace required.
@@ -766,6 +768,34 @@ export default function Home() {
 
         </div>
       </section>
+
+      {/* BRIDGE — transition strip between platform capabilities and why-vorro */}
+      <div className="section-bridge">
+        <div className="container">
+          <FadeIn>
+            <div className="bridge-inner">
+              <div className="bridge-stat">
+                <span className="bridge-stat-val">22+</span>
+                <span className="bridge-stat-lbl">enterprises live on Vorro</span>
+              </div>
+              <div className="bridge-divider" aria-hidden="true" />
+              <div className="bridge-stat">
+                <span className="bridge-stat-val">15M+</span>
+                <span className="bridge-stat-lbl">daily transactions processed</span>
+              </div>
+              <div className="bridge-divider" aria-hidden="true" />
+              <div className="bridge-stat">
+                <span className="bridge-stat-val">70%</span>
+                <span className="bridge-stat-lbl">less cost vs. in-house build</span>
+              </div>
+              <div className="bridge-divider" aria-hidden="true" />
+              <p className="bridge-quote">
+                &ldquo;We evaluated every major integration vendor. Vorro was the only one that understood the actual problem.&rdquo;
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+      </div>
 
       {/* WHY VORRO */}
       <section className="section bg-navy why-section">

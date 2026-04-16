@@ -1018,7 +1018,17 @@ main.home-page {
   line-height: 1.15;
   letter-spacing: -0.04em;
   margin: 0.75rem 0 1rem;
-  text-wrap: balance;
+  /* Don't use text-wrap: balance — typewriter causes dynamic width that confuses balancing */
+  text-align: center;
+}
+
+/* The "for [Industry]" line sits on its own row, centred */
+.plt-reveal-tw-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.35em;
+  margin-top: 0.1em;
 }
 
 .plt-reveal-sub {
@@ -1029,17 +1039,15 @@ main.home-page {
   line-height: 1.65;
 }
 
-/* Typewriter industry name */
+/* Typewriter industry name — no min-width, no left-align */
 .industry-tw {
   color: #20D3EF;
   white-space: nowrap;
-  display: inline-block;
-  min-width: 16ch;
-  text-align: left;
+  display: inline;
 }
 
 .industry-tw-cursor {
-  display: inline-block;
+  display: inline;
   animation: tw-blink 0.85s steps(1) infinite;
   color: #20D3EF;
   margin-left: 1px;
@@ -1053,6 +1061,20 @@ main.home-page {
 /* Hub diagram — full-bleed, no card border, bleeds into dark background */
 .plt-hub-visual {
   margin-bottom: 0;
+  position: relative;
+}
+
+/* Bottom fade — hub dissolves into the dark page seamlessly */
+.plt-hub-visual::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: linear-gradient(to bottom, transparent 0%, #0b0820 100%);
+  pointer-events: none;
+  z-index: 3;
 }
 
 .plt-hub-visual .capabilities-wrapper {
@@ -1061,8 +1083,9 @@ main.home-page {
 
 .plt-hub-visual .capabilities-frame {
   max-width: 100%;
-  min-height: 620px;
-  aspect-ratio: 16 / 9;
+  /* Fixed tall height — no aspect-ratio constraint that clips pillars */
+  height: 680px;
+  aspect-ratio: unset;
 }
 
 /* Scroll nudge below the hub */
@@ -1077,6 +1100,82 @@ main.home-page {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 1.5rem 0;
+}
+
+/* ============================================================
+   SECTION BRIDGE — transitions between platform + why-vorro
+   ============================================================ */
+.section-bridge {
+  padding: 3rem 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: transparent;
+}
+
+.bridge-inner {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.bridge-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex-shrink: 0;
+}
+
+.bridge-stat-val {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: var(--font-black);
+  color: #20D3EF;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.bridge-stat-lbl {
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.35);
+  font-weight: var(--font-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.bridge-divider {
+  width: 1px;
+  height: 48px;
+  background: rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+
+.bridge-quote {
+  font-size: var(--text-base);
+  color: rgba(255,255,255,0.4);
+  font-style: italic;
+  line-height: 1.6;
+  flex: 1;
+  min-width: 200px;
+  margin: 0;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(172,65,151,0.4);
+}
+
+@media (max-width: 768px) {
+  .bridge-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .bridge-divider {
+    display: none;
+  }
+  .bridge-quote {
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 1rem;
+  }
 }
 
 /* Legacy plt-header kept for safety */
